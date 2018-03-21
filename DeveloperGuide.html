@@ -48,8 +48,9 @@
 <li><a href="#proposed-data-encryption">4.2. [Proposed] Data Encryption</a></li>
 <li><a href="#email-mechanism">4.3. Email Mechanism</a></li>
 <li><a href="#changing-profile-photo-mechanism">4.4. Changing Profile Photo Mechanism</a></li>
-<li><a href="#logging">4.5. Logging</a></li>
-<li><a href="#Implementation-Configuration">4.6. Configuration</a></li>
+<li><a href="#compress-decompress-mechanism">4.5. Compress/Decompress Mechanism</a></li>
+<li><a href="#logging">4.6. Logging</a></li>
+<li><a href="#Implementation-Configuration">4.7. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">5. Documentation</a>
@@ -1351,7 +1352,115 @@ Members can delete the original file from the computer, without affecting the Cl
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">4.5. Logging</a></h3>
+<h3 id="compress-decompress-mechanism"><a class="link" href="#compress-decompress-mechanism">4.5. Compress/Decompress Mechanism</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">4.5.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>Member details are shown as cards in the GUI. Cards can either be decompressed(Figure 22) or compressed(Figure 23).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/DecompressedMemberCards.png" alt="DecompressedMemberCards" width="300">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 22. Decompressed Member Cards</em></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CompressedCards.png" alt="CompressedCards" width="300">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 23. Compressed Member Cards</em></p>
+</div>
+<div class="paragraph">
+<p>The <code>MemberCard</code> class provides an abstraction for the member card shown in the GUI. By default, it shows a member card that is decompressed.
+To differentiate between compressed and decompressed member card, we introduced a <code>CompressedMemberCard</code> class. This class extends <code>MemberCard</code> (Figure 24) since a <code>CompressedMemberCard</code> is a <code>MemberCard</code>.
+Each of these classes contain a different static String showing location of the actual <code>FXML</code> file that determines layout of the member card, hence we get different layouts.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/MemberCardClassDiagram.png" alt="MemberCardClassDiagram" width="300">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 24. <code>MemberCard</code> class diagram</em></p>
+</div>
+<div class="paragraph">
+<p>The <code>compress</code> and <code>decompress</code> commands allows members to select whether they want to see detailed information of members or see a compressed version for easy viewing.
+These commands do not extend from <code>UndoableCommand</code> but just from <code>Command</code> since they do not change the state of the club book.</p>
+</div>
+<div class="paragraph">
+<p>Due to the similar nature of the <code>compress</code> and <code>decompress</code> commands, only the <code>compress</code> command will be discussed.</p>
+</div>
+<div class="paragraph">
+<p>Suppose that the user has just launched the application. The member cards would be decompressed (Figure 22).</p>
+</div>
+<div class="paragraph">
+<p>The user inputs 'compress' and the sequence diagram (Figure 24) below shows how the different components interact.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforCompressToEventsCenter.png" alt="SDforCompressToEventsCenter" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 25. Sequence diagram for compress command to Events Center</em></p>
+</div>
+<div class="paragraph">
+<p>Then, the <code>MemberListPanel</code>, which contains the <code>MemberCard</code> objects will handle the event (Figure 25). If the cards are already compressed, no changes occur.
+However, if the cards are decompressed, the <code>MemberCard</code> objects would be converted to <code>CompressedMemberCard</code> objects.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforCompressFromEventsCenter.png" alt="SDforCompressFromEventsCenter" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 26. Sequence diagram for compress command from Events Center</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.5.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-to-interact-from-logic-to-ui"><a class="link" href="#aspect-how-to-interact-from-logic-to-ui">Aspect: How to interact from Logic to Ui</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Use Event-Driven approach to interact from <code>CompressCommand</code>/<code>DecompressCommand</code> to <code>MemberListPanel</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Reduces coupling.</p>
+</li>
+<li>
+<p>Cons: Slower than just directly changing the <code>Ui</code> since a seperate class(<code>EventsCenter</code>) has to manage interactions, not
+just for compress/decompress but for other events as well.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Keep a <code>Ui</code> attribute in every command just like <code>Model</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement.</p>
+</li>
+<li>
+<p>Cons: Increases coupling</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging"><a class="link" href="#logging">4.6. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging.
 The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
@@ -1359,7 +1468,7 @@ The <code>LogsCenter</code> class is used to manage the logging levels and loggi
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 4.6, &#8220;Configuration&#8221;</a>).</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 4.7, &#8220;Configuration&#8221;</a>).</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level.</p>
@@ -1390,7 +1499,7 @@ The <code>LogsCenter</code> class is used to manage the logging levels and loggi
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">4.6. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">4.7. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -3569,7 +3678,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-21 06:09:26 UTC
+Last updated 2018-03-21 06:14:10 UTC
 </div>
 </div>
 </body>
