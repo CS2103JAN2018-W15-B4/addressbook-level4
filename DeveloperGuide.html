@@ -47,8 +47,9 @@
 <li><a href="#undo-redo-feature">4.1. Undo/Redo feature</a></li>
 <li><a href="#proposed-data-encryption">4.2. [Proposed] Data Encryption</a></li>
 <li><a href="#email-mechanism">4.3. Email Mechanism</a></li>
-<li><a href="#logging">4.4. Logging</a></li>
-<li><a href="#Implementation-Configuration">4.5. Configuration</a></li>
+<li><a href="#changing-profile-photo-mechanism">4.4. Changing Profile Photo Mechanism</a></li>
+<li><a href="#logging">4.5. Logging</a></li>
+<li><a href="#Implementation-Configuration">4.6. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">5. Documentation</a>
@@ -101,7 +102,9 @@
 <h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Club Connect is an application targeted at club members who are students at the National University of Singapore (NUS). It aims to make the tedious process of club management easier are more effective. It provides features that are essential for a club to function smoothly such as user authentication, assigning tasks, email blasts, conducting polls, and importing and exporting member details.
+<p>Club Connect is an application targeted at club members who are students at the National University of Singapore (NUS).
+It aims to make the tedious process of club management easier are more effective.
+It provides features that are essential for a club to function smoothly such as user authentication, assigning tasks, email blasts, conducting polls, and importing and exporting member details.
 This guide provides the necessary information for developers who are interested in contributing to the application - from the steps required to set-up, to detailed descriptions of the current features that the application sports.</p>
 </div>
 </div>
@@ -184,7 +187,8 @@ Do not disable them. If you have disabled them, go to <code>File</code> &gt; <co
 <p>Click <code>OK</code> to accept the default settings</p>
 </li>
 <li>
-<p>Open a console and run the command <code>gradlew processResources</code> (Mac/Linux: <code>./gradlew processResources</code>). It should finish with the <code>BUILD SUCCESSFUL</code> message.<br>
+<p>Open a console and run the command <code>gradlew processResources</code> (Mac/Linux: <code>./gradlew processResources</code>).
+  It should finish with the <code>BUILD SUCCESSFUL</code> message.<br>
 This will generate all resources required by the application and tests.</p>
 </li>
 </ol>
@@ -208,7 +212,8 @@ This will generate all resources required by the application and tests.</p>
 <div class="sect3">
 <h4 id="configuring-the-coding-style"><a class="link" href="#configuring-the-coding-style">2.4.1. Configuring the coding style</a></h4>
 <div class="paragraph">
-<p>This project follows <a href="https://github.com/oss-generic/process/blob/master/docs/CodingStandards.adoc">oss-generic coding standards</a>. IntelliJ&#8217;s default style is mostly compliant with ours but it uses a different import order from ours. To rectify,</p>
+<p>This project follows <a href="https://github.com/oss-generic/process/blob/master/docs/CodingStandards.adoc">oss-generic coding standards</a>.
+IntelliJ&#8217;s default style is mostly compliant with ours but it uses a different import order from ours. To rectify,</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -226,7 +231,8 @@ This will generate all resources required by the application and tests.</p>
 <p>For <code>Class count to use import with '*'</code> and <code>Names count to use static import with '*'</code>: Set to <code>999</code> to prevent IntelliJ from contracting the import statements</p>
 </li>
 <li>
-<p>For <code>Import Layout</code>: The order is <code>import static all other imports</code>, <code>import java.*</code>, <code>import javax.*</code>, <code>import org.*</code>, <code>import com.*</code>, <code>import all other imports</code>. Add a <code>&lt;blank line&gt;</code> between each <code>import</code></p>
+<p>For <code>Import Layout</code>: The order is <code>import static all other imports</code>, <code>import java.*</code>, <code>import javax.*</code>, <code>import org.*</code>, <code>import com.*</code>, <code>import all other imports</code>.
+Add a <code>&lt;blank line&gt;</code> between each <code>import</code></p>
 </li>
 </ul>
 </div>
@@ -240,13 +246,15 @@ This will generate all resources required by the application and tests.</p>
 <div class="sect3">
 <h4 id="updating-documentation-to-match-your-fork"><a class="link" href="#updating-documentation-to-match-your-fork">2.4.2. Updating documentation to match your fork</a></h4>
 <div class="paragraph">
-<p>After forking the repo, links in the documentation will still point to the <code>CS2103JAN2018-W15-B4/main</code> repo. If you plan to develop this as a separate product (i.e. instead of contributing to <code>CS2103JAN2018-W15-B4/main</code>) , you should replace the URL in the variable <code>repoURL</code> in <code>DeveloperGuide.adoc</code> and <code>UserGuide.adoc</code> with the URL of your fork.</p>
+<p>After forking the repo, links in the documentation will still point to the <code>CS2103JAN2018-W15-B4/main</code> repo.
+If you plan to develop this as a separate product (i.e. instead of contributing to <code>CS2103JAN2018-W15-B4/main</code>) , you should replace the URL in the variable <code>repoURL</code> in <code>DeveloperGuide.adoc</code> and <code>UserGuide.adoc</code> with the URL of your fork.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="setting-up-ci"><a class="link" href="#setting-up-ci">2.4.3. Setting up CI</a></h4>
 <div class="paragraph">
-<p>Set up Travis to perform Continuous Integration (CI) for your fork. See <a href="UsingTravis.html">UsingTravis.adoc</a> to learn how to set it up.</p>
+<p>Set up Travis to perform Continuous Integration (CI) for your fork.
+See <a href="UsingTravis.html">UsingTravis.adoc</a> to learn how to set it up.</p>
 </div>
 <div class="paragraph">
 <p>After setting up Travis, you can optionally set up coverage reporting for your team fork (see <a href="UsingCoveralls.html">UsingCoveralls.adoc</a>).</p>
@@ -308,7 +316,8 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-The <code>.pptx</code> files used to create diagrams in this document can be found in the <a href="https://github.com/CS2103JAN2018-W15-B4/main/tree/master/docs/diagrams/">diagrams</a> folder. To update a diagram, modify the diagram in the .pptx file, select the objects of the diagram, and choose <code>Save as picture</code>.
+The <code>.pptx</code> files used to create diagrams in this document can be found in the <a href="https://github.com/CS2103JAN2018-W15-B4/main/tree/master/docs/diagrams/">diagrams</a> folder.
+To update a diagram, modify the diagram in the .pptx file, select the objects of the diagram, and choose <code>Save as picture</code>.
 </td>
 </tr>
 </table>
@@ -316,7 +325,8 @@ The <code>.pptx</code> files used to create diagrams in this document can be fou
 <div class="sect2">
 <h3 id="Design-Architecture"><a class="link" href="#Design-Architecture">3.1. Architecture</a></h3>
 <div class="paragraph">
-<p>The <strong><em>Architecture Diagram</em></strong> (Refer to Figure 1) explains the high-level design of the App. Given below is a quick overview of each component.</p>
+<p>The <strong><em>Architecture Diagram</em></strong> (Refer to Figure 1) explains the high-level design of the App.
+Given below is a quick overview of each component.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -327,7 +337,8 @@ The <code>.pptx</code> files used to create diagrams in this document can be fou
 <p><em>Figure 1. Architecture Diagram</em></p>
 </div>
 <div class="paragraph">
-<p><code>Main</code> has only one class called <a href="https://github.com/CS2103JAN2018-W15-B4/main/tree/master/src/main/java/seedu/club/MainApp.java"><code>MainApp</code></a>. It is responsible for the following:</p>
+<p><code>Main</code> has only one class called <a href="https://github.com/CS2103JAN2018-W15-B4/main/tree/master/src/main/java/seedu/club/MainApp.java"><code>MainApp</code></a>.
+It is responsible for the following:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -340,12 +351,13 @@ The <code>.pptx</code> files used to create diagrams in this document can be fou
 </ul>
 </div>
 <div class="paragraph">
-<p><code>Commons</code> represents a collection of classes used by multiple other components. Two of those classes play important roles at the architecture level. Classes used by multiple components are in the <code>seedu.club.commons</code> package.</p>
+<p><code>Commons</code> represents a collection of classes used by multiple other components.
+Two of those classes play important roles at the architecture level. Classes used by multiple components are in the <code>seedu.club.commons</code> package.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>EventsCenter</code> : This class (written using <a href="https://github.com/google/guava/wiki/EventBusExplained">Google&#8217;s Event Bus library</a>) is used by a component to communicate with other components using events (i.e. a form of <em>Event Driven</em> design)</p>
+<p><code>EventsCenter</code> : This class (written using <a href="https://github.com/google/guava/wiki/EventBusExplained">Google&#8217;s Event Bus library</a>) is used by a component to communicate with other components using events (i.e. a form of <em>Event Driven</em> design).</p>
 </li>
 <li>
 <p><code>LogsCenter</code> : Used by many classes to write log messages to the App&#8217;s log file.</p>
@@ -437,7 +449,8 @@ Note how the <code>Model</code> simply raises a <code>ClubBookChangedEvent</code
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Note how the event is propagated through the <code>EventsCenter</code> to the <code>Storage</code> and <code>UI</code> without <code>Model</code> having to be coupled to either of them. This is an example of how this Event Driven approach helps us reduce direct coupling between components.
+Note how the event is propagated through the <code>EventsCenter</code> to the <code>Storage</code> and <code>UI</code> without <code>Model</code> having to be coupled to either of them.
+This is an example of how this Event Driven approach helps us reduce direct coupling between components.
 </td>
 </tr>
 </table>
@@ -455,7 +468,9 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>MemberListPanel</code>, <code>StatusBarFooter</code>, <code>BrowserPanel</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
 </div>
 <div class="paragraph">
-<p>The <code>UI</code> component uses JavaFx UI framework. The layouts of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/CS2103JAN2018-W15-B4/main/tree/master/src/main/java/seedu/club/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/CS2103JAN2018-W15-B4/main/tree/master/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
+<p>The <code>UI</code> component uses JavaFx UI framework.
+The layouts of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder.
+For example, the layout of the <a href="https://github.com/CS2103JAN2018-W15-B4/main/tree/master/src/main/java/seedu/club/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/CS2103JAN2018-W15-B4/main/tree/master/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
 </div>
 <div class="paragraph">
 <p>The <code>UI</code> component:</p>
@@ -558,7 +573,8 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p>stores the Club Book data.</p>
 </li>
 <li>
-<p>exposes an unmodifiable <code>ObservableList&lt;Member&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list changes.</p>
+<p>exposes an unmodifiable <code>ObservableList&lt;Member&gt;</code> that can be 'observed'
+For example, the UI can be bound to this list so that the UI automatically updates when the data in the list changes.</p>
 </li>
 <li>
 <p>does not depend on any of the other three components.</p>
@@ -620,10 +636,13 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">4.1.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The undo/redo mechanism is facilitated by an <code>UndoRedoStack</code>, which resides inside <code>LogicManager</code>. It supports undoing and redoing of commands that modifies the state of the club book (e.g. <code>add</code>, <code>edit</code>). Such commands will inherit from <code>UndoableCommand</code>.</p>
+<p>The undo/redo mechanism is facilitated by an <code>UndoRedoStack</code>, which resides inside <code>LogicManager</code>.
+It supports undoing and redoing of commands that modifies the state of the club book (e.g. <code>add</code>, <code>edit</code>).
+Such commands will inherit from <code>UndoableCommand</code>.</p>
 </div>
 <div class="paragraph">
-<p><code>UndoRedoStack</code> only deals with <code>UndoableCommands</code>. Commands that cannot be undone will inherit from <code>Command</code> instead. The following diagram (Refer to figure 11) shows the inheritance diagram for commands:</p>
+<p><code>UndoRedoStack</code> only deals with <code>UndoableCommands</code>. Commands that cannot be undone will inherit from <code>Command</code> instead.
+The following diagram (Refer to figure 11) shows the inheritance diagram for commands:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -634,7 +653,10 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p><em>Figure 11. Inheritance Diagram for commands</em></p>
 </div>
 <div class="paragraph">
-<p>As you can see from the diagram (Figure 11), <code>UndoableCommand</code> adds an extra layer between the abstract <code>Command</code> class and concrete commands that can be undone, such as the <code>DeleteCommand</code>. Note that extra tasks need to be done when executing a command in an <em>undoable</em> way, such as saving the state of the club book before execution. <code>UndoableCommand</code> contains the high-level algorithm for those extra tasks while the child classes implement the details of how to execute the specific command. Note that this technique of putting the high-level algorithm in the parent class and lower-level steps of the algorithm in the child classes is also known as the <a href="https://www.tutorialspoint.com/design_pattern/template_pattern.htm">template pattern</a>.</p>
+<p>As you can see from the diagram (Figure 11), <code>UndoableCommand</code> adds an extra layer between the abstract <code>Command</code> class and concrete commands that can be undone, such as the <code>DeleteCommand</code>.
+Note that extra tasks need to be done when executing a command in an <em>undoable</em> way, such as saving the state of the club book before execution.
+<code>UndoableCommand</code> contains the high-level algorithm for those extra tasks while the child classes implement the details of how to execute the specific command.
+Note that this technique of putting the high-level algorithm in the parent class and lower-level steps of the algorithm in the child classes is also known as the <a href="https://www.tutorialspoint.com/design_pattern/template_pattern.htm">template pattern</a>.</p>
 </div>
 <div class="paragraph">
 <p>Commands that are not undoable are implemented this way:</p>
@@ -675,7 +697,10 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p>Suppose that the user has just launched the application. The <code>UndoRedoStack</code> will be empty at the beginning.</p>
 </div>
 <div class="paragraph">
-<p>The user executes a new <code>UndoableCommand</code> - <code>delete 5</code>, to delete the 5th member in the club book. The current state of the club book is saved before the <code>delete 5</code> command executes. The <code>delete 5</code> command will then be pushed onto the <code>undoStack</code> (the current state is saved together with the command). (Refer to Figure 12)</p>
+<p>The user executes a new <code>UndoableCommand</code> - <code>delete 5</code>, to delete the 5th member in the club book.
+The current state of the club book is saved before the <code>delete 5</code> command executes.
+The <code>delete 5</code> command will then be pushed onto the <code>undoStack</code> (the current state is saved together with the command).
+(Refer to Figure 12)</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -686,7 +711,8 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p><em>Figure 12. Initial state of <code>undoStack</code> and `redoStack`</em></p>
 </div>
 <div class="paragraph">
-<p>As the user continues to use the program, more commands are added into the <code>undoStack</code>. For example, the user may execute <code>add n/David &#8230;&#8203;</code> to add a new member (Refer to Figure 13).</p>
+<p>As the user continues to use the program, more commands are added into the <code>undoStack</code>.
+For example, the user may execute <code>add n/David &#8230;&#8203;</code> to add a new member (Refer to Figure 13).</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -712,7 +738,8 @@ If a command fails its execution, it will not be pushed to the <code>UndoRedoSta
 <p>The user now decides that adding the member was a mistake, and decides to undo that action using <code>undo</code>.</p>
 </div>
 <div class="paragraph">
-<p>We will pop the most recent command out of the <code>undoStack</code> and push it back to the <code>redoStack</code>. We will restore the club book to the state before the <code>add</code> command executed (Refer to figure 14).</p>
+<p>We will pop the most recent command out of the <code>undoStack</code> and push it back to the <code>redoStack</code>.
+We will restore the club book to the state before the <code>add</code> command executed (Refer to figure 14).</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -761,7 +788,8 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </table>
 </div>
 <div class="paragraph">
-<p>The user now decides to execute a new command, <code>clear</code>. As before, <code>clear</code> will be pushed into the <code>undoStack</code>. This time the <code>redoStack</code> is no longer empty. It will be purged as it no longer make sense to redo the <code>add n/David</code> command (this is the behavior that most modern desktop applications follow). (Refer to figure 16)</p>
+<p>The user now decides to execute a new command, <code>clear</code>. As before, <code>clear</code> will be pushed into the <code>undoStack</code>.
+This time the <code>redoStack</code> is no longer empty. It will be purged as it no longer make sense to redo the <code>add n/David</code> command (this is the behavior that most modern desktop applications follow). (Refer to figure 16)</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -772,7 +800,8 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <p><em>Figure 16. State of <code>undoStack</code> and <code>redoStack</code> after executing <code>clear</code> command.</em></p>
 </div>
 <div class="paragraph">
-<p>Commands that are not undoable are not added into the <code>undoStack</code>. For example, <code>list</code>, which inherits from <code>Command</code> rather than <code>UndoableCommand</code>, will not be added after execution (Refer to Figure 17):</p>
+<p>Commands that are not undoable are not added into the <code>undoStack</code>.
+For example, <code>list</code>, which inherits from <code>Command</code> rather than <code>UndoableCommand</code>, will not be added after execution (Refer to Figure 17):</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -801,11 +830,12 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Add a new abstract method <code>executeUndoableCommand()</code></p>
+<p><strong>Alternative 1 (current choice):</strong> Add a new abstract method <code>executeUndoableCommand()</code>.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: We will not lose any undone/redone functionality as it is now part of the default behaviour. Classes that deal with <code>Command</code> do not have to know that <code>executeUndoableCommand()</code> exist.</p>
+<p>Pros: We will not lose any undone/redone functionality as it is now part of the default behaviour.
+Classes that deal with <code>Command</code> do not have to know that <code>executeUndoableCommand()</code> exist.</p>
 </li>
 <li>
 <p>Cons: Hard for new developers to understand the template pattern.</p>
@@ -814,7 +844,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Just override <code>execute()</code></p>
+<p><strong>Alternative 2:</strong> Just override <code>execute()</code>.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -867,7 +897,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Only include commands that modify the club book (<code>add</code>, <code>clear</code>, <code>edit</code>).</p>
+<p><strong>Alternative 1 (current choice):</strong> Only include commands that modify the club book (<code>add</code>, <code>clear</code>, <code>edit</code>)</p>
 <div class="ulist">
 <ul>
 <li>
@@ -880,7 +910,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Include all commands.</p>
+<p><strong>Alternative 2:</strong> Include all commands</p>
 <div class="ulist">
 <ul>
 <li>
@@ -921,7 +951,8 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <p>Pros: We do not need to maintain a separate stack, and can just reuse what is already in the codebase.</p>
 </li>
 <li>
-<p>Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Furthermore, the "Single Responsibility" and "Separation of Concerns" principles are violated as <code>HistoryManager</code> now needs to do two * different things.</p>
+<p>Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands.
+Furthermore, the "Single Responsibility" and "Separation of Concerns" principles are violated as <code>HistoryManager</code> now needs to do two * different things.</p>
 </li>
 </ul>
 </div>
@@ -945,7 +976,8 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <div class="sect3">
 <h4 id="how-symmetric-key-encryption-works"><a class="link" href="#how-symmetric-key-encryption-works">4.2.2. How Symmetric Key Encryption works</a></h4>
 <div class="paragraph">
-<p>Symmetric key encryption is an encryption philosophy where the two communicating parties share a pre-established secret key <strong>k</strong>. It consists of 2 algorithms <code>E</code> (Encrypting or Encoding) and <code>D</code> (Decryption or Decoding) which take in the same key <strong>k</strong> to perform their respective operations.</p>
+<p>Symmetric key encryption is an encryption philosophy where the two communicating parties share a pre-established secret key <strong>k</strong>.
+It consists of 2 algorithms <code>E</code> (Encrypting or Encoding) and <code>D</code> (Decryption or Decoding) which take in the same key <strong>k</strong> to perform their respective operations.</p>
 </div>
 <div class="paragraph">
 <p>The 2 algorithms <code>E</code> and <code>D</code> are efficient algorithms, such that:</p>
@@ -980,7 +1012,8 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </ul>
 </div>
 <div class="paragraph">
-<p>The construction of a symmetric key is done by passing the algorithm the encryption will use. We plan to use the Advanced Encryption Scheme (AES) algorithm. For that reason, we will use a 128-bit AES symmetric key.</p>
+<p>The construction of a symmetric key is done by passing the algorithm the encryption will use.
+We plan to use the Advanced Encryption Scheme (AES) algorithm. For that reason, we will use a 128-bit AES symmetric key.</p>
 </div>
 <div class="paragraph">
 <p>Once the key is generated, all data will be encrypted with AES. Anyone who wishes to view the decrypted form of the data must possess the secret key.</p>
@@ -992,7 +1025,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <div class="sect3">
 <h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">4.3.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The <code>email</code> mechanism of ClubConnect is facilitated by the <code>EmailCommand</code> class and is event-driven.
+<p>The <code>email</code> mechanism of Club Connect is facilitated by the <code>EmailCommand</code> class and is event-driven.
 The <code>EmailCommand</code> consists of the following fields:</p>
 </div>
 <div class="ulist">
@@ -1021,13 +1054,15 @@ The <code>EmailCommand</code> consists of the following fields:</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Emails can only be sent to members belonging to EITHER a Group OR a Tag. ClubConnect currently doesn&#8217;t support sending emails to members belonging to BOTH a Group and a Tag.
+Emails can only be sent to members belonging to EITHER a Group OR a Tag.
+ClubConnect currently doesn&#8217;t support sending emails to members belonging to BOTH a Group and a Tag.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>The <code>EmailCommand</code> extends from <code>Command</code> and not from <code>UndoableCommand</code>, as it is not an undoable command. Refer to Figure 19 for the UML diagram.</p>
+<p>The <code>EmailCommand</code> extends from <code>Command</code> and not from <code>UndoableCommand</code>, as it is not an undoable command.
+Refer to Figure 19 for the UML diagram.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1038,7 +1073,8 @@ Emails can only be sent to members belonging to EITHER a Group OR a Tag. ClubCon
 <p><em>Figure 19. EmailCommand UML Diagram</em></p>
 </div>
 <div class="paragraph">
-<p><code>EmailCommandParser</code> is responsible for parsing the <code>email</code> command. It returns a <code>EmailCommand</code> object after parsing <code>Client</code>, <code>Subject</code>, <code>Body</code>, <code>Group</code>, and <code>Tag</code>. Figure 20 depicts the sequence of parsing the command.</p>
+<p><code>EmailCommandParser</code> is responsible for parsing the <code>email</code> command. It returns a <code>EmailCommand</code> object after parsing <code>Client</code>, <code>Subject</code>, <code>Body</code>, <code>Group</code>, and <code>Tag</code>.
+Figure 20 depicts the sequence of parsing the command.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1150,14 +1186,180 @@ Desktop.getDesktop().browse(<span class="keyword">new</span> <span class="predef
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">4.4. Logging</a></h3>
+<h3 id="changing-profile-photo-mechanism"><a class="link" href="#changing-profile-photo-mechanism">4.4. Changing Profile Photo Mechanism</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">4.4.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
+<p>The <code>changepic</code> mechanism of Club Connect is facilitated by the <code>ChangeProfilePhotoCommand</code> class and is event-driven.
+It allows members to modify their profile photos displayed in the application.
+To facilitate this, it makes use of the <code>ProfilePhoto</code> class. <code>ProfilePhoto</code></p>
+</div>
+<div class="paragraph">
+<p>Currently, the <code>ChangeProfilePhotoCommand</code> extends from the <code>Command</code> class, and not from <code>UndoableCommand</code>.
+Refer to Figure 22 for the UML diagram.
+The <code>ProfilePhoto</code> class consists of a <code>String</code> attribute to store the file path of the profile photo.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ChangeProfilePhotoCommandUML.png" alt="ChangeProfilePhotoCommandUML" width="350">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 22. ChangeProfilePhotoCommand UML Diagram</em></p>
+</div>
+<div class="paragraph">
+<p>The <code>displaypic</code> command involves the use of multiple components of Club Connect.
+Below, Figure 23 shows the interactions betweeen these components.
+As you can see, the <code>ChangeProfilePhotoCommand</code> is driven by the <code>ProfilePhotoChangedEvent</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforChangeProfilePhoto.png" alt="SDforChangeProfilePhoto" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 23. High Level Sequence Diagram for <code>changepic PATH</code> Command</em></p>
+</div>
+<div class="paragraph">
+<p>ChangeProfilePhotoCommandParser is responsible for parsing the <code>changepic</code> command.
+It returns a <code>ChangeProfilePhotoCommand</code> object after parsing the photo file path.
+Figure 24 depicts the Sequence Diagram for interactions within the <code>Logic</code> component for the <code>execute("changepic C:/Users/Admin/Desktop/ photo.png")</code> API call.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ChangeProfilePhotoCommandSdForLogic.png" alt="ChangeProfilePhotoCommandSdForLogic" width="650">
+</div>
+</div>
+<div class="paragraph">
+<p>_Figure 24. Interactions Inside the Logic Component for the <code>changepic C:/Users/Admin/Desktop/ photo.png</code> Command</p>
+</div>
+<div class="paragraph">
+<p>The <code>ChangeProfilePhotoCommand#execute()</code> method invokes the <code>addProfilePhoto()</code> method from <code>model</code>.
+Complying with the rules of <a href="#abstraction">abstraction</a>, the <code>Logic</code> component calls on <code>Model</code> to handle the internal details for updation.</p>
+</div>
+<div class="paragraph">
+<p>The actual reading of the profile photo from the path provided is done by the <code>Storage</code> component.
+It copies the photo to the Club Connect application&#8217;s resources.</p>
+</div>
+<div class="paragraph">
+<p>The code used for reading and copying the file is as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Override</span>
+<span class="directive">public</span> <span class="type">void</span> copyOriginalPhotoFile(<span class="predefined-type">String</span> originalPhotoPath, <span class="predefined-type">String</span> newPhotoName) <span class="directive">throws</span> PhotoException {
+    <span class="predefined-type">BufferedImage</span> originalPhoto = <span class="predefined-constant">null</span>;
+
+    <span class="keyword">try</span> {
+        logger.info(<span class="string"><span class="delimiter">&quot;</span><span class="content">Profile Photo is being read from </span><span class="delimiter">&quot;</span></span> + originalPhotoPath);
+
+        <span class="predefined-type">URL</span> photoUrl = <span class="keyword">new</span> <span class="predefined-type">URL</span>(URL_PREFIX + originalPhotoPath);
+        originalPhoto = <span class="predefined-type">ImageIO</span>.read(photoUrl);
+
+        <span class="predefined-type">String</span> saveAs = newPhotoName + FILE_EXTENSION;
+        <span class="predefined-type">File</span> newPath = <span class="keyword">new</span> <span class="predefined-type">File</span>(getCurrentDirectory() + SAVE_PHOTO_DIRECTORY, saveAs);
+
+        createPhotoFileCopy(originalPhoto, newPath);
+    } <span class="keyword">catch</span> (<span class="exception">IOException</span> ioe) {
+        <span class="comment">// ... exception handling ...</span>
+    }
+}
+
+<span class="directive">public</span> <span class="directive">static</span> <span class="predefined-type">String</span> getCurrentDirectory() {
+    <span class="comment">// ... getting current directory logic ...</span>
+}
+
+<span class="directive">public</span> <span class="type">void</span> createPhotoFileCopy(<span class="predefined-type">BufferedImage</span> originalPhoto, <span class="predefined-type">File</span> newPath) <span class="directive">throws</span> <span class="exception">IOException</span> {
+    <span class="comment">// ... logging ...</span>
+    <span class="predefined-type">ImageIO</span>.write(originalPhoto, <span class="string"><span class="delimiter">&quot;</span><span class="content">png</span><span class="delimiter">&quot;</span></span>, newPath);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The logged in member&#8217;s details are then updated to include this new profile photo.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.4.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-implementation-of-code-changeprofilephotocommand-code"><a class="link" href="#aspect-implementation-of-code-changeprofilephotocommand-code">Aspect: Implementation of <code>ChangeProfilePhotoCommand</code></a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Logged in member can only change his/her own profile photo.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Makes intuitive sense, easy to implement.</p>
+</li>
+<li>
+<p>Cons: There is no way for Exco members to ensure that members have appropriate profile photos.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2</strong>: Exco members can change any member&#8217;s profile photo.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Gives Exco members a way to exercise control over members' profile photos.</p>
+</li>
+<li>
+<p>Cons: Implementation becomes more complicated.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-source-files-of-profile-photos"><a class="link" href="#aspect-source-files-of-profile-photos">Aspect: Source files of profile photos</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Make a copy the source image provided to the applications resources.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Makes application portable and non-dependent on the rest of the system.
+Members can delete the original file from the computer, without affecting the Club Connect Application.</p>
+</li>
+<li>
+<p>Cons: Changes made to the original source images are not reflected in the application.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2</strong>: Always read the profile photo from the file path provided.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Changes made in the source image are reflected in the application.</p>
+</li>
+<li>
+<p>Cons: Application becomes highly dependent on the system, in terms of profile photos.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging"><a class="link" href="#logging">4.5. Logging</a></h3>
+<div class="paragraph">
+<p>We are using <code>java.util.logging</code> package for logging.
+The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 4.5, &#8220;Configuration&#8221;</a>).</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 4.6, &#8220;Configuration&#8221;</a>).</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level.</p>
@@ -1188,7 +1390,7 @@ Desktop.getDesktop().browse(<span class="keyword">new</span> <span class="predef
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">4.5. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">4.6. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -1276,7 +1478,8 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-The most reliable way to run tests is the 3rd one. The first two methods might fail some GUI tests due to platform/resolution-specific idiosyncrasies.
+The most reliable way to run tests is the 3rd one.
+The first two methods might fail some GUI tests due to platform/resolution-specific idiosyncrasies.
 </td>
 </tr>
 </table>
@@ -1320,7 +1523,8 @@ See <a href="UsingGradle.html">UsingGradle.adoc</a> for more info on how to run 
 <p><strong>Method 3: Using Gradle (headless)</strong></p>
 </div>
 <div class="paragraph">
-<p>Thanks to the <a href="https://github.com/TestFX/TestFX">TestFX</a> library we use, our GUI tests can be run in the <em>headless</em> mode. In the headless mode, GUI tests do not show up on the screen. That means the developer can do other things on the Computer while the tests are running.</p>
+<p>Thanks to the <a href="https://github.com/TestFX/TestFX">TestFX</a> library we use, our GUI tests can be run in the <em>headless</em> mode.
+In the headless mode, GUI tests do not show up on the screen. That means the developer can do other things on the Computer while the tests are running.</p>
 </div>
 <div class="paragraph">
 <p>To run tests in headless mode, open a console and run the command <code>gradlew clean headless allTests</code> (Mac/Linux: <code>./gradlew clean headless allTests</code>)</p>
@@ -1398,19 +1602,22 @@ e.g. <code>seedu.club.logic.LogicManagerTest</code></p>
 <div class="sect2">
 <h3 id="continuous-integration"><a class="link" href="#continuous-integration">7.2. Continuous Integration</a></h3>
 <div class="paragraph">
-<p>We use <a href="https://travis-ci.org/">Travis CI</a> and <a href="https://www.appveyor.com/">AppVeyor</a> to perform <em>Continuous Integration</em> on our projects. See <a href="UsingTravis.html">UsingTravis.adoc</a> and <a href="UsingAppVeyor.html">UsingAppVeyor.adoc</a> for more details.</p>
+<p>We use <a href="https://travis-ci.org/">Travis CI</a> and <a href="https://www.appveyor.com/">AppVeyor</a> to perform <em>Continuous Integration</em> on our projects.
+See <a href="UsingTravis.html">UsingTravis.adoc</a> and <a href="UsingAppVeyor.html">UsingAppVeyor.adoc</a> for more details.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="coverage-reporting"><a class="link" href="#coverage-reporting">7.3. Coverage Reporting</a></h3>
 <div class="paragraph">
-<p>We use <a href="https://coveralls.io/">Coveralls</a> to track the code coverage of our projects. See <a href="UsingCoveralls.html">UsingCoveralls.adoc</a> for more details.</p>
+<p>We use <a href="https://coveralls.io/">Coveralls</a> to track the code coverage of our projects.
+See <a href="UsingCoveralls.html">UsingCoveralls.adoc</a> for more details.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="documentation-previews"><a class="link" href="#documentation-previews">7.4. Documentation Previews</a></h3>
 <div class="paragraph">
-<p>When a pull request has changes to asciidoc files, you can use <a href="https://www.netlify.com/">Netlify</a> to see a preview of how the HTML version of those asciidoc files will look like when the pull request is merged. See <a href="UsingNetlify.html">UsingNetlify.adoc</a> for more details.</p>
+<p>When a pull request has changes to asciidoc files, you can use <a href="https://www.netlify.com/">Netlify</a> to see a preview of how the HTML version of those asciidoc files will look like when the pull request is merged.
+See <a href="UsingNetlify.html">UsingNetlify.adoc</a> for more details.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1454,10 +1661,12 @@ b. Require developers to download those libraries manually (this creates extra w
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>First, add small local-impact (i.e. the impact of the change does not go beyond the component) enhancements to one component at a time. Some suggestions are given in <a href="#GetStartedProgramming-EachComponent">Section A.1, &#8220;Improving each component&#8221;</a>.</p>
+<p>First, add small local-impact (i.e. the impact of the change does not go beyond the component) enhancements to one component at a time.
+Some suggestions are given in <a href="#GetStartedProgramming-EachComponent">Section A.1, &#8220;Improving each component&#8221;</a>.</p>
 </li>
 <li>
-<p>Next, add a feature that touches multiple components to learn how to implement an end-to-end feature across all components. <a href="#GetStartedProgramming-RemarkCommand">Section A.2, &#8220;Creating a new command: <code>remark</code>&#8221;</a> explains how to go about adding such a feature.</p>
+<p>Next, add a feature that touches multiple components to learn how to implement an end-to-end feature across all components.
+<a href="#GetStartedProgramming-RemarkCommand">Section A.2, &#8220;Creating a new command: <code>remark</code>&#8221;</a> explains how to go about adding such a feature.</p>
 </li>
 </ol>
 </div>
@@ -1468,7 +1677,9 @@ b. Require developers to download those libraries manually (this creates extra w
 </div>
 <h4 id="code-logic-code-component" class="discrete"><code>Logic</code> component</h4>
 <div class="paragraph">
-<p><strong>Scenario:</strong> You are in charge of <code>logic</code>. During dog-fooding, your team realize that it is troublesome for the user to type the whole command in order to execute a command. Your team devise some strategies to help cut down the amount of typing necessary, and one of the suggestions was to implement aliases for the command words. Your job is to implement such aliases.</p>
+<p><strong>Scenario:</strong> You are in charge of <code>logic</code>. During dog-fooding, your team realize that it is troublesome for the user to type the whole command in order to execute a command.
+Your team devise some strategies to help cut down the amount of typing necessary, and one of the suggestions was to implement aliases for the command words.
+Your job is to implement such aliases.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -2250,9 +2461,10 @@ The list of members from the Club Connect application can be exported to formats
 </div>
 </li>
 <li>
-<p>Minor Feature: Add a profile picture</p>
+<p>Minor Feature: Add a profile photo</p>
 <div class="paragraph">
-<p>All the members of a club are not known by each other, which is especially the case in larger clubs. Adding a profile picture makes it easier to know what other members look like and to differentiate between members with similar names.</p>
+<p>All the members of a club are not known by each other, which is especially the case in larger clubs.
+Adding a profile photo makes it easier to know what other members look like and to differentiate between members with similar names.</p>
 </div>
 </li>
 </ul>
@@ -2433,7 +2645,7 @@ The list of members from the Club Connect application can be exported to formats
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Member</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">add a display picture</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add a profile photo</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">be identified by others</p></td>
 </tr>
 <tr>
@@ -3143,6 +3355,7 @@ The list of members from the Club Connect application can be exported to formats
 <div class="sectionbody">
 <div class="dlist">
 <dl>
+<dt class="hdlist1"><a id="abstraction"></a> Abstraction</dt>
 <dt class="hdlist1"><a id="attribute"></a> Attribute</dt>
 <dd>
 <p>An attribute is a type of detail of a member. For example, an attribute of a member could be phone number, email, matric number and so on.</p>
@@ -3201,6 +3414,7 @@ An Exco member is also regarded as a member.
 <dd>
 <p>Visual display of the information (attributes and entries) of a member.</p>
 </dd>
+<dt class="hdlist1"><a id="uml"></a> UML Diagram</dt>
 </dl>
 </div>
 </div>
@@ -3355,7 +3569,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-21 04:55:32 UTC
+Last updated 2018-03-21 06:09:26 UTC
 </div>
 </div>
 </body>
