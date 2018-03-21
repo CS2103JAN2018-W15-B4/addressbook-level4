@@ -49,8 +49,9 @@
 <li><a href="#email-mechanism">4.3. Email Mechanism</a></li>
 <li><a href="#changing-profile-photo-mechanism">4.4. Changing Profile Photo Mechanism</a></li>
 <li><a href="#compress-decompress-mechanism">4.5. Compress/Decompress Mechanism</a></li>
-<li><a href="#logging">4.6. Logging</a></li>
-<li><a href="#Implementation-Configuration">4.7. Configuration</a></li>
+<li><a href="#account-management-mechanism">4.6. Account Management Mechanism</a></li>
+<li><a href="#logging">4.7. Logging</a></li>
+<li><a href="#Implementation-Configuration">4.8. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">5. Documentation</a>
@@ -1460,7 +1461,73 @@ just for compress/decompress but for other events as well.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">4.6. Logging</a></h3>
+<h3 id="account-management-mechanism"><a class="link" href="#account-management-mechanism">4.6. Account Management Mechanism</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">4.6.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>Firstly, the ClubConnect will have no members.</p>
+</div>
+<div class="paragraph">
+<p>The user will sign up using their name, email, matric number, username and password to sign up for an account.</p>
+</div>
+<div class="paragraph">
+<p>There will only be one sign up for ClubConnect. The first sign up will be the administrator for ClubConnect.</p>
+</div>
+<div class="paragraph">
+<p>The administrator will then add members to the database with a default username and password allocated to them.</p>
+</div>
+<div class="paragraph">
+<p>Members will then log in using their username and password to view the task assign to them individually.
+With the implementation the log in and sign up function, the admin can allocated unique task to each individual.</p>
+</div>
+<div class="paragraph">
+<p>After the member logs in for the first time, they will be prompted to change their password in order to proceed.
+This will ensure security and privacy for each individual data.</p>
+</div>
+<div class="paragraph">
+<p>Lastly, after using ClubConnect, a logout function is available for them to logout of their account safetly.
+With this logout function, user will not need to restart the application frequently in order to log out of their own account.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.6.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-interaction-from-storage-to-each-unique-users"><a class="link" href="#aspect-interaction-from-storage-to-each-unique-users">Aspect: Interaction from Storage to each unique users</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Use a command line approach to ensure data privacy between each user</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Increases privacy and security.</p>
+</li>
+<li>
+<p>Cons: Less intuitive then using a Login or Signup panel.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2</strong>: Program a UI panel for Login and Signup.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: More Intuitive for users to key in their username and password without any prefix or command word.</p>
+</li>
+<li>
+<p>Cons: Hard to implement as you have to cater a lot of panels and change in activity after signing up or logging in.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging"><a class="link" href="#logging">4.7. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging.
 The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
@@ -1468,7 +1535,7 @@ The <code>LogsCenter</code> class is used to manage the logging levels and loggi
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 4.7, &#8220;Configuration&#8221;</a>).</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 4.8, &#8220;Configuration&#8221;</a>).</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level.</p>
@@ -1499,7 +1566,7 @@ The <code>LogsCenter</code> class is used to manage the logging levels and loggi
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">4.7. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">4.8. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -3678,7 +3745,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-21 07:00:25 UTC
+Last updated 2018-03-21 08:02:48 UTC
 </div>
 </div>
 </body>
