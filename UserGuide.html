@@ -38,20 +38,21 @@
 <li><a href="#listing-all-members-code-list-code">3.4. Listing all members : <code>list</code></a></li>
 <li><a href="#editing-a-member-code-edit-code">3.5. Editing a member : <code>edit</code></a></li>
 <li><a href="#locating-members-by-name-code-find-code">3.6. Locating members by name: <code>find</code></a></li>
-<li><a href="#locating-members-by-any-field-code-findby-code">3.7. Locating members by any field: <code>findby</code></a></li>
-<li><a href="#deleting-a-member-code-delete-code">3.8. Deleting a member : <code>delete</code></a></li>
-<li><a href="#deleting-a-group-code-removegroup-code">3.9. Deleting a group : <code>removegroup</code></a></li>
-<li><a href="#deleting-a-tag-code-deletetag-code">3.10. Deleting a tag : <code>deletetag</code></a></li>
-<li><a href="#emailing-club-members-belonging-to-a-particular-group-or-tag-code-email-code">3.11. Emailing club members belonging to a particular group or tag: <code>email</code></a></li>
-<li><a href="#selecting-a-member-code-select-code">3.12. Selecting a member : <code>select</code></a></li>
-<li><a href="#changing-your-profile-photo-code-changepic-code-since-v1-2">3.13. Changing your profile photo : <code>changepic</code> (Since v1.2)</a></li>
-<li><a href="#listing-entered-commands-code-history-code">3.14. Listing entered commands : <code>history</code></a></li>
-<li><a href="#undoing-previous-command-code-undo-code">3.15. Undoing previous command : <code>undo</code></a></li>
-<li><a href="#redoing-the-previously-undone-command-code-redo-code">3.16. Redoing the previously undone command : <code>redo</code></a></li>
-<li><a href="#clearing-all-entries-code-clear-code">3.17. Clearing all entries : <code>clear</code></a></li>
-<li><a href="#exiting-the-application-code-exit-code">3.18. Exiting the application : <code>exit</code></a></li>
-<li><a href="#saving-the-data">3.19. Saving the data</a></li>
-<li><a href="#encrypting-data-files-code-coming-in-v2-0-code">3.20. Encrypting data files <code>[coming in v2.0]</code></a></li>
+<li><a href="#deleting-a-member-code-delete-code">3.7. Deleting a member : <code>delete</code></a></li>
+<li><a href="#deleting-a-group-code-removegroup-code">3.8. Deleting a group : <code>removegroup</code></a></li>
+<li><a href="#deleting-a-tag-code-deletetag-code">3.9. Deleting a tag : <code>deletetag</code></a></li>
+<li><a href="#emailing-club-members-belonging-to-a-particular-group-or-tag-code-email-code">3.10. Emailing club members belonging to a particular group or tag: <code>email</code></a></li>
+<li><a href="#selecting-a-member-code-select-code">3.11. Selecting a member : <code>select</code></a></li>
+<li><a href="#changing-your-profile-photo-code-changepic-code-since-v1-2">3.12. Changing your profile photo : <code>changepic</code> (Since v1.2)</a></li>
+<li><a href="#compressing-member-details-code-compress-code-since-v1-2">3.13. Compressing member details : <code>compress</code> (Since v1.2)</a></li>
+<li><a href="#decompressing-member-details-code-decompress-code-since-v1-2">3.14. Decompressing member details : <code>decompress</code> (Since v1.2)</a></li>
+<li><a href="#listing-entered-commands-code-history-code">3.15. Listing entered commands : <code>history</code></a></li>
+<li><a href="#undoing-previous-command-code-undo-code">3.16. Undoing previous command : <code>undo</code></a></li>
+<li><a href="#redoing-the-previously-undone-command-code-redo-code">3.17. Redoing the previously undone command : <code>redo</code></a></li>
+<li><a href="#clearing-all-entries-code-clear-code">3.18. Clearing all entries : <code>clear</code></a></li>
+<li><a href="#exiting-the-application-code-exit-code">3.19. Exiting the application : <code>exit</code></a></li>
+<li><a href="#saving-the-data">3.20. Saving the data</a></li>
+<li><a href="#encrypting-data-files-code-coming-in-v2-0-code">3.21. Encrypting data files <code>[coming in v2.0]</code></a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -320,12 +321,25 @@ Edits the group of the 3rd member to be <code>finance</code>.</p>
 <h3 id="locating-members-by-name-code-find-code"><a class="link" href="#locating-members-by-name-code-find-code">3.6. Locating members by name: <code>find</code></a></h3>
 <div class="paragraph">
 <p>Finds members whose names contain any of the given keywords.<br>
-Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
+Format: <code>find [PREFIX] KEYWORD [MORE_KEYWORDS]</code><br>
+Allowed <code>PREFIX</code>:<br>
+n/ = <code>NAME</code><br>
+p/ = <code>PHONE NUMBER</code><br>
+e/ = <code>EMAIL</code><br>
+m/ = <code>MATRIC NUMBER</code><br>
+g/ = <code>GROUP</code><br>
+t/ = <code>TAG</code><br></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
+<li>
+<p>An additional <code>PREFIX</code> can be stated after <code>find</code> to narrow search to a particular field. e.g e/ for email</p>
+</li>
+<li>
+<p>If no <code>PREFIX</code> is stated, all member fields will be searched.</p>
+</li>
 <li>
 <p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code>.</p>
 </li>
@@ -333,10 +347,7 @@ Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
 <p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code>.</p>
 </li>
 <li>
-<p>Only the name is searched.</p>
-</li>
-<li>
-<p>Only full words will be matched e.g. <code>Han</code> will not match <code>Hans</code>.</p>
+<p>Partial matches will be matched e.g. <code>Han</code> will match <code>Hans</code>.</p>
 </li>
 <li>
 <p>Persons matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Hans Bo</code> will return <code>Hans Gruber</code>, <code>Bo Yang</code>.</p>
@@ -356,58 +367,21 @@ Returns <code>john</code> and <code>John Doe</code>.</p>
 </li>
 <li>
 <p><code>find Betsy Tim John</code><br>
-Returns any member having names <code>Betsy</code>, <code>Tim</code>, or <code>John</code>.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="locating-members-by-any-field-code-findby-code"><a class="link" href="#locating-members-by-any-field-code-findby-code">3.7. Locating members by any field: <code>findby</code></a></h3>
-<div class="paragraph">
-<p>Finds members whose field contains any of the given keywords.<br>
-Format: <code>findby FIELD KEYWORD [MORE_KEYWORDS]</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>FIELD can be name, phone, email, matric(matric number), group or tag and is case insensitive.</p>
+Returns all members having names containing <code>Betsy</code>, <code>Tim</code>, or <code>John</code>.</p>
 </li>
 <li>
-<p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code>.</p>
+<p><code>find g/ logistics</code><br>
+Returns all members in the logistics <code>group</code></p>
 </li>
 <li>
-<p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code>.</p>
-</li>
-<li>
-<p>Partial matches will be matched e.g. <code>Han</code> will match <code>Hans</code>.</p>
-</li>
-<li>
-<p>Members matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Hans Bo</code> will return <code>Hans Gruber</code>, <code>Bo Yang</code>.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>findby phone 123</code><br>
+<p><code>find p/ 123</code><br>
 Returns any member having phone number containing 123.</p>
 </li>
-<li>
-<p><code>findby matric A654</code><br>
-Returns any member having matric number containing A654.</p>
-</li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-member-code-delete-code"><a class="link" href="#deleting-a-member-code-delete-code">3.8. Deleting a member : <code>delete</code></a></h3>
+<h3 id="deleting-a-member-code-delete-code"><a class="link" href="#deleting-a-member-code-delete-code">3.7. Deleting a member : <code>delete</code></a></h3>
 <div class="paragraph">
 <p>Deletes the specified member from the address book.<br>
 Format: <code>delete INDEX</code></p>
@@ -448,7 +422,7 @@ Deletes the 1st member in the results of the <code>find</code> command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-group-code-removegroup-code"><a class="link" href="#deleting-a-group-code-removegroup-code">3.9. Deleting a group : <code>removegroup</code></a></h3>
+<h3 id="deleting-a-group-code-removegroup-code"><a class="link" href="#deleting-a-group-code-removegroup-code">3.8. Deleting a group : <code>removegroup</code></a></h3>
 <div class="paragraph">
 <p>Deletes the specified group from the address book.<br>
 Format: <code>removegroup g/GROUP</code></p>
@@ -489,7 +463,7 @@ Deletes the <code>logistics</code> group in the address book.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-tag-code-deletetag-code"><a class="link" href="#deleting-a-tag-code-deletetag-code">3.10. Deleting a tag : <code>deletetag</code></a></h3>
+<h3 id="deleting-a-tag-code-deletetag-code"><a class="link" href="#deleting-a-tag-code-deletetag-code">3.9. Deleting a tag : <code>deletetag</code></a></h3>
 <div class="paragraph">
 <p>Deletes the specified tag for all members in the Club Connect.<br>
 Format: <code>deletetag t/TAG</code></p>
@@ -521,7 +495,7 @@ Deletes the <code>treasurer</code> tag for all members tagged with <code>treasur
 </div>
 </div>
 <div class="sect2">
-<h3 id="emailing-club-members-belonging-to-a-particular-group-or-tag-code-email-code"><a class="link" href="#emailing-club-members-belonging-to-a-particular-group-or-tag-code-email-code">3.11. Emailing club members belonging to a particular group or tag: <code>email</code></a></h3>
+<h3 id="emailing-club-members-belonging-to-a-particular-group-or-tag-code-email-code"><a class="link" href="#emailing-club-members-belonging-to-a-particular-group-or-tag-code-email-code">3.10. Emailing club members belonging to a particular group or tag: <code>email</code></a></h3>
 <div class="paragraph">
 <p>Opens up the chosen mail client&#8217;s 'Compose Message' page in the system&#8217;s default web browser with the relevant fields filled-in. The recipients will be the members that belong to the chosen <code>Group</code> or <code>Tag</code>. <br>
 Format: <code>email g/GROUP OR t/TAG c/CLIENT [s/SUBJECT] [b/BODY]</code></p>
@@ -587,7 +561,7 @@ Opens up the Compose Message page of Outlook with blank <code>Subject</code> and
 </div>
 </div>
 <div class="sect2">
-<h3 id="selecting-a-member-code-select-code"><a class="link" href="#selecting-a-member-code-select-code">3.12. Selecting a member : <code>select</code></a></h3>
+<h3 id="selecting-a-member-code-select-code"><a class="link" href="#selecting-a-member-code-select-code">3.11. Selecting a member : <code>select</code></a></h3>
 <div class="paragraph">
 <p>Selects the member identified by the index number used in the most recent member listing.<br>
 Format: <code>select INDEX</code></p>
@@ -628,7 +602,7 @@ Selects the 1st member in the results of the <code>find</code> command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="changing-your-profile-photo-code-changepic-code-since-v1-2"><a class="link" href="#changing-your-profile-photo-code-changepic-code-since-v1-2">3.13. Changing your profile photo : <code>changepic</code> (Since v1.2)</a></h3>
+<h3 id="changing-your-profile-photo-code-changepic-code-since-v1-2"><a class="link" href="#changing-your-profile-photo-code-changepic-code-since-v1-2">3.12. Changing your profile photo : <code>changepic</code> (Since v1.2)</a></h3>
 <div class="paragraph">
 <p>Changes the photo displayed on your profile to the specified photo.
 Format: 'changepic PHOTO_PATH`</p>
@@ -667,7 +641,71 @@ Changes your profile picture to the "CathyRay.png" image in your Downloads folde
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">3.14. Listing entered commands : <code>history</code></a></h3>
+<h3 id="compressing-member-details-code-compress-code-since-v1-2"><a class="link" href="#compressing-member-details-code-compress-code-since-v1-2">3.13. Compressing member details : <code>compress</code> (Since v1.2)</a></h3>
+<div class="paragraph">
+<p>Compresses the details of members in the contact list<br>
+Format: <code>compress</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>No changes if member details are already compressed</p>
+</li>
+<li>
+<p>Use this to remove clutter in contact list</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>compress</code><br>
+Compresses member details.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="decompressing-member-details-code-decompress-code-since-v1-2"><a class="link" href="#decompressing-member-details-code-decompress-code-since-v1-2">3.14. Decompressing member details : <code>decompress</code> (Since v1.2)</a></h3>
+<div class="paragraph">
+<p>Decompresses the details of members in the contact list<br>
+Format: <code>decompress</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>No changes if member details are already decompressed</p>
+</li>
+<li>
+<p>Use this to see more detailed information of members in contact list</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>decompress</code><br>
+Decompresses member details.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">3.15. Listing entered commands : <code>history</code></a></h3>
 <div class="paragraph">
 <p>Lists all the commands that you have entered in reverse chronological order.<br>
 Format: <code>history</code></p>
@@ -688,7 +726,7 @@ Format: <code>history</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">3.15. Undoing previous command : <code>undo</code></a></h3>
+<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">3.16. Undoing previous command : <code>undo</code></a></h3>
 <div class="paragraph">
 <p>Restores Club Connect to the state before the previous <em>undoable</em> command was executed.<br>
 Format: <code>undo</code></p>
@@ -733,7 +771,7 @@ The <code>undo</code> command fails as there are no undoable commands executed p
 </div>
 </div>
 <div class="sect2">
-<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">3.16. Redoing the previously undone command : <code>redo</code></a></h3>
+<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">3.17. Redoing the previously undone command : <code>redo</code></a></h3>
 <div class="paragraph">
 <p>Reverses the most recent <code>undo</code> command.<br>
 Format: <code>redo</code></p>
@@ -765,28 +803,28 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 </div>
 </div>
 <div class="sect2">
-<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.17. Clearing all entries : <code>clear</code></a></h3>
+<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.18. Clearing all entries : <code>clear</code></a></h3>
 <div class="paragraph">
 <p>Clears all entries from Club Connect.<br>
 Format: <code>clear</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exiting-the-application-code-exit-code"><a class="link" href="#exiting-the-application-code-exit-code">3.18. Exiting the application : <code>exit</code></a></h3>
+<h3 id="exiting-the-application-code-exit-code"><a class="link" href="#exiting-the-application-code-exit-code">3.19. Exiting the application : <code>exit</code></a></h3>
 <div class="paragraph">
 <p>Exits the Club Connect application.<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.19. Saving the data</a></h3>
+<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.20. Saving the data</a></h3>
 <div class="paragraph">
 <p>Club Connect data is saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.20. Encrypting data files <code>[coming in v2.0]</code></a></h3>
+<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.21. Encrypting data files <code>[coming in v2.0]</code></a></h3>
 <div class="paragraph">
 <p>Encrypts the file in the hard disk that contains data from the Club Connect application.<br>
 Format: <code>encrypt</code>
@@ -867,10 +905,6 @@ e.g. <code>deletetag t/president</code></p>
 e.g. <code>find James Jacob</code></p>
 </li>
 <li>
-<p><strong>Find By</strong> : <code>findby FIELD KEYWORD [MORE_KEYWORDS]</code><br>
-e.g. <code>findby phone 123</code></p>
-</li>
-<li>
 <p><strong>Email</strong> : <code>email g/GROUP OR t/TAG c/CLIENT [s/SUBJECT] [b/BODY]</code><br>
 e.g. <code>email g/marketing c/outlook s/Test Subject b/Test Body</code></p>
 </li>
@@ -883,6 +917,16 @@ e.g. <code>email g/marketing c/outlook s/Test Subject b/Test Body</code></p>
 <li>
 <p><strong>Select</strong> : <code>select INDEX</code><br>
 e.g.<code>select 2</code></p>
+</li>
+<li>
+<p><strong>Change Display Picture</strong> : <code>changepic PHOTO_PATH</code><br>
+e.g. <code>changepic C:/Users/John Doe/Desktop/john_doe.jpg</code><br></p>
+</li>
+<li>
+<p><strong>Compress Member Details</strong> : <code>compress</code></p>
+</li>
+<li>
+<p><strong>Decompress Member Details</strong> : <code>decompress</code></p>
 </li>
 <li>
 <p><strong>History</strong> : <code>history</code></p>
@@ -945,7 +989,7 @@ Fret not, Club Connect provides you with a platform to voice your opinions. And 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-21 08:02:48 UTC
+Last updated 2018-03-22 04:18:51 UTC
 </div>
 </div>
 </body>
