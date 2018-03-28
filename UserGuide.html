@@ -44,15 +44,16 @@
 <li><a href="#emailing-club-members-belonging-to-a-particular-group-or-tag-code-email-code">3.10. Emailing club members belonging to a particular group or tag: <code>email</code></a></li>
 <li><a href="#selecting-a-member-code-select-code">3.11. Selecting a member : <code>select</code></a></li>
 <li><a href="#changing-your-profile-photo-code-changepic-code-since-v1-2">3.12. Changing your profile photo : <code>changepic</code> (Since v1.2)</a></li>
-<li><a href="#compressing-member-details-code-compress-code-since-v1-2">3.13. Compressing member details : <code>compress</code> (Since v1.2)</a></li>
-<li><a href="#decompressing-member-details-code-decompress-code-since-v1-2">3.14. Decompressing member details : <code>decompress</code> (Since v1.2)</a></li>
-<li><a href="#listing-entered-commands-code-history-code">3.15. Listing entered commands : <code>history</code></a></li>
-<li><a href="#undoing-previous-command-code-undo-code">3.16. Undoing previous command : <code>undo</code></a></li>
-<li><a href="#redoing-the-previously-undone-command-code-redo-code">3.17. Redoing the previously undone command : <code>redo</code></a></li>
-<li><a href="#clearing-all-entries-code-clear-code">3.18. Clearing all entries : <code>clear</code></a></li>
-<li><a href="#exiting-the-application-code-exit-code">3.19. Exiting the application : <code>exit</code></a></li>
-<li><a href="#saving-the-data">3.20. Saving the data</a></li>
-<li><a href="#encrypting-data-files-code-coming-in-v2-0-code">3.21. Encrypting data files <code>[coming in v2.0]</code></a></li>
+<li><a href="#exporting-club-connect-data-code-export-code-since-v1-3">3.13. Exporting Club Connect data: <code>export</code> (Since v1.3)</a></li>
+<li><a href="#compressing-member-details-code-compress-code-since-v1-2">3.14. Compressing member details : <code>compress</code> (Since v1.2)</a></li>
+<li><a href="#decompressing-member-details-code-decompress-code-since-v1-2">3.15. Decompressing member details : <code>decompress</code> (Since v1.2)</a></li>
+<li><a href="#listing-entered-commands-code-history-code">3.16. Listing entered commands : <code>history</code></a></li>
+<li><a href="#undoing-previous-command-code-undo-code">3.17. Undoing previous command : <code>undo</code></a></li>
+<li><a href="#redoing-the-previously-undone-command-code-redo-code">3.18. Redoing the previously undone command : <code>redo</code></a></li>
+<li><a href="#clearing-all-entries-code-clear-code">3.19. Clearing all entries : <code>clear</code></a></li>
+<li><a href="#exiting-the-application-code-exit-code">3.20. Exiting the application : <code>exit</code></a></li>
+<li><a href="#saving-the-data">3.21. Saving the data</a></li>
+<li><a href="#encrypting-data-files-code-coming-in-v2-0-code">3.22. Encrypting data files <code>[coming in v2.0]</code></a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -631,7 +632,7 @@ To meet the correct format for this command, add the complete name of the photo 
 <ul>
 <li>
 <p><code>changepic C:/Users/John Doe/Desktop/john_doe.jpg</code><br>
-Changes your profile picture to the "john_doe.jpg" image on your Desktop.</p>
+Changes your profile picture to the "john_doe.jpg" image on <code>John Doe</code> 's Desktop.</p>
 </li>
 <li>
 <p><code>changepic C:/Users/Admin/Downloads/CathyRay.png</code><br>
@@ -641,7 +642,57 @@ Changes your profile picture to the "CathyRay.png" image in your Downloads folde
 </div>
 </div>
 <div class="sect2">
-<h3 id="compressing-member-details-code-compress-code-since-v1-2"><a class="link" href="#compressing-member-details-code-compress-code-since-v1-2">3.13. Compressing member details : <code>compress</code> (Since v1.2)</a></h3>
+<h3 id="exporting-club-connect-data-code-export-code-since-v1-3"><a class="link" href="#exporting-club-connect-data-code-export-code-since-v1-3">3.13. Exporting Club Connect data: <code>export</code> (Since v1.3)</a></h3>
+<div class="paragraph">
+<p>Exports the data of all members in Club Connect to a <a href="DeveloperGuide.html#csv">CSV</a> file.
+Format: 'export CSV_FILE_PATH`</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>CSV_FILE_PATH must be an absolute path to the photo.</p>
+</li>
+<li>
+<p>In order for this command to work correctly, ensure that none of the members have double quoutes (") in any of their data.</p>
+</li>
+<li>
+<p>A new CSV file with the specified name is created if it does not already exist.</p>
+</li>
+<li>
+<p>If the CSV file already exists, then the member data is added to the end of the file (i.e. it does not overwrite the existing file).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can import the exported CSV file in Microsoft Excel to get an even better view of the data.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>export C:/Users/John Doe/Desktop/club.csv</code><br>
+Exports all members in Club Connect to "club.csv" file on <code>John Doe</code> 's Desktop.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="compressing-member-details-code-compress-code-since-v1-2"><a class="link" href="#compressing-member-details-code-compress-code-since-v1-2">3.14. Compressing member details : <code>compress</code> (Since v1.2)</a></h3>
 <div class="paragraph">
 <p>Compresses the details of members in the contact list<br>
 Format: <code>compress</code></p>
@@ -673,7 +724,7 @@ Compresses member details.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="decompressing-member-details-code-decompress-code-since-v1-2"><a class="link" href="#decompressing-member-details-code-decompress-code-since-v1-2">3.14. Decompressing member details : <code>decompress</code> (Since v1.2)</a></h3>
+<h3 id="decompressing-member-details-code-decompress-code-since-v1-2"><a class="link" href="#decompressing-member-details-code-decompress-code-since-v1-2">3.15. Decompressing member details : <code>decompress</code> (Since v1.2)</a></h3>
 <div class="paragraph">
 <p>Decompresses the details of members in the contact list<br>
 Format: <code>decompress</code></p>
@@ -705,7 +756,7 @@ Decompresses member details.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">3.15. Listing entered commands : <code>history</code></a></h3>
+<h3 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">3.16. Listing entered commands : <code>history</code></a></h3>
 <div class="paragraph">
 <p>Lists all the commands that you have entered in reverse chronological order.<br>
 Format: <code>history</code></p>
@@ -726,7 +777,7 @@ Format: <code>history</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">3.16. Undoing previous command : <code>undo</code></a></h3>
+<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">3.17. Undoing previous command : <code>undo</code></a></h3>
 <div class="paragraph">
 <p>Restores Club Connect to the state before the previous <em>undoable</em> command was executed.<br>
 Format: <code>undo</code></p>
@@ -771,7 +822,7 @@ The <code>undo</code> command fails as there are no undoable commands executed p
 </div>
 </div>
 <div class="sect2">
-<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">3.17. Redoing the previously undone command : <code>redo</code></a></h3>
+<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">3.18. Redoing the previously undone command : <code>redo</code></a></h3>
 <div class="paragraph">
 <p>Reverses the most recent <code>undo</code> command.<br>
 Format: <code>redo</code></p>
@@ -803,28 +854,28 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 </div>
 </div>
 <div class="sect2">
-<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.18. Clearing all entries : <code>clear</code></a></h3>
+<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.19. Clearing all entries : <code>clear</code></a></h3>
 <div class="paragraph">
 <p>Clears all entries from Club Connect.<br>
 Format: <code>clear</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exiting-the-application-code-exit-code"><a class="link" href="#exiting-the-application-code-exit-code">3.19. Exiting the application : <code>exit</code></a></h3>
+<h3 id="exiting-the-application-code-exit-code"><a class="link" href="#exiting-the-application-code-exit-code">3.20. Exiting the application : <code>exit</code></a></h3>
 <div class="paragraph">
 <p>Exits the Club Connect application.<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.20. Saving the data</a></h3>
+<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.21. Saving the data</a></h3>
 <div class="paragraph">
 <p>Club Connect data is saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.21. Encrypting data files <code>[coming in v2.0]</code></a></h3>
+<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.22. Encrypting data files <code>[coming in v2.0]</code></a></h3>
 <div class="paragraph">
 <p>Encrypts the file in the hard disk that contains data from the Club Connect application.<br>
 Format: <code>encrypt</code>
@@ -989,7 +1040,7 @@ Fret not, Club Connect provides you with a platform to voice your opinions. And 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-28 04:04:47 UTC
+Last updated 2018-03-28 05:09:08 UTC
 </div>
 </div>
 </body>
