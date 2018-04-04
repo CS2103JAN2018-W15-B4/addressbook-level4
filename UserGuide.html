@@ -49,14 +49,14 @@
 <li><a href="#deleting-a-task-code-deletetask-code-since-v1-3">3.15. Deleting a task : <code>deletetask</code> (Since v1.3)</a></li>
 <li><a href="#emailing-club-members-code-email-code-since-v1-2">3.16. Emailing club members: <code>email</code> (Since v1.2)</a></li>
 <li><a href="#selecting-a-member-code-select-code">3.17. Selecting a member : <code>select</code></a></li>
-<li><a href="#adding-a-poll-code-addpoll-code">3.18. Adding a poll: <code>addpoll</code></a></li>
-<li><a href="#deleting-a-poll-code-deletepoll-code">3.19. Deleting a poll : <code>deletepoll</code></a></li>
-<li><a href="#voting-in-a-poll-code-vote-code">3.20. Voting in a poll : <code>vote</code></a></li>
+<li><a href="#adding-a-poll-code-addpoll-code-since-v1-3">3.18. Adding a poll: <code>addpoll</code> (Since v1.3)</a></li>
+<li><a href="#deleting-a-poll-code-deletepoll-code-since-v1-3">3.19. Deleting a poll : <code>deletepoll</code> (Since v1.3)</a></li>
+<li><a href="#voting-in-a-poll-code-vote-code-since-v1-4">3.20. Voting in a poll : <code>vote</code> (Since v1.4)</a></li>
 <li><a href="#showing-results-of-polls-code-showresults-code-since-v1-4">3.21. Showing results of polls : <code>showresults</code> (Since v1.4)</a></li>
 <li><a href="#hiding-results-of-polls-code-hideresults-code-since-v1-4">3.22. Hiding results of polls : <code>hideresults</code> (Since v1.4)</a></li>
 <li><a href="#changing-your-profile-photo-code-changepic-code-since-v1-2">3.23. Changing your profile photo : <code>changepic</code> (Since v1.2)</a></li>
-<li><a href="#exporting-club-connect-data-code-export-code-since-v1-3">3.24. Exporting Club Connect data: <code>export</code> (Since v1.3)</a></li>
-<li><a href="#importing-members-into-club-connect-code-import-code-since-v1-4">3.25. Importing members into Club Connect: <code>import</code> (Since v1.4)</a></li>
+<li><a href="#importing-members-into-club-connect-code-import-code-since-v1-4">3.24. Importing members into Club Connect: <code>import</code> (Since v1.4)</a></li>
+<li><a href="#exporting-club-connect-data-code-export-code-since-v1-3">3.25. Exporting Club Connect data: <code>export</code> (Since v1.3)</a></li>
 <li><a href="#compressing-member-details-code-compress-code-since-v1-2">3.26. Compressing member details : <code>compress</code> (Since v1.2)</a></li>
 <li><a href="#decompressing-member-details-code-decompress-code-since-v1-2">3.27. Decompressing member details : <code>decompress</code> (Since v1.2)</a></li>
 <li><a href="#auto-complete-command-since-v1-3">3.28. Auto-Complete Command (Since v1.3)</a></li>
@@ -82,7 +82,7 @@
 <h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>Club Connect</strong> is an application targeted at <a href="DeveloperGuide.html#club">club</a> <a href="DeveloperGuide.html#member">members</a> who are students at the National University of Singapore (NUS). It aims to make the tedious process of club management easier are more effective.</p>
+<p><strong>Club Connect</strong> is an application targeted at <a href="DeveloperGuide.html#club">club</a> <a href="DeveloperGuide.html#member">members</a> who are students at the National University of Singapore (NUS). It aims to make the tedious process of club management easier and more effective.</p>
 </div>
 <div class="paragraph">
 <p>Currently, Club Connect is a desktop app that makes use of a <strong>Command Line Interface</strong> (<a href="DeveloperGuide.html#cli">CLI</a>) for increased productivity, while still having the benefits of a Graphical User Interface (GUI). So, you can have increased productivity (owing to the CLI) without having to give up the beauty and aesthetics of a traditional GUI application.</p>
@@ -238,6 +238,9 @@ A member can have any number of tags (including 0).
 </div>
 </div>
 </div>
+<div class="paragraph">
+<p>Example: <code>signup n/Alan Walker p/97456895 e/alanw@gmail.com m/A0156489C t/President</code></p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="logging-in-a-member-code-login-code-since-v1-3"><a class="link" href="#logging-in-a-member-code-login-code-since-v1-3">3.3. Logging in a member: <code>login</code> (Since v1.3)</a></h3>
@@ -277,7 +280,7 @@ A member can have any number of tags (including 0).
 </td>
 <td class="content">
 The <code>group</code> attribute is an optional attribute.
-A member will be assigned to the default group <code>member</code> if no group is specified in the command.
+A member will be assigned to the default group <code>Member</code> if no group is specified in the command.
 </td>
 </tr>
 </table>
@@ -303,7 +306,7 @@ A group must be non-empty and should only contain alphanumeric characters, witho
 <p><code>add n/John Doe p/98765432 e/johnd@example.com m/A1234567H</code></p>
 </li>
 <li>
-<p><code>add n/Betsy Crowe p/1234567 t/Head e/betsycrowe@example.com m/A2345678K g/Logistics</code></p>
+<p><code>add n/Betsy Crowe p/95462159 e/betsycrowe@u.nus.edu m/A0145625K g/Logistics t/Head</code></p>
 </li>
 </ul>
 </div>
@@ -682,8 +685,8 @@ Aliases: <code>rmtag</code>, <code>deltag</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>deletetag t/treasurer</code><br>
-Deletes the <code>treasurer</code> tag for all members tagged with <code>treasurer</code> in Club Connect.</p>
+<p><code>deletetag t/Treasurer</code><br>
+Deletes the <code>Treasurer</code> tag for all members tagged with <code>Treasurer</code> in Club Connect.</p>
 </li>
 </ul>
 </div>
@@ -744,7 +747,7 @@ Alias: <code>mail</code></p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-ClubConnect currently only supports GMail and Outlook mail clients.
+Club Connect currently only supports Gmail and Outlook mail clients.
 </td>
 </tr>
 </table>
@@ -756,7 +759,7 @@ ClubConnect currently only supports GMail and Outlook mail clients.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Emails can only be sent to members belonging to EITHER a Group OR a Tag. ClubConnect currently doesn&#8217;t support sending emails to members belonging to BOTH a Group and a Tag.
+Emails can only be sent to members belonging to EITHER a Group OR a Tag. Club Connect currently doesn&#8217;t support sending emails to members belonging to BOTH a Group and a Tag.
 </td>
 </tr>
 </table>
@@ -788,7 +791,7 @@ Emails can only be sent to members belonging to EITHER a Group OR a Tag. ClubCon
 <ul>
 <li>
 <p><code>email g/logistics c/gmail s/Meeting Minutes</code><br>
-Opens up the Compose Message page of GMail with the <code>Subject</code> field filled-in. The recipients are all the members that belong to the <code>logistics</code> group.</p>
+Opens up the Compose Message page of Gmail with the <code>Subject</code> field filled-in. The recipients are all the members that belong to the <code>logistics</code> group.</p>
 </li>
 <li>
 <p><code>email t/projectHead c/outlook</code><br>
@@ -840,7 +843,7 @@ Selects the 1st member in the results of the <code>find</code> command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-a-poll-code-addpoll-code"><a class="link" href="#adding-a-poll-code-addpoll-code">3.18. Adding a poll: <code>addpoll</code></a></h3>
+<h3 id="adding-a-poll-code-addpoll-code-since-v1-3"><a class="link" href="#adding-a-poll-code-addpoll-code-since-v1-3">3.18. Adding a poll: <code>addpoll</code> (Since v1.3)</a></h3>
 <div class="paragraph">
 <p>Adds a poll to Club Connect.<br>
 Format: <code>addpoll q/QUESTION ans/ANSWER [ans/ANSWER]&#8230;&#8203;</code><br>
@@ -869,18 +872,20 @@ Aliases: <code>addp</code>, <code>poll</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>addpoll p/Which day should be Free Ice-Cream Day? ans/Monday ans/Tuesday ans/Wednesday</code><br>
-Adds a poll asking which day Free Ice-Cream Day should be. Answers for the poll would be Monday, Tuesday and Wednesday.</p>
+<p><code>addpoll p/Which day should be Free Ice-Cream Day? ans/Monday ans/Wednesday ans/Friday</code><br>
+Creates a poll asking members to vote which day Free Ice-Cream Day should be.
+The options to choose from are Monday, Wednesday and Friday.</p>
 </li>
 <li>
-<p><code>addpoll n/Where should the annual meeting be held? ans/I-Cube ans/LT7</code><br>
-Adds a poll asking where the annual meeting should be held. Answers for the poll would be I-Cube or LT7.</p>
+<p><code>addpoll n/Where should the annual sports meeting be held? ans/I-Cube ans/LT7</code><br>
+Creates a poll asking members to vote where the annual sports meeting should be held.
+The answers to choose from are I-Cube and LT7.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-poll-code-deletepoll-code"><a class="link" href="#deleting-a-poll-code-deletepoll-code">3.19. Deleting a poll : <code>deletepoll</code></a></h3>
+<h3 id="deleting-a-poll-code-deletepoll-code-since-v1-3"><a class="link" href="#deleting-a-poll-code-deletepoll-code-since-v1-3">3.19. Deleting a poll : <code>deletepoll</code> (Since v1.3)</a></h3>
 <div class="paragraph">
 <p>Deletes the specified poll from the Club Connect.<br>
 Format: <code>deletepoll INDEX</code><br>
@@ -916,7 +921,7 @@ Deletes the 2nd poll in the poll listing.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="voting-in-a-poll-code-vote-code"><a class="link" href="#voting-in-a-poll-code-vote-code">3.20. Voting in a poll : <code>vote</code></a></h3>
+<h3 id="voting-in-a-poll-code-vote-code-since-v1-4"><a class="link" href="#voting-in-a-poll-code-vote-code-since-v1-4">3.20. Voting in a poll : <code>vote</code> (Since v1.4)</a></h3>
 <div class="paragraph">
 <p>Votes for the specified answer in the specified poll in Club Connect .<br>
 Format: <code>vote POLL_INDEX ANSWER_INDEX</code><br>
@@ -936,7 +941,7 @@ Alias: <code>vpoll</code></p>
 <p>The indices <strong>must be positive integers</strong> 1, 2, 3, &#8230;&#8203;</p>
 </li>
 <li>
-<p>Polls voted by logged in member will not be visible in the poll list unless logged in as an <code>EXCO</code> member</p>
+<p>Polls voted by current logged in member will not be visible in the poll list unless logged in as an <code>EXCO</code> member</p>
 </li>
 </ul>
 </div>
@@ -961,42 +966,18 @@ Votes for the 1st answer in the 5th poll of the poll listing</p>
 <div class="sect2">
 <h3 id="showing-results-of-polls-code-showresults-code-since-v1-4"><a class="link" href="#showing-results-of-polls-code-showresults-code-since-v1-4">3.21. Showing results of polls : <code>showresults</code> (Since v1.4)</a></h3>
 <div class="paragraph">
-<p>Displays the results of polls in Club Connect. This is a command that can be used by <code>EXCO</code> members to monitor all the polls in the club.<br>
+<p>Displays the results of polls in Club Connect. This is a command that can be used to monitor polls in the Club Connect.<br>
 Results include number of voters for each answer of a poll and total number of voters who took part in the poll. Results are anonymous.<br>
 Format: <code>showresults</code><br>
 Alias: <code>showres</code></p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-This command can only be invoked by <code>EXCO</code> members.
-</td>
-</tr>
-</table>
 </div>
 </div>
 <div class="sect2">
 <h3 id="hiding-results-of-polls-code-hideresults-code-since-v1-4"><a class="link" href="#hiding-results-of-polls-code-hideresults-code-since-v1-4">3.22. Hiding results of polls : <code>hideresults</code> (Since v1.4)</a></h3>
 <div class="paragraph">
-<p>Hides the results of all polls in Club Connect. This is a command that can be used by <code>EXCO</code> members to remove clutter from poll results.<br>
+<p>Hides the results of all polls in Club Connect. This is a command that can be used to remove clutter from poll results.<br>
 Format: <code>hideresults</code><br>
 Alias: <code>hideres</code></p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-This command can only be invoked by <code>EXCO</code> members.
-</td>
-</tr>
-</table>
 </div>
 </div>
 <div class="sect2">
@@ -1040,7 +1021,55 @@ Changes your profile picture to the "CathyRay.png" image in your Downloads folde
 </div>
 </div>
 <div class="sect2">
-<h3 id="exporting-club-connect-data-code-export-code-since-v1-3"><a class="link" href="#exporting-club-connect-data-code-export-code-since-v1-3">3.24. Exporting Club Connect data: <code>export</code> (Since v1.3)</a></h3>
+<h3 id="importing-members-into-club-connect-code-import-code-since-v1-4"><a class="link" href="#importing-members-into-club-connect-code-import-code-since-v1-4">3.24. Importing members into Club Connect: <code>import</code> (Since v1.4)</a></h3>
+<div class="paragraph">
+<p>Imports the details of all members in the specified CSV file into Club Connect.
+Format: 'import CSV_FILE_PATH`<br>
+Alias: <code>imp</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>CSV_FILE_PATH must be an absolute path to the CSV file.</p>
+</li>
+<li>
+<p>The CSV file should organise its data in the format required by the Club Connect application (see <a href="#tips">Section 6, &#8220;Tips&#8221;</a>).</p>
+</li>
+<li>
+<p>In order for this command to work correctly, ensure that none of the members have double quoutes (") in any of their data.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can save a Microsoft Excel spreadsheet as a CSV file by changing the file extension while saving.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>import C:/Users/John Doe/Desktop/members.csv</code><br>
+Imports all members in the "club.csv" file on <code>John Doe</code> 's Desktop to Club Connect.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="exporting-club-connect-data-code-export-code-since-v1-3"><a class="link" href="#exporting-club-connect-data-code-export-code-since-v1-3">3.25. Exporting Club Connect data: <code>export</code> (Since v1.3)</a></h3>
 <div class="paragraph">
 <p>Exports the data of all members in Club Connect to a <a href="DeveloperGuide.html#csv">CSV</a> file.
 Format: 'export CSV_FILE_PATH`<br>
@@ -1091,57 +1120,9 @@ Exports all members in Club Connect to "club.csv" file on <code>John Doe</code> 
 </div>
 </div>
 <div class="sect2">
-<h3 id="importing-members-into-club-connect-code-import-code-since-v1-4"><a class="link" href="#importing-members-into-club-connect-code-import-code-since-v1-4">3.25. Importing members into Club Connect: <code>import</code> (Since v1.4)</a></h3>
-<div class="paragraph">
-<p>Imports the details of all members in the specified CSV file into Club Connect.
-Format: 'import CSV_FILE_PATH`<br>
-Alias: <code>imp</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>CSV_FILE_PATH must be an absolute path to the CSV file.</p>
-</li>
-<li>
-<p>The CSV file should organise its data in the format required by the Club Connect application (see <a href="#tips">Section 6, &#8220;Tips&#8221;</a>).</p>
-</li>
-<li>
-<p>In order for this command to work correctly, ensure that none of the members have double quoutes (") in any of their data.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-You can save a Microsoft Excel spreadsheet as a CSV file by changing the file extension while saving.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>import C:/Users/John Doe/Desktop/members.csv</code><br>
-Imports all members in the "club.csv" file on <code>John Doe</code> 's Desktop to Club Connect.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
 <h3 id="compressing-member-details-code-compress-code-since-v1-2"><a class="link" href="#compressing-member-details-code-compress-code-since-v1-2">3.26. Compressing member details : <code>compress</code> (Since v1.2)</a></h3>
 <div class="paragraph">
-<p>Compresses the details of members in the contact list<br>
+<p>Compresses the details of members in the member list<br>
 Format: <code>compress</code><br>
 Alias: <code>comp</code></p>
 </div>
@@ -1163,7 +1144,7 @@ Alias: <code>comp</code></p>
 <div class="sect2">
 <h3 id="decompressing-member-details-code-decompress-code-since-v1-2"><a class="link" href="#decompressing-member-details-code-decompress-code-since-v1-2">3.27. Decompressing member details : <code>decompress</code> (Since v1.2)</a></h3>
 <div class="paragraph">
-<p>Decompresses the details of members in the contact list<br>
+<p>Decompresses the details of members in the member list<br>
 Format: <code>decompress</code><br>
 Alias: <code>decomp</code></p>
 </div>
@@ -1292,10 +1273,10 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 <div class="sect2">
 <h3 id="changing-password-code-changepass-code"><a class="link" href="#changing-password-code-changepass-code">3.32. Changing password : <code>changepass</code></a></h3>
 <div class="paragraph">
-<p>Changes the password of the member who is currently logged in</p>
+<p>Changes your password, if you are logged in.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>changepass u/username pw/oldpassword npw/newpassword</code><br>
+<p>Format: <code>changepass u/USERNAME pw/OLD_PASSWORD npw/NEW_PASSWORD</code><br>
 Alias: <code>changepw</code></p>
 </div>
 <div class="sidebarblock">
@@ -1306,7 +1287,7 @@ Alias: <code>changepw</code></p>
 <p>Members are only able to change their own password.</p>
 </li>
 <li>
-<p>Excos are able to change member&#8217;s password.</p>
+<p>Exco members can change the password of any member. The member is indicated by their username.</p>
 </li>
 </ul>
 </div>
@@ -1318,12 +1299,10 @@ Alias: <code>changepw</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>changepass u/A0123456H pw/password npw/pword</p>
+<p>changepass u/A0123456H pw/password npw/pword
+Changes the password of the member with username <code>A0123456H</code> to <code>pword</code>.</p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>The changepassword command will change the old password, password, to the new password, pword.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1436,11 +1415,11 @@ e.g. <code>edit 2 n/James Lee e/jameslee@example.com</code></p>
 </li>
 <li>
 <p><strong>Delete Group</strong> : <code>removegroup g/GROUP</code><br>
-e.g. <code>removegroup g/publicity</code></p>
+e.g. <code>removegroup g/Publicity</code></p>
 </li>
 <li>
 <p><strong>Delete Tag</strong> : <code>deletetag t/TAG</code><br>
-e.g. <code>deletetag t/president</code></p>
+e.g. <code>deletetag t/EventHelper</code></p>
 </li>
 <li>
 <p><strong>Delete Task</strong> : <code>deletetask INDEX</code><br>
@@ -1570,7 +1549,7 @@ Fret not, Club Connect provides you with a platform to voice your opinions. And 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-04 06:49:17 UTC
+Last updated 2018-04-04 16:50:10 UTC
 </div>
 </div>
 </body>
