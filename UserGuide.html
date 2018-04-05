@@ -72,10 +72,9 @@
 <li><a href="#encrypting-data-files-code-coming-in-v2-0-code">3.38. Encrypting data files <code>[coming in v2.0]</code></a></li>
 </ul>
 </li>
-<li><a href="#faq">4. FAQ</a></li>
-<li><a href="#command-summary">5. Command Summary</a></li>
-<li><a href="#tips">6. Tips</a></li>
-<li><a href="#coming-in-v2-0">7. Coming in v2.0</a></li>
+<li><a href="#command-summary">4. Command Summary</a></li>
+<li><a href="#tips">5. Tips</a></li>
+<li><a href="#coming-in-v2-0">6. Coming in v2.0</a></li>
 </ul>
 </div>
 </div>
@@ -83,20 +82,23 @@
 <h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>Club Connect</strong> is an application targeted at <a href="DeveloperGuide.html#club">club</a> <a href="DeveloperGuide.html#member">members</a> who are students at the National University of Singapore (NUS). It aims to make the tedious process of club management easier and more effective.</p>
+<p><strong>Club Connect</strong> is an application targeted at <a href="DeveloperGuide.html#club">club</a> <a href="DeveloperGuide.html#member">members</a> who are students at the National University of Singapore (NUS).
+It aims to make the tedious process of club management easier and more effective.</p>
 </div>
 <div class="paragraph">
-<p>Currently, Club Connect is a desktop app that makes use of a <strong>Command Line Interface</strong> (<a href="DeveloperGuide.html#cli">CLI</a>) for increased productivity, while still having the benefits of a Graphical User Interface (GUI). So, you can have increased productivity (owing to the CLI) without having to give up the beauty and aesthetics of a traditional GUI application.</p>
+<p>Currently, Club Connect is a desktop app that makes use of a <strong>Command Line Interface</strong> (<a href="DeveloperGuide.html#cli">CLI</a>) for increased productivity, while still having the benefits of a Graphical User Interface (GUI).
+So, you can have increased productivity (owing to the CLI) without having to give up the beauty and aesthetics of a traditional GUI application.</p>
 </div>
 <div class="paragraph">
-<p>The faster you type, the faster Club Connect gets your club-management tasks done. Interested? Continue on to <a href="#quick-start">Section 2, &#8220;Quick Start&#8221;</a> to get started. Enjoy!</p>
+<p>The faster you type, the faster Club Connect gets your club-management tasks done.
+Interested? Continue on to <a href="#quick-start">Section 2, &#8220;Quick Start&#8221;</a> to get started.</p>
 </div>
 <div class="paragraph">
 <p>The symbols and formatting used in this document, along with their corresponding meanings, are:<br>
 ℹ️: Note<br>
   💡  : Tip<br>
-<code>code</code>: Technical keywords or Commands that can be entered into <strong>Club Connect</strong><br>
-<kbd>key</kbd>: Key on your keyboard<br></p>
+<code>code</code>: Commands that can be entered into <strong>Club Connect</strong> or Technical keywords<br>
+<kbd>key</kbd>: Button on your keyboard<br></p>
 </div>
 </div>
 </div>
@@ -175,6 +177,12 @@ e.g. You can type <strong><code>help</code></strong> and press <kbd>Enter</kbd> 
 <div class="sect1">
 <h2 id="Features"><a class="link" href="#Features">3. Features</a></h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>This section describes the various features that Club Connect puts at your disposal.</p>
+</div>
+<div class="paragraph">
+<p>This is how you should interpret the commands in this user guide.</p>
+</div>
 <div class="exampleblock">
 <div class="content">
 <div class="paragraph">
@@ -193,6 +201,40 @@ e.g. You can type <strong><code>help</code></strong> and press <kbd>Enter</kbd> 
 </li>
 <li>
 <p>Parameters can be in any order e.g. if the command specifies <code>n/NAME p/PHONE_NUMBER</code>, <code>p/PHONE_NUMBER n/NAME</code> is also acceptable.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Here are some things to take note of before you begin using Club Connect.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Valid Entries</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Names</strong> of members should only contain alphabets, numbers and spaces.
+The name should not be blank and cannot begin with a space (" ").</p>
+</li>
+<li>
+<p><strong>Phone numbers</strong> can only contain numbers, and should be at least 3 digits long.</p>
+</li>
+<li>
+<p><strong>Email IDs</strong> of members should be of the format: <a href="mailto:username@emailservice.com">username@emailservice.com</a> and should not contain spaces.</p>
+</li>
+<li>
+<p><strong>Matriculation Numbers</strong> should follow the format of those at NUS.
+So, they must begin with a letter, followed by 7 digits and should end with a letter.</p>
+</li>
+<li>
+<p><strong>Groups</strong> should only contain letters and digits. They must not be empty.</p>
+</li>
+<li>
+<p><strong>Tags</strong> should also only contain letters and digits. They cannot be empty.</p>
 </li>
 </ul>
 </div>
@@ -226,18 +268,6 @@ A member can have any number of tags (including 0).
 <td class="content">
 The <code>group</code> attribute is an optional attribute.
 A member will be assigned to the default group <code>Member</code> if no group is specified in the command.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-A group must be non-empty and should only contain alphanumeric characters, without white-spaces.
 </td>
 </tr>
 </table>
@@ -459,10 +489,7 @@ Aliases: <code>pic</code>, <code>profilepic</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>PHOTO_PATH must be an absolute path to the photo.
-To get the abolute path, right-click on the photo file and select Properties.
-The location field specifies the absolute location of the photo.
-To meet the correct format for this command, add the complete name of the photo file to this location.</p>
+<p>PHOTO_PATH must be an absolute path to the photo.</p>
 </li>
 <li>
 <p>This command is only guaranteed to work for ,jpeg, .jpg, and .png files.</p>
@@ -470,6 +497,20 @@ To meet the correct format for this command, add the complete name of the photo 
 </ul>
 </div>
 </div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+To get the abolute path, right-click on the photo file and select <code>Properties</code>.
+The <code>Location</code> field specifies the absolute location of the photo.
+Finally, add the complete name of the photo file to this location.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -521,7 +562,7 @@ Aliases: <code>cts</code>, <code>changestatus</code>, <code>status</code></p>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Tasks are color-coded by task status:<br>
+Tasks are color-coded by status:<br>
 <span class="red">Yet To Begin</span><br>
 <span class="yellow">In Progress</span><br>
 <span class="green">Completed</span>
@@ -694,7 +735,7 @@ Aliases: <code>rmtag</code>, <code>deltag</code></p>
 <p>Deletes the specified tag from Club Connect.</p>
 </li>
 <li>
-<p>Deletes the specified tag for all members tagged with it in Club Connect.</p>
+<p>Deletes the specified tag for all members who are tagged with it.</p>
 </li>
 </ul>
 </div>
@@ -901,6 +942,9 @@ Alias: <code>exp</code></p>
 <div class="ulist">
 <ul>
 <li>
+<p>Exports Name, Phone Number, Email, Matriculation Number, Group, and Tags of all members added to Club Connect.</p>
+</li>
+<li>
 <p>CSV_FILE_PATH must be an absolute path to the CSV file.</p>
 </li>
 <li>
@@ -923,7 +967,7 @@ Alias: <code>exp</code></p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-You can import the exported CSV file in Microsoft Excel to get an even better view of the data.
+You can import the generated CSV file on Microsoft Excel to get an even better view of the data.
 </td>
 </tr>
 </table>
@@ -1061,10 +1105,10 @@ Alias: <code>imp</code></p>
 <p>CSV_FILE_PATH must be an absolute path to the CSV file.</p>
 </li>
 <li>
-<p>The CSV file should organise its data in the format required by the Club Connect application (see <a href="#tips">Section 6, &#8220;Tips&#8221;</a>).</p>
+<p>The CSV file should organise its data in the format required by this application (see <a href="#csv-data-format">CSV file format</a>).</p>
 </li>
 <li>
-<p>In order for this command to work correctly, ensure that none of the members have double quoutes (") in any of their data.</p>
+<p>In order for this command to work correctly, ensure that none of the data values contain double quoutes (").</p>
 </li>
 </ul>
 </div>
@@ -1461,7 +1505,7 @@ Encrypting Club Connect&#8217;s data files ensures that others will not be able 
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-To further increase your efficiency while using Club Connect, check out <a href="#tips">Section 6, &#8220;Tips&#8221;</a>.
+To further increase your efficiency while using Club Connect, check out <a href="#tips">Section 5, &#8220;Tips&#8221;</a>.
 </td>
 </tr>
 </table>
@@ -1470,16 +1514,7 @@ To further increase your efficiency while using Club Connect, check out <a href=
 </div>
 </div>
 <div class="sect1">
-<h2 id="faq"><a class="link" href="#faq">4. FAQ</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
-<strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Club Connect folder.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="command-summary"><a class="link" href="#command-summary">5. Command Summary</a></h2>
+<h2 id="command-summary"><a class="link" href="#command-summary">4. Command Summary</a></h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -1592,28 +1627,57 @@ e.g. <code>changepic C:/Users/John Doe/Desktop/john_doe.jpg</code><br></p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="tips"><a class="link" href="#tips">6. Tips</a></h2>
+<h2 id="tips"><a class="link" href="#tips">5. Tips</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Not satisfied with your productivity while using Club Connect? Can&#8217;t remember the command names? Here are some tips to fix that:</p>
+<p>Not satisfied with your productivity while using Club Connect?
+Can&#8217;t remember the command names?
+Here are some tips and tricks:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Command shortcuts</strong></p>
+<p><strong>Transferring data to another computer</strong><br>
+Install the Club Connect app on the other computer.
+Then, overwrite the empty data file it creates (<code>clubbook.xml</code>) with the data file from your previous <code>Club Connect</code> folder.</p>
 </li>
 <li>
-<p>Lorem Ipsum</p>
+<p><strong>Alternative command names</strong>
+If you do not like the default command name or feel that it is too long, you can use one of its aliases to execute the command instead.</p>
+<div class="paragraph">
+<p>Example: The <code>changepic</code> command uses <code>pic</code> as an alias.
+So, both commands shown below can be used change your profile picture to the "john_doe.jpg" image on John Doe&#8217;s Desktop.<br>
+<code>changepic C:/Users/John Doe/Desktop/john_doe.jpg</code></p>
+</div>
+<div class="paragraph">
+<p><code>pic C:/Users/John Doe/Desktop/john_doe.jpg</code><br></p>
+</div>
 </li>
+</ul>
+</div>
+<div id="csv-data-format" class="ulist">
+<ul>
 <li>
-<p>CSV format for 'import'</p>
+<p><strong>CSV format for <code>import</code></strong><br>
+In order to successfully import data of members from the specified file, it has to follow the format shown in <a href="#csv-format">Figure 3</a>.</p>
+<div id="csv-format" class="imageblock">
+<div class="content">
+<img src="images/CSV_format.png" alt="CSV format" height="350">
+</div>
+<div class="title">Figure 3. Required format of data in the file</div>
+</div>
+<div class="paragraph">
+<p>The columns in the import file should be in the same order as shown in the figure above.
+All the tags of a member should be in a single cell, separated by commas (",").
+Also, to successfully import the data of a member, you have to make sure that their details conform to the constraints of the <a href="#add-command"><code>add</code> command</a>.</p>
+</div>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="coming-in-v2-0"><a class="link" href="#coming-in-v2-0">7. Coming in v2.0</a></h2>
+<h2 id="coming-in-v2-0"><a class="link" href="#coming-in-v2-0">6. Coming in v2.0</a></h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -1642,7 +1706,7 @@ Fret not, Club Connect provides you with a platform to voice your opinions. And 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-05 16:24:05 UTC
+Last updated 2018-04-05 17:45:12 UTC
 </div>
 </div>
 </body>
