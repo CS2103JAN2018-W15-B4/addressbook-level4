@@ -130,12 +130,24 @@ This app will not work with earlier versions of Java 8.
 <p>Copy the file to the folder that you want to use as the home folder for Club Connect (and the club Database).</p>
 </li>
 <li>
-<p>Double-click the file to start the app. The GUI (as shown in <a href="#launch-app">Figure 1</a>) should appear in a few seconds.</p>
+<p>Double-click the file to start the app. The GUI (as shown in Figure 1) should appear in a few seconds.</p>
 <div id="launch-app" class="imageblock text-center">
 <div class="content">
-<img src="images/Ui.png" alt="Ui" width="550">
+<img src="images/startup.png" alt="startup" width="550">
 </div>
 <div class="title">Figure 1. Club Connect application on launch</div>
+</div>
+</li>
+<li>
+<p>Execute the <code>signup</code> command. No other command will work unless you sign up.</p>
+</li>
+<li>
+<p>Execute the <code>login</code> command once you&#8217;ve signed up. The GUI should look similar to Figure 2.</p>
+<div id="launch-app" class="imageblock text-center">
+<div class="content">
+<img src="images/login.png" alt="login" width="550">
+</div>
+<div class="title">Figure 2. Club Connect application after logging in</div>
 </div>
 </li>
 <li>
@@ -145,11 +157,11 @@ e.g. You can type <strong><code>help</code></strong> and press <kbd>Enter</kbd> 
 <div class="content">
 <img src="images/help-window.png" alt="help window" height="450">
 </div>
-<div class="title">Figure 2. Club Connect Help window</div>
+<div class="title">Figure 3. Club Connect Help window</div>
 </div>
 </li>
 <li>
-<p>Some other example commands that you can try are:</p>
+<p>Try some of these example commands:</p>
 <div class="ulist">
 <ul>
 <li>
@@ -234,7 +246,7 @@ So, they must begin with a letter, followed by 7 digits and should end with a le
 <p><strong>Groups</strong> should only contain letters and digits. They must not be empty.</p>
 </li>
 <li>
-<p><strong>Tags</strong> should also only contain letters and digits. They cannot be empty.</p>
+<p><strong>Tags</strong> should also only contain letters, digits and hyphens. They cannot be empty, and cannot begin with a hyphen ('-').</p>
 </li>
 </ul>
 </div>
@@ -272,11 +284,11 @@ A member will be assigned to the default group <code>Member</code> if no group i
 </tr>
 </table>
 </div>
-<div class="admonitionblock note">
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
 This command is for <code>EXCO</code> members only.
@@ -310,10 +322,7 @@ Aliases: <code>addp</code>, <code>poll</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>A poll must have 1 question.</p>
-</li>
-<li>
-<p>A poll must have at least 1 answer.</p>
+<p>A poll must have 1 question, and at least 1 answer.</p>
 </li>
 <li>
 <p>Questions and answers must be non-empty.</p>
@@ -329,21 +338,21 @@ Aliases: <code>addp</code>, <code>poll</code></p>
 <ul>
 <li>
 <p><code>addpoll p/Which day should be Free Ice-Cream Day? ans/Monday ans/Wednesday ans/Friday</code><br>
-Creates a poll asking members to vote which day Free Ice-Cream Day should be.
-The options to choose from are Monday, Wednesday and Friday.</p>
+Creates a poll asking members to vote for which day Free Ice-Cream Day should be held on.
+The options to choose from are <code>Monday</code>, <code>Wednesday</code> and <code>Friday</code>.</p>
 </li>
 <li>
-<p><code>addpoll n/Where should the annual sports meeting be held? ans/I-Cube ans/LT7</code><br>
-Creates a poll asking members to vote where the annual sports meeting should be held.
-The answers to choose from are I-Cube and LT7.</p>
+<p><code>addpoll p/Where should the annual sports meeting be held? ans/I-Cube ans/LT7</code><br>
+Creates a poll asking members to vote for where the annual sports meeting should be held.
+The answers to choose from are <code>I-Cube</code> and <code>LT7</code>.</p>
 </li>
 </ul>
 </div>
-<div class="admonitionblock note">
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
 This command is for <code>EXCO</code> members only.
@@ -411,7 +420,7 @@ Adds a task with description <code>Buy Food</code> due on <code>03/04/2018</code
 <h3 id="adding-a-task-code-assigntask-code-since-v1-4"><a class="link" href="#adding-a-task-code-assigntask-code-since-v1-4">3.4. Adding a task: <code>assigntask</code> (Since v1.4)</a></h3>
 <div class="paragraph">
 <p>Adds a task to Club Connect and assigns it to a member.<br>
-Format: <code>assigntask desc/DESCRIPTION d/DUE_DATE ti/TIME n/NAME</code><br>
+Format: <code>assigntask desc/DESCRIPTION d/DUE_DATE ti/TIME m/MATRIC_NUMBER</code><br>
 Alias: <code>assignt</code></p>
 </div>
 <div class="sidebarblock">
@@ -443,11 +452,11 @@ Duplicate tasks are not allowed.
 </tr>
 </table>
 </div>
-<div class="admonitionblock note">
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
 This command is for <code>EXCO</code> members only.
@@ -456,7 +465,7 @@ This command is for <code>EXCO</code> members only.
 </table>
 </div>
 <div class="paragraph">
-<p>This command assigns the task to the member based on the entered <code>NAME</code>.</p>
+<p>This command assigns the task to the member based on the entered <code>MATRIC_NUMBER</code>.</p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -464,12 +473,12 @@ This command is for <code>EXCO</code> members only.
 <div class="ulist">
 <ul>
 <li>
-<p><code>assigntask desc/Book PGP Function Room 3 d/02/04/2018 ti/19:00 n/Bernice Yu</code><br>
-Assigns a task to <code>Bernice Yu</code> with description <code>Book PGP Function Room 3</code> due on <code>02/04/2018</code> at <code>19:00</code>.</p>
+<p><code>assigntask desc/Book PGP Function Room 3 d/02/04/2018 ti/19:00 m/A1234567H</code><br>
+Assigns a task to <code>A1234567H</code> with description <code>Book PGP Function Room 3</code> due on <code>02/04/2018</code> at <code>19:00</code>.</p>
 </li>
 <li>
-<p><code>assigntask desc/Buy Food d/03.04.2018 ti/15:00 n/David Li</code><br>
-Assigns a task to <code>David Li</code> with description <code>Buy Food</code> due on <code>03/04/2018</code> at <code>15:00</code>.</p>
+<p><code>assigntask desc/Buy Food d/03.04.2018 ti/15:00 m/A1122334K</code><br>
+Assigns a task to <code>A1122334K</code> with description <code>Buy Food</code> due on <code>03/04/2018</code> at <code>15:00</code>.</p>
 </li>
 </ul>
 </div>
@@ -656,11 +665,11 @@ Aliases: <code>c</code>, <code>erase</code></p>
 </div>
 </div>
 </div>
-<div class="admonitionblock note">
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
 This command is for <code>EXCO</code> members only.
@@ -752,17 +761,31 @@ Aliases: <code>del</code>, <code>rm</code>, <code>remove</code></p>
 </div>
 </div>
 </div>
-<div class="admonitionblock note">
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
 This command is for <code>EXCO</code> members only.
 </td>
 </tr>
 </table>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Deleting a member who is the <code>Assignee</code> will result in all relevant tasks being deleted.</p>
+</li>
+<li>
+<p>Deleting a member who is the <code>Assignor</code> of a task will not affect the list of tasks.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -806,11 +829,11 @@ Aliases: <code>rmpoll</code>, <code>delpoll</code></p>
 </div>
 </div>
 </div>
-<div class="admonitionblock note">
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
 This command is for <code>EXCO</code> members only.
@@ -841,11 +864,11 @@ Deletes the 4th poll in the poll listing.</p>
 Format: <code>deletetag t/TAG</code><br>
 Aliases: <code>rmtag</code>, <code>deltag</code></p>
 </div>
-<div class="admonitionblock note">
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
 This command is for <code>EXCO</code> members only.
@@ -907,6 +930,18 @@ Aliases: <code>deltask</code>, <code>rmtask</code></p>
 </div>
 </div>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Only Members who are either the <code>Assignor</code> or the <code>Assignee</code> can delete their respective tasks.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>Examples:</p>
 </div>
@@ -961,11 +996,11 @@ Aliases: <code>e</code>, <code>update</code></p>
 </div>
 </div>
 </div>
-<div class="admonitionblock note">
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
 This command is for <code>EXCO</code> members only.
@@ -1140,6 +1175,18 @@ m/ = <code>MATRIC NUMBER</code><br>
 g/ = <code>GROUP</code><br>
 t/ = <code>TAG</code><br></p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you wish to find by a <code>PREFIX</code>, enter a space after the <code>PREFIX</code> while typing the command. This enables you to search for multiple keywords without having to enter the <code>PREFIX</code>.
+</td>
+</tr>
+</table>
+</div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
@@ -1201,15 +1248,29 @@ Aliases : <code>h</code>, <code>info</code></p>
 <div class="sect2">
 <h3 id="hiding-results-of-polls-code-hideresults-code-since-v1-4"><a class="link" href="#hiding-results-of-polls-code-hideresults-code-since-v1-4">3.21. Hiding results of polls : <code>hideresults</code> (Since v1.4)</a></h3>
 <div class="paragraph">
-<p>Hides the results of all polls in Club Connect. This is a command that can be used by <code>EXCO</code> members only to remove clutter from poll results.<br>
-Format: <code>hideresults</code><br>
-Alias: <code>hideres</code></p>
+<p>Hides the results of all polls in Club Connect.</p>
 </div>
 <div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
 <i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This is a command that can be used to remove clutter from poll results.<br>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Format: <code>hideresults</code><br>
+Alias: <code>hideres</code></p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
 This command is for <code>EXCO</code> members only.
@@ -1276,11 +1337,11 @@ You can save a Microsoft Excel spreadsheet as a CSV file by changing the file ex
 </tr>
 </table>
 </div>
-<div class="admonitionblock note">
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
 This command is for <code>EXCO</code> members only.
@@ -1320,7 +1381,17 @@ Format: <code>login u/USERNAME pw/PASSWORD</code><br>
 Alias: <code>signin</code></p>
 </div>
 <div class="paragraph">
-<p>Example: <code>login u/JohnDoe pw/pass1234</code></p>
+<p>Example: <code>login u/A0123456H pw/password</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Use your <code>MATRIC NUMBER</code> as your username.</p>
+</li>
+<li>
+<p>The default password is <code>password</code>. We advise you to change your password using the <code>changepass</code> command once you&#8217;ve logged in.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
@@ -1394,11 +1465,11 @@ Aliases: <code>rmgroup</code>, <code>delgroup</code></p>
 </div>
 </div>
 </div>
-<div class="admonitionblock note">
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
 This command is for <code>EXCO</code> members only.
@@ -1467,16 +1538,41 @@ Selects the 1st member in the results of the <code>find</code> command.</p>
 <div class="sect2">
 <h3 id="showing-results-of-polls-code-showresults-code-since-v1-4"><a class="link" href="#showing-results-of-polls-code-showresults-code-since-v1-4">3.30. Showing results of polls : <code>showresults</code> (Since v1.4)</a></h3>
 <div class="paragraph">
-<p>Displays the results of polls in Club Connect. This is a command that can be used by <code>EXCO</code> members only to monitor polls in the Club Connect.<br>
-Results include number of voters for each answer of a poll and total number of voters who took part in the poll. Results are anonymous.<br>
-Format: <code>showresults</code><br>
-Alias: <code>showres</code></p>
+<p>Displays the results of polls in Club Connect.</p>
 </div>
 <div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
 <i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This is a command that can be used to monitor polls in the Club Connect.<br>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Results include number of voters for each answer of a poll and total number of voters who took part in the poll. Results are anonymous.<br>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Format: <code>showresults</code><br>
+Alias: <code>showres</code></p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
 This command is for <code>EXCO</code> members only.
@@ -1523,6 +1619,18 @@ A member can have any number of tags (including 0).
 </ul>
 </div>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Refer to <code>login</code> command documentation for user credentials.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Example: <code>signup n/Alan Walker p/97456895 e/alanw@gmail.com m/A0156489C t/President</code></p>
@@ -1581,26 +1689,14 @@ The <code>undo</code> command fails as there are no undoable commands executed p
 Format: <code>viewalltasks</code><br>
 Alias: <code>alltasks</code></p>
 </div>
-<div class="admonitionblock note">
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
 This command is for <code>EXCO</code> members only.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-This command can only be invoked by <code>EXCO</code> members.
 </td>
 </tr>
 </table>
@@ -1609,9 +1705,22 @@ This command can only be invoked by <code>EXCO</code> members.
 <div class="sect2">
 <h3 id="viewing-tasks-assigned-to-or-assigned-by-you-code-viewmytasks-code-since-v1-4"><a class="link" href="#viewing-tasks-assigned-to-or-assigned-by-you-code-viewmytasks-code-since-v1-4">3.34. Viewing tasks assigned to or assigned by you : <code>viewmytasks</code> (Since v1.4)</a></h3>
 <div class="paragraph">
-<p>Display all tasks created/assigned by the currently member in Club Connect.<br>
+<p>Display all tasks created/assigned by the currently member in Club Connect.<br></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
 The main purpose of this command is to enable <code>EXCO</code> members to toggle between all tasks and those related to them.<br>
-Format: <code>viewmytasks</code><br>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Format: <code>viewmytasks</code><br>
 Alias: <code>mytasks</code></p>
 </div>
 </div>
@@ -1862,7 +1971,7 @@ In order to successfully import data of members from the specified file, it has 
 <div class="content">
 <img src="images/CSV_format.png" alt="CSV format" height="350">
 </div>
-<div class="title">Figure 3. Required format of data in the file</div>
+<div class="title">Figure 4. Required format of data in the file</div>
 </div>
 <div class="paragraph">
 <p>The columns in the import file should be in the same order as shown in the figure above.
@@ -1904,7 +2013,7 @@ Fret not, Club Connect provides you with a platform to voice your opinions. And 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-07 15:41:41 UTC
+Last updated 2018-04-09 05:37:16 UTC
 </div>
 </div>
 </body>
