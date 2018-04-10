@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.6.1">
+<title>Yash Chowdhary - Project Portfolio</title>
+<link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Yash Chowdhary - Project Portfolio</h1>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="project-club-connect"><a class="link" href="#project-club-connect">PROJECT: Club Connect</a></h2>
+<div class="sectionbody">
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Club Connect</strong> is an application targeted at <a href="DeveloperGuide.html#club">club</a> <a href="DeveloperGuide.html#member">members</a> who are students at the National University of Singapore (NUS).
+It aims to make the tedious process of club management easier and more effective.</p>
+</div>
+<div class="paragraph">
+<p><strong>Club Connect</strong> is an application that a user who loves to type would fancy - in other words, it uses a Command Line Interface (CLI). All output is displayed on a Graphical User Interface (GUI) - which is just computer jargon for a display that includes panes, menus and message boxes.</p>
+</div>
+<div class="paragraph">
+<p><strong>Code Contributed</strong> : [<a href="https://github.com/CS2103JAN2018-W15-B4/main/blob/master/collated/functional/yash-chowdhary.md">Functional code</a>] [<a href="https://github.com/CS2103JAN2018-W15-B4/main/blob/master/collated/test/yash-chowdhary.md">Test code</a>]</p>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-remove-group-command"><a class="link" href="#enhancement-added-remove-group-command">Enhancement Added: Remove Group Command</a></h3>
+<div class="sect3">
+<h4 id="external-behavior"><a class="link" href="#external-behavior">External Behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract (from User Guide)</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-a-group-code-removegroup-code-since-v1-1"><a class="link" href="#deleting-a-group-code-removegroup-code-since-v1-1">Deleting a group : <code>removegroup</code> (Since v1.1)</a></h3>
+<div class="paragraph">
+<p>Deletes the specified group from Club Connect.<br>
+Format: <code>removegroup g/GROUP</code><br>
+Aliases: <code>rmgroup</code>, <code>delgroup</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes the specified group from Club Connect.</p>
+</li>
+<li>
+<p>Once the group is deleted, all members who were part of the group will be assigned to the default group <code>member</code>.</p>
+</li>
+<li>
+<p>The group must not be a mandatory group (<code>member</code>) as that is the default group.</p>
+</li>
+<li>
+<p>The group must exist in Club Connect.</p>
+</li>
+<li>
+<p>The group must be in valid format (i.e. no white-spaces and non-empty).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+This command is for <code>EXCO</code> members only.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>removegroup g/logistics</code><br>
+Deletes the <code>logistics</code> group from Club Connect.</p>
+</li>
+<li>
+<p><code>removegroup g/pr</code><br>
+Deletes the <code>pr</code> group from Club Connect.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract (from User Guide)</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification"><a class="link" href="#justification">Justification</a></h4>
+<hr>
+<div class="paragraph">
+<p>If a sub-committee of a club is no longer required, the <code>EXCO</code> members can delete the group from the app. This changes the group of all the members (previously part of the deleted group) to the default group - <code>member</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract (from Developer Guide)</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="remove-group-mechanism"><a class="link" href="#remove-group-mechanism">Remove Group Mechanism</a></h3>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
+<div class="paragraph">
+<p>The <code>removegroup</code> mechanism is facilitated by the <code>RemoveGroupCommand</code> class. It allows <code>Exco</code> members to remove a group from <code>Club Connect</code>. The group of all members part of the group that is to be deleted will be changed to the default group - <code>member</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>RemoveGroupCommand</code> extends from <code>UndoableCommand</code> as it is an undoable command. Figure 33 below depicts the UML representation of the <code>Command</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/RemoveGroupCommandUML.png" alt="RemoveGroupCommandUML" width="200" height="200">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 33. UML Diagram of <code>RemoveGroupCommand</code>.</em></p>
+</div>
+<div class="paragraph">
+<p><code>RemoveGroupCommandParser</code> is responsible for parsing the <code>removegroup</code> command. It returns a <code>RemoveGroupCommand</code> object after parsing the <code>Group</code>. The parsing of the command is shown below in Figure 34.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SDforRemoveGroupCommandParser.png" alt="SDforRemoveGroupCommandParser" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 34. Sequence Diagram for the parsing of <code>RemoveGroupCommand</code>.</em></p>
+</div>
+<div class="paragraph">
+<p>The execution invokes <code>Model#removeGroup()</code> with the <code>Group</code> <code><code>toDelete</code></code> as a parameter. This further invokes the method <code>ClubBook#removeGroup()</code>. Here is the implementation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Override</span>
+<span class="directive">public</span> <span class="type">void</span> removeGroup(<span class="predefined-type">Group</span> toRemove) <span class="directive">throws</span> GroupNotFoundException, GroupCannotBeRemovedException {
+    requireNonNull(toRemove);
+    clubBook.removeGroup(toRemove);
+    indicateClubBookChanged();
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>ClubBook#removeGroup()</code> further calls <code>ClubBook#removeGroupFromClubBook()</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">private</span> <span class="type">void</span> removeGroupFromClubBook(<span class="predefined-type">Group</span> toRemove) {
+    <span class="keyword">try</span> {
+        <span class="keyword">for</span> (<span class="predefined-type">Member</span> member : members) {
+            removeGroupFromMember(toRemove, member);
+        }
+    } <span class="keyword">catch</span> (MemberNotFoundException mnfe) {
+        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="exception">AssertionError</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">Impossible: original member is obtained from the club book.</span><span class="delimiter">&quot;</span></span>);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The final method called is <code>ClubBook#removeGroupFromMember()</code> which loops through all members and sets the group of all members that have the group <code><code>toDelete</code></code> to <code>member</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">private</span> <span class="type">void</span> removeGroupFromMember(<span class="predefined-type">Group</span> toRemove, <span class="predefined-type">Member</span> member)
+        <span class="directive">throws</span> MemberNotFoundException {
+    <span class="keyword">if</span> (!member.getGroup().toString().equalsIgnoreCase(toRemove.toString())) {
+        <span class="keyword">return</span>;
+    }
+    <span class="predefined-type">Group</span> defaultGroup = <span class="keyword">new</span> <span class="predefined-type">Group</span>(<span class="predefined-type">Group</span>.DEFAULT_GROUP);
+    <span class="predefined-type">Member</span> newMember = <span class="keyword">new</span> <span class="predefined-type">Member</span>(member.getName(), member.getPhone(), member.getEmail(), member.getMatricNumber(),
+            defaultGroup, member.getTags());
+    <span class="keyword">try</span> {
+        updateMember(member, newMember);
+    } <span class="keyword">catch</span> (DuplicateMatricNumberException dme) {
+        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="exception">AssertionError</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">Deleting a member's group only should not result in a duplicate. </span><span class="delimiter">&quot;</span></span>
+                + <span class="string"><span class="delimiter">&quot;</span><span class="content">See member#equals(Object).</span><span class="delimiter">&quot;</span></span>);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The high-level sequence of events is depicted in Figure 35 below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SDforRemoveGroup.png" alt="SDforRemoveGroup" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 35. Sequence Diagram for removing a group from <code>Club Connect</code>.</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-implementation-of-code-removegroupcommand-code"><a class="link" href="#aspect-implementation-of-code-removegroupcommand-code">Aspect: Implementation of <code>RemoveGroupCommand</code></a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Overwrite the relevant <code>Member</code> objects with new <code>Member</code> objects.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement.</p>
+</li>
+<li>
+<p>Cons: Requires looping through all the members in <code>Club Connect</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> To maintain a <code>UniqueGroupList</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Cleaner implementation.</p>
+</li>
+<li>
+<p>Cons: Relatively difficult to implement.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract (from Developer Guide)</mark></p>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-email-feature"><a class="link" href="#enhancement-added-email-feature">Enhancement Added: Email Feature</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-2"><a class="link" href="#external-behavior-2">External Behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract (from User Guide)</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="emailing-club-members-code-email-code-since-v1-2"><a class="link" href="#emailing-club-members-code-email-code-since-v1-2">Emailing club members: <code>email</code> (Since v1.2)</a></h3>
+<div class="paragraph">
+<p>Opens up the chosen mail client&#8217;s 'Compose Message' page in the system&#8217;s default web browser with the relevant fields filled-in. The recipients will be the members that belong to the chosen <code>Group</code> or <code>Tag</code>. <br>
+Format: <code>email g/GROUP OR t/TAG c/CLIENT [s/SUBJECT] [b/BODY]</code><br>
+Alias: <code>mail</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Club Connect currently only supports Gmail and Outlook mail clients.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Emails can only be sent to members belonging to EITHER a Group OR a Tag. Club Connect currently doesn&#8217;t support sending emails to members belonging to BOTH a Group and a Tag.
+</td>
+</tr>
+</table>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Opens up the mail client&#8217;s URL in the default web browser e.g. Google Chrome</p>
+</li>
+<li>
+<p>A Group AND a Tag is not considered valid input</p>
+</li>
+<li>
+<p>The Group (or Tag) must exist in the club book</p>
+</li>
+<li>
+<p>The Group (or Tag) must be in valid format</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>email g/logistics c/gmail s/Meeting Minutes</code><br>
+Opens up the Compose Message page of Gmail with the <code>Subject</code> field filled-in. The recipients are all the members that belong to the <code>logistics</code> group.</p>
+</li>
+<li>
+<p><code>email t/projectHead c/outlook</code><br>
+Opens up the Compose Message page of Outlook with blank <code>Subject</code> and <code>Body</code> fields. The recipients are all the members that are tagged with <code>projectHead</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract (from User Guide)</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification-2"><a class="link" href="#justification-2">Justification</a></h4>
+<div class="paragraph">
+<p>Every student club / organisation makes use of email blasts to communicate with its members. Whether it is for general communication or for club-related events, the ability to email members is essential to the smooth functioning of an organization.</p>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="implementation-2"><a class="link" href="#implementation-2">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract (from Developer Guide)</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="email-mechanism"><a class="link" href="#email-mechanism">Email Mechanism</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current Implementation</a></h4>
+<div class="paragraph">
+<p>The <code>email</code> mechanism of Club Connect is facilitated by the <code>EmailCommand</code> class and is event-driven.
+The <code>EmailCommand</code> consists of the following fields:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Client - the mail client used to send the email (currently restricted to GMail and Outlook).</p>
+</li>
+<li>
+<p>Subject - the subject of the email (optional field).</p>
+</li>
+<li>
+<p>Body - the body of the email (optional field).</p>
+</li>
+<li>
+<p>Group - the club group to whom the user wishes to send an email to.</p>
+</li>
+<li>
+<p>Tag - the tag to which the user wishes to send an email to.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Emails can only be sent to members belonging to EITHER a Group OR a Tag.
+ClubConnect currently doesn&#8217;t support sending emails to members belonging to BOTH a Group and a Tag.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The <code>EmailCommand</code> extends from <code>Command</code> and not from <code>UndoableCommand</code>, as it is not an undoable command.
+Refer to Figure 19 for the UML diagram.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/EmailCommandUML.png" alt="EmailCommandUML" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 19. EmailCommand UML Diagram</em></p>
+</div>
+<div class="paragraph">
+<p><code>EmailCommandParser</code> is responsible for parsing the <code>email</code> command. It returns a <code>EmailCommand</code> object after parsing <code>Client</code>, <code>Subject</code>, <code>Body</code>, <code>Group</code>, and <code>Tag</code>.
+Figure 20 depicts the sequence of parsing the command.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SDforEmailCommandParser.png" alt="SDforEmailCommandParser" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 20. Sequence Diagram for Email Command parsing</em></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Since <code>Subject</code> and <code>Body</code> are optional fields, their default values are <code>EMPTY_SUBJECT_STRING</code> and <code>EMPTY_BODY_STRING</code> which store blank Strings.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+As ClubConnect only allows emails to be sent to members of EITHER a <code>Group</code> OR a <code>Tag</code>, a valid command will result in either one of them being assigned to <code>null</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The <code>EmailCommand#execute()</code> calls the following methods of <code>model</code>:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code><code>generateEmailRecipients()</code></code> - takes in a <code>Group</code> and <code>Tag</code> object. Depending on the object that is not <code>null</code>, it returns a string of recipients.</p>
+</li>
+<li>
+<p><code><code>sendEmail()</code></code> - takes in the recipient string, and an object each of <code>Client</code>, <code>Subject</code>, and <code>Body</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><code>EmailCommand#sendEmail()</code> raises an event <code>SendEmailRequestEvent</code>, which triggers the system&#8217;s default browser to open the chosen mail client&#8217;s 'Compose Message' page with all the relevant fields filled-in.
+Figure 21 depicts the high-level sequence of events that take place.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SDforEmail.png" alt="SDforEmail" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 21. Sequence Diagram for Email Command</em></p>
+</div>
+<div class="paragraph">
+<p>The browser URL for composing the email is generated as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="directive">static</span> <span class="directive">final</span> <span class="predefined-type">String</span> GMAIL_EMAIL_URL =
+            <span class="string"><span class="delimiter">&quot;</span><span class="content">https://mail.google.com/mail/?view=cm&amp;fs=1&amp;tf=1&amp;source=mailto&amp;to=%1$s&amp;su=%2$s&amp;body=%3$s
+
+public static final String OUTLOOK_EMAIL_URL =
+            </span><span class="delimiter">&quot;</span></span>https:<span class="comment">//outlook.office.com/?path=/mail/action/compose&amp;to=%1$s&amp;subject=%2$s&amp;body=%3$s&quot;;</span>
+
+Desktop.getDesktop().browse(<span class="keyword">new</span> <span class="predefined-type">URI</span>(<span class="predefined-type">String</span>.format(GMAIL_EMAIL_URL, recipients, subject, body)));</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-location-of-opening-the-mail-client"><a class="link" href="#aspect-location-of-opening-the-mail-client">Aspect: Location of opening the mail client</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Open up the mail client in system&#8217;s default web browser.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement</p>
+</li>
+<li>
+<p>Cons: Since ClubConnect can be used by multiple people via user authentication, the default browser will have the owner of the system logged into his/her mail account.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Open up the mail client in <code>BrowserPanel</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: No dependency on third party apps.</p>
+</li>
+<li>
+<p>Cons: Older version browser will disallow auto-filling of email fields.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract (from Developer Guide)</mark></p>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-task-management"><a class="link" href="#enhancement-added-task-management">Enhancement Added: Task-Management</a></h3>
+<div class="sect3">
+<h4 id="external-behaviour"><a class="link" href="#external-behaviour">External Behaviour</a></h4>
+<div class="sect4">
+<h5 id="add-tasks"><a class="link" href="#add-tasks">Add Tasks</a></h5>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract (from UserGuide)</mark></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-a-task-code-addtask-code-since-v1-3"><a class="link" href="#adding-a-task-code-addtask-code-since-v1-3">Adding a task: <code>addtask</code> (Since v1.3)</a></h3>
+<div class="paragraph">
+<p>Adds a task to Club Connect.<br>
+Format: <code>addtask desc/DESCRIPTION d/DUE_DATE ti/TIME</code><br>
+Aliases: <code>addt</code>, <code>task</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>date</code> and <code>time</code> attributes must be valid dates and time (in 24-hour format).</p>
+</li>
+<li>
+<p>By default, the <code>Assignor</code> and <code>Assignee</code> of the task is the member that is currently logged in. This cannot be changed.</p>
+</li>
+<li>
+<p>If you wish to assign taks to other members in the capacity of an Exco member, use the <code>assigntask</code> command.</p>
+</li>
+<li>
+<p>The default <code>Status</code> given to a newly created task is <code>Yet to Begin</code>. This can be updated using the <code>changetaskstatus</code> command.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Duplicate tasks are not allowed.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>addtask desc/Book PGP Function Room 3 d/02/04/2018 ti/19:00</code><br>
+Adds a task with description <code>Book PGP Function Room 3</code> due on <code>02/04/2018</code> at <code>19:00</code>.</p>
+</li>
+<li>
+<p><code>addtask desc/Buy Food d/03.04.2018 ti/15:00</code><br>
+Adds a task with description <code>Buy Food</code> due on <code>03/04/2018</code> at <code>15:00</code>.</p>
+</li>
+</ul>
+</div>
+<div class="sect4">
+<h5 id="assign-tasks"><a class="link" href="#assign-tasks">Assign Tasks</a></h5>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-a-task-code-assigntask-code-since-v1-4"><a class="link" href="#adding-a-task-code-assigntask-code-since-v1-4">Adding a task: <code>assigntask</code> (Since v1.4)</a></h3>
+<div class="paragraph">
+<p>Adds a task to Club Connect and assigns it to a member.<br>
+Format: <code>assigntask desc/DESCRIPTION d/DUE_DATE ti/TIME m/MATRIC_NUMBER</code><br>
+Alias: <code>assignt</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>date</code> and <code>time</code> attributes must be valid dates and time (in 24-hour format).</p>
+</li>
+<li>
+<p>The member who the task is meant to be assigned to must exist in the club book.</p>
+</li>
+<li>
+<p>The default <code>Status</code> given to a newly created task is <code>Yet to Begin</code>. This can be updated using the <code>changetaskstatus</code> command.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Duplicate tasks are not allowed.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+This command is for <code>EXCO</code> members only.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>This command assigns the task to the member based on the entered <code>MATRIC_NUMBER</code>.</p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>assigntask desc/Book PGP Function Room 3 d/02/04/2018 ti/19:00 m/A1234567H</code><br>
+Assigns a task to <code>A1234567H</code> with description <code>Book PGP Function Room 3</code> due on <code>02/04/2018</code> at <code>19:00</code>.</p>
+</li>
+<li>
+<p><code>assigntask desc/Buy Food d/03.04.2018 ti/15:00 m/A1122334K</code><br>
+Assigns a task to <code>A1122334K</code> with description <code>Buy Food</code> due on <code>03/04/2018</code> at <code>15:00</code>.</p>
+</li>
+</ul>
+</div>
+<div class="sect4">
+<h5 id="delete-tasks"><a class="link" href="#delete-tasks">Delete Tasks</a></h5>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-a-task-code-deletetask-code-since-v1-3"><a class="link" href="#deleting-a-task-code-deletetask-code-since-v1-3">Deleting a task : <code>deletetask</code> (Since v1.3)</a></h3>
+<div class="paragraph">
+<p>Deletes the specified task from the club book.<br>
+Format: <code>deletetask INDEX</code><br>
+Aliases: <code>deltask</code>, <code>rmtask</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes the task at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Only Members who are either the <code>Assignor</code> or the <code>Assignee</code> can delete their respective tasks.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>viewmytasks</code><br>
+<code>deletetask 2</code><br>
+Deletes the 2nd task in the results of the <code>viewmytasks</code> command.</p>
+</li>
+<li>
+<p><code>viewalltasks</code><br>
+<code>deletetask 1</code><br>
+Deletes the 1st task in the results of the <code>viewalltasks</code> command.</p>
+</li>
+</ul>
+</div>
+<div class="sect4">
+<h5 id="changetaskstatus-tasks"><a class="link" href="#changetaskstatus-tasks">ChangeTaskStatus Tasks</a></h5>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="changing-the-status-of-your-task-code-changetaskstatus-code-since-v1-5rc"><a class="link" href="#changing-the-status-of-your-task-code-changetaskstatus-code-since-v1-5rc">Changing the status of your task : <code>changetaskstatus</code> (Since v1.5rc)</a></h3>
+<div class="paragraph">
+<p>Changes the status of a task in Club Connect.<br>
+Format: <code>changetaskstatus INDEX st/STATUS</code><br>
+Aliases: <code>cts</code>, <code>changestatus</code>, <code>status</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>INDEX</code> <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>The <code>STATUS</code> can be one of <code><code>Yet To Begin</code></code>, <code><code>In Progress</code></code>, and <code><code>Completed</code></code>.</p>
+</li>
+<li>
+<p>You can only change the status of a task that you have been assigned.</p>
+</li>
+<li>
+<p>Club Connect detects if there is no change in the <code>STATUS</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Tasks are color-coded by status:<br>
+<span class="red">Yet To Begin</span><br>
+<span class="yellow">In Progress</span><br>
+<span class="green">Completed</span>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>changetaskstatus 1 st/In Progress</code><br>
+Changes the status of the 1st task to <code>In Progress</code> in the task listing.</p>
+</li>
+<li>
+<p><code>status 3 st/Completed</code><br>
+Changes the status of the 3rd task to <code>Completed</code> in the task listing.</p>
+</li>
+</ul>
+</div>
+<div class="sect4">
+<h5 id="view-all-tasks"><a class="link" href="#view-all-tasks">View All Tasks</a></h5>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="viewing-all-tasks-in-club-connect-code-viewalltasks-code-since-v1-4"><a class="link" href="#viewing-all-tasks-in-club-connect-code-viewalltasks-code-since-v1-4">Viewing all tasks in Club Connect : <code>viewalltasks</code> (Since v1.4)</a></h3>
+<div class="paragraph">
+<p>Displays all the tasks created/assigned in Club Connect. This is a command that can be used by <code>EXCO</code> members to monitor all the tasks in the club.<br>
+Format: <code>viewalltasks</code><br>
+Alias: <code>alltasks</code></p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+This command is for <code>EXCO</code> members only.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect4">
+<h5 id="view-my-tasks"><a class="link" href="#view-my-tasks">View My Tasks</a></h5>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="viewing-tasks-assigned-to-or-assigned-by-you-code-viewmytasks-code-since-v1-4"><a class="link" href="#viewing-tasks-assigned-to-or-assigned-by-you-code-viewmytasks-code-since-v1-4">Viewing tasks assigned to or assigned by you : <code>viewmytasks</code> (Since v1.4)</a></h3>
+<div class="paragraph">
+<p>Display all tasks created/assigned by the currently member in Club Connect.<br></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The main purpose of this command is to enable <code>EXCO</code> members to toggle between all tasks and those related to them.<br>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Format: <code>viewmytasks</code><br>
+Alias: <code>mytasks</code></p>
+</div>
+<div class="paragraph">
+<p><mark>Start of Extract (from User Guide)</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="justification-3"><a class="link" href="#justification-3">Justification</a></h3>
+<div class="paragraph">
+<p>Members of a club have certain responsibilities and must carry out tasks to fulfil their responsibilities. Furthermore, <code>EXCO</code> members can delegate tasks to other members which they must perform within a stipulated time period.
+Maintaining a record of tasks is crucial as it help maintain transparency and accountability of the club.</p>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="implementation-3"><a class="link" href="#implementation-3">Implementation</a></h3>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract (from Developer Guide)</mark></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="task-management"><a class="link" href="#task-management">Task-Management</a></h3>
+<div class="paragraph">
+<p>Tasks are pieces of work to be done or undertaken. Members can create tasks for themselves, and can also be assigned to a task by <code>Exco</code> members.</p>
+</div>
+<div class="sect3">
+<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">Current Implementation</a></h4>
+<div class="paragraph">
+<p>The task-management mechanism is facilitated by several command classes in Club Connect, namely:<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>AddTaskCommand</code></p>
+</li>
+<li>
+<p><code>AssignTaskCommand</code></p>
+</li>
+<li>
+<p><code>DeleteTaskCommand</code></p>
+</li>
+<li>
+<p><code>ChangeTaskStatusCommand</code></p>
+</li>
+<li>
+<p><code>ChangeAssigneeCommand</code></p>
+</li>
+<li>
+<p><code>ViewAllTasksCommand</code></p>
+</li>
+<li>
+<p><code>ViewMyTasksCommand</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>All of these commands require a member to be logged in (and thus by extension, an initial sign-up).
+Hence, they all share the following lines of code in their respective implementations:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">requireToSignUp();
+requireToLogIn();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Figure 22 below shows the UML diagram of the <code>Task</code> class.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/TaskUML.png" alt="TaskUML" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 22. Task UML Diagram</em></p>
+</div>
+<div class="paragraph">
+<p>Tasks consists of the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Description: Represents the description of a task.</p>
+</li>
+<li>
+<p>Date: Represents the due date of a task.</p>
+</li>
+<li>
+<p>Time: Represents the time before which a task must be completed.</p>
+</li>
+<li>
+<p>Assignor: Represents the member who has assigned the task.</p>
+</li>
+<li>
+<p>Assignee: Represents the member who has been assigned the task.</p>
+</li>
+<li>
+<p>Status: Represents the status of a task - one of <code>Yet To Begin</code>, <code>In Progress</code>, and <code>Completed</code>.</p>
+</li>
+</ul>
+</div>
+<div class="sect4">
+<h5 id="adding-tasks"><a class="link" href="#adding-tasks">Adding Tasks</a></h5>
+<hr>
+<div class="paragraph">
+<p>Adding Tasks is facilitated by the <code>AddTaskCommand</code>. When this command is invoked, it adds a task with the input <code>Description</code>, <code>Date</code>, and <code>Time</code>. The status of every newly created task is by default set to <code>Yet To Begin</code>. The <code>Assignor</code> and <code>Assignee</code> of the task is set to the <code>Matric Number</code> of the member who is currently logged into <code>Club Connect</code>.</p>
+</div>
+<div class="paragraph">
+<p>Figure 23 shows the flow of parsing an <code>AddTaskCommand</code> object:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SDforAddTaskCommandParser.png" alt="SDforAddTaskCommandParser" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 23. Sequence Diagram for <code>AddTaskCommand</code> parsing.</em></p>
+</div>
+<div class="paragraph">
+<p>The execution of the command invokes <code>Model#addTaskToTaskList()</code>.<br>
+The following code snippet shows the implementation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Override</span>
+<span class="directive">public</span> <span class="type">void</span> addTaskToTaskList(Task toAdd) <span class="directive">throws</span> DuplicateTaskException {
+    <span class="keyword">try</span> {
+        Assignor assignor = <span class="keyword">new</span> Assignor(clubBook.getLoggedInMember().getMatricNumber().toString());
+        Assignee assignee = <span class="keyword">new</span> Assignee(clubBook.getLoggedInMember().getMatricNumber().toString());
+        Status status = <span class="keyword">new</span> Status(Status.NOT_STARTED_STATUS);
+        toAdd.setAssignor(assignor);
+        toAdd.setAssignee(assignee);
+        toAdd.setStatus(status);
+        clubBook.addTaskToTaskList(toAdd);
+        updateFilteredTaskList(<span class="keyword">new</span> TaskIsRelatedToMemberPredicate(getLoggedInMember()));
+        indicateClubBookChanged();
+    } <span class="keyword">catch</span> (DuplicateTaskException dte) {
+        <span class="keyword">throw</span> <span class="keyword">new</span> DuplicateTaskException();
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Figure 24 depicts the high-level sequence of events that take place.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SDforAddTask.png" alt="SDforAddTask" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 24. Sequence Diagram for adding a task.</em></p>
+</div>
+<div class="paragraph">
+<p>The task is displayed in the Task pane on the far right side.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="assigning-tasks"><a class="link" href="#assigning-tasks">Assigning Tasks</a></h5>
+<hr>
+<div class="paragraph">
+<p>Assigning tasks can be accomplished with the <code>AssignTaskCommand</code>. Tasks are assigned to members through the <code>Matric Number</code> attribute.<br>
+Thus, the following are the required parameters:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Description</code></p>
+</li>
+<li>
+<p><code>Date</code></p>
+</li>
+<li>
+<p><code>Time</code></p>
+</li>
+<li>
+<p><code>Matric Number</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The implementation of assigning tasks is similar to that of adding tasks. The only difference is that the Assignor is set to the <code>Matric Number</code> of the member who is currently logged in.</p>
+</div>
+<div class="paragraph">
+<p>The parsing of an <code>AssignTaskCommand</code> is performed by the <code>AssignTaskCommandParser</code>.<br>
+Figure 25 shows the flow of parsing an <code>AssignTaskCommand</code> object:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SDforAssignTaskCommandParser.png" alt="SDforAssignTaskCommandParser" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 25. Sequence Diagram for <code>AssignTaskCommand</code> parsing.</em></p>
+</div>
+<div class="paragraph">
+<p>The execution of the command invokes <code>Model#assignTask()</code>.
+The following code snippet shows the implementation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Override</span>
+<span class="directive">public</span> <span class="type">void</span> assignTask(Task toAdd, MatricNumber matricNumber) <span class="directive">throws</span> MemberNotFoundException, DuplicateTaskException {
+    checkIfMemberExists(matricNumber);
+    <span class="keyword">try</span> {
+        Assignor assignor = <span class="keyword">new</span> Assignor(clubBook.getLoggedInMember().getMatricNumber().toString());
+        Assignee assignee = <span class="keyword">new</span> Assignee(matricNumber.toString());
+        Status status = <span class="keyword">new</span> Status(Status.NOT_STARTED_STATUS);
+        toAdd.setAssignor(assignor);
+        toAdd.setAssignee(assignee);
+        toAdd.setStatus(status);
+        clubBook.addTaskToTaskList(toAdd);
+        updateFilteredTaskList(<span class="keyword">new</span> TaskIsRelatedToMemberPredicate(getLoggedInMember()));
+        indicateClubBookChanged();
+    } <span class="keyword">catch</span> (DuplicateTaskException dte) {
+        <span class="keyword">throw</span> <span class="keyword">new</span> DuplicateTaskException();
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Figure 26 depicts the high-level sequence of events that take place.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SDforAssignTask.png" alt="SDforAssignTask" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 26. Sequence Diagram for assigning a task.</em></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="deleting-tasks"><a class="link" href="#deleting-tasks">Deleting Tasks</a></h5>
+<hr>
+<div class="paragraph">
+<p>The 'DeleteTaskCommand` is used to delete a task. A task can only be deleted if the member who is currently logged in is either the <code>Assignor</code> or the <code>Assignee</code>.<br>
+The command object takes in the <code>INDEX</code> of the task to be deleted.</p>
+</div>
+<div class="paragraph">
+<p><code>DeleteTaskCommandParser</code> is responsible for parsing the user input into a <code>DeleteTaskCommand</code> object.<br>
+Figure 27 illustrates the sequence in which the parsing is done.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SDforDeleteTaskCommandParser.png" alt="SDforDeleteTaskCommandParser" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 27. Sequence Diagram for <code>DeleteTaskCommand</code> parsing.</em></p>
+</div>
+<div class="paragraph">
+<p>The execution of the command invokes <code>Model#deleteTask()</code>.
+The following code snippet shows the implementation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Override</span>
+<span class="directive">public</span> <span class="type">void</span> deleteTask(Task targetTask) <span class="directive">throws</span> TaskNotFoundException, TaskCannotBeDeletedException {
+    Assignor assignor = targetTask.getAssignor();
+    Assignee assignee = targetTask.getAssignee();
+    <span class="predefined-type">String</span> currentMember = getLoggedInMember().getMatricNumber().toString();
+    checkIfTaskCanBeDeleted(assignor, assignee, currentMember);
+    clubBook.deleteTask(targetTask);
+    indicateClubBookChanged();
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The high-level sequence of events is shown below in Figure 28.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SDforDeleteTask.png" alt="SDforDeleteTask" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 28. Sequence Diagram for deleting a task.</em></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="changing-task-status"><a class="link" href="#changing-task-status">Changing Task Status</a></h5>
+<hr>
+<div class="paragraph">
+<p>Changing a task&#8217;s status is made possible by the <code>ChangeTaskStatusCommand</code>.<br>
+The <code>Status</code> of a task can be changed to any one of the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><span class="red">Yet To Begin</span></p>
+</li>
+<li>
+<p><span class="yellow">In Progress</span></p>
+</li>
+<li>
+<p><span class="green">Completed</span></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The input of the command is the <code>INDEX</code> of a task, and the desired <code>Status</code>.</p>
+</div>
+<div class="paragraph">
+<p>Parsing of the command is performed by <code>ChangeTaskStatusCommandParser</code>, which returns a <code>ChangeTaskStatusCommand</code> object.<br>
+Figure 29 below depicts the parsing of the <code>ChangeTaskStatusObject</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SDforChangeTaskStatusCommandParser.png" alt="width]&quot;800&quot;">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 29. Sequence Diagram for <code>ChangeTaskStatusCommand</code> parsing.</em></p>
+</div>
+<div class="paragraph">
+<p>The execution of the command invokes <code>Model#changeStatus()</code>.
+The following code snippet shows the implementation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Override</span>
+<span class="directive">public</span> <span class="type">void</span> changeStatus(Task taskToEdit, Task editedTask) <span class="directive">throws</span> TaskNotFoundException,
+        DuplicateTaskException {
+    requireAllNonNull(taskToEdit, editedTask);
+    clubBook.updateTask(taskToEdit, editedTask);
+    updateFilteredTaskList(<span class="keyword">new</span> TaskIsRelatedToMemberPredicate(getLoggedInMember()));
+    indicateClubBookChanged();
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Figure 30 below describes the high-level sequence of events that take place.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SDforChangeTaskStatus.png" alt="SDforChangeTaskStatus" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 30. Sequence Diagram for changing the status of a task.</em></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="viewing-all-tasks"><a class="link" href="#viewing-all-tasks">Viewing All Tasks</a></h5>
+<hr>
+<div class="paragraph">
+<p><code>Exco</code> members can view all the tasks in <code>Club Connect</code> using the <code>ViewAllTasksCommand</code>.</p>
+</div>
+<div class="paragraph">
+<p>The implementation makes use of a <code>Predicate</code> and is as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Override</span>
+<span class="directive">public</span> <span class="type">void</span> viewAllTasks() <span class="directive">throws</span> TasksCannotBeDisplayedException {
+    updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+    indicateClubBookChanged();
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The high-level sequence of events on executing the <code>ViewAllTasksCommand</code> is described below in Figure 31.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SDforViewAllTasks.png" alt="SDforViewAllTasks" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 31. Sequence Diagram for viewing all tasks.</em></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="viewing-my-tasks"><a class="link" href="#viewing-my-tasks">Viewing My Tasks</a></h5>
+<hr>
+<div class="paragraph">
+<p><code>Exco</code> members need a way to toggle between all tasks in <code>Club Connect</code> and the tasks that are related to them (i.e. tasks that they have assigned or been assigned to). This is achieved by the <code>ViewMyTasksCommand</code>.</p>
+</div>
+<div class="paragraph">
+<p><code>Model#viewMyTasks()</code> is called during the execution of the command.
+Here is the implementation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Override</span>
+<span class="directive">public</span> <span class="type">void</span> viewMyTasks() <span class="directive">throws</span> TasksAlreadyListedException {
+    checkIfTasksAreAlreadyListed();
+    updateFilteredTaskList(<span class="keyword">new</span> TaskIsRelatedToMemberPredicate(getLoggedInMember()));
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As shown in the implementation above, the method invokes the <code>checkIfTasksAreAlreadyListed()</code> method which throws <code>TasksAlreadyListedException</code> if the tasks are already listed.</p>
+</div>
+<div class="paragraph">
+<p>The sequence diagram of the command is shown below in Figure 32.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SDforViewMyTasks.png" alt="SDforViewMyTasks" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 32. Sequence Diagram for viewing tasks of the currently logged-in member.</em></p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-displaying-similar-tasks-for-different-assignees"><a class="link" href="#aspect-displaying-similar-tasks-for-different-assignees">Aspect: Displaying similar tasks for different Assignees</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Make a copy of the task for every new <code>Assignee</code> if all other parameters are same.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement</p>
+</li>
+<li>
+<p>Cons: Clutters the <code>TaskListPanel</code> because of redundancies.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Maintain a list of <code>Assignee</code> s in a task .</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Reduces clutter in the <code>TaskListPanel</code> and is easy on the eye.</p>
+</li>
+<li>
+<p>Cons: Relatively difficult to implement.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract (from Developer Guide)</mark></p>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="other-contributions"><a class="link" href="#other-contributions">Other contributions</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Managed all releases on GitHub and Milestones.</p>
+</li>
+<li>
+<p>Assumed responsibility of the Team Leader where I took important decisions regarding the product development.</p>
+</li>
+<li>
+<p>Maintained User Guide.</p>
+</li>
+<li>
+<p>Added <code>Group</code> attribute to <code>Member</code> : <a href="https://github.com/CS2103JAN2018-W15-B4/main/pull/66">Pull Request #66</a>.</p>
+</li>
+<li>
+<p>PRs reviewed (with non-trivial review comments): <a href="https://github.com/CS2103JAN2018-W15-B4/main/pull/53">#53</a>, <a href="https://github.com/CS2103JAN2018-W15-B4/main/pull/67">#67</a>, and <a href="https://github.com/CS2103JAN2018-W15-B4/main/pull/155">#155</a>.</p>
+</li>
+<li>
+<p>Reported bugs and suggestions for other teams during <a href="https://github.com/CS2103JAN2018-W14-B4/main/issues?utf8=%E2%9C%93&amp;q=is%3Aissue+yash+">Peer Testing</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="project-nus-sports-update"><a class="link" href="#project-nus-sports-update">Project: NUS Sports Update</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="overview-2"><a class="link" href="#overview-2">Overview</a></h3>
+<div class="paragraph">
+<p>The main source of motivation behind this project is the lack of real time organized information regarding sports events on campus – fixtures, timings, and (most importantly) results, unless you know somebody on the team or unless you yourself are a part of the team. The app also seeks to eliminate the use of Google forms and other unofficial means of signing up and indication of interest, that may be easily missed by a significant number of students. This application seeks to take care of these problems and mainly caters to the needs of NUS students. The user-friendliness of the app makes the job of the organizers simpler by providing organized access to all information. Live-scores and fixtures help engage more students in the sports events around campus, and improve the reach of these events.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/O-impossible/NUS_Sports_Update"><code>Link to GitHub Repository</code></a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2018-04-10 19:17:58 UTC
+</div>
+</div>
+</body>
+</html>

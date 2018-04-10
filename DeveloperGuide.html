@@ -47,10 +47,12 @@
 <li><a href="#undo-redo-feature">4.1. Undo/Redo feature</a></li>
 <li><a href="#proposed-data-encryption">4.2. [Proposed] Data Encryption</a></li>
 <li><a href="#email-mechanism">4.3. Email Mechanism</a></li>
-<li><a href="#changing-profile-photo-mechanism">4.4. Changing Profile Photo Mechanism</a></li>
-<li><a href="#compress-decompress-mechanism">4.5. Compress/Decompress Mechanism</a></li>
-<li><a href="#logging">4.6. Logging</a></li>
-<li><a href="#Implementation-Configuration">4.7. Configuration</a></li>
+<li><a href="#task-management">4.4. Task-Management</a></li>
+<li><a href="#remove-group-mechanism">4.5. Remove Group Mechanism</a></li>
+<li><a href="#changing-profile-photo-mechanism">4.6. Changing Profile Photo Mechanism</a></li>
+<li><a href="#compress-decompress-mechanism">4.7. Compress/Decompress Mechanism</a></li>
+<li><a href="#logging">4.8. Logging</a></li>
+<li><a href="#Implementation-Configuration">4.9. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">5. Documentation</a>
@@ -1067,7 +1069,7 @@ Refer to Figure 19 for the UML diagram.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/EmailCommandUML.png" alt="EmailCommandUML" width="600">
+<img src="images/EmailCommandUML.png" alt="EmailCommandUML" width="800">
 </div>
 </div>
 <div class="paragraph">
@@ -1079,7 +1081,7 @@ Figure 20 depicts the sequence of parsing the command.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SDforEmailCommandParser.png" alt="SDforEmailCommandParser" width="650">
+<img src="images/SDforEmailCommandParser.png" alt="SDforEmailCommandParser" width="800">
 </div>
 </div>
 <div class="paragraph">
@@ -1187,9 +1189,563 @@ Desktop.getDesktop().browse(<span class="keyword">new</span> <span class="predef
 </div>
 </div>
 <div class="sect2">
-<h3 id="changing-profile-photo-mechanism"><a class="link" href="#changing-profile-photo-mechanism">4.4. Changing Profile Photo Mechanism</a></h3>
+<h3 id="task-management"><a class="link" href="#task-management">4.4. Task-Management</a></h3>
+<div class="paragraph">
+<p>Tasks are pieces of work to be done or undertaken. Members can create tasks for themselves, and can also be assigned to a task by <code>Exco</code> members.</p>
+</div>
 <div class="sect3">
 <h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">4.4.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The task-management mechanism is facilitated by several command classes in Club Connect, namely:<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>AddTaskCommand</code></p>
+</li>
+<li>
+<p><code>AssignTaskCommand</code></p>
+</li>
+<li>
+<p><code>DeleteTaskCommand</code></p>
+</li>
+<li>
+<p><code>ChangeTaskStatusCommand</code></p>
+</li>
+<li>
+<p><code>ChangeAssigneeCommand</code></p>
+</li>
+<li>
+<p><code>ViewAllTasksCommand</code></p>
+</li>
+<li>
+<p><code>ViewMyTasksCommand</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>All of these commands require a member to be logged in (and thus by extension, an initial sign-up).
+Hence, they all share the following lines of code in their respective implementations:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">requireToSignUp();
+requireToLogIn();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Figure 22 below shows the UML diagram of the <code>Task</code> class.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/TaskUML.png" alt="TaskUML" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 22. Task UML Diagram</em></p>
+</div>
+<div class="paragraph">
+<p>Tasks consists of the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Description: Represents the description of a task.</p>
+</li>
+<li>
+<p>Date: Represents the due date of a task.</p>
+</li>
+<li>
+<p>Time: Represents the time before which a task must be completed.</p>
+</li>
+<li>
+<p>Assignor: Represents the member who has assigned the task.</p>
+</li>
+<li>
+<p>Assignee: Represents the member who has been assigned the task.</p>
+</li>
+<li>
+<p>Status: Represents the status of a task - one of <code>Yet To Begin</code>, <code>In Progress</code>, and <code>Completed</code>.</p>
+</li>
+</ul>
+</div>
+<div class="sect4">
+<h5 id="adding-tasks"><a class="link" href="#adding-tasks">Adding Tasks</a></h5>
+<hr>
+<div class="paragraph">
+<p>Adding Tasks is facilitated by the <code>AddTaskCommand</code>. When this command is invoked, it adds a task with the input <code>Description</code>, <code>Date</code>, and <code>Time</code>. The status of every newly created task is by default set to <code>Yet To Begin</code>. The <code>Assignor</code> and <code>Assignee</code> of the task is set to the <code>Matric Number</code> of the member who is currently logged into <code>Club Connect</code>.</p>
+</div>
+<div class="paragraph">
+<p>Figure 23 shows the flow of parsing an <code>AddTaskCommand</code> object:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforAddTaskCommandParser.png" alt="SDforAddTaskCommandParser" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 23. Sequence Diagram for <code>AddTaskCommand</code> parsing.</em></p>
+</div>
+<div class="paragraph">
+<p>The execution of the command invokes <code>Model#addTaskToTaskList()</code>.<br>
+The following code snippet shows the implementation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Override</span>
+<span class="directive">public</span> <span class="type">void</span> addTaskToTaskList(Task toAdd) <span class="directive">throws</span> DuplicateTaskException {
+    <span class="keyword">try</span> {
+        Assignor assignor = <span class="keyword">new</span> Assignor(clubBook.getLoggedInMember().getMatricNumber().toString());
+        Assignee assignee = <span class="keyword">new</span> Assignee(clubBook.getLoggedInMember().getMatricNumber().toString());
+        Status status = <span class="keyword">new</span> Status(Status.NOT_STARTED_STATUS);
+        toAdd.setAssignor(assignor);
+        toAdd.setAssignee(assignee);
+        toAdd.setStatus(status);
+        clubBook.addTaskToTaskList(toAdd);
+        updateFilteredTaskList(<span class="keyword">new</span> TaskIsRelatedToMemberPredicate(getLoggedInMember()));
+        indicateClubBookChanged();
+    } <span class="keyword">catch</span> (DuplicateTaskException dte) {
+        <span class="keyword">throw</span> <span class="keyword">new</span> DuplicateTaskException();
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Figure 24 depicts the high-level sequence of events that take place.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforAddTask.png" alt="SDforAddTask" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 24. Sequence Diagram for adding a task.</em></p>
+</div>
+<div class="paragraph">
+<p>The task is displayed in the Task pane on the far right side.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="assigning-tasks"><a class="link" href="#assigning-tasks">Assigning Tasks</a></h5>
+<hr>
+<div class="paragraph">
+<p>Assigning tasks can be accomplished with the <code>AssignTaskCommand</code>. Tasks are assigned to members through the <code>Matric Number</code> attribute.<br>
+Thus, the following are the required parameters:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Description</code></p>
+</li>
+<li>
+<p><code>Date</code></p>
+</li>
+<li>
+<p><code>Time</code></p>
+</li>
+<li>
+<p><code>Matric Number</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The implementation of assigning tasks is similar to that of adding tasks. The only difference is that the Assignor is set to the <code>Matric Number</code> of the member who is currently logged in.</p>
+</div>
+<div class="paragraph">
+<p>The parsing of an <code>AssignTaskCommand</code> is performed by the <code>AssignTaskCommandParser</code>.<br>
+Figure 25 shows the flow of parsing an <code>AssignTaskCommand</code> object:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforAssignTaskCommandParser.png" alt="SDforAssignTaskCommandParser" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 25. Sequence Diagram for <code>AssignTaskCommand</code> parsing.</em></p>
+</div>
+<div class="paragraph">
+<p>The execution of the command invokes <code>Model#assignTask()</code>.
+The following code snippet shows the implementation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Override</span>
+<span class="directive">public</span> <span class="type">void</span> assignTask(Task toAdd, MatricNumber matricNumber) <span class="directive">throws</span> MemberNotFoundException, DuplicateTaskException {
+    checkIfMemberExists(matricNumber);
+    <span class="keyword">try</span> {
+        Assignor assignor = <span class="keyword">new</span> Assignor(clubBook.getLoggedInMember().getMatricNumber().toString());
+        Assignee assignee = <span class="keyword">new</span> Assignee(matricNumber.toString());
+        Status status = <span class="keyword">new</span> Status(Status.NOT_STARTED_STATUS);
+        toAdd.setAssignor(assignor);
+        toAdd.setAssignee(assignee);
+        toAdd.setStatus(status);
+        clubBook.addTaskToTaskList(toAdd);
+        updateFilteredTaskList(<span class="keyword">new</span> TaskIsRelatedToMemberPredicate(getLoggedInMember()));
+        indicateClubBookChanged();
+    } <span class="keyword">catch</span> (DuplicateTaskException dte) {
+        <span class="keyword">throw</span> <span class="keyword">new</span> DuplicateTaskException();
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Figure 26 depicts the high-level sequence of events that take place.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforAssignTask.png" alt="SDforAssignTask" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 26. Sequence Diagram for assigning a task.</em></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="deleting-tasks"><a class="link" href="#deleting-tasks">Deleting Tasks</a></h5>
+<hr>
+<div class="paragraph">
+<p>The 'DeleteTaskCommand` is used to delete a task. A task can only be deleted if the member who is currently logged in is either the <code>Assignor</code> or the <code>Assignee</code>.<br>
+The command object takes in the <code>INDEX</code> of the task to be deleted.</p>
+</div>
+<div class="paragraph">
+<p><code>DeleteTaskCommandParser</code> is responsible for parsing the user input into a <code>DeleteTaskCommand</code> object.<br>
+Figure 27 illustrates the sequence in which the parsing is done.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforDeleteTaskCommandParser.png" alt="SDforDeleteTaskCommandParser" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 27. Sequence Diagram for <code>DeleteTaskCommand</code> parsing.</em></p>
+</div>
+<div class="paragraph">
+<p>The execution of the command invokes <code>Model#deleteTask()</code>.
+The following code snippet shows the implementation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Override</span>
+<span class="directive">public</span> <span class="type">void</span> deleteTask(Task targetTask) <span class="directive">throws</span> TaskNotFoundException, TaskCannotBeDeletedException {
+    Assignor assignor = targetTask.getAssignor();
+    Assignee assignee = targetTask.getAssignee();
+    <span class="predefined-type">String</span> currentMember = getLoggedInMember().getMatricNumber().toString();
+    checkIfTaskCanBeDeleted(assignor, assignee, currentMember);
+    clubBook.deleteTask(targetTask);
+    indicateClubBookChanged();
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The high-level sequence of events is shown below in Figure 28.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforDeleteTask.png" alt="SDforDeleteTask" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 28. Sequence Diagram for deleting a task.</em></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="changing-task-status"><a class="link" href="#changing-task-status">Changing Task Status</a></h5>
+<hr>
+<div class="paragraph">
+<p>Changing a task&#8217;s status is made possible by the <code>ChangeTaskStatusCommand</code>.<br>
+The <code>Status</code> of a task can be changed to any one of the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><span class="red">Yet To Begin</span></p>
+</li>
+<li>
+<p><span class="yellow">In Progress</span></p>
+</li>
+<li>
+<p><span class="green">Completed</span></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The input of the command is the <code>INDEX</code> of a task, and the desired <code>Status</code>.</p>
+</div>
+<div class="paragraph">
+<p>Parsing of the command is performed by <code>ChangeTaskStatusCommandParser</code>, which returns a <code>ChangeTaskStatusCommand</code> object.<br>
+Figure 29 below depicts the parsing of the <code>ChangeTaskStatusObject</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforChangeTaskStatusCommandParser.png" alt="width]&quot;800&quot;">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 29. Sequence Diagram for <code>ChangeTaskStatusCommand</code> parsing.</em></p>
+</div>
+<div class="paragraph">
+<p>The execution of the command invokes <code>Model#changeStatus()</code>.
+The following code snippet shows the implementation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Override</span>
+<span class="directive">public</span> <span class="type">void</span> changeStatus(Task taskToEdit, Task editedTask) <span class="directive">throws</span> TaskNotFoundException,
+        DuplicateTaskException {
+    requireAllNonNull(taskToEdit, editedTask);
+    clubBook.updateTask(taskToEdit, editedTask);
+    updateFilteredTaskList(<span class="keyword">new</span> TaskIsRelatedToMemberPredicate(getLoggedInMember()));
+    indicateClubBookChanged();
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Figure 30 below describes the high-level sequence of events that take place.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforChangeTaskStatus.png" alt="SDforChangeTaskStatus" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 30. Sequence Diagram for changing the status of a task.</em></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="viewing-all-tasks"><a class="link" href="#viewing-all-tasks">Viewing All Tasks</a></h5>
+<hr>
+<div class="paragraph">
+<p><code>Exco</code> members can view all the tasks in <code>Club Connect</code> using the <code>ViewAllTasksCommand</code>.</p>
+</div>
+<div class="paragraph">
+<p>The implementation makes use of a <code>Predicate</code> and is as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Override</span>
+<span class="directive">public</span> <span class="type">void</span> viewAllTasks() <span class="directive">throws</span> TasksCannotBeDisplayedException {
+    updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+    indicateClubBookChanged();
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The high-level sequence of events on executing the <code>ViewAllTasksCommand</code> is described below in Figure 31.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforViewAllTasks.png" alt="SDforViewAllTasks" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 31. Sequence Diagram for viewing all tasks.</em></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="viewing-my-tasks"><a class="link" href="#viewing-my-tasks">Viewing My Tasks</a></h5>
+<hr>
+<div class="paragraph">
+<p><code>Exco</code> members need a way to toggle between all tasks in <code>Club Connect</code> and the tasks that are related to them (i.e. tasks that they have assigned or been assigned to). This is achieved by the <code>ViewMyTasksCommand</code>.</p>
+</div>
+<div class="paragraph">
+<p><code>Model#viewMyTasks()</code> is called during the execution of the command.
+Here is the implementation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Override</span>
+<span class="directive">public</span> <span class="type">void</span> viewMyTasks() <span class="directive">throws</span> TasksAlreadyListedException {
+    checkIfTasksAreAlreadyListed();
+    updateFilteredTaskList(<span class="keyword">new</span> TaskIsRelatedToMemberPredicate(getLoggedInMember()));
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As shown in the implementation above, the method invokes the <code>checkIfTasksAreAlreadyListed()</code> method which throws <code>TasksAlreadyListedException</code> if the tasks are already listed.</p>
+</div>
+<div class="paragraph">
+<p>The sequence diagram of the command is shown below in Figure 32.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforViewMyTasks.png" alt="SDforViewMyTasks" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 32. Sequence Diagram for viewing tasks of the currently logged-in member.</em></p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.4.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-displaying-similar-tasks-for-different-assignees"><a class="link" href="#aspect-displaying-similar-tasks-for-different-assignees">Aspect: Displaying similar tasks for different Assignees</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Make a copy of the task for every new <code>Assignee</code> if all other parameters are same.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement</p>
+</li>
+<li>
+<p>Cons: Clutters the <code>TaskListPanel</code> because of redundancies.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Maintain a list of <code>Assignee</code> s in a task .</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Reduces clutter in the <code>TaskListPanel</code> and is easy on the eye.</p>
+</li>
+<li>
+<p>Cons: Relatively difficult to implement.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="remove-group-mechanism"><a class="link" href="#remove-group-mechanism">4.5. Remove Group Mechanism</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">4.5.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The <code>removegroup</code> mechanism is facilitated by the <code>RemoveGroupCommand</code> class. It allows <code>Exco</code> members to remove a group from <code>Club Connect</code>. The group of all members part of the group that is to be deleted will be changed to the default group - <code>member</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>RemoveGroupCommand</code> extends from <code>UndoableCommand</code> as it is an undoable command. Figure 33 below depicts the UML representation of the <code>Command</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/RemoveGroupCommandUML.png" alt="RemoveGroupCommandUML" width="200" height="200">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 33. UML Diagram of <code>RemoveGroupCommand</code>.</em></p>
+</div>
+<div class="paragraph">
+<p><code>RemoveGroupCommandParser</code> is responsible for parsing the <code>removegroup</code> command. It returns a <code>RemoveGroupCommand</code> object after parsing the <code>Group</code>. The parsing of the command is shown below in Figure 34.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforRemoveGroupCommandParser.png" alt="SDforRemoveGroupCommandParser" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 34. Sequence Diagram for the parsing of <code>RemoveGroupCommand</code>.</em></p>
+</div>
+<div class="paragraph">
+<p>The execution invokes <code>Model#removeGroup()</code> with the <code>Group</code> <code><code>toDelete</code></code> as a parameter. This further invokes the method <code>ClubBook#removeGroup()</code>. Here is the implementation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Override</span>
+<span class="directive">public</span> <span class="type">void</span> removeGroup(<span class="predefined-type">Group</span> toRemove) <span class="directive">throws</span> GroupNotFoundException, GroupCannotBeRemovedException {
+    requireNonNull(toRemove);
+    clubBook.removeGroup(toRemove);
+    indicateClubBookChanged();
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>ClubBook#removeGroup()</code> further calls <code>ClubBook#removeGroupFromClubBook()</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">private</span> <span class="type">void</span> removeGroupFromClubBook(<span class="predefined-type">Group</span> toRemove) {
+    <span class="keyword">try</span> {
+        <span class="keyword">for</span> (<span class="predefined-type">Member</span> member : members) {
+            removeGroupFromMember(toRemove, member);
+        }
+    } <span class="keyword">catch</span> (MemberNotFoundException mnfe) {
+        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="exception">AssertionError</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">Impossible: original member is obtained from the club book.</span><span class="delimiter">&quot;</span></span>);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The final method called is <code>ClubBook#removeGroupFromMember()</code> which loops through all members and sets the group of all members that have the group <code><code>toDelete</code></code> to <code>member</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">private</span> <span class="type">void</span> removeGroupFromMember(<span class="predefined-type">Group</span> toRemove, <span class="predefined-type">Member</span> member)
+        <span class="directive">throws</span> MemberNotFoundException {
+    <span class="keyword">if</span> (!member.getGroup().toString().equalsIgnoreCase(toRemove.toString())) {
+        <span class="keyword">return</span>;
+    }
+    <span class="predefined-type">Group</span> defaultGroup = <span class="keyword">new</span> <span class="predefined-type">Group</span>(<span class="predefined-type">Group</span>.DEFAULT_GROUP);
+    <span class="predefined-type">Member</span> newMember = <span class="keyword">new</span> <span class="predefined-type">Member</span>(member.getName(), member.getPhone(), member.getEmail(), member.getMatricNumber(),
+            defaultGroup, member.getTags());
+    <span class="keyword">try</span> {
+        updateMember(member, newMember);
+    } <span class="keyword">catch</span> (DuplicateMatricNumberException dme) {
+        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="exception">AssertionError</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">Deleting a member's group only should not result in a duplicate. </span><span class="delimiter">&quot;</span></span>
+                + <span class="string"><span class="delimiter">&quot;</span><span class="content">See member#equals(Object).</span><span class="delimiter">&quot;</span></span>);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The high-level sequence of events is depicted in Figure 35 below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforRemoveGroup.png" alt="SDforRemoveGroup" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 35. Sequence Diagram for removing a group from <code>Club Connect</code>.</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.5.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-implementation-of-code-removegroupcommand-code"><a class="link" href="#aspect-implementation-of-code-removegroupcommand-code">Aspect: Implementation of <code>RemoveGroupCommand</code></a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Overwrite the relevant <code>Member</code> objects with new <code>Member</code> objects.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement.</p>
+</li>
+<li>
+<p>Cons: Requires looping through all the members in <code>Club Connect</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> To maintain a <code>UniqueGroupList</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Cleaner implementation.</p>
+</li>
+<li>
+<p>Cons: Relatively difficult to implement.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="changing-profile-photo-mechanism"><a class="link" href="#changing-profile-photo-mechanism">4.6. Changing Profile Photo Mechanism</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">4.6.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The <code>changepic</code> mechanism of Club Connect is facilitated by the <code>ChangeProfilePhotoCommand</code> class and is event-driven.
 It allows members to modify their profile photos displayed in the application.
@@ -1281,7 +1837,7 @@ It copies the photo to the Club Connect application&#8217;s resources.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.4.2. Design Considerations</a></h4>
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.6.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-implementation-of-code-changeprofilephotocommand-code"><a class="link" href="#aspect-implementation-of-code-changeprofilephotocommand-code">Aspect: Implementation of <code>ChangeProfilePhotoCommand</code></a></h5>
 <div class="ulist">
@@ -1352,9 +1908,9 @@ Members can delete the original file from the computer, without affecting the Cl
 </div>
 </div>
 <div class="sect2">
-<h3 id="compress-decompress-mechanism"><a class="link" href="#compress-decompress-mechanism">4.5. Compress/Decompress Mechanism</a></h3>
+<h3 id="compress-decompress-mechanism"><a class="link" href="#compress-decompress-mechanism">4.7. Compress/Decompress Mechanism</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">4.5.1. Current Implementation</a></h4>
+<h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">4.7.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>Member details are shown as cards in the GUI. Cards can either be decompressed(Figure 22) or compressed(Figure 23).</p>
 </div>
@@ -1422,7 +1978,7 @@ However, if the cards are decompressed, the <code>MemberCard</code> objects woul
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.5.2. Design Considerations</a></h4>
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">4.7.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-to-interact-from-logic-to-ui"><a class="link" href="#aspect-how-to-interact-from-logic-to-ui">Aspect: How to interact from Logic to Ui</a></h5>
 <div class="ulist">
@@ -1460,7 +2016,7 @@ just for compress/decompress but for other events as well.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">4.6. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">4.8. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging.
 The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
@@ -1468,7 +2024,7 @@ The <code>LogsCenter</code> class is used to manage the logging levels and loggi
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 4.7, &#8220;Configuration&#8221;</a>).</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 4.9, &#8220;Configuration&#8221;</a>).</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level.</p>
@@ -1499,7 +2055,7 @@ The <code>LogsCenter</code> class is used to manage the logging levels and loggi
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">4.7. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">4.9. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -3679,7 +4235,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-10 16:31:10 UTC
+Last updated 2018-04-10 19:17:58 UTC
 </div>
 </div>
 </body>
