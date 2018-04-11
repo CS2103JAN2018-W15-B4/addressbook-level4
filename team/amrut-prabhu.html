@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.6.1">
+<title>Amrut Prabhu - Project Portfolio</title>
+<link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Amrut Prabhu - Project Portfolio</h1>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="project-club-connect"><a class="link" href="#project-club-connect">PROJECT: Club Connect</a></h2>
+<div class="sectionbody">
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Club Connect</strong> is an application targeted at <a href="DeveloperGuide.html#club">club</a> <a href="DeveloperGuide.html#member">members</a> who are students at the National University of Singapore (NUS).
+It aims to make the tedious process of club management easier and more effective.</p>
+</div>
+<div class="paragraph">
+<p><strong>Club Connect</strong> is an application that a user who loves to type would fancy - in other words, it uses a Command Line Interface (CLI).
+All output is displayed on a Graphical User Interface (GUI) - which is just computer jargon for a display that includes panes, menus and message boxes.</p>
+</div>
+<div class="paragraph">
+<p><strong>Code Contributed</strong> : [<a href="https://github.com/CS2103JAN2018-W15-B4/main/blob/master/collated/functional/amrut-prabhu.md">Functional code</a>]</p>
+</div>
+<div class="sect2">
+<h3 id="major-enhancement-added-data-handling"><a class="link" href="#major-enhancement-added-data-handling">Major Enhancement Added: Data Handling</a></h3>
+<div class="sect3">
+<h4 id="external-behaviour"><a class="link" href="#external-behaviour">External Behaviour</a></h4>
+<div class="sect4">
+<h5 id="import-members"><a class="link" href="#import-members">Import Members</a></h5>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract (from UserGuide)</mark></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="importing-members-into-club-connect-code-import-code-since-v1-4"><a class="link" href="#importing-members-into-club-connect-code-import-code-since-v1-4">Importing members into Club Connect: <code>import</code> (Since v1.4)</a></h3>
+<div class="paragraph">
+<p>Imports the details of all members in the specified CSV file into Club Connect.
+Format: 'import CSV_FILE_PATH`<br>
+Alias: <code>imp</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>CSV_FILE_PATH must be an absolute path to the CSV file.</p>
+</li>
+<li>
+<p>The CSV file should organise its data in the format required by this application (see <a href="#csv-data-format">CSV file format</a>).</p>
+</li>
+<li>
+<p>In order for this command to work correctly, ensure that none of the data values contain double quoutes (").</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can save a Microsoft Excel spreadsheet as a CSV file by changing the file extension while saving.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+This command is for <code>Exco</code> members only.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>import C:/Users/John Doe/Desktop/members.csv</code><br>
+Imports all members in the "members.csv" file on <code>John Doe</code> 's Desktop to Club Connect.</p>
+</li>
+<li>
+<p><code>import /Users/Jane Doe/Desktop/clubbook.csv</code><br>
+Imports all members in the "clubbook.csv" file on <code>Jane Doe</code> 's Desktop to Club Connect.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract (from UserGuide)</mark></p>
+</div>
+<div class="paragraph">
+<p>=====Export Members
+---</p>
+</div>
+<div class="paragraph">
+<p><mark>Start of Extract (from UserGuide)</mark></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="exporting-club-connect-data-code-export-code-since-v1-3"><a class="link" href="#exporting-club-connect-data-code-export-code-since-v1-3">Exporting Club Connect data: <code>export</code> (Since v1.3)</a></h3>
+<div class="paragraph">
+<p>Exports the data of all members in Club Connect to a <a href="DeveloperGuide.html#csv">CSV</a> file.
+Format: 'export CSV_FILE_PATH`<br>
+Alias: <code>exp</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Exports Name, Phone Number, Email, Matriculation Number, Group, and Tags of all members added to Club Connect.</p>
+</li>
+<li>
+<p>CSV_FILE_PATH must be an absolute path to the CSV file.</p>
+</li>
+<li>
+<p>In order for this command to work correctly, ensure that none of the members have double quoutes (") in any of their data.</p>
+</li>
+<li>
+<p>A new CSV file with the specified name is created if it does not already exist.</p>
+</li>
+<li>
+<p>If the CSV file already exists, then the member data is added to the end of the file (i.e. it does not overwrite the existing file).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can import the generated CSV file on Microsoft Excel to get an even better view of the data.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>export C:/Users/John Doe/Desktop/members.csv</code><br>
+Exports all members in Club Connect to "members.csv" file on <code>John Doe</code> 's Desktop.</p>
+</li>
+<li>
+<p><code>export C:/Users/Jane Doe/Desktop/clubbook.csv</code><br>
+Exports all members in Club Connect to "clubbook.csv" file on <code>Jane Doe</code> 's Desktop.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract (from UserGuide)</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="justification"><a class="link" href="#justification">Justification</a></h3>
+<div class="paragraph">
+<p>During recruitment events (such as the annual Student Life Fair at the National University of Singapore),
+club representatives collect data of incoming members on software such as Microsoft Excel.
+They will then have to update Club Connect&#8217;s database to include the data of these new members.
+One way od doing so would be by adding all the new members one at a time, by using the <code>add</code> command.
+But, this is extremely cumbersome.
+The <code>import</code> command allows the <code>Exco</code> members to add all these new members in one go.</p>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="implementation"><a class="link" href="#implementation">Implementation</a></h3>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract (from Developer Guide)</mark></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="importing-members"><a class="link" href="#importing-members">Importing Members</a></h3>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
+<div class="paragraph">
+<p>Lorem ipsum dolor sit amet</p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="exporting-members"><a class="link" href="#exporting-members">Exporting Members</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current Implementation</a></h4>
+<div class="paragraph">
+<p>Lorem ipsum dolor sit amet</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract (from Developer Guide)</mark></p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="minor-enhancement-added-profile-photo-feature"><a class="link" href="#minor-enhancement-added-profile-photo-feature">Minor Enhancement Added: Profile Photo Feature</a></h3>
+<div class="sect3">
+<h4 id="external-behaviour-2"><a class="link" href="#external-behaviour-2">External Behaviour</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract (from User Guide)</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="changing-your-profile-photo-code-changepic-code-since-v1-2"><a class="link" href="#changing-your-profile-photo-code-changepic-code-since-v1-2">Changing your profile photo : <code>changepic</code> (Since v1.2)</a></h3>
+<div class="paragraph">
+<p>Changes the photo displayed on your profile to the specified photo.<br>
+Format: <code>changepic PHOTO_PATH</code><br>
+Aliases: <code>pic</code>, <code>profilepic</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>PHOTO_PATH must be an absolute path to the photo.</p>
+</li>
+<li>
+<p>This command is only guaranteed to work for ,jpeg, .jpg, and .png files.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+To get the abolute path, right-click on the photo file and select <code>Properties</code>.
+The <code>Location</code> field specifies the absolute location of the photo.
+Finally, add the complete name of the photo file to this location.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>changepic C:/Users/John Doe/Desktop/john_doe.jpg</code><br>
+Changes your profile picture to the "john_doe.jpg" image on <code>John Doe</code> 's Desktop.</p>
+</li>
+<li>
+<p><code>changepic C:/Users/Admin/Downloads/CathyRay.png</code><br>
+Changes your profile picture to the "CathyRay.png" image in your Downloads folder.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract (from User Guide)</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification-2"><a class="link" href="#justification-2">Justification</a></h4>
+<div class="paragraph">
+<p>Most student clubs have a large number of members.
+Hence, members may find it difficult to identify other members based solely on name.
+Having the ability to add a profile photo for yourself would make it much easier for others to identify you if they ever need to get in contact with you.</p>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="implementation-2"><a class="link" href="#implementation-2">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract (from Developer Guide)</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="changing-profile-photo-mechanism"><a class="link" href="#changing-profile-photo-mechanism">Changing Profile Photo Mechanism</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">Current Implementation</a></h4>
+<div class="paragraph">
+<p>The <code>changepic</code> mechanism of Club Connect is facilitated by the <code>ChangeProfilePhotoCommand</code> class and is event-driven.
+It allows members to modify their profile photos displayed in the application.
+To facilitate this, it makes use of the <code>ProfilePhoto</code> class. <code>ProfilePhoto</code></p>
+</div>
+<div class="paragraph">
+<p>Currently, the <code>ChangeProfilePhotoCommand</code> extends from the <code>Command</code> class, and not from <code>UndoableCommand</code>.
+Refer to Figure 22 for the UML diagram.
+The <code>ProfilePhoto</code> class consists of a <code>String</code> attribute to store the file path of the profile photo.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ChangeProfilePhotoCommandUML.png" alt="ChangeProfilePhotoCommandUML" width="350">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 22. ChangeProfilePhotoCommand UML Diagram</em></p>
+</div>
+<div class="paragraph">
+<p>The <code>displaypic</code> command involves the use of multiple components of Club Connect.
+Below, Figure 23 shows the interactions betweeen these components.
+As you can see, the <code>ChangeProfilePhotoCommand</code> is driven by the <code>ProfilePhotoChangedEvent</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SDforChangeProfilePhoto.png" alt="SDforChangeProfilePhoto" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 23. High Level Sequence Diagram for <code>changepic PATH</code> Command</em></p>
+</div>
+<div class="paragraph">
+<p>ChangeProfilePhotoCommandParser is responsible for parsing the <code>changepic</code> command.
+It returns a <code>ChangeProfilePhotoCommand</code> object after parsing the photo file path.
+Figure 24 depicts the Sequence Diagram for interactions within the <code>Logic</code> component for the <code>execute("changepic C:/Users/Admin/Desktop/ photo.png")</code> API call.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ChangeProfilePhotoCommandSdForLogic.png" alt="ChangeProfilePhotoCommandSdForLogic" width="650">
+</div>
+</div>
+<div class="paragraph">
+<p>_Figure 24. Interactions Inside the Logic Component for the <code>changepic C:/Users/Admin/Desktop/ photo.png</code> Command</p>
+</div>
+<div class="paragraph">
+<p>The <code>ChangeProfilePhotoCommand#execute()</code> method invokes the <code>addProfilePhoto()</code> method from <code>model</code>.
+Complying with the rules of <a href="#abstraction">abstraction</a>, the <code>Logic</code> component calls on <code>Model</code> to handle the internal details for updation.</p>
+</div>
+<div class="paragraph">
+<p>The actual reading of the profile photo from the path provided is done by the <code>Storage</code> component.
+It copies the photo to the Club Connect application&#8217;s resources.</p>
+</div>
+<div class="paragraph">
+<p>The code used for reading and copying the file is as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Override</span>
+<span class="directive">public</span> <span class="type">void</span> copyOriginalPhotoFile(<span class="predefined-type">String</span> originalPhotoPath, <span class="predefined-type">String</span> newPhotoName) <span class="directive">throws</span> PhotoException {
+    <span class="predefined-type">BufferedImage</span> originalPhoto = <span class="predefined-constant">null</span>;
+
+    <span class="keyword">try</span> {
+        logger.info(<span class="string"><span class="delimiter">&quot;</span><span class="content">Profile Photo is being read from </span><span class="delimiter">&quot;</span></span> + originalPhotoPath);
+
+        <span class="predefined-type">URL</span> photoUrl = <span class="keyword">new</span> <span class="predefined-type">URL</span>(URL_PREFIX + originalPhotoPath);
+        originalPhoto = <span class="predefined-type">ImageIO</span>.read(photoUrl);
+
+        <span class="predefined-type">String</span> saveAs = newPhotoName + FILE_EXTENSION;
+        <span class="predefined-type">File</span> newPath = <span class="keyword">new</span> <span class="predefined-type">File</span>(getCurrentDirectory() + SAVE_PHOTO_DIRECTORY, saveAs);
+
+        createPhotoFileCopy(originalPhoto, newPath);
+    } <span class="keyword">catch</span> (<span class="exception">IOException</span> ioe) {
+        <span class="comment">// ... exception handling ...</span>
+    }
+}
+
+<span class="directive">public</span> <span class="directive">static</span> <span class="predefined-type">String</span> getCurrentDirectory() {
+    <span class="comment">// ... getting current directory logic ...</span>
+}
+
+<span class="directive">public</span> <span class="type">void</span> createPhotoFileCopy(<span class="predefined-type">BufferedImage</span> originalPhoto, <span class="predefined-type">File</span> newPath) <span class="directive">throws</span> <span class="exception">IOException</span> {
+    <span class="comment">// ... logging ...</span>
+    <span class="predefined-type">ImageIO</span>.write(originalPhoto, <span class="string"><span class="delimiter">&quot;</span><span class="content">png</span><span class="delimiter">&quot;</span></span>, newPath);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The logged in member&#8217;s details are then updated to include this new profile photo.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-implementation-of-code-changeprofilephotocommand-code"><a class="link" href="#aspect-implementation-of-code-changeprofilephotocommand-code">Aspect: Implementation of <code>ChangeProfilePhotoCommand</code></a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Logged in member can only change his/her own profile photo.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Makes intuitive sense, easy to implement.</p>
+</li>
+<li>
+<p>Cons: There is no way for Exco members to ensure that members have appropriate profile photos.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2</strong>: Exco members can change any member&#8217;s profile photo.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Gives Exco members a way to exercise control over members' profile photos.</p>
+</li>
+<li>
+<p>Cons: Implementation becomes more complicated.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-source-files-of-profile-photos"><a class="link" href="#aspect-source-files-of-profile-photos">Aspect: Source files of profile photos</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Make a copy the source image provided to the applications resources.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Makes application portable and non-dependent on the rest of the system.
+Members can delete the original file from the computer, without affecting the Club Connect Application.</p>
+</li>
+<li>
+<p>Cons: Changes made to the original source images are not reflected in the application.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2</strong>: Always read the profile photo from the file path provided.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Changes made in the source image are reflected in the application.</p>
+</li>
+<li>
+<p>Cons: Application becomes highly dependent on the system, in terms of profile photos.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract (from Developer Guide)</mark></p>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="other-enhancement-added-delete-tag-command"><a class="link" href="#other-enhancement-added-delete-tag-command">Other Enhancement Added: Delete Tag Command</a></h3>
+<div class="sect3">
+<h4 id="external-behaviour-3"><a class="link" href="#external-behaviour-3">External Behaviour</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract (from User Guide)</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-a-tag-code-deletetag-code-since-v1-1"><a class="link" href="#deleting-a-tag-code-deletetag-code-since-v1-1">Deleting a tag : <code>deletetag</code> (Since v1.1)</a></h3>
+<div class="paragraph">
+<p>Deletes the specified tag from all members in Club Connect.<br>
+Format: <code>deletetag t/TAG</code><br>
+Aliases: <code>rmtag</code>, <code>deltag</code></p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+This command is for <code>Exco</code> members only.
+</td>
+</tr>
+</table>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes the specified tag from Club Connect.</p>
+</li>
+<li>
+<p>Deletes the specified tag for all members who are tagged with it.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>deletetag t/Treasurer</code><br>
+Deletes the <code>Treasurer</code> tag for all members tagged with <code>Treasurer</code> in Club Connect.</p>
+</li>
+<li>
+<p><code>deletetag t/EventInCharge</code><br>
+Deletes the <code>EventInCharge</code> tag for all members tagged with <code>EventInCharge</code> in Club Connect.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract (from User Guide)</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification-3"><a class="link" href="#justification-3">Justification</a></h4>
+<hr>
+<div class="paragraph">
+<p>If a tag in Club Connect is no longer required, an <code>Exco</code> member can delete the tag from all members.</p>
+</div>
+<div class="paragraph">
+<p>Here is an example of when this feature can be useful.
+Suppose the club is conducting a fundraising event.
+Then, all members who are organising and helping out in this event can be tagged with <code>Fundraising</code> in Club Connect.
+Once the fundraising event is over, it does not make sense to have this tag anymore.
+So, the <code>deletetag</code> command allows any <code>Exco</code> member to remove this tag from all members (and from Club Connect itself) in one go.</p>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="implementation-3"><a class="link" href="#implementation-3">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract (from Developer Guide)</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="delete-tag-mechanism"><a class="link" href="#delete-tag-mechanism">Delete Tag Mechanism</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">Current Implementation</a></h4>
+<div class="paragraph">
+<p>The <code>deletetag</code> mechanism is facilitated by the <code>DeleteTagCommand</code> class.
+It allows any <code>Exco</code> member to delete a tag from all members tagged with it (and consequently, from Club Connect).</p>
+</div>
+<div class="paragraph">
+<p>The <code>DeleteTagCommand</code> extends from <code>UndoableCommand</code> as it is an undoable command.
+Figure 34 (shown below) depicts the UML representation of the <code>DeleteTagCommand</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/placeholder.png" alt="placeholder" width="200" height="200">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 34. UML Diagram of <code>DeleteTagCommand</code>.</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-implementation-of-code-deletetagcommand-code"><a class="link" href="#aspect-implementation-of-code-deletetagcommand-code">Aspect: Implementation of <code>DeleteTagCommand</code></a></h5>
+<div class="paragraph">
+<p>Lorem ipsum dolor sit amet</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract (from Developer Guide)</mark></p>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="other-enhancement-added-ui-look-and-feel"><a class="link" href="#other-enhancement-added-ui-look-and-feel">Other Enhancement Added: UI Look and Feel</a></h3>
+<div class="sect3">
+<h4 id="external-behaviour-4"><a class="link" href="#external-behaviour-4">External Behaviour</a></h4>
+<hr>
+<div class="paragraph">
+<p>Before this enhancement was added, the Club Connect UI looked like the one shown in the image below (Figure 1).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Old_Ui.png" alt="Old Ui" width="550">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 1. The old Club Connect UI</em></p>
+</div>
+<div class="paragraph">
+<p>This enhancement changed the Club Connect UI to have a cleaner and more modern look.
+This new UI look is shown in Figure 2 below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Ui.png" alt="Ui" width="700">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 2. The enhanced Club Connect UI</em></p>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="justification-4"><a class="link" href="#justification-4">Justification</a></h4>
+<hr>
+<div class="paragraph">
+<p>Changing the UI of the Club Connect application to look cleaner and feel more modern would make the application more appealing to users.
+Especially in the case of university students (who are effectively our target audience),
+an aesthetically pleasing UI would encourage them to adopt our application for their club management needs.</p>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="implementation-4"><a class="link" href="#implementation-4">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract (from Developer Guide)</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ui-look-and-feel"><a class="link" href="#ui-look-and-feel">UI Look and Feel</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">Current Implementation</a></h4>
+<div class="paragraph">
+<p>Lorem ipsum dolor sit amet</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract (from Developer Guide)</mark></p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="other-contributions-general-documentation"><a class="link" href="#other-contributions-general-documentation">Other Contributions: General Documentation</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Added the <code>Tips</code> section to the User Guide.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>Start of Extract (from User Guide)</mark></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="tips"><a class="link" href="#tips">Tips</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Not satisfied with your productivity while using Club Connect?
+Can&#8217;t remember the command names?
+Here are some tips and tricks:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Transferring data to another computer</strong><br>
+Install the Club Connect app on the other computer.
+Then, overwrite the empty data file it creates (<code>clubbook.xml</code>) with the data file from your previous <code>Club Connect</code> folder.</p>
+</li>
+<li>
+<p><strong>Alternative command names</strong>
+If you do not like the default command name or feel that it is too long, you can use one of its aliases to execute the command instead.</p>
+<div class="paragraph">
+<p>Example: The <code>changepic</code> command uses <code>pic</code> as an alias.
+So, both commands shown below can be used change your profile picture to the "john_doe.jpg" image on John Doe&#8217;s Desktop.<br>
+<code>changepic C:/Users/John Doe/Desktop/john_doe.jpg</code></p>
+</div>
+<div class="paragraph">
+<p><code>pic C:/Users/John Doe/Desktop/john_doe.jpg</code><br></p>
+</div>
+</li>
+</ul>
+</div>
+<div id="csv-data-format" class="ulist">
+<ul>
+<li>
+<p><strong>CSV format for <code>import</code></strong><br>
+In order to successfully import data of members from the specified file, it has to follow the format shown in <a href="#csv-format">Figure 3</a>.</p>
+<div id="csv-format" class="imageblock">
+<div class="content">
+<img src="../images/CSV_format.png" alt="CSV format" height="350">
+</div>
+<div class="title">Figure 1. Required format of data in the file</div>
+</div>
+<div class="paragraph">
+<p>The columns in the import file should be in the same order as shown in the figure above.
+All the tags of a member should be in a single cell, separated by commas (",").
+Also, to successfully import the data of a member, you have to make sure that their details conform to the constraints of the <a href="#add-command"><code>add</code> command</a>.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract (from User Guide)</mark></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Added the <code>Glossary</code> section to the Developer Guide.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>Start of Extract (from Developer Guide)</mark></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="glossary"><a class="link" href="#glossary">Glossary</a></h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><a id="abstraction"></a> Abstraction</dt>
+<dd>
+<p>In Object-oriented Programming, abstraction is the mechanism by which users are provided with only the functionality, and not the implementation details.
+So, abstraction provides users with information on what an object does, rather than how it does it.</p>
+</dd>
+<dt class="hdlist1"><a id="attribute"></a> Attribute</dt>
+<dd>
+<p>An attribute is a type of detail of a member.
+For example, an attribute of a member could be phone number, email, matric number and so on.</p>
+</dd>
+<dt class="hdlist1"><a id="club"></a> Club</dt>
+<dd>
+<p>A student organisation or association at the National University of Singapore.
+These include (but are not limited to) Faculty/Non-Faculty clubs, Academic/Non-Academic Societies, Interest Groups and Sports groups. Some examples include Computing Club, Mathematics Society and Basketball Varsity Team.</p>
+</dd>
+<dt class="hdlist1"><a id="cli"></a> CLI</dt>
+<dd>
+<p>Acronym for Command Line Inerface. It is a purely text-based interface for software.
+User respond to visual prompts by typing single commands into the interface and receive results as text as well.
+An example of CLI would be MS-DOS.</p>
+</dd>
+<dt class="hdlist1"><a id="csv"></a> CSV</dt>
+<dd>
+<p>A comma-separated values (CSV) file is a text file that uses a comma (",") to separate values.
+This allows data to be saved in a table structured format.</p>
+</dd>
+<dt class="hdlist1"><a id="entry"></a> Entry</dt>
+<dd>
+<p>A value added to a member&#8217;s attribute.</p>
+</dd>
+<dt class="hdlist1"><a id="exco-member"></a> Exco member</dt>
+<dd>
+<p>A member who is part of the Executive committee of the club.
+Exco members are seen as the leaders of the club. Exco members can execute certain commands and view features that are not available to other members of the club.</p>
+</dd>
+</dl>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+An Exco member is still regarded as a member.
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><a id="gui"></a> GUI</dt>
+<dd>
+<p>Acronnym for Graphical User Interface. In a GUI, the software interface consists of graphical icons, menus and/or other visual indicators to display information. Users can typically interact with these graphics, rather than just using text in the <a href="#cli">command line</a>.
+For example, all Windows operating systems have a GUI.</p>
+</dd>
+<dt class="hdlist1"><a id="mainstream-os"></a> Mainstream OS</dt>
+<dd>
+<p>Windows, Linux, Unix, OS-X</p>
+</dd>
+<dt class="hdlist1"><a id="member"></a> Member</dt>
+<dd>
+<p>One of the members who compose a group organization. They are the target users of our application.</p>
+</dd>
+<dt class="hdlist1"><a id="private-contact-detail"></a> Private contact detail</dt>
+<dd>
+<p>A contact detail that is not meant to be shared with others</p>
+</dd>
+<dt class="hdlist1"><a id="profile"></a> Profile</dt>
+<dd>
+<p>Visual display of the information (attributes and entries) of a member.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract (from Developer Guide)</mark></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Maintained the Developer Guide.</p>
+</li>
+<li>
+<p>Added <code>ProfilePhoto</code> attribute to <code>Member</code> : <a href="https://github.com/CS2103JAN2018-W15-B4/main/pull/106">Pull Request #106</a>.</p>
+</li>
+<li>
+<p>Reported bugs and suggestions for other teams during <a href="https://github.com/CS2103JAN2018-T16-B2/main/issues?utf8=%E2%9C%93&amp;q=is%3Aissue+amrut+-prabhu">Peer Testing</a> session.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2018-04-11 06:25:05 UTC
+</div>
+</div>
+</body>
+</html>

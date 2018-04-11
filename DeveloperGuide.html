@@ -49,10 +49,14 @@
 <li><a href="#email-mechanism">4.3. Email Mechanism</a></li>
 <li><a href="#task-management">4.4. Task-Management</a></li>
 <li><a href="#remove-group-mechanism">4.5. Remove Group Mechanism</a></li>
-<li><a href="#changing-profile-photo-mechanism">4.6. Changing Profile Photo Mechanism</a></li>
-<li><a href="#compress-decompress-mechanism">4.7. Compress/Decompress Mechanism</a></li>
-<li><a href="#logging">4.8. Logging</a></li>
-<li><a href="#Implementation-Configuration">4.9. Configuration</a></li>
+<li><a href="#importing-members">4.6. Importing Members</a></li>
+<li><a href="#exporting-members">4.7. Exporting Members</a></li>
+<li><a href="#changing-profile-photo-mechanism">4.8. Changing Profile Photo Mechanism</a></li>
+<li><a href="#delete-tag-mechanism">4.9. Delete Tag Mechanism</a></li>
+<li><a href="#ui-look-and-feel">4.10. UI Look and Feel</a></li>
+<li><a href="#compress-decompress-mechanism">4.11. Compress/Decompress Mechanism</a></li>
+<li><a href="#logging">4.12. Logging</a></li>
+<li><a href="#Implementation-Configuration">4.13. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">5. Documentation</a>
@@ -90,12 +94,10 @@
 <li><a href="#use-cases">Appendix D: Use Cases</a></li>
 <li><a href="#non-functional-requirements">Appendix E: Non Functional Requirements</a></li>
 <li><a href="#glossary">Appendix F: Glossary</a></li>
-<li><a href="#product-survey">Appendix G: Product Survey</a></li>
-<li><a href="#instructions-for-manual-testing">Appendix H: Instructions for Manual Testing</a>
+<li><a href="#instructions-for-manual-testing">Appendix G: Instructions for Manual Testing</a>
 <ul class="sectlevel2">
-<li><a href="#launch-and-shutdown">H.1. Launch and Shutdown</a></li>
-<li><a href="#deleting-a-member">H.2. Deleting a member</a></li>
-<li><a href="#saving-data">H.3. Saving data</a></li>
+<li><a href="#launch-and-shutdown">G.1. Launch and Shutdown</a></li>
+<li><a href="#deleting-a-member">G.2. Deleting a member</a></li>
 </ul>
 </li>
 </ul>
@@ -1743,9 +1745,27 @@ Here is the implementation:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="changing-profile-photo-mechanism"><a class="link" href="#changing-profile-photo-mechanism">4.6. Changing Profile Photo Mechanism</a></h3>
+<h3 id="importing-members"><a class="link" href="#importing-members">4.6. Importing Members</a></h3>
 <div class="sect3">
 <h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">4.6.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>Lorem ipsum dolor sit amet</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="exporting-members"><a class="link" href="#exporting-members">4.7. Exporting Members</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">4.7.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>Lorem ipsum dolor sit amet</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="changing-profile-photo-mechanism"><a class="link" href="#changing-profile-photo-mechanism">4.8. Changing Profile Photo Mechanism</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-7"><a class="link" href="#current-implementation-7">4.8.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The <code>changepic</code> mechanism of Club Connect is facilitated by the <code>ChangeProfilePhotoCommand</code> class and is event-driven.
 It allows members to modify their profile photos displayed in the application.
@@ -1837,7 +1857,7 @@ It copies the photo to the Club Connect application&#8217;s resources.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.6.2. Design Considerations</a></h4>
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.8.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-implementation-of-code-changeprofilephotocommand-code"><a class="link" href="#aspect-implementation-of-code-changeprofilephotocommand-code">Aspect: Implementation of <code>ChangeProfilePhotoCommand</code></a></h5>
 <div class="ulist">
@@ -1908,9 +1928,49 @@ Members can delete the original file from the computer, without affecting the Cl
 </div>
 </div>
 <div class="sect2">
-<h3 id="compress-decompress-mechanism"><a class="link" href="#compress-decompress-mechanism">4.7. Compress/Decompress Mechanism</a></h3>
+<h3 id="delete-tag-mechanism"><a class="link" href="#delete-tag-mechanism">4.9. Delete Tag Mechanism</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">4.7.1. Current Implementation</a></h4>
+<h4 id="current-implementation-8"><a class="link" href="#current-implementation-8">4.9.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The <code>deletetag</code> mechanism is facilitated by the <code>DeleteTagCommand</code> class.
+It allows any <code>Exco</code> member to delete a tag from all members tagged with it (and consequently, from Club Connect).</p>
+</div>
+<div class="paragraph">
+<p>The <code>DeleteTagCommand</code> extends from <code>UndoableCommand</code> as it is an undoable command.
+Figure 34 (shown below) depicts the UML representation of the <code>DeleteTagCommand</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/placeholder.png" alt="placeholder" width="200" height="200">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 34. UML Diagram of <code>DeleteTagCommand</code>.</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">4.9.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-implementation-of-code-deletetagcommand-code"><a class="link" href="#aspect-implementation-of-code-deletetagcommand-code">Aspect: Implementation of <code>DeleteTagCommand</code></a></h5>
+<div class="paragraph">
+<p>Lorem ipsum dolor sit amet</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ui-look-and-feel"><a class="link" href="#ui-look-and-feel">4.10. UI Look and Feel</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-9"><a class="link" href="#current-implementation-9">4.10.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>Lorem ipsum dolor sit amet</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="compress-decompress-mechanism"><a class="link" href="#compress-decompress-mechanism">4.11. Compress/Decompress Mechanism</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-10"><a class="link" href="#current-implementation-10">4.11.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>Member details are shown as cards in the GUI. Cards can either be decompressed(Figure 22) or compressed(Figure 23).</p>
 </div>
@@ -1978,7 +2038,7 @@ However, if the cards are decompressed, the <code>MemberCard</code> objects woul
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">4.7.2. Design Considerations</a></h4>
+<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">4.11.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-to-interact-from-logic-to-ui"><a class="link" href="#aspect-how-to-interact-from-logic-to-ui">Aspect: How to interact from Logic to Ui</a></h5>
 <div class="ulist">
@@ -2016,7 +2076,7 @@ just for compress/decompress but for other events as well.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">4.8. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">4.12. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging.
 The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
@@ -2024,7 +2084,7 @@ The <code>LogsCenter</code> class is used to manage the logging levels and loggi
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 4.9, &#8220;Configuration&#8221;</a>).</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 4.13, &#8220;Configuration&#8221;</a>).</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level.</p>
@@ -2055,7 +2115,7 @@ The <code>LogsCenter</code> class is used to manage the logging levels and loggi
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">4.9. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">4.13. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -4021,28 +4081,56 @@ Adding a profile photo makes it easier to know what other members look like and 
 <div class="dlist">
 <dl>
 <dt class="hdlist1"><a id="abstraction"></a> Abstraction</dt>
+<dd>
+<p>In Object-oriented Programming, abstraction is the mechanism by which users are provided with only the functionality, and not the implementation details.
+So, abstraction provides users with information on what an object does, rather than how it does it.</p>
+</dd>
 <dt class="hdlist1"><a id="attribute"></a> Attribute</dt>
 <dd>
-<p>An attribute is a type of detail of a member. For example, an attribute of a member could be phone number, email, matric number and so on.</p>
+<p>An attribute is a type of detail of a member.
+For example, an attribute of a member could be phone number, email, matric number and so on.</p>
 </dd>
 <dt class="hdlist1"><a id="club"></a> Club</dt>
 <dd>
-<p>A student organisation or association at the National University of Singapore. These include (but are not limited to) Faculty/Non-Faculty clubs, Academic/Non-Academic Societies, Interest Groups and Sports groups. Some examples include Computing Club, Mathematics Society and Basketball Varsity Team.</p>
+<p>A student organisation or association at the National University of Singapore.
+These include (but are not limited to) Faculty/Non-Faculty clubs, Academic/Non-Academic Societies, Interest Groups and Sports groups. Some examples include Computing Club, Mathematics Society and Basketball Varsity Team.</p>
 </dd>
 <dt class="hdlist1"><a id="cli"></a> CLI</dt>
 <dd>
-<p>Acronym for Command Line Inerface. It is a purely text-based interface for software. User respond to visual prompts by typing single commands into the interface and receive results as text as well.
+<p>Acronym for Command Line Inerface. It is a purely text-based interface for software.
+User respond to visual prompts by typing single commands into the interface and receive results as text as well.
 An example of CLI would be MS-DOS.</p>
 </dd>
 <dt class="hdlist1"><a id="csv"></a> CSV</dt>
+<dd>
+<p>A comma-separated values (CSV) file is a text file that uses a comma (",") to separate values.
+This allows data to be saved in a table structured format.</p>
+</dd>
 <dt class="hdlist1"><a id="entry"></a> Entry</dt>
 <dd>
 <p>A value added to a member&#8217;s attribute.</p>
 </dd>
 <dt class="hdlist1"><a id="exco-member"></a> Exco member</dt>
 <dd>
-<p>A member who is part of the Executive committee of the club. Exco members are seen as the leaders of the club. Exco members can execute certain commands and view features that are not available to other members of the club.</p>
+<p>A member who is part of the Executive committee of the club.
+Exco members are seen as the leaders of the club. Exco members can execute certain commands and view features that are not available to other members of the club.</p>
 </dd>
+</dl>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+An Exco member is still regarded as a member.
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist">
+<dl>
 <dt class="hdlist1"><a id="gui"></a> GUI</dt>
 <dd>
 <p>Acronnym for Graphical User Interface. In a GUI, the software interface consists of graphical icons, menus and/or other visual indicators to display information. Users can typically interact with these graphics, rather than just using text in the <a href="#cli">command line</a>.
@@ -4056,22 +4144,6 @@ For example, all Windows operating systems have a GUI.</p>
 <dd>
 <p>One of the members who compose a group organization. They are the target users of our application.</p>
 </dd>
-</dl>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-An Exco member is also regarded as a member.
-</td>
-</tr>
-</table>
-</div>
-<div class="dlist">
-<dl>
 <dt class="hdlist1"><a id="private-contact-detail"></a> Private contact detail</dt>
 <dd>
 <p>A contact detail that is not meant to be shared with others</p>
@@ -4080,50 +4152,12 @@ An Exco member is also regarded as a member.
 <dd>
 <p>Visual display of the information (attributes and entries) of a member.</p>
 </dd>
-<dt class="hdlist1"><a id="uml"></a> UML Diagram</dt>
 </dl>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="product-survey"><a class="link" href="#product-survey">Appendix G: Product Survey</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><strong>Product Name</strong></p>
-</div>
-<div class="paragraph">
-<p>Author: &#8230;&#8203;</p>
-</div>
-<div class="paragraph">
-<p>Pros:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>&#8230;&#8203;</p>
-</li>
-<li>
-<p>&#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Cons:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>&#8230;&#8203;</p>
-</li>
-<li>
-<p>&#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="instructions-for-manual-testing"><a class="link" href="#instructions-for-manual-testing">Appendix H: Instructions for Manual Testing</a></h2>
+<h2 id="instructions-for-manual-testing"><a class="link" href="#instructions-for-manual-testing">Appendix G: Instructions for Manual Testing</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Given below are instructions to test the app manually.</p>
@@ -4141,7 +4175,7 @@ These instructions only provide a starting point for testers to work on; testers
 </table>
 </div>
 <div class="sect2">
-<h3 id="launch-and-shutdown"><a class="link" href="#launch-and-shutdown">H.1. Launch and Shutdown</a></h3>
+<h3 id="launch-and-shutdown"><a class="link" href="#launch-and-shutdown">G.1. Launch and Shutdown</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -4174,12 +4208,9 @@ Expected: The most recent window size and location is retained.</p>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
-</div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-member"><a class="link" href="#deleting-a-member">H.2. Deleting a member</a></h3>
+<h3 id="deleting-a-member"><a class="link" href="#deleting-a-member">G.2. Deleting a member</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -4206,36 +4237,13 @@ Expected: Similar to previous.</p>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">H.3. Saving data</a></h3>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Dealing with missing/corrupted data files</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p><em>{explain how to simulate a missing/corrupted file and the expected behavior}</em></p>
-</li>
-</ol>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
-</div>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-11 06:15:12 UTC
+Last updated 2018-04-11 06:25:05 UTC
 </div>
 </div>
 </body>
