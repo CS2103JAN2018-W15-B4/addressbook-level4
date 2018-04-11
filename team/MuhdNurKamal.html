@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.6.1">
+<title>Muhammad Nur Kamal Bin Mohammed Ariff - Project Portfolio</title>
+<link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Muhammad Nur Kamal Bin Mohammed Ariff - Project Portfolio</h1>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="project-club-connect"><a class="link" href="#project-club-connect">PROJECT: Club Connect</a></h2>
+<div class="sectionbody">
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Club Connect</strong> is a desktop application targeted at club members who are students at the National University of Singapore (NUS).
+It aims to make the tedious process of club management easier and more effective.</p>
+</div>
+<div class="paragraph">
+<p>The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Major enhancement</strong>: added <strong>voting system</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: Allows <code>Exco</code> members to create/delete polls and view/hide results of polls. Members can vote in polls.</p>
+</li>
+<li>
+<p>Justification: This feature improves the product significantly because the <code>Exco</code> members can accurately determine the views of other members so that they can take the best path of action for the club.</p>
+</li>
+<li>
+<p>Highlights: This enhancement extensively covers . It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Minor enhancement</strong>: added <strong>compress/decompress mechanism</strong> for users to navigate through member list easily.</p>
+</li>
+<li>
+<p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103JAN2018-W15-B4/main/blob/master/collated/functional/MuhdNurKamal.md">Functional code</a>] [<a href="https://github.com/CS2103JAN2018-W15-B4/main/blob/master/collated/test/MuhdNurKamal.md">Test code</a>]</p>
+</li>
+<li>
+<p><strong>Other contributions</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Project management:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Managed release <code>Peer Testing</code> on GitHub</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Enhancements to existing features:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Replaced Address field of members to Matriculation Number</p>
+</li>
+<li>
+<p>Improved the Find Command to either search according to specified field (eg. email) or according to all fields</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Community:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>PRs reviewed (with non-trivial review comments): <a href="https://github.com/CS2103JAN2018-W15-B4/main/pull/168">#168</a>, <a href="https://github.com/CS2103JAN2018-W15-B4/main/pull/167">#167</a>, <a href="https://github.com/CS2103JAN2018-W15-B4/main/pull/149">#149</a>, <a href="https://github.com/CS2103JAN2018-W15-B4/main/pull/125">#125</a></p>
+</li>
+<li>
+<p>Reported bugs and suggestions for other teams in the class (examples:  <a href="https://github.com">1</a>, <a href="https://github.com">2</a>, <a href="https://github.com">3</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="locating-members-code-find-code-since-v1-2"><a class="link" href="#locating-members-code-find-code-since-v1-2">Locating members: <code>find</code> (Since v1.2)</a></h3>
+<div class="paragraph">
+<p>Finds members whose details contain any of the given keywords.<br>
+Format: <code>find [PREFIX] KEYWORD [MORE_KEYWORDS]</code><br>
+Aliases: <code>f</code>, <code>search</code><br>
+Allowed <code>PREFIX</code>:<br>
+n/ = <code>NAME</code><br>
+p/ = <code>PHONE NUMBER</code><br>
+e/ = <code>EMAIL</code><br>
+m/ = <code>MATRIC NUMBER</code><br>
+g/ = <code>GROUP</code><br>
+t/ = <code>TAG</code><br></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you wish to find by a <code>PREFIX</code>, enter a space after the <code>PREFIX</code> while typing the command. This enables you to search for multiple keywords without having to enter the <code>PREFIX</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>An additional <code>PREFIX</code> can be stated after <code>find</code> to narrow search to a particular field. e.g e/ for email</p>
+</li>
+<li>
+<p>If no <code>PREFIX</code> is stated, all member fields will be searched.</p>
+</li>
+<li>
+<p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code>.</p>
+</li>
+<li>
+<p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code>.</p>
+</li>
+<li>
+<p>Partial matches will be matched e.g. <code>Han</code> will match <code>Hans</code>.</p>
+</li>
+<li>
+<p>Members matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Hans Bo</code> will return <code>Hans Gruber</code>, <code>Bo Yang</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>find John</code><br>
+Returns <code>john</code> and <code>John Doe</code>.</p>
+</li>
+<li>
+<p><code>find Betsy Tim John</code><br>
+Returns all members having names containing <code>Betsy</code>, <code>Tim</code>, or <code>John</code>.</p>
+</li>
+<li>
+<p><code>find g/ logistics</code><br>
+Returns all members in the logistics <code>group</code></p>
+</li>
+<li>
+<p><code>find p/ 123</code><br>
+Returns any member having phone number containing 123.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="compressing-member-details-code-compress-code-since-v1-2"><a class="link" href="#compressing-member-details-code-compress-code-since-v1-2">Compressing member details : <code>compress</code> (Since v1.2)</a></h3>
+<div class="paragraph">
+<p>Compresses the details of members in the member list<br>
+Format: <code>compress</code><br>
+Alias: <code>comp</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>No changes if member details are already compressed</p>
+</li>
+<li>
+<p>Use this to remove clutter in contact list</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="decompressing-member-details-code-decompress-code-since-v1-2"><a class="link" href="#decompressing-member-details-code-decompress-code-since-v1-2">Decompressing member details : <code>decompress</code> (Since v1.2)</a></h3>
+<div class="paragraph">
+<p>Decompresses the details of members in the member list<br>
+Format: <code>decompress</code><br>
+Alias: <code>decomp</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>No changes if member details are already decompressed</p>
+</li>
+<li>
+<p>Use this to see more detailed information of members in contact list</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="showing-results-of-polls-code-showresults-code-since-v1-4"><a class="link" href="#showing-results-of-polls-code-showresults-code-since-v1-4">Showing results of polls : <code>showresults</code> (Since v1.4)</a></h3>
+<div class="paragraph">
+<p>Displays the results of polls in Club Connect.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This is a command that can be used to monitor polls in the Club Connect.<br>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Results include number of voters for each answer of a poll and total number of voters who took part in the poll. Results are anonymous.<br>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Format: <code>showresults</code><br>
+Alias: <code>showres</code></p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+This command is for <code>Exco</code> members only.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="hiding-results-of-polls-code-hideresults-code-since-v1-4"><a class="link" href="#hiding-results-of-polls-code-hideresults-code-since-v1-4">Hiding results of polls : <code>hideresults</code> (Since v1.4)</a></h3>
+<div class="paragraph">
+<p>Hides the results of all polls in Club Connect.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This is a command that can be used to remove clutter from poll results.<br>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Format: <code>hideresults</code><br>
+Alias: <code>hideres</code></p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+This command is for <code>Exco</code> members only.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="voting-in-a-poll-code-vote-code-since-v1-4"><a class="link" href="#voting-in-a-poll-code-vote-code-since-v1-4">Voting in a poll : <code>vote</code> (Since v1.4)</a></h3>
+<div class="paragraph">
+<p>Votes for the specified answer in the specified poll in Club Connect .<br>
+Format: <code>vote POLL_INDEX ANSWER_INDEX</code><br>
+Alias: <code>vpoll</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The POLL_INDEX refers to the index number shown in the most recent poll listing.</p>
+</li>
+<li>
+<p>The ANSWER_INDEX refers to one of the index number of the answers of the specified poll.</p>
+</li>
+<li>
+<p>The indices <strong>must be positive integers</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>Polls voted by current logged in member will not be visible in the poll list unless logged in as an <code>Exco</code> member</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>vote 1 2</code><br>
+Votes for the 2nd answer in the 1st poll of the poll listing</p>
+</li>
+<li>
+<p><code>vote 5 1</code><br>
+Votes for the 1st answer in the 5th poll of the poll listing</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="compress-decompress-mechanism"><a class="link" href="#compress-decompress-mechanism">Compress/Decompress Mechanism</a></h3>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
+<div class="paragraph">
+<p>Member details are shown as cards in the GUI. Cards can either be decompressed(Figure 22) or compressed(Figure 23).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/DecompressedMemberCards.png" alt="DecompressedMemberCards" width="300">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 22. Decompressed Member Cards</em></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/CompressedCards.png" alt="CompressedCards" width="300">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 23. Compressed Member Cards</em></p>
+</div>
+<div class="paragraph">
+<p>The <code>MemberCard</code> class provides an abstraction for the member card shown in the GUI. By default, it shows a member card that is decompressed.
+To differentiate between compressed and decompressed member card, we introduced a <code>CompressedMemberCard</code> class. This class extends <code>MemberCard</code> (Figure 24) since a <code>CompressedMemberCard</code> is a <code>MemberCard</code>.
+Each of these classes contain a different static String showing location of the actual <code>FXML</code> file that determines layout of the member card, hence we get different layouts.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/MemberCardClassDiagram.png" alt="MemberCardClassDiagram" width="300">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 24. <code>MemberCard</code> class diagram</em></p>
+</div>
+<div class="paragraph">
+<p>The <code>compress</code> and <code>decompress</code> commands allows members to select whether they want to see detailed information of members or see a compressed version for easy viewing.
+These commands do not extend from <code>UndoableCommand</code> but just from <code>Command</code> since they do not change the state of the club book.</p>
+</div>
+<div class="paragraph">
+<p>Due to the similar nature of the <code>compress</code> and <code>decompress</code> commands, only the <code>compress</code> command will be discussed.</p>
+</div>
+<div class="paragraph">
+<p>Suppose that the user has just launched the application. The member cards would be decompressed (Figure 22).</p>
+</div>
+<div class="paragraph">
+<p>The user inputs 'compress' and the sequence diagram (Figure 24) below shows how the different components interact.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SDforCompressToEventsCenter.png" alt="SDforCompressToEventsCenter" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 25. Sequence diagram for compress command to Events Center</em></p>
+</div>
+<div class="paragraph">
+<p>Then, the <code>MemberListPanel</code>, which contains the <code>MemberCard</code> objects will handle the event (Figure 25). If the cards are already compressed, no changes occur.
+However, if the cards are decompressed, the <code>MemberCard</code> objects would be converted to <code>CompressedMemberCard</code> objects.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SDforCompressFromEventsCenter.png" alt="SDforCompressFromEventsCenter" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 26. Sequence diagram for compress command from Events Center</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-to-interact-from-logic-to-ui"><a class="link" href="#aspect-how-to-interact-from-logic-to-ui">Aspect: How to interact from Logic to Ui</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Use Event-Driven approach to interact from <code>CompressCommand</code>/<code>DecompressCommand</code> to <code>MemberListPanel</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Reduces coupling.</p>
+</li>
+<li>
+<p>Cons: Slower than just directly changing the <code>Ui</code> since a seperate class(<code>EventsCenter</code>) has to manage interactions, not
+just for compress/decompress but for other events as well.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Keep a <code>Ui</code> attribute in every command just like <code>Model</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement.</p>
+</li>
+<li>
+<p>Cons: Increases coupling</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2018-04-11 08:37:51 UTC
+</div>
+</div>
+</body>
+</html>
