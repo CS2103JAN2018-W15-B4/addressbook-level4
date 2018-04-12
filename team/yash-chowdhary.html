@@ -45,10 +45,10 @@ It aims to make the tedious process of club management easier and more effective
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-group-code-removegroup-code-since-v1-1"><a class="link" href="#deleting-a-group-code-removegroup-code-since-v1-1">Deleting a group : <code>removegroup</code> (Since v1.1)</a></h3>
+<h3 id="deleting-a-group-code-deletegroup-code-since-v1-1"><a class="link" href="#deleting-a-group-code-deletegroup-code-since-v1-1">Deleting a group : <code>deletegroup</code> (Since v1.1)</a></h3>
 <div class="paragraph">
 <p>Deletes the specified group from Club Connect.<br>
-Format: <code>removegroup g/GROUP</code><br>
+Format: <code>deletegroup g/GROUP</code><br>
 Aliases: <code>rmgroup</code>, <code>delgroup</code></p>
 </div>
 <div class="sidebarblock">
@@ -92,11 +92,11 @@ This command is for <code>Exco</code> members only.
 <div class="ulist">
 <ul>
 <li>
-<p><code>removegroup g/logistics</code><br>
+<p><code>deletegroup g/logistics</code><br>
 Deletes the <code>logistics</code> group from Club Connect.</p>
 </li>
 <li>
-<p><code>removegroup g/pr</code><br>
+<p><code>deletegroup g/pr</code><br>
 Deletes the <code>pr</code> group from Club Connect.</p>
 </li>
 </ul>
@@ -122,56 +122,56 @@ This changes the group of all the members (previously part of the deleted group)
 </div>
 </div>
 <div class="sect2">
-<h3 id="remove-group-mechanism"><a class="link" href="#remove-group-mechanism">Remove Group Mechanism</a></h3>
+<h3 id="delete-group-mechanism"><a class="link" href="#delete-group-mechanism">Delete Group Mechanism</a></h3>
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
 <div class="paragraph">
-<p>The <code>removegroup</code> mechanism is facilitated by the <code>RemoveGroupCommand</code> class. It allows <code>Exco</code> members to remove a group from <code>Club Connect</code>. The group of all members part of the group that is to be deleted will be changed to the default group - <code>member</code>.</p>
+<p>The <code>deletegroup</code> mechanism is facilitated by the <code>DeleteGroupCommand</code> class. It allows <code>Exco</code> members to delete a group from <code>Club Connect</code>. The group of all members part of the group that is to be deleted will be changed to the default group - <code>member</code>.</p>
 </div>
 <div class="paragraph">
-<p>The <code>RemoveGroupCommand</code> extends from <code>UndoableCommand</code> as it is an undoable command. Figure 33 below depicts the UML representation of the <code>Command</code>.</p>
+<p>The <code>DeleteGroupCommand</code> extends from <code>UndoableCommand</code> as it is an undoable command. Figure 33 below depicts the UML representation of the <code>Command</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/RemoveGroupCommandUML.png" alt="RemoveGroupCommandUML" width="200" height="200">
+<img src="../images/DeleteGroupCommandUML.png" alt="DeleteGroupCommandUML" width="200" height="200">
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 33. UML Diagram of <code>RemoveGroupCommand</code>.</em></p>
+<p><em>Figure 33. UML Diagram of <code>DeleteGroupCommand</code>.</em></p>
 </div>
 <div class="paragraph">
-<p><code>RemoveGroupCommandParser</code> is responsible for parsing the <code>removegroup</code> command. It returns a <code>RemoveGroupCommand</code> object after parsing the <code>Group</code>. The parsing of the command is shown below in Figure 34.</p>
+<p><code>DeleteGroupCommandParser</code> is responsible for parsing the <code>deletegroup</code> command. It returns a <code>DeleteGroupCommand</code> object after parsing the <code>Group</code>. The parsing of the command is shown below in Figure 34.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/SDforRemoveGroupCommandParser.png" alt="SDforRemoveGroupCommandParser" width="800">
+<img src="../images/SDforDeleteGroupCommandParser.png" alt="SDforDeleteGroupCommandParser" width="800">
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 34. Sequence Diagram for the parsing of <code>RemoveGroupCommand</code>.</em></p>
+<p><em>Figure 34. Sequence Diagram for the parsing of <code>DeleteGroupCommand</code>.</em></p>
 </div>
 <div class="paragraph">
-<p>The execution invokes <code>Model#removeGroup()</code> with the <code>Group</code> <code><code>toDelete</code></code> as a parameter. This further invokes the method <code>ClubBook#removeGroup()</code>. Here is the implementation:</p>
+<p>The execution invokes <code>Model#deleteGroup()</code> with the <code>Group</code> <code><code>toRemove</code></code> as a parameter. This further invokes the method <code>ClubBook#deleteGroup()</code>. Here is the implementation:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Override</span>
-<span class="directive">public</span> <span class="type">void</span> removeGroup(<span class="predefined-type">Group</span> toRemove) <span class="directive">throws</span> GroupNotFoundException, GroupCannotBeRemovedException {
-    requireNonNull(toRemove);
-    clubBook.removeGroup(toRemove);
-    indicateClubBookChanged();
+<span class="directive">public</span> <span class="type">void</span> deleteGroup(<span class="predefined-type">Group</span> toRemove) <span class="directive">throws</span> GroupCannotBeRemovedException, GroupNotFoundException {
+    checkIfGroupIsMemberOrExco(toRemove);
+    checkIfGroupIsPresent(toRemove);
+    deleteGroupFromClubBook(toRemove);
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>ClubBook#removeGroup()</code> further calls <code>ClubBook#removeGroupFromClubBook()</code>.</p>
+<p><code>ClubBook#deleteGroup()</code> further calls <code>ClubBook#deleteGroupFromClubBook()</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">private</span> <span class="type">void</span> removeGroupFromClubBook(<span class="predefined-type">Group</span> toRemove) {
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">private</span> <span class="type">void</span> deleteGroupFromClubBook(<span class="predefined-type">Group</span> toRemove) {
     <span class="keyword">try</span> {
         <span class="keyword">for</span> (<span class="predefined-type">Member</span> member : members) {
-            removeGroupFromMember(toRemove, member);
+            deleteGroupFromMember(toRemove, member);
         }
     } <span class="keyword">catch</span> (MemberNotFoundException mnfe) {
         <span class="keyword">throw</span> <span class="keyword">new</span> <span class="exception">AssertionError</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">Impossible: original member is obtained from the club book.</span><span class="delimiter">&quot;</span></span>);
@@ -180,11 +180,11 @@ This changes the group of all the members (previously part of the deleted group)
 </div>
 </div>
 <div class="paragraph">
-<p>The final method called is <code>ClubBook#removeGroupFromMember()</code> which loops through all members and sets the group of all members that have the group <code><code>toDelete</code></code> to <code>member</code>.</p>
+<p>The final method called is <code>ClubBook#deleteGroupFromMember()</code> which loops through all members and sets the group of all members that have the group <code><code>toRemove</code></code>, to <code>member</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">private</span> <span class="type">void</span> removeGroupFromMember(<span class="predefined-type">Group</span> toRemove, <span class="predefined-type">Member</span> member)
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">private</span> <span class="type">void</span> deleteGroupFromMember(<span class="predefined-type">Group</span> toRemove, <span class="predefined-type">Member</span> member)
         <span class="directive">throws</span> MemberNotFoundException {
     <span class="keyword">if</span> (!member.getGroup().toString().equalsIgnoreCase(toRemove.toString())) {
         <span class="keyword">return</span>;
@@ -206,17 +206,17 @@ This changes the group of all the members (previously part of the deleted group)
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/SDforRemoveGroup.png" alt="SDforRemoveGroup" width="800">
+<img src="../images/SDforDeleteGroup.png" alt="SDforDeleteGroup" width="800">
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 35. Sequence Diagram for removing a group from <code>Club Connect</code>.</em></p>
+<p><em>Figure 35. Sequence Diagram for delete a group from <code>Club Connect</code>.</em></p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-implementation-of-code-removegroupcommand-code"><a class="link" href="#aspect-implementation-of-code-removegroupcommand-code">Aspect: Implementation of <code>RemoveGroupCommand</code></a></h5>
+<h5 id="aspect-implementation-of-code-deletegroupcommand-code"><a class="link" href="#aspect-implementation-of-code-deletegroupcommand-code">Aspect: Implementation of <code>DeleteGroupCommand</code></a></h5>
 <div class="ulist">
 <ul>
 <li>
@@ -1320,7 +1320,7 @@ Here is the implementation:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-12 03:44:40 UTC
+Last updated 2018-04-12 03:59:02 UTC
 </div>
 </div>
 </body>
