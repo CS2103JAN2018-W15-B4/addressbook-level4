@@ -361,7 +361,7 @@ Complying with the rules of <a href="#abstraction">abstraction</a>, the <code>Lo
 </div>
 <div class="paragraph">
 <p>The actual reading of the profile photo from the path provided is done by the <code>Storage</code> component.
-It copies the photo to the Club Connect application&#8217;s resources.</p>
+It copies the photo as a <a href="#bmp">bitmap image file</a> (.bmp) to the Club Connect application&#8217;s resources.</p>
 </div>
 <div class="paragraph">
 <p>The code used for reading and copying the file is as follows:</p>
@@ -376,24 +376,23 @@ It copies the photo to the Club Connect application&#8217;s resources.</p>
         logger.info(<span class="string"><span class="delimiter">&quot;</span><span class="content">Profile Photo is being read from </span><span class="delimiter">&quot;</span></span> + originalPhotoPath);
 
         <span class="predefined-type">URL</span> photoUrl = <span class="keyword">new</span> <span class="predefined-type">URL</span>(URL_PREFIX + originalPhotoPath);
-        originalPhoto = <span class="predefined-type">ImageIO</span>.read(photoUrl);
+        newPath = SAVE_PHOTO_DIRECTORY + newPhotoName + PHOTO_FILE_EXTENSION;
+        <span class="predefined-type">InputStream</span> photoStream = photoUrl.openStream();
 
-        <span class="predefined-type">String</span> saveAs = newPhotoName + FILE_EXTENSION;
-        <span class="predefined-type">File</span> newPath = <span class="keyword">new</span> <span class="predefined-type">File</span>(getCurrentDirectory() + SAVE_PHOTO_DIRECTORY, saveAs);
-
-        createPhotoFileCopy(originalPhoto, newPath);
+        createPhotoFileCopy(photoStream, newPath);
     } <span class="keyword">catch</span> (<span class="exception">IOException</span> ioe) {
         <span class="comment">// ... exception handling ...</span>
     }
 }
 
-<span class="directive">public</span> <span class="directive">static</span> <span class="predefined-type">String</span> getCurrentDirectory() {
-    <span class="comment">// ... getting current directory logic ...</span>
-}
-
-<span class="directive">public</span> <span class="type">void</span> createPhotoFileCopy(<span class="predefined-type">BufferedImage</span> originalPhoto, <span class="predefined-type">File</span> newPath) <span class="directive">throws</span> <span class="exception">IOException</span> {
+<span class="directive">public</span> <span class="type">void</span> createPhotoFileCopy(<span class="predefined-type">InputStream</span> photoStream, <span class="predefined-type">String</span> newPath) <span class="directive">throws</span> PhotoWriteException {
     <span class="comment">// ... logging ...</span>
-    <span class="predefined-type">ImageIO</span>.write(originalPhoto, <span class="string"><span class="delimiter">&quot;</span><span class="content">png</span><span class="delimiter">&quot;</span></span>, newPath);
+    <span class="keyword">try</span> {
+        FileUtil.createDirs(<span class="keyword">new</span> <span class="predefined-type">File</span>(SAVE_PHOTO_DIRECTORY));
+        Files.copy(photoStream, Paths.get(newPath), StandardCopyOption.REPLACE_EXISTING);
+    } <span class="keyword">catch</span> (<span class="exception">IOException</span> ioe) {
+        <span class="comment">// ... exception handling ...</span>
+    }
 }</code></pre>
 </div>
 </div>
@@ -748,16 +747,23 @@ So, abstraction provides users with information on what an object does, rather t
 <dt class="hdlist1"><a id="attribute"></a> Attribute</dt>
 <dd>
 <p>An attribute is a type of detail of a member.
-For example, an attribute of a member could be phone number, email, matric number and so on.</p>
+For example, an attribute of a member could be phone number, email, matriculation number and so on.</p>
+</dd>
+<dt class="hdlist1"><a id="bmp"></a> Bitmap Image File</dt>
+<dd>
+<p>Bitmap Image file (BMP) is a file format that stores bitmap graphics data.
+It is device independent and you do not need a graphics adapter to display it.
+Images stored as BMP files can be losslessly compressed.</p>
 </dd>
 <dt class="hdlist1"><a id="club"></a> Club</dt>
 <dd>
 <p>A student organisation or association at the National University of Singapore.
-These include (but are not limited to) Faculty/Non-Faculty clubs, Academic/Non-Academic Societies, Interest Groups and Sports groups. Some examples include Computing Club, Mathematics Society and Basketball Varsity Team.</p>
+These include (but are not limited to) Faculty/Non-Faculty clubs, Academic/Non-Academic Societies, Interest Groups and Sports groups.
+Some examples include Computing Club, Mathematics Society and Basketball Varsity Team.</p>
 </dd>
 <dt class="hdlist1"><a id="cli"></a> CLI</dt>
 <dd>
-<p>Acronym for Command Line Inerface. It is a purely text-based interface for software.
+<p>Acronym for Command Line Interface. It is a purely text-based interface for software.
 User respond to visual prompts by typing single commands into the interface and receive results as text as well.
 An example of CLI would be MS-DOS.</p>
 </dd>
@@ -772,8 +778,9 @@ This allows data to be saved in a table structured format.</p>
 </dd>
 <dt class="hdlist1"><a id="exco-member"></a> Exco member</dt>
 <dd>
-<p>A member who is part of the Executive committee of the club.
-Exco members are seen as the leaders of the club. Exco members can execute certain commands and view features that are not available to other members of the club.</p>
+<p>A member who is part of the Executive Committee of the club.
+Exco members are seen as the leaders of the club.
+Exco members can execute certain commands and view features that are not available to other members of the club.</p>
 </dd>
 </dl>
 </div>
@@ -793,7 +800,9 @@ An Exco member is still regarded as a member.
 <dl>
 <dt class="hdlist1"><a id="gui"></a> GUI</dt>
 <dd>
-<p>Acronnym for Graphical User Interface. In a GUI, the software interface consists of graphical icons, menus and/or other visual indicators to display information. Users can typically interact with these graphics, rather than just using text in the <a href="#cli">command line</a>.
+<p>Acronnym for Graphical User Interface.
+In a GUI, the software interface consists of graphical icons, menus and/or other visual indicators to display information.
+Users can typically interact with these graphics, rather than just using text in the <a href="#cli">command line</a>.
 For example, all Windows operating systems have a GUI.</p>
 </dd>
 <dt class="hdlist1"><a id="mainstream-os"></a> Mainstream OS</dt>
@@ -835,7 +844,7 @@ For example, all Windows operating systems have a GUI.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-11 10:50:50 UTC
+Last updated 2018-04-12 03:44:40 UTC
 </div>
 </div>
 </body>
