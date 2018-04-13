@@ -383,7 +383,7 @@ Votes for the 1st answer in the 5th poll of the poll listing</p>
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
 <div class="paragraph">
-<p>Member details are shown as cards in the GUI. Cards can either be decompressed(Figure 39) or compressed(Figure 40).</p>
+<p>Member details are shown as cards in the GUI. Cards can either be decompressed(Figure 47) or compressed(Figure 48).</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -391,7 +391,7 @@ Votes for the 1st answer in the 5th poll of the poll listing</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 39. Decompressed Member Cards</em></p>
+<p><em>Figure 47. Decompressed Member Cards</em></p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -399,11 +399,11 @@ Votes for the 1st answer in the 5th poll of the poll listing</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 40. Compressed Member Cards</em></p>
+<p><em>Figure 48. Compressed Member Cards</em></p>
 </div>
 <div class="paragraph">
 <p>The <code>MemberCard</code> class provides an abstraction for the member card shown in the GUI. By default, it shows a member card that is decompressed.
-To differentiate between compressed and decompressed member card, we introduced a <code>CompressedMemberCard</code> class. This class extends <code>MemberCard</code> (Figure 41) since a <code>CompressedMemberCard</code> is a <code>MemberCard</code>.
+To differentiate between compressed and decompressed member card, we introduced a <code>CompressedMemberCard</code> class. This class extends <code>MemberCard</code> (Figure 49) since a <code>CompressedMemberCard</code> is a <code>MemberCard</code>.
 Each of these classes contain a different static String showing location of the actual <code>FXML</code> file that determines layout of the member card, hence we get different layouts.</p>
 </div>
 <div class="imageblock">
@@ -412,7 +412,7 @@ Each of these classes contain a different static String showing location of the 
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 41. <code>MemberCard</code> class diagram</em></p>
+<p><em>Figure 49. <code>MemberCard</code> class diagram</em></p>
 </div>
 <div class="paragraph">
 <p>The <code>compress</code> and <code>decompress</code> commands allows members to select whether they want to see detailed information of members or see a compressed version for easy viewing.
@@ -425,7 +425,7 @@ These commands do not extend from <code>UndoableCommand</code> but just from <co
 <p>Suppose that the user has just launched the application. The member cards would be decompressed (Figure 42).</p>
 </div>
 <div class="paragraph">
-<p>The user inputs 'compress' and the sequence diagram (Figure 42) below shows how the different components interact.</p>
+<p>The user inputs 'compress' and the sequence diagram (Figure 50) below shows how the different components interact.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -433,10 +433,10 @@ These commands do not extend from <code>UndoableCommand</code> but just from <co
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 42. Sequence diagram for compress command to Events Center</em></p>
+<p><em>Figure 50. Sequence diagram for compress command to Events Center</em></p>
 </div>
 <div class="paragraph">
-<p>Then, the <code>MemberListPanel</code>, which contains the <code>MemberCard</code> objects will handle the event (Figure 43). If the cards are already compressed, no changes occur.
+<p>Then, the <code>MemberListPanel</code>, which contains the <code>MemberCard</code> objects will handle the event (Figure 51). If the cards are already compressed, no changes occur.
 However, if the cards are decompressed, the <code>MemberCard</code> objects would be converted to <code>CompressedMemberCard</code> objects.</p>
 </div>
 <div class="imageblock">
@@ -445,7 +445,7 @@ However, if the cards are decompressed, the <code>MemberCard</code> objects woul
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 43. Sequence diagram for compress command from Events Center</em></p>
+<p><em>Figure 51. Sequence diagram for compress command from Events Center</em></p>
 </div>
 </div>
 <div class="sect3">
@@ -491,7 +491,7 @@ just for compress/decompress but for other events as well.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-13 16:31:39 UTC
+Last updated 2018-04-13 17:28:59 UTC
 </div>
 </div>
 </body>

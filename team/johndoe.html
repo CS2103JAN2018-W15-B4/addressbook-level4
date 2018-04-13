@@ -498,64 +498,6 @@ Furthermore, the "Single Responsibility" and "Separation of Concerns" principles
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">[Proposed] Data Encryption</a></h3>
-<div class="sect3">
-<h4 id="rationale"><a class="link" href="#rationale">Rationale</a></h4>
-<div class="paragraph">
-<p>Data encryption is key to any App that deals with personal data of individuals.</p>
-</div>
-<div class="paragraph">
-<p>We plan to use Symmetric Key Encryption to ensure the confidentiality of data.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="how-symmetric-key-encryption-works"><a class="link" href="#how-symmetric-key-encryption-works">How Symmetric Key Encryption works</a></h4>
-<div class="paragraph">
-<p>Symmetric key encryption is an encryption philosophy where the two communicating parties share a pre-established secret key <strong>k</strong>.
-It consists of 2 algorithms <code>E</code> (Encrypting or Encoding) and <code>D</code> (Decryption or Decoding) which take in the same key <strong>k</strong> to perform their respective operations.</p>
-</div>
-<div class="paragraph">
-<p>The 2 algorithms <code>E</code> and <code>D</code> are efficient algorithms, such that:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>D</strong>(<strong>E</strong>(<strong>k</strong>,m)) = m, where 'm' is the message that needs to be kept confidential.</p>
-</li>
-<li>
-<p>For <strong>k</strong> chosen uniformly at random, <strong>E</strong>(<strong>k</strong>,m) gives no additional information about 'm' to an adversary.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">Proposed Implementation</a></h4>
-<div class="paragraph">
-<p>We plan to make use of classes that are defined in Javax&#8217;s Crypto package.</p>
-</div>
-<div class="paragraph">
-<p>The classes that would feature in the implementation are:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>KeyGenerator &#8594; constructs a secret (symmetric) key.</p>
-</li>
-<li>
-<p>Cipher &#8594;  provides the functionality of a cryptographic cipher for encryption and decryption.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>The construction of a symmetric key is done by passing the algorithm the encryption will use.
-We plan to use the Advanced Encryption Scheme (AES) algorithm. For that reason, we will use a 128-bit AES symmetric key.</p>
-</div>
-<div class="paragraph">
-<p>Once the key is generated, all data will be encrypted with AES. Anyone who wishes to view the decrypted form of the data must possess the secret key.</p>
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -570,7 +512,7 @@ We plan to use the Advanced Encryption Scheme (AES) algorithm. For that reason, 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-13 16:31:39 UTC
+Last updated 2018-04-13 17:28:59 UTC
 </div>
 </div>
 </body>

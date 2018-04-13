@@ -98,6 +98,12 @@
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">G.1. Launch and Shutdown</a></li>
 <li><a href="#deleting-a-member">G.2. Deleting a member</a></li>
+<li><a href="#adding-a-task">G.3. Adding a task</a></li>
+<li><a href="#assigning-a-task">G.4. Assigning a task</a></li>
+<li><a href="#deleting-a-task">G.5. Deleting a task</a></li>
+<li><a href="#changing-a-task-s-status">G.6. Changing a task&#8217;s status</a></li>
+<li><a href="#changing-a-task-s-assignee">G.7. Changing a task&#8217;s assignee</a></li>
+<li><a href="#deleting-a-group">G.8. Deleting a group</a></li>
 </ul>
 </li>
 </ul>
@@ -1061,7 +1067,7 @@ The <code>EmailCommand</code> consists of the following fields:</p>
 </td>
 <td class="content">
 Emails can only be sent to members belonging to EITHER a Group OR a Tag.
-ClubConnect currently doesn&#8217;t support sending emails to members belonging to BOTH a Group and a Tag.
+Club Connect currently doesn&#8217;t support sending emails to members belonging to BOTH a Group and a Tag.
 </td>
 </tr>
 </table>
@@ -1072,7 +1078,7 @@ Refer to Figure 19 for the UML diagram.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/EmailCommandUML.png" alt="EmailCommandUML" width="800">
+<img src="images/EmailCommandUML.png" alt="EmailCommandUML" width="500">
 </div>
 </div>
 <div class="paragraph">
@@ -1084,7 +1090,7 @@ Figure 20 depicts the sequence of parsing the command.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SDforEmailCommandParser.png" alt="SDforEmailCommandParser" width="800">
+<img src="images/SDforEmailCommandParser.png" alt="SDforEmailCommandParser" width="600">
 </div>
 </div>
 <div class="paragraph">
@@ -1109,7 +1115,7 @@ Since <code>Subject</code> and <code>Body</code> are optional fields, their defa
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-As ClubConnect only allows emails to be sent to members of EITHER a <code>Group</code> OR a <code>Tag</code>, a valid command will result in either one of them being assigned to <code>null</code>.
+As Club Connect only allows emails to be sent to members of EITHER a <code>Group</code> OR a <code>Tag</code>, a valid command will result in either one of them being assigned to <code>null</code>.
 </td>
 </tr>
 </table>
@@ -1133,7 +1139,7 @@ Figure 21 depicts the high-level sequence of events that take place.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SDforEmail.png" alt="SDforEmail" width="800">
+<img src="images/SDforEmail.png" alt="SDforEmail" width="600">
 </div>
 </div>
 <div class="paragraph">
@@ -1145,10 +1151,10 @@ Figure 21 depicts the high-level sequence of events that take place.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="directive">static</span> <span class="directive">final</span> <span class="predefined-type">String</span> GMAIL_EMAIL_URL =
-            <span class="string"><span class="delimiter">&quot;</span><span class="content">https://mail.google.com/mail/?view=cm&amp;fs=1&amp;tf=1&amp;source=mailto&amp;to=%1$s&amp;su=%2$s&amp;body=%3$s
+            <span class="string"><span class="delimiter">&quot;</span><span class="content">https://mail.google.com/mail/?view=cm&amp;fs=1&amp;tf=1&amp;source=mailto&amp;to=%1$s&amp;su=%2$s&amp;body=%3$s</span><span class="delimiter">&quot;</span></span>;
 
-public static final String OUTLOOK_EMAIL_URL =
-            </span><span class="delimiter">&quot;</span></span>https:<span class="comment">//outlook.office.com/?path=/mail/action/compose&amp;to=%1$s&amp;subject=%2$s&amp;body=%3$s&quot;;</span>
+<span class="directive">public</span> <span class="directive">static</span> <span class="directive">final</span> <span class="predefined-type">String</span> OUTLOOK_EMAIL_URL =
+            <span class="string"><span class="delimiter">&quot;</span><span class="content">https://outlook.office.com/?path=/mail/action/compose&amp;to=%1$s&amp;subject=%2$s&amp;body=%3$s</span><span class="delimiter">&quot;</span></span>;
 
 Desktop.getDesktop().browse(<span class="keyword">new</span> <span class="predefined-type">URI</span>(<span class="predefined-type">String</span>.format(GMAIL_EMAIL_URL, recipients, subject, body)));</code></pre>
 </div>
@@ -1168,7 +1174,7 @@ Desktop.getDesktop().browse(<span class="keyword">new</span> <span class="predef
 <p>Pros: Easy to implement</p>
 </li>
 <li>
-<p>Cons: Since ClubConnect can be used by multiple people via user authentication, the default browser will have the owner of the system logged into his/her mail account.</p>
+<p>Cons: Since Club Connect can be used by multiple people via user authentication, the default browser will have the owner of the system logged into his/her mail account.</p>
 </li>
 </ul>
 </div>
@@ -1199,49 +1205,17 @@ Desktop.getDesktop().browse(<span class="keyword">new</span> <span class="predef
 <div class="sect3">
 <h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">4.4.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The task-management mechanism is facilitated by several command classes in Club Connect, namely:<br></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>AddTaskCommand</code></p>
-</li>
-<li>
-<p><code>AssignTaskCommand</code></p>
-</li>
-<li>
-<p><code>DeleteTaskCommand</code></p>
-</li>
-<li>
-<p><code>ChangeTaskStatusCommand</code></p>
-</li>
-<li>
-<p><code>ChangeAssigneeCommand</code></p>
-</li>
-<li>
-<p><code>ViewAllTasksCommand</code></p>
-</li>
-<li>
-<p><code>ViewMyTasksCommand</code></p>
-</li>
-</ul>
+<p>The task-management mechanism is facilitated by several command classes in Club Connect, which will be covered in subsequent sub-sections.</p>
 </div>
 <div class="paragraph">
-<p>All of these commands require a member to be logged in (and thus by extension, an initial sign-up).
-Hence, they all share the following lines of code in their respective implementations:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java">requireToSignUp();
-requireToLogIn();</code></pre>
-</div>
+<p>Task-management commands require a member to be logged in (and thus by extension, an initial sign-up).</p>
 </div>
 <div class="paragraph">
 <p>Figure 22 below shows the UML diagram of the <code>Task</code> class.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/TaskUML.png" alt="TaskUML" width="800">
+<img src="images/TaskUML.png" alt="TaskUML" width="500">
 </div>
 </div>
 <div class="paragraph">
@@ -1279,128 +1253,81 @@ requireToLogIn();</code></pre>
 <p>Adding Tasks is facilitated by the <code>AddTaskCommand</code>. When this command is invoked, it adds a task with the input <code>Description</code>, <code>Date</code>, and <code>Time</code>. The status of every newly created task is by default set to <code>Yet To Begin</code>. The <code>Assignor</code> and <code>Assignee</code> of the task is set to the <code>Matric Number</code> of the member who is currently logged into <code>Club Connect</code>.</p>
 </div>
 <div class="paragraph">
-<p>Figure 23 shows the flow of parsing an <code>AddTaskCommand</code> object:</p>
+<p>Figure 23 below shows the UML representation of <code>AddTaskCommand</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SDforAddTaskCommandParser.png" alt="SDforAddTaskCommandParser" width="800">
+<img src="images/AddTaskCommandUML.png" alt="AddTaskCommandUML" width="350">
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 23. Sequence Diagram for <code>AddTaskCommand</code> parsing.</em></p>
+<p><em>Figure 23. UML diagram of <code>AddTaskCommand</code>.</em></p>
 </div>
 <div class="paragraph">
-<p>The execution of the command invokes <code>Model#addTaskToTaskList()</code>.<br>
-The following code snippet shows the implementation:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Override</span>
-<span class="directive">public</span> <span class="type">void</span> addTaskToTaskList(Task toAdd) <span class="directive">throws</span> DuplicateTaskException {
-    <span class="keyword">try</span> {
-        Assignor assignor = <span class="keyword">new</span> Assignor(clubBook.getLoggedInMember().getMatricNumber().toString());
-        Assignee assignee = <span class="keyword">new</span> Assignee(clubBook.getLoggedInMember().getMatricNumber().toString());
-        Status status = <span class="keyword">new</span> Status(Status.NOT_STARTED_STATUS);
-        toAdd.setAssignor(assignor);
-        toAdd.setAssignee(assignee);
-        toAdd.setStatus(status);
-        clubBook.addTaskToTaskList(toAdd);
-        updateFilteredTaskList(<span class="keyword">new</span> TaskIsRelatedToMemberPredicate(getLoggedInMember()));
-        indicateClubBookChanged();
-    } <span class="keyword">catch</span> (DuplicateTaskException dte) {
-        <span class="keyword">throw</span> <span class="keyword">new</span> DuplicateTaskException();
-    }
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Figure 24 depicts the high-level sequence of events that take place.</p>
+<p>Figure 24 shows the flow of parsing an <code>AddTaskCommand</code> object:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SDforAddTask.png" alt="SDforAddTask" width="800">
+<img src="images/SDforAddTaskCommandParser.png" alt="SDforAddTaskCommandParser" width="600">
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 24. Sequence Diagram for adding a task.</em></p>
+<p><em>Figure 24. Sequence Diagram for <code>AddTaskCommand</code> parsing.</em></p>
 </div>
 <div class="paragraph">
-<p>The task is displayed in the Task pane on the far right side.</p>
+<p>Figure 25 depicts the high-level sequence of events that take place.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforAddTask.png" alt="SDforAddTask" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 25. Sequence Diagram for adding a task.</em></p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="assigning-tasks"><a class="link" href="#assigning-tasks">Assigning Tasks</a></h5>
 <hr>
 <div class="paragraph">
-<p>Assigning tasks can be accomplished with the <code>AssignTaskCommand</code>. Tasks are assigned to members through the <code>Matric Number</code> attribute.<br>
-Thus, the following are the required parameters:</p>
+<p>Assigning tasks can be accomplished with the <code>AssignTaskCommand</code>. Tasks are assigned to members through the <code>Matric Number</code> attribute.<br></p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>Description</code></p>
-</li>
-<li>
-<p><code>Date</code></p>
-</li>
-<li>
-<p><code>Time</code></p>
-</li>
-<li>
-<p><code>Matric Number</code></p>
-</li>
-</ul>
+<div class="paragraph">
+<p>Figure 26 below shows the UML representation of <code>AssignTaskCommand</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/AssignTaskCommandUML.png" alt="AssignTaskCommandUML" width="350">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 26. UML diagram of <code>AssignTaskCommand</code>.</em></p>
 </div>
 <div class="paragraph">
 <p>The implementation of assigning tasks is similar to that of adding tasks. The only difference is that the Assignor is set to the <code>Matric Number</code> of the member who is currently logged in.</p>
 </div>
 <div class="paragraph">
 <p>The parsing of an <code>AssignTaskCommand</code> is performed by the <code>AssignTaskCommandParser</code>.<br>
-Figure 25 shows the flow of parsing an <code>AssignTaskCommand</code> object:</p>
+Figure 27 shows the flow of parsing an <code>AssignTaskCommand</code> object:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SDforAssignTaskCommandParser.png" alt="SDforAssignTaskCommandParser" width="800">
+<img src="images/SDforAssignTaskCommandParser.png" alt="SDforAssignTaskCommandParser" width="600">
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 25. Sequence Diagram for <code>AssignTaskCommand</code> parsing.</em></p>
+<p><em>Figure 27. Sequence Diagram for <code>AssignTaskCommand</code> parsing.</em></p>
 </div>
 <div class="paragraph">
-<p>The execution of the command invokes <code>Model#assignTask()</code>.
-The following code snippet shows the implementation:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Override</span>
-<span class="directive">public</span> <span class="type">void</span> assignTask(Task toAdd, MatricNumber matricNumber) <span class="directive">throws</span> MemberNotFoundException, DuplicateTaskException {
-    checkIfMemberExists(matricNumber);
-    <span class="keyword">try</span> {
-        Assignor assignor = <span class="keyword">new</span> Assignor(clubBook.getLoggedInMember().getMatricNumber().toString());
-        Assignee assignee = <span class="keyword">new</span> Assignee(matricNumber.toString());
-        Status status = <span class="keyword">new</span> Status(Status.NOT_STARTED_STATUS);
-        toAdd.setAssignor(assignor);
-        toAdd.setAssignee(assignee);
-        toAdd.setStatus(status);
-        clubBook.addTaskToTaskList(toAdd);
-        updateFilteredTaskList(<span class="keyword">new</span> TaskIsRelatedToMemberPredicate(getLoggedInMember()));
-        indicateClubBookChanged();
-    } <span class="keyword">catch</span> (DuplicateTaskException dte) {
-        <span class="keyword">throw</span> <span class="keyword">new</span> DuplicateTaskException();
-    }
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Figure 26 depicts the high-level sequence of events that take place.</p>
+<p>Figure 28 depicts the high-level sequence of events that take place.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SDforAssignTask.png" alt="SDforAssignTask" width="800">
+<img src="images/SDforAssignTask.png" alt="SDforAssignTask" width="600">
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 26. Sequence Diagram for assigning a task.</em></p>
+<p><em>Figure 28. Sequence Diagram for assigning a task.</em></p>
 </div>
 </div>
 <div class="sect4">
@@ -1411,107 +1338,120 @@ The following code snippet shows the implementation:</p>
 The command object takes in the <code>INDEX</code> of the task to be deleted.</p>
 </div>
 <div class="paragraph">
+<p>Figure 29 below shows the UML representation of <code>DeleteTaskCommand</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/DeleteTaskCommandUML.png" alt="DeleteTaskCommandUML" width="350">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 29. UML diagram of <code>DeleteTaskCommand</code>.</em></p>
+</div>
+<div class="paragraph">
 <p><code>DeleteTaskCommandParser</code> is responsible for parsing the user input into a <code>DeleteTaskCommand</code> object.<br>
-Figure 27 illustrates the sequence in which the parsing is done.</p>
+Figure 30 illustrates the sequence in which the parsing is done.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SDforDeleteTaskCommandParser.png" alt="SDforDeleteTaskCommandParser" width="800">
+<img src="images/SDforDeleteTaskCommandParser.png" alt="SDforDeleteTaskCommandParser" width="600">
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 27. Sequence Diagram for <code>DeleteTaskCommand</code> parsing.</em></p>
+<p><em>Figure 30. Sequence Diagram for <code>DeleteTaskCommand</code> parsing.</em></p>
 </div>
 <div class="paragraph">
-<p>The execution of the command invokes <code>Model#deleteTask()</code>.
-The following code snippet shows the implementation:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Override</span>
-<span class="directive">public</span> <span class="type">void</span> deleteTask(Task targetTask) <span class="directive">throws</span> TaskNotFoundException, TaskCannotBeDeletedException {
-    Assignor assignor = targetTask.getAssignor();
-    Assignee assignee = targetTask.getAssignee();
-    <span class="predefined-type">String</span> currentMember = getLoggedInMember().getMatricNumber().toString();
-    checkIfTaskCanBeDeleted(assignor, assignee, currentMember);
-    clubBook.deleteTask(targetTask);
-    indicateClubBookChanged();
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The high-level sequence of events is shown below in Figure 28.</p>
+<p>The high-level sequence of events is shown below in Figure 31.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SDforDeleteTask.png" alt="SDforDeleteTask" width="800">
+<img src="images/SDforDeleteTask.png" alt="SDforDeleteTask" width="600">
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 28. Sequence Diagram for deleting a task.</em></p>
+<p><em>Figure 31. Sequence Diagram for deleting a task.</em></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="changing-task-assignee"><a class="link" href="#changing-task-assignee">Changing Task Assignee</a></h5>
+<hr>
+<div class="paragraph">
+<p>The <code>ChangeAssigneeCommand</code> is used to change the <code>Assignee</code> of a task.<br></p>
+</div>
+<div class="paragraph">
+<p>Figure 32 below shows the UML representation of <code>ChangeAssigneeCommand</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ChangeAssigneeCommandUML.png" alt="ChangeAssigneeCommandUML" width="350">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 32. UML Diagram of <code>ChangeAssigneeCommand</code>.</em></p>
+</div>
+<div class="paragraph">
+<p><code>ChangeAssigneeCommandParser</code> is responsible for parsing the <code>changeassignee</code> command. It returns a <code>ChangeAssigneeCommand</code> object after parsing the <code>INDEX</code> and the <code>Assignee</code>.
+Figure 33 shows the sequence diagram of the <code>ChangeAssigneeCommandParser</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforChangeAssigneeCommandParser.png" alt="SDforChangeAssigneeCommandParser" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 33. Sequence Diagram of <code>ChangeAssigneeCommandParser</code>.</em></p>
+</div>
+<div class="paragraph">
+<p>Figure 34 below shows the high-level sequence diagram of the command execution.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforChangeAssignee.png" alt="SDforChangeAssignee" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 34. Sequence Diagram of changing the <code>Assignee</code> of a task.</em></p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="changing-task-status"><a class="link" href="#changing-task-status">Changing Task Status</a></h5>
 <hr>
 <div class="paragraph">
-<p>Changing a task&#8217;s status is made possible by the <code>ChangeTaskStatusCommand</code>.<br>
-The <code>Status</code> of a task can be changed to any one of the following:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><span class="red">Yet To Begin</span></p>
-</li>
-<li>
-<p><span class="yellow">In Progress</span></p>
-</li>
-<li>
-<p><span class="green">Completed</span></p>
-</li>
-</ul>
+<p>Changing a task&#8217;s status is made possible by the <code>ChangeTaskStatusCommand</code>.<br></p>
 </div>
 <div class="paragraph">
-<p>The input of the command is the <code>INDEX</code> of a task, and the desired <code>Status</code>.</p>
+<p>Figure 35 below shows the UML representation of <code>ChangeTaskStatusCommand</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ChangeTaskStatusCommandUML.png" alt="ChangeTaskStatusCommandUML" width="350">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 35. UML Diagram of <code>ChangeTaskStatusCommand</code>.</em></p>
 </div>
 <div class="paragraph">
 <p>Parsing of the command is performed by <code>ChangeTaskStatusCommandParser</code>, which returns a <code>ChangeTaskStatusCommand</code> object.<br>
-Figure 29 below depicts the parsing of the <code>ChangeTaskStatusObject</code>.</p>
+Figure 36 below depicts the parsing of the <code>ChangeTaskStatusObject</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SDforChangeTaskStatusCommandParser.png" alt="width]&quot;800&quot;">
+<img src="images/SDforChangeTaskStatusCommandParser.png" alt="SDforChangeTaskStatusCommandParser" width="600">
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 29. Sequence Diagram for <code>ChangeTaskStatusCommand</code> parsing.</em></p>
+<p><em>Figure 36. Sequence Diagram for <code>ChangeTaskStatusCommand</code> parsing.</em></p>
 </div>
 <div class="paragraph">
-<p>The execution of the command invokes <code>Model#changeStatus()</code>.
-The following code snippet shows the implementation:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Override</span>
-<span class="directive">public</span> <span class="type">void</span> changeStatus(Task taskToEdit, Task editedTask) <span class="directive">throws</span> TaskNotFoundException,
-        DuplicateTaskException {
-    requireAllNonNull(taskToEdit, editedTask);
-    clubBook.updateTask(taskToEdit, editedTask);
-    updateFilteredTaskList(<span class="keyword">new</span> TaskIsRelatedToMemberPredicate(getLoggedInMember()));
-    indicateClubBookChanged();
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Figure 30 below describes the high-level sequence of events that take place.</p>
+<p>Figure 37 below describes the high-level sequence of events that take place.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SDforChangeTaskStatus.png" alt="SDforChangeTaskStatus" width="800">
+<img src="images/SDforChangeTaskStatus.png" alt="SDforChangeTaskStatus" width="600">
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 30. Sequence Diagram for changing the status of a task.</em></p>
+<p><em>Figure 37. Sequence Diagram for changing the status of a task.</em></p>
 </div>
 </div>
 <div class="sect4">
@@ -1521,27 +1461,15 @@ The following code snippet shows the implementation:</p>
 <p><code>Exco</code> members can view all the tasks in <code>Club Connect</code> using the <code>ViewAllTasksCommand</code>.</p>
 </div>
 <div class="paragraph">
-<p>The implementation makes use of a <code>Predicate</code> and is as follows:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Override</span>
-<span class="directive">public</span> <span class="type">void</span> viewAllTasks() <span class="directive">throws</span> TasksCannotBeDisplayedException {
-    updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
-    indicateClubBookChanged();
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The high-level sequence of events on executing the <code>ViewAllTasksCommand</code> is described below in Figure 31.</p>
+<p>The high-level sequence of events on executing the <code>ViewAllTasksCommand</code> is described below in Figure 38.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SDforViewAllTasks.png" alt="SDforViewAllTasks" width="800">
+<img src="images/SDforViewAllTasks.png" alt="SDforViewAllTasks" width="600">
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 31. Sequence Diagram for viewing all tasks.</em></p>
+<p><em>Figure 38. Sequence Diagram for viewing all tasks.</em></p>
 </div>
 </div>
 <div class="sect4">
@@ -1551,31 +1479,27 @@ The following code snippet shows the implementation:</p>
 <p><code>Exco</code> members need a way to toggle between all tasks in <code>Club Connect</code> and the tasks that are related to them (i.e. tasks that they have assigned or been assigned to). This is achieved by the <code>ViewMyTasksCommand</code>.</p>
 </div>
 <div class="paragraph">
-<p><code>Model#viewMyTasks()</code> is called during the execution of the command.
-Here is the implementation:</p>
+<p>The <code>Predicate</code> used is <code>TaskIsRelatedToMemberPredicate</code>. Here is the overridden <code>TaskIsRelatedToMemberPredicate#test</code> method.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Override</span>
-<span class="directive">public</span> <span class="type">void</span> viewMyTasks() <span class="directive">throws</span> TasksAlreadyListedException {
-    checkIfTasksAreAlreadyListed();
-    updateFilteredTaskList(<span class="keyword">new</span> TaskIsRelatedToMemberPredicate(getLoggedInMember()));
+<span class="directive">public</span> <span class="type">boolean</span> test(Task task) {
+    <span class="keyword">return</span> member.getMatricNumber().toString().equalsIgnoreCase(task.getAssignor().getValue())
+            || member.getMatricNumber().toString().equalsIgnoreCase(task.getAssignee().getValue());
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>As shown in the implementation above, the method invokes the <code>checkIfTasksAreAlreadyListed()</code> method which throws <code>TasksAlreadyListedException</code> if the tasks are already listed.</p>
-</div>
-<div class="paragraph">
-<p>The sequence diagram of the command is shown below in Figure 32.</p>
+<p>The sequence diagram of the <code>viewmytasks</code> command is shown below in Figure 39.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SDforViewMyTasks.png" alt="SDforViewMyTasks" width="800">
+<img src="images/SDforViewMyTasks.png" alt="SDforViewMyTasks" width="600">
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 32. Sequence Diagram for viewing tasks of the currently logged-in member.</em></p>
+<p><em>Figure 39. Sequence Diagram for viewing tasks of the currently logged-in member.</em></p>
 </div>
 </div>
 </div>
@@ -1624,58 +1548,21 @@ Here is the implementation:</p>
 <p>The <code>deletegroup</code> mechanism is facilitated by the <code>DeleteGroupCommand</code> class. It allows <code>Exco</code> members to delete a group from <code>Club Connect</code>. The group of all members part of the group that is to be deleted will be changed to the default group - <code>member</code>.</p>
 </div>
 <div class="paragraph">
-<p>The <code>DeleteGroupCommand</code> extends from <code>UndoableCommand</code> as it is an undoable command. Figure 33 below depicts the UML representation of the <code>Command</code>.</p>
+<p>The <code>DeleteGroupCommand</code> extends from <code>UndoableCommand</code> as it is an undoable command. Figure 40 below depicts the UML representation of the <code>Command</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/DeleteGroupCommandUML.png" alt="DeleteGroupCommandUML" width="200" height="200">
+<img src="images/DeleteGroupCommandUML.png" alt="DeleteGroupCommandUML" width="150">
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 33. UML Diagram of <code>DeleteGroupCommand</code>.</em></p>
+<p><em>Figure 40. UML Diagram of <code>DeleteGroupCommand</code>.</em></p>
 </div>
 <div class="paragraph">
-<p><code>DeleteGroupCommandParser</code> is responsible for parsing the <code>deletegroup</code> command. It returns a <code>DeleteGroupCommand</code> object after parsing the <code>Group</code>. The parsing of the command is shown below in Figure 34.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/SDforDeleteGroupCommandParser.png" alt="SDforDeleteGroupCommandParser" width="800">
-</div>
+<p><code>DeleteGroupCommandParser</code> is responsible for parsing the <code>deletegroup</code> command. It returns a <code>DeleteGroupCommand</code> object after parsing the <code>Group</code>. The parsing of the command is shown below in Figure 41.</p>
 </div>
 <div class="paragraph">
-<p><em>Figure 34. Sequence Diagram for the parsing of <code>DeleteGroupCommand</code>.</em></p>
-</div>
-<div class="paragraph">
-<p>The execution invokes <code>Model#deleteGroup()</code> with the <code>Group</code> <code><code>toRemove</code></code> as a parameter. This further invokes the method <code>ClubBook#deleteGroup()</code>. Here is the implementation:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Override</span>
-<span class="directive">public</span> <span class="type">void</span> deleteGroup(<span class="predefined-type">Group</span> toRemove) <span class="directive">throws</span> GroupCannotBeRemovedException, GroupNotFoundException {
-    checkIfGroupIsMemberOrExco(toRemove);
-    checkIfGroupIsPresent(toRemove);
-    deleteGroupFromClubBook(toRemove);
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>ClubBook#deleteGroup()</code> further calls <code>ClubBook#deleteGroupFromClubBook()</code>.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">private</span> <span class="type">void</span> deleteGroupFromClubBook(<span class="predefined-type">Group</span> toRemove) {
-    <span class="keyword">try</span> {
-        <span class="keyword">for</span> (<span class="predefined-type">Member</span> member : members) {
-            deleteGroupFromMember(toRemove, member);
-        }
-    } <span class="keyword">catch</span> (MemberNotFoundException mnfe) {
-        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="exception">AssertionError</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">Impossible: original member is obtained from the club book.</span><span class="delimiter">&quot;</span></span>);
-    }
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The final method called is <code>ClubBook#deleteGroupFromMember()</code> which loops through all members and sets the group of all members that have the group <code><code>toRemove</code></code>, to <code>member</code>.</p>
+<p>The method where the deletion takes place in each member is <code>ClubBook#deleteGroupFromMember</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1696,16 +1583,24 @@ Here is the implementation:</p>
 }</code></pre>
 </div>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforDeleteGroupCommandParser.png" alt="SDforDeleteGroupCommandParser" width="600">
+</div>
+</div>
 <div class="paragraph">
-<p>The high-level sequence of events is depicted in Figure 35 below.</p>
+<p><em>Figure 41. Sequence Diagram for the parsing of <code>DeleteGroupCommand</code>.</em></p>
+</div>
+<div class="paragraph">
+<p>The high-level sequence of events is depicted in Figure 42 below.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/SDforDeleteGroup.png" alt="SDforDeleteGroup" width="800">
+<img src="images/SDforDeleteGroup.png" alt="SDforDeleteGroup" width="600">
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 35. Sequence Diagram for delete a group from <code>Club Connect</code>.</em></p>
+<p><em>Figure 42. Sequence Diagram for delete a group from <code>Club Connect</code>.</em></p>
 </div>
 </div>
 <div class="sect3">
@@ -1774,7 +1669,7 @@ To facilitate this, it makes use of the <code>ProfilePhoto</code> class. <code>P
 </div>
 <div class="paragraph">
 <p>Currently, the <code>ChangeProfilePhotoCommand</code> extends from the <code>Command</code> class, and not from <code>UndoableCommand</code>.
-Refer to Figure 22 for the UML diagram.
+Refer to Figure 43 for the UML diagram.
 The <code>ProfilePhoto</code> class consists of a <code>String</code> attribute to store the file path of the profile photo.</p>
 </div>
 <div class="imageblock">
@@ -1783,11 +1678,11 @@ The <code>ProfilePhoto</code> class consists of a <code>String</code> attribute 
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 22. ChangeProfilePhotoCommand UML Diagram</em></p>
+<p><em>Figure 43. ChangeProfilePhotoCommand UML Diagram</em></p>
 </div>
 <div class="paragraph">
 <p>The <code>displaypic</code> command involves the use of multiple components of Club Connect.
-Below, Figure 36 shows the interactions betweeen these components.
+Below, Figure 44 shows the interactions betweeen these components.
 As you can see, the <code>ChangeProfilePhotoCommand</code> is driven by the <code>ProfilePhotoChangedEvent</code>.</p>
 </div>
 <div class="imageblock">
@@ -1796,12 +1691,12 @@ As you can see, the <code>ChangeProfilePhotoCommand</code> is driven by the <cod
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 36. High Level Sequence Diagram for <code>changepic PATH</code> Command</em></p>
+<p><em>Figure 44. High Level Sequence Diagram for <code>changepic PATH</code> Command</em></p>
 </div>
 <div class="paragraph">
 <p>ChangeProfilePhotoCommandParser is responsible for parsing the <code>changepic</code> command.
 It returns a <code>ChangeProfilePhotoCommand</code> object after parsing the photo file path.
-Figure 37 depicts the Sequence Diagram for interactions within the <code>Logic</code> component for the <code>execute("changepic C:/Users/Admin/Desktop/ photo.png")</code> API call.</p>
+Figure 45 depicts the Sequence Diagram for interactions within the <code>Logic</code> component for the <code>execute("changepic C:/Users/Admin/Desktop/ photo.png")</code> API call.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1809,7 +1704,7 @@ Figure 37 depicts the Sequence Diagram for interactions within the <code>Logic</
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 37. Interactions Inside the Logic Component for the <code>changepic C:/Users/Admin/Desktop/ photo.png</code> Command</em></p>
+<p>_Figure 45. Interactions Inside the Logic Component for the <code>changepic C:/Users/Admin/Desktop/ photo.png</code> Command</p>
 </div>
 <div class="paragraph">
 <p>The <code>ChangeProfilePhotoCommand#execute()</code> method invokes the <code>addProfilePhoto()</code> method from <code>model</code>.
@@ -1937,7 +1832,7 @@ It allows any <code>Exco</code> member to delete a tag from all members tagged w
 </div>
 <div class="paragraph">
 <p>The <code>DeleteTagCommand</code> extends from <code>UndoableCommand</code> as it is an undoable command.
-Figure 38 (shown below) depicts the UML representation of the <code>DeleteTagCommand</code>.</p>
+Figure 46 (shown below) depicts the UML representation of the <code>DeleteTagCommand</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1945,7 +1840,7 @@ Figure 38 (shown below) depicts the UML representation of the <code>DeleteTagCom
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 38. UML Diagram of <code>DeleteTagCommand</code>.</em></p>
+<p><em>Figure 46. UML Diagram of <code>DeleteTagCommand</code>.</em></p>
 </div>
 </div>
 <div class="sect3">
@@ -1972,7 +1867,7 @@ Figure 38 (shown below) depicts the UML representation of the <code>DeleteTagCom
 <div class="sect3">
 <h4 id="current-implementation-10"><a class="link" href="#current-implementation-10">4.11.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>Member details are shown as cards in the GUI. Cards can either be decompressed(Figure 39) or compressed(Figure 40).</p>
+<p>Member details are shown as cards in the GUI. Cards can either be decompressed(Figure 47) or compressed(Figure 48).</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1980,7 +1875,7 @@ Figure 38 (shown below) depicts the UML representation of the <code>DeleteTagCom
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 39. Decompressed Member Cards</em></p>
+<p><em>Figure 47. Decompressed Member Cards</em></p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1988,11 +1883,11 @@ Figure 38 (shown below) depicts the UML representation of the <code>DeleteTagCom
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 40. Compressed Member Cards</em></p>
+<p><em>Figure 48. Compressed Member Cards</em></p>
 </div>
 <div class="paragraph">
 <p>The <code>MemberCard</code> class provides an abstraction for the member card shown in the GUI. By default, it shows a member card that is decompressed.
-To differentiate between compressed and decompressed member card, we introduced a <code>CompressedMemberCard</code> class. This class extends <code>MemberCard</code> (Figure 41) since a <code>CompressedMemberCard</code> is a <code>MemberCard</code>.
+To differentiate between compressed and decompressed member card, we introduced a <code>CompressedMemberCard</code> class. This class extends <code>MemberCard</code> (Figure 49) since a <code>CompressedMemberCard</code> is a <code>MemberCard</code>.
 Each of these classes contain a different static String showing location of the actual <code>FXML</code> file that determines layout of the member card, hence we get different layouts.</p>
 </div>
 <div class="imageblock">
@@ -2001,7 +1896,7 @@ Each of these classes contain a different static String showing location of the 
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 41. <code>MemberCard</code> class diagram</em></p>
+<p><em>Figure 49. <code>MemberCard</code> class diagram</em></p>
 </div>
 <div class="paragraph">
 <p>The <code>compress</code> and <code>decompress</code> commands allows members to select whether they want to see detailed information of members or see a compressed version for easy viewing.
@@ -2014,7 +1909,7 @@ These commands do not extend from <code>UndoableCommand</code> but just from <co
 <p>Suppose that the user has just launched the application. The member cards would be decompressed (Figure 42).</p>
 </div>
 <div class="paragraph">
-<p>The user inputs 'compress' and the sequence diagram (Figure 42) below shows how the different components interact.</p>
+<p>The user inputs 'compress' and the sequence diagram (Figure 50) below shows how the different components interact.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -2022,10 +1917,10 @@ These commands do not extend from <code>UndoableCommand</code> but just from <co
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 42. Sequence diagram for compress command to Events Center</em></p>
+<p><em>Figure 50. Sequence diagram for compress command to Events Center</em></p>
 </div>
 <div class="paragraph">
-<p>Then, the <code>MemberListPanel</code>, which contains the <code>MemberCard</code> objects will handle the event (Figure 43). If the cards are already compressed, no changes occur.
+<p>Then, the <code>MemberListPanel</code>, which contains the <code>MemberCard</code> objects will handle the event (Figure 51). If the cards are already compressed, no changes occur.
 However, if the cards are decompressed, the <code>MemberCard</code> objects would be converted to <code>CompressedMemberCard</code> objects.</p>
 </div>
 <div class="imageblock">
@@ -2034,7 +1929,7 @@ However, if the cards are decompressed, the <code>MemberCard</code> objects woul
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 43. Sequence diagram for compress command from Events Center</em></p>
+<p><em>Figure 51. Sequence diagram for compress command from Events Center</em></p>
 </div>
 </div>
 <div class="sect3">
@@ -2173,7 +2068,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <p>Within Chrome, click on the <code>Print</code> option in Chrome&#8217;s menu.</p>
 </li>
 <li>
-<p>Set the destination to <code>Save as PDF</code>, then click <code>Save</code> to save a copy of the file in PDF format. For best results, use the settings in Figure 44 below.</p>
+<p>Set the destination to <code>Save as PDF</code>, then click <code>Save</code> to save a copy of the file in PDF format. For best results, use the settings in Figure 52 below.</p>
 </li>
 </ol>
 </div>
@@ -2183,7 +2078,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 44. Screenshot of saving documentation as PDF in Chrome</em></p>
+<p><em>Figure 52. Screenshot of saving documentation as PDF in Chrome</em></p>
 </div>
 </div>
 </div>
@@ -2560,7 +2455,10 @@ Do take a look at <a href="#Design-Ui">Section 3.2, &#8220;UI component&#8221;</
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Use different colors for different tags inside member cards. For example, <code>friends</code> tags can be all in brown, and <code>colleagues</code> tags can be all in yellow as shown in Figure 46.</p>
+<p>Use different colors for different tags inside member cards. For example, <code>friends</code> tags can be all in brown, and <code>colleagues</code> tags can be all in yellow as shown in Figure 53.</p>
+<div class="paragraph">
+<p>Figure 53 below shows the member details before the modification.</p>
+</div>
 <div class="paragraph">
 <p><strong>Before</strong></p>
 </div>
@@ -2570,7 +2468,10 @@ Do take a look at <a href="#Design-Ui">Section 3.2, &#8220;UI component&#8221;</
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 45. Member details before modification</em></p>
+<p><em>Figure 53. Member details before modification</em></p>
+</div>
+<div class="paragraph">
+<p>Figure 54 below shows the member details after the modification.</p>
 </div>
 <div class="paragraph">
 <p><strong>After</strong></p>
@@ -2581,7 +2482,7 @@ Do take a look at <a href="#Design-Ui">Section 3.2, &#8220;UI component&#8221;</
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 46. Member details after modification</em></p>
+<p><em>Figure 54. Member details after modification</em></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -2631,7 +2532,7 @@ Do take a look at <a href="#Design-Ui">Section 3.2, &#8220;UI component&#8221;</
 <li>
 <p>Modify <a href="https://github.com/CS2103JAN2018-W15-B4/main/tree/master/src/main/java/seedu/address/commons/events/ui/NewResultAvailableEvent.java"><code>NewResultAvailableEvent</code></a> such that <a href="https://github.com/CS2103JAN2018-W15-B4/main/tree/master/src/main/java/seedu/address/ui/ResultDisplay.java"><code>ResultDisplay</code></a> can show a different style on error (currently it shows the same regardless of errors).</p>
 <div class="paragraph">
-<p>Figure 47 below shows the <code>ResultDisplay</code> before the modification.<br>
+<p>Figure 55 below shows the <code>ResultDisplay</code> before the modification.<br>
 <strong>Before</strong></p>
 </div>
 <div class="imageblock">
@@ -2640,13 +2541,13 @@ Do take a look at <a href="#Design-Ui">Section 3.2, &#8220;UI component&#8221;</
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 47. ResultDisplay before modification</em></p>
+<p><em>Figure 55. ResultDisplay before modification</em></p>
 </div>
 <div class="paragraph">
 <p><strong>After</strong></p>
 </div>
 <div class="paragraph">
-<p>Figure 48 below shows the <code>ResultDisplay</code> after the modification.</p>
+<p>Figure 56 below shows the <code>ResultDisplay</code> after the modification.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -2654,7 +2555,7 @@ Do take a look at <a href="#Design-Ui">Section 3.2, &#8220;UI component&#8221;</
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 48. ResultDisplay after modification</em></p>
+<p><em>Figure 56. ResultDisplay after modification</em></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -2717,7 +2618,7 @@ Do take a look at <a href="#Design-Ui">Section 3.2, &#8220;UI component&#8221;</
 <li>
 <p>Modify the <a href="https://github.com/CS2103JAN2018-W15-B4/main/tree/master/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> to show the total number of people in the address book.</p>
 <div class="paragraph">
-<p>Figure 49 below shows the <code>StatusBarFooter</code> before the modification.</p>
+<p>Figure 57 below shows the <code>StatusBarFooter</code> before the modification.</p>
 </div>
 <div class="paragraph">
 <p><strong>Before</strong></p>
@@ -2728,10 +2629,10 @@ Do take a look at <a href="#Design-Ui">Section 3.2, &#8220;UI component&#8221;</
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 49. StatusBarFooter before modification</em></p>
+<p><em>Figure 57. StatusBarFooter before modification</em></p>
 </div>
 <div class="paragraph">
-<p>Figure 50 below shows the <code>StatusBarFooter</code> after the modification.</p>
+<p>Figure 58 below shows the <code>StatusBarFooter</code> after the modification.</p>
 </div>
 <div class="paragraph">
 <p><strong>After</strong></p>
@@ -2742,7 +2643,7 @@ Do take a look at <a href="#Design-Ui">Section 3.2, &#8220;UI component&#8221;</
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 50. StatusBarFooter after modification</em></p>
+<p><em>Figure 58. StatusBarFooter after modification</em></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -3439,7 +3340,7 @@ Adding a profile photo makes it easier to know what other members look like and 
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Exco member</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">import data</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">add members' info to ClubConnect efficiently</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add members' info to Club Connect efficiently</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
@@ -3566,11 +3467,11 @@ Adding a profile photo makes it easier to know what other members look like and 
 <h2 id="use-cases"><a class="link" href="#use-cases">Appendix D: Use Cases</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>(For all use cases below, the <strong>System</strong> is the <code>ClubConnect</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
+<p>(For all use cases below, the <strong>System</strong> is <code>Club Connect</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
 </div>
 <h3 id="use-case-delete-member" class="discrete">Use case: Delete member</h3>
 <div class="paragraph">
-<p><strong>System</strong> : ClubConnect</p>
+<p><strong>System</strong> : Club Connect</p>
 </div>
 <div class="paragraph">
 <p><strong>Actor</strong> : Exco member</p>
@@ -3587,13 +3488,13 @@ Adding a profile photo makes it easier to know what other members look like and 
 <p>User requests to list members.</p>
 </li>
 <li>
-<p>ClubConnect shows a list of members.</p>
+<p>Club Connect shows a list of members.</p>
 </li>
 <li>
 <p>User requests to delete a specific member in the list.</p>
 </li>
 <li>
-<p>ClubConnect deletes the member.</p>
+<p>Club Connect deletes the member.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -3616,7 +3517,7 @@ Adding a profile photo makes it easier to know what other members look like and 
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>3a1. ClubConnect shows an error message.</p>
+<p>3a1. Club Connect shows an error message.</p>
 <div class="paragraph">
 <p>Use case resumes at step 2.</p>
 </div>
@@ -3628,7 +3529,7 @@ Adding a profile photo makes it easier to know what other members look like and 
 </div>
 <h3 id="use-case-add-member" class="discrete">Use case: Add member</h3>
 <div class="paragraph">
-<p><strong>System</strong> : ClubConnect</p>
+<p><strong>System</strong> : Club Connect</p>
 </div>
 <div class="paragraph">
 <p><strong>Actor</strong> : Exco member</p>
@@ -3645,13 +3546,13 @@ Adding a profile photo makes it easier to know what other members look like and 
 <p>User requests to list members.</p>
 </li>
 <li>
-<p>ClubConnect shows a list of members.</p>
+<p>Club Connect shows a list of members.</p>
 </li>
 <li>
 <p>User requests to add a member to the list.</p>
 </li>
 <li>
-<p>ClubConnect adds the member.</p>
+<p>Club Connect adds the member.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -3668,10 +3569,10 @@ Adding a profile photo makes it easier to know what other members look like and 
 <div class="ulist">
 <ul>
 <li>
-<p>3a1. ClubConnect shows an error message.</p>
+<p>3a1. Club Connect shows an error message.</p>
 </li>
 <li>
-<p>3a1. ClubConnect shows correct format for add command.</p>
+<p>3a1. Club Connect shows correct format for add command.</p>
 <div class="paragraph">
 <p>Use case resumes at step 2.</p>
 </div>
@@ -3680,11 +3581,11 @@ Adding a profile photo makes it easier to know what other members look like and 
 </div>
 </li>
 <li>
-<p>3a. The matric number of member already exists in ClubConnect.</p>
+<p>3a. The matric number of member already exists in Club Connect.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>3a1. ClubConnect shows an error message.</p>
+<p>3a1. Club Connect shows an error message.</p>
 <div class="paragraph">
 <p>Use case resumes at step 2.</p>
 </div>
@@ -3696,7 +3597,7 @@ Adding a profile photo makes it easier to know what other members look like and 
 </div>
 <h3 id="use-case-show-help" class="discrete">Use case: Show Help</h3>
 <div class="paragraph">
-<p><strong>System</strong> : ClubConnect</p>
+<p><strong>System</strong> : Club Connect</p>
 </div>
 <div class="paragraph">
 <p><strong>Actor</strong> : Member</p>
@@ -3713,7 +3614,7 @@ Adding a profile photo makes it easier to know what other members look like and 
 <p>User requests help.</p>
 </li>
 <li>
-<p>ClubConnect shows usage instructions.</p>
+<p>Club Connect shows usage instructions.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -3722,7 +3623,7 @@ Adding a profile photo makes it easier to know what other members look like and 
 </div>
 <h3 id="use-case-sort-members" class="discrete">Use case: Sort members</h3>
 <div class="paragraph">
-<p><strong>System</strong> : ClubConnect</p>
+<p><strong>System</strong> : Club Connect</p>
 </div>
 <div class="paragraph">
 <p><strong>Actor</strong> : Member</p>
@@ -3739,7 +3640,7 @@ Adding a profile photo makes it easier to know what other members look like and 
 <p>User requests to sort by specified field.</p>
 </li>
 <li>
-<p>ClubConnect lists members sorted according to specified field.</p>
+<p>Club Connect lists members sorted according to specified field.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -3756,7 +3657,7 @@ Adding a profile photo makes it easier to know what other members look like and 
 <div class="ulist">
 <ul>
 <li>
-<p>1a1. ClubConnect shows an error message and displays all possible valid fields.</p>
+<p>1a1. Club Connect shows an error message and displays all possible valid fields.</p>
 <div class="paragraph">
 <p>Use case resumes at step 1.</p>
 </div>
@@ -3769,7 +3670,7 @@ Adding a profile photo makes it easier to know what other members look like and 
 <div class="ulist">
 <ul>
 <li>
-<p>1b2. ClubConnect shows list of members sorted by name.</p>
+<p>1b2. Club Connect shows list of members sorted by name.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -3781,7 +3682,7 @@ Adding a profile photo makes it easier to know what other members look like and 
 </div>
 <h3 id="use-case-exit" class="discrete">Use case: Exit</h3>
 <div class="paragraph">
-<p><strong>System</strong> : ClubConnect</p>
+<p><strong>System</strong> : Club Connect</p>
 </div>
 <div class="paragraph">
 <p><strong>Actor</strong> : Member</p>
@@ -3795,10 +3696,10 @@ Adding a profile photo makes it easier to know what other members look like and 
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User requests to exit ClubConnect.</p>
+<p>User requests to exit Club Connect.</p>
 </li>
 <li>
-<p>ClubConnect exits.</p>
+<p>Club Connect exits.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -3807,7 +3708,7 @@ Adding a profile photo makes it easier to know what other members look like and 
 </div>
 <h3 id="use-case-undo-command" class="discrete">Use case: Undo command</h3>
 <div class="paragraph">
-<p><strong>System</strong> : ClubConnect</p>
+<p><strong>System</strong> : Club Connect</p>
 </div>
 <div class="paragraph">
 <p><strong>Actor</strong> : Member</p>
@@ -3824,7 +3725,7 @@ Adding a profile photo makes it easier to know what other members look like and 
 <p>User requests to undo previous command.</p>
 </li>
 <li>
-<p>ClubConnect undoes previous command.</p>
+<p>Club Connect undoes previous command.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -3841,7 +3742,7 @@ Adding a profile photo makes it easier to know what other members look like and 
 <div class="ulist">
 <ul>
 <li>
-<p>1a1. ClubConnect undoes latest undoable command.</p>
+<p>1a1. Club Connect undoes latest undoable command.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -3859,7 +3760,7 @@ Adding a profile photo makes it easier to know what other members look like and 
 </div>
 <h3 id="use-case-redo-command" class="discrete">Use case: Redo command</h3>
 <div class="paragraph">
-<p><strong>System</strong> : ClubConnect</p>
+<p><strong>System</strong> : Club Connect</p>
 </div>
 <div class="paragraph">
 <p><strong>Actor</strong> : Member</p>
@@ -3876,7 +3777,7 @@ Adding a profile photo makes it easier to know what other members look like and 
 <p>User requests to redo.</p>
 </li>
 <li>
-<p>ClubConnect redoes the change made by previous undo command.</p>
+<p>Club Connect redoes the change made by previous undo command.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -3898,7 +3799,7 @@ Adding a profile photo makes it easier to know what other members look like and 
 </div>
 <h3 id="use-case-login" class="discrete">Use case: Login</h3>
 <div class="paragraph">
-<p><strong>System</strong> : ClubConnect</p>
+<p><strong>System</strong> : Club Connect</p>
 </div>
 <div class="paragraph">
 <p><strong>Actor</strong> : Member</p>
@@ -3912,13 +3813,13 @@ Adding a profile photo makes it easier to know what other members look like and 
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>ClubConnect shows login screen.</p>
+<p>Club Connect shows login screen.</p>
 </li>
 <li>
 <p>User enters username and password.</p>
 </li>
 <li>
-<p>ClubConnect login as member with given username and password.</p>
+<p>Club Connect login as member with given username and password.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -3935,7 +3836,7 @@ Adding a profile photo makes it easier to know what other members look like and 
 <div class="ulist">
 <ul>
 <li>
-<p>1a1. ClubConnect shows an error message.</p>
+<p>1a1. Club Connect shows an error message.</p>
 <div class="paragraph">
 <p>Use case resumes at step 1.</p>
 </div>
@@ -3947,7 +3848,7 @@ Adding a profile photo makes it easier to know what other members look like and 
 </div>
 <h3 id="use-case-logout" class="discrete">Use case: Logout</h3>
 <div class="paragraph">
-<p><strong>System</strong> : ClubConnect</p>
+<p><strong>System</strong> : Club Connect</p>
 </div>
 <div class="paragraph">
 <p><strong>Actor</strong> : Member</p>
@@ -3964,7 +3865,7 @@ Adding a profile photo makes it easier to know what other members look like and 
 <p>User requests to logout.</p>
 </li>
 <li>
-<p>ClubConnect logouts to login screen.</p>
+<p>Club Connect logouts to login screen.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -3973,7 +3874,7 @@ Adding a profile photo makes it easier to know what other members look like and 
 </div>
 <h3 id="use-case-find-member" class="discrete">Use case: Find member</h3>
 <div class="paragraph">
-<p><strong>System</strong> : ClubConnect</p>
+<p><strong>System</strong> : Club Connect</p>
 </div>
 <div class="paragraph">
 <p><strong>Actor</strong> : Member</p>
@@ -3990,7 +3891,7 @@ Adding a profile photo makes it easier to know what other members look like and 
 <p>User requests to find member by specified field using keyword.</p>
 </li>
 <li>
-<p>ClubConnect shows a list of members containing keyword in specified field.</p>
+<p>Club Connect shows a list of members containing keyword in specified field.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -4007,7 +3908,7 @@ Adding a profile photo makes it easier to know what other members look like and 
 <div class="ulist">
 <ul>
 <li>
-<p>1a1. ClubConnect shows an error message and displays all possible valid fields.</p>
+<p>1a1. Club Connect shows an error message and displays all possible valid fields.</p>
 <div class="paragraph">
 <p>Use case resumes at step 1.</p>
 </div>
@@ -4020,7 +3921,7 @@ Adding a profile photo makes it easier to know what other members look like and 
 <div class="ulist">
 <ul>
 <li>
-<p>1b2. ClubConnect shows a list of members containing keyword in any possible field.</p>
+<p>1b2. Club Connect shows a list of members containing keyword in any possible field.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -4263,7 +4164,181 @@ Expected: First contact is deleted from the list. Details of the deleted contact
 Expected: No member is deleted. Error details shown in the status message. Status bar remains the same.</p>
 </li>
 <li>
-<p>Other incorrect delete commands to try: <code>delete</code>, <code>delete x</code> (where x is larger than the list size) <em>{give more}</em><br>
+<p>Other incorrect delete commands to try: <code>delete</code>, <code>delete x</code> (where x is larger than the list size), <code>delete -1</code> (index must be a positive integer)<br>
+Expected: Similar to previous.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-a-task"><a class="link" href="#adding-a-task">G.3. Adding a task</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Adding a task</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: You must be logged in to Club Connect.</p>
+</li>
+<li>
+<p>Test case: <code>addtask desc/Test Task 1 d/20/05/2018 t/19:00</code><br>
+Expected: A task is created and its details are displayed on the task pane(far right). Timestamp in the status bar is updated.</p>
+</li>
+<li>
+<p>Test case: <code>addtask desc/Test Task 2 d/20/05/2018</code><br>
+Expected: No task is added. Error details shown in the status message. Status bar remains the same.</p>
+</li>
+<li>
+<p>Other incorrect commands to try: <code>addtask desc/Test Task 3 d/20/05/2018 t/19:65</code> (invalid time) <code>addtask desc/Test Task 4 d/29/02/2018 t/19:00</code> (invalid leap day)
+Expected: Similar to previous.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="assigning-a-task"><a class="link" href="#assigning-a-task">G.4. Assigning a task</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Assigning a task</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: You must be logged in to Club Connect as an <code>Exco</code> member.</p>
+</li>
+<li>
+<p>Test case: <code>assigntask desc/Assigned Task 1 d/20/05/2018 t/18:00 m/A0123456H</code><br>
+Expected: A task is created and assigned to <code>A0123456H</code>. Task details displayed on the task pane. Timestamp in the status bar is updated.</p>
+</li>
+<li>
+<p>Test case: <code>assigntask desc/Assigned Task 1 d/20/05/2018</code><br>
+Expected: No task is added. Error details shown in the status message. Status bar remains the same.</p>
+</li>
+<li>
+<p>Other incorrect commands to try: <code>assigntask</code>, <code>assigntask desc/Assigned Task 1 d/20/05/2018 t/18:00 m/A1234T</code>, <code>assigntask desc/Assigned Task 1 d/20/05/2018 m/A0123456K</code> (missing time field)<br>
+Expected: Similar to previous.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-a-task"><a class="link" href="#deleting-a-task">G.5. Deleting a task</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Deleting a task while all tasks are listed</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all your tasks using the <code>viewmytasks</code> command. Multiple tasks in the list.</p>
+</li>
+<li>
+<p>Test case: <code>deletetask 1</code><br>
+Expected: First task is deleted from the list. Details of the deleted task shown in the status message. Timestamp in the status bar is updated.</p>
+</li>
+<li>
+<p>Test case: <code>delete 0</code><br>
+Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.</p>
+</li>
+<li>
+<p>Other incorrect commands to try: <code>deletetask</code>, <code>deletetask x</code> (where x is larger than the task list size), <code>deletetask -1</code> (index must be a positive integer)<br>
+Expected: Similar to previous.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="changing-a-task-s-status"><a class="link" href="#changing-a-task-s-status">G.6. Changing a task&#8217;s status</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Changing a task&#8217;s status while all tasks are listed</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all your tasks using the <code>viewmytasks</code> command. Multiple tasks in the list. All tasks are set to <code>Yet To Begin</code>.</p>
+</li>
+<li>
+<p>Test case: <code>changestatus 1 st/Completed</code><br>
+Expected: First task&#8217;s status is changed to <code>Completed</code>. Description of the modified task shown in the status message. Timestamp in the status bar is updated.</p>
+</li>
+<li>
+<p>Test case: <code>changestatus 0 st/Completed</code><br>
+Expected: No task is affected. Error details shown in the status message. Status bar remains the same.</p>
+</li>
+<li>
+<p>Other incorrect commands to try: <code>changestatus</code>, <code>changestatus x st/In Progress</code> (where x is larger than the task list size), <code>changestatus -1 st/Completed</code> (index must be a positive integer)<br>
+Expected: Similar to previous.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="changing-a-task-s-assignee"><a class="link" href="#changing-a-task-s-assignee">G.7. Changing a task&#8217;s assignee</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Changing a task&#8217;s assignee while all tasks are listed</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: You must be logged in to Club Connect as an <code>Exco</code> member. List all the tasks using the <code>viewalltasks</code> command. Multiple tasks in the list.</p>
+</li>
+<li>
+<p>Test case: <code>changeassignee 1 m/A0123456H</code><br>
+Expected: First task&#8217;s assignee is changed to <code>A0123456H</code>. Description of the modified task shown in the status message. Timestamp in the status bar is updated.</p>
+</li>
+<li>
+<p>Test case: <code>changeassignee 0 m/A0123456H</code><br>
+Expected: No task is affected. Error details shown in the status message. Status bar remains the same.</p>
+</li>
+<li>
+<p>Other incorrect commands to try: <code>changeassignee</code>, <code>changeassignee x m/A1234567H</code> (where x is larger than the task list size), <code>changeassignee -1 m/A2233445G</code> (index must be a positive integer)<br>
+Expected: Similar to previous.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-a-group"><a class="link" href="#deleting-a-group">G.8. Deleting a group</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Deleting a group from Club Connect</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: You must be logged in to Club Connect as an <code>Exco</code> member.</p>
+</li>
+<li>
+<p>Test case: <code>deletegroup g/Logistics</code><br>
+Expected: The group of all members previously part of the <code>Logistics</code> group will be changed to <code>Member</code>. The name of the deleted group shown in the status message. Timestamp in the status bar is updated.</p>
+</li>
+<li>
+<p>Test case: <code>deletegroup g/Member</code><br>
+Expected: No group is deleted. Error details shown in the status message. Status bar remains the same.</p>
+</li>
+<li>
+<p>Test case: <code>deletegroup</code>, <code>deletegroup g/Exco</code> (mandatory group)
 Expected: Similar to previous.</p>
 </li>
 </ol>
@@ -4277,7 +4352,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-13 16:31:39 UTC
+Last updated 2018-04-13 17:28:58 UTC
 </div>
 </div>
 </body>
