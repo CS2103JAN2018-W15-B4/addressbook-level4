@@ -129,7 +129,7 @@ This changes the group of all the members (previously part of the deleted group)
 <p>The <code>deletegroup</code> mechanism is facilitated by the <code>DeleteGroupCommand</code> class. It allows <code>Exco</code> members to delete a group from <code>Club Connect</code>. The group of all members part of the group that is to be deleted will be changed to the default group - <code>member</code>.</p>
 </div>
 <div class="paragraph">
-<p>The <code>DeleteGroupCommand</code> extends from <code>UndoableCommand</code> as it is an undoable command. Figure 40 below depicts the UML representation of the <code>Command</code>.</p>
+<p>The <code>DeleteGroupCommand</code> extends from <code>UndoableCommand</code> as it is an undoable command. Figure 49 below depicts the UML representation of the <code>Command</code>.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -137,10 +137,10 @@ This changes the group of all the members (previously part of the deleted group)
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 40. UML Diagram of <code>DeleteGroupCommand</code>.</em></p>
+<p><em>Figure 49. UML Diagram of <code>DeleteGroupCommand</code>.</em></p>
 </div>
 <div class="paragraph">
-<p><code>DeleteGroupCommandParser</code> is responsible for parsing the <code>deletegroup</code> command. It returns a <code>DeleteGroupCommand</code> object after parsing the <code>Group</code>. The parsing of the command is shown below in Figure 41.</p>
+<p><code>DeleteGroupCommandParser</code> is responsible for parsing the <code>deletegroup</code> command. It returns a <code>DeleteGroupCommand</code> object after parsing the <code>Group</code>. The parsing of the command is shown below in Figure 50.</p>
 </div>
 <div class="paragraph">
 <p>The method where the deletion takes place in each member is <code>ClubBook#deleteGroupFromMember</code>.</p>
@@ -170,10 +170,10 @@ This changes the group of all the members (previously part of the deleted group)
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 41. Sequence Diagram for the parsing of <code>DeleteGroupCommand</code>.</em></p>
+<p><em>Figure 50. Sequence Diagram for the parsing of <code>DeleteGroupCommand</code>.</em></p>
 </div>
 <div class="paragraph">
-<p>The high-level sequence of events is depicted in Figure 42 below.</p>
+<p>The high-level sequence of events is depicted in Figure 51 below.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -181,7 +181,7 @@ This changes the group of all the members (previously part of the deleted group)
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 42. Sequence Diagram for delete a group from <code>Club Connect</code>.</em></p>
+<p><em>Figure 51. Sequence Diagram for delete a group from <code>Club Connect</code>.</em></p>
 </div>
 </div>
 <div class="sect3">
@@ -1070,7 +1070,7 @@ We plan to use the Advanced Encryption Scheme (AES) algorithm. For that reason, 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-14 08:40:55 UTC
+Last updated 2018-04-14 09:20:49 UTC
 </div>
 </div>
 </body>

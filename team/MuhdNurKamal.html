@@ -39,7 +39,7 @@ It aims to make the tedious process of club management easier and more effective
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Major enhancement</strong>: added <strong>voting system</strong></p>
+<p><strong>Major enhancement</strong>: Added <strong>voting system</strong></p>
 <div class="ulist">
 <ul>
 <li>
@@ -55,7 +55,7 @@ It aims to make the tedious process of club management easier and more effective
 </div>
 </li>
 <li>
-<p><strong>Minor enhancement</strong>: added <strong>compress/decompress mechanism</strong> for users to navigate through member list easily.</p>
+<p><strong>Minor enhancement</strong>: Improved navigability of member list by adding compress/decompress mechanism and revamping <code>Find</code> command</p>
 </li>
 <li>
 <p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103JAN2018-W15-B4/main/blob/master/collated/functional/MuhdNurKamal.md">Functional code</a>] [<a href="https://github.com/CS2103JAN2018-W15-B4/main/blob/master/collated/test/MuhdNurKamal.md">Test code</a>]</p>
@@ -79,10 +79,7 @@ It aims to make the tedious process of club management easier and more effective
 <div class="ulist">
 <ul>
 <li>
-<p>Replaced Address field of members to Matriculation Number</p>
-</li>
-<li>
-<p>Improved the Find Command to either search according to specified field (eg. email) or according to all fields</p>
+<p>Replaced Address field of members to Matriculation Number <a href="https://github.com/CS2103JAN2018-W15-B4/main/pull/67">#67</a></p>
 </li>
 </ul>
 </div>
@@ -95,7 +92,7 @@ It aims to make the tedious process of club management easier and more effective
 <p>PRs reviewed (with non-trivial review comments): <a href="https://github.com/CS2103JAN2018-W15-B4/main/pull/168">#168</a>, <a href="https://github.com/CS2103JAN2018-W15-B4/main/pull/167">#167</a>, <a href="https://github.com/CS2103JAN2018-W15-B4/main/pull/149">#149</a>, <a href="https://github.com/CS2103JAN2018-W15-B4/main/pull/125">#125</a></p>
 </li>
 <li>
-<p>Reported bugs and suggestions for other teams in the class (examples:  <a href="https://github.com">1</a>, <a href="https://github.com">2</a>, <a href="https://github.com">3</a>)</p>
+<p>Fixed bug that caused most System tests to fail <a href="https://github.com/CS2103JAN2018-W15-B4/main/pull/154">#154</a></p>
 </li>
 </ul>
 </div>
@@ -383,7 +380,7 @@ Votes for the 1st answer in the 5th poll of the poll listing</p>
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
 <div class="paragraph">
-<p>Member details are shown as cards in the GUI. Cards can either be decompressed(Figure 47) or compressed(Figure 48).</p>
+<p>Member details are shown as cards in the GUI. Cards can either be decompressed(Figure 56) or compressed(Figure 57).</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -391,7 +388,7 @@ Votes for the 1st answer in the 5th poll of the poll listing</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 47. Decompressed Member Cards</em></p>
+<p><em>Figure 56. Decompressed Member Cards</em></p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -399,11 +396,11 @@ Votes for the 1st answer in the 5th poll of the poll listing</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 48. Compressed Member Cards</em></p>
+<p><em>Figure 57. Compressed Member Cards</em></p>
 </div>
 <div class="paragraph">
 <p>The <code>MemberCard</code> class provides an abstraction for the member card shown in the GUI. By default, it shows a member card that is decompressed.
-To differentiate between compressed and decompressed member card, we introduced a <code>CompressedMemberCard</code> class. This class extends <code>MemberCard</code> (Figure 49) since a <code>CompressedMemberCard</code> is a <code>MemberCard</code>.
+To differentiate between compressed and decompressed member card, we introduced a <code>CompressedMemberCard</code> class. This class extends <code>MemberCard</code> (Figure 58) since a <code>CompressedMemberCard</code> is a <code>MemberCard</code>.
 Each of these classes contain a different static String showing location of the actual <code>FXML</code> file that determines layout of the member card, hence we get different layouts.</p>
 </div>
 <div class="imageblock">
@@ -412,7 +409,7 @@ Each of these classes contain a different static String showing location of the 
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 49. <code>MemberCard</code> class diagram</em></p>
+<p><em>Figure 58. <code>MemberCard</code> class diagram</em></p>
 </div>
 <div class="paragraph">
 <p>The <code>compress</code> and <code>decompress</code> commands allows members to select whether they want to see detailed information of members or see a compressed version for easy viewing.
@@ -422,10 +419,10 @@ These commands do not extend from <code>UndoableCommand</code> but just from <co
 <p>Due to the similar nature of the <code>compress</code> and <code>decompress</code> commands, only the <code>compress</code> command will be discussed.</p>
 </div>
 <div class="paragraph">
-<p>Suppose that the user has just launched the application. The member cards would be decompressed (Figure 42).</p>
+<p>Suppose that the user has just launched the application. The member cards would be decompressed (Figure 56).</p>
 </div>
 <div class="paragraph">
-<p>The user inputs 'compress' and the sequence diagram (Figure 50) below shows how the different components interact.</p>
+<p>The user inputs 'compress' and the sequence diagram (Figure 59) below shows how the different components interact.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -433,10 +430,10 @@ These commands do not extend from <code>UndoableCommand</code> but just from <co
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 50. Sequence diagram for compress command to Events Center</em></p>
+<p><em>Figure 59. Sequence diagram for compress command to Events Center</em></p>
 </div>
 <div class="paragraph">
-<p>Then, the <code>MemberListPanel</code>, which contains the <code>MemberCard</code> objects will handle the event (Figure 51). If the cards are already compressed, no changes occur.
+<p>Then, the <code>MemberListPanel</code>, which contains the <code>MemberCard</code> objects will handle the event (Figure 60). If the cards are already compressed, no changes occur.
 However, if the cards are decompressed, the <code>MemberCard</code> objects would be converted to <code>CompressedMemberCard</code> objects.</p>
 </div>
 <div class="imageblock">
@@ -445,7 +442,7 @@ However, if the cards are decompressed, the <code>MemberCard</code> objects woul
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 51. Sequence diagram for compress command from Events Center</em></p>
+<p><em>Figure 60. Sequence diagram for compress command from Events Center</em></p>
 </div>
 </div>
 <div class="sect3">
@@ -486,12 +483,334 @@ just for compress/decompress but for other events as well.</p>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="polls-feature"><a class="link" href="#polls-feature">Polls-feature</a></h3>
+<div class="paragraph">
+<p>A poll contains a question and any number of answers. Any member can vote in a poll but only once. Only 'Exco' members
+are allowed to add/delete polls and view/hide poll results. Polls are displayed in the poll <code>ListView</code> GUI of Club Connect.</p>
+</div>
+<div class="sect3">
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current Implementation</a></h4>
+<div class="paragraph">
+<p>The poll feature is facilitated by the command classes below:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>AddPollCommand</code></p>
+</li>
+<li>
+<p><code>DeletePollCommand</code></p>
+</li>
+<li>
+<p><code>VoteCommand</code></p>
+</li>
+<li>
+<p><code>ViewResultsCommand</code></p>
+</li>
+<li>
+<p><code>HideResultsCommand</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Since all the commands above require the user be logged in, the statements below are present in their <code>execute</code> methods.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">requireToSignUp();
+requireToLogIn();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To restrict the commands that only <code>Exco</code> members can execute, the <code>AddPollCommand</code>, <code>DeletePollCommand</code>,
+<code>ViewResultsCommand</code> and <code>HideResultsCommand</code> will have the statement below in their <code>execute</code> methods.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">requireExcoLogIn();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Figure 40 below shows the UML diagram of the <code>Poll</code> class.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/PollUML.png" alt="PollUML" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 40. Poll UML Diagram</em></p>
+</div>
+<div class="paragraph">
+<p>A <code>Poll</code> consists of the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Question: Represents the question of the poll.</p>
+</li>
+<li>
+<p>ObservableList&lt;Answer&gt;: Represents the answers of the poll.</p>
+</li>
+<li>
+<p>Set&lt;MatricNumber&gt;: Represents all members that have voted in the poll.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Figure 41 below shows the UML diagram of the <code>Answer</code> class.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AnswerUML.png" alt="AnswerUML" width="100">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 41. Poll UML Diagram</em></p>
+</div>
+<div class="paragraph">
+<p>An <code>Answer</code> consists of the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>String: Represents the sequence of characters making up the answer</p>
+</li>
+<li>
+<p>int: Represents the number of members who voted for this answer</p>
+</li>
+</ul>
+</div>
+<div class="sect4">
+<h5 id="adding-polls"><a class="link" href="#adding-polls">Adding Polls</a></h5>
+<hr>
+<div class="paragraph">
+<p>Adding Polls is facilitated by the <code>AddPollCommand</code> which inherits from <code>UndoableCommand</code> to make adding polls undoable.
+When a poll is created by the <code>AddPollCommand</code>, it&#8217;s Set&lt;MatricNumber&gt;
+is initialized as empty because no member has voted in the poll.</p>
+</div>
+<div class="paragraph">
+<p>Figure 42 shows the flow of adding a poll:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SDforAddPoll.png" alt="SDforAddPoll" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 42. Sequence Diagram for <code>AddPollCommand</code> parsing.</em></p>
+</div>
+<div class="paragraph">
+<p>The execution of the command invokes <code>Model#addPoll(poll)</code>.<br>
+The following code snippet shows the implementation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Override</span>
+<span class="directive">public</span> <span class="directive">synchronized</span> <span class="type">void</span> addPoll(Poll poll) <span class="directive">throws</span> DuplicatePollException {
+    requireNonNull(poll);
+    clubBook.addPoll(poll);
+    updateFilteredPollList(<span class="keyword">new</span> PollIsRelevantToMemberPredicate(getLoggedInMember()));
+    indicateClubBookChanged();
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After successful execution, the poll will be added to the Club Book and the poll <code>ListView</code> GUI.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="deleting-polls"><a class="link" href="#deleting-polls">Deleting Polls</a></h5>
+<hr>
+<div class="paragraph">
+<p>Deleting Polls is facilitated by the <code>DeletePollCommand</code> which inherits from <code>UndoableCommand</code> to make deleting polls undoable.</p>
+</div>
+<div class="paragraph">
+<p>Figure 43 shows the flow of deleting a poll:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SDforDeletePoll.png" alt="SDforDeletePoll" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 43. Sequence Diagram for <code>DeletePollCommand</code> parsing.</em></p>
+</div>
+<div class="paragraph">
+<p>The execution of the command invokes <code>Model#deletePoll()</code>.
+The following code snippet shows the implementation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Override</span>
+<span class="directive">public</span> <span class="directive">synchronized</span> <span class="type">void</span> deletePoll(Poll target) <span class="directive">throws</span> PollNotFoundException {
+    requireNonNull(target);
+    clubBook.removePoll(target);
+    indicateClubBookChanged();
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After successful execution, the poll will be deleted from the Club Book and the poll <code>ListView</code> GUI.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="voting-in-polls"><a class="link" href="#voting-in-polls">Voting in Polls</a></h5>
+<hr>
+<div class="paragraph">
+<p>Voting in polls is facilitated by the <code>VoteCommand</code> which inherits from <code>UndoableCommand</code> to make voting undoable.</p>
+</div>
+<div class="paragraph">
+<p>The input of the command is the <code>POLL_INDEX</code> of a poll and <code>ANSWER_INDEX</code> of the answer of the poll</p>
+</div>
+<div class="paragraph">
+<p>Figure 44 shows the flow of voting in a poll:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SDforVote.png" alt="width]&quot;800&quot;">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 44. Sequence Diagram for voting a poll</em></p>
+</div>
+<div class="paragraph">
+<p>The execution of the command invokes <code>Model#voteInPoll()</code>.
+The following code snippet shows the implementation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Override</span>
+<span class="directive">public</span> <span class="predefined-type">String</span> voteInPoll(Poll poll, Index answerIndex)
+        <span class="directive">throws</span> PollNotFoundException, AnswerNotFoundException, UserAlreadyVotedException {
+    requireAllNonNull(poll, answerIndex);
+    <span class="predefined-type">String</span> voteDetails = clubBook.voteInPoll(poll, answerIndex, getLoggedInMember().getMatricNumber());
+    indicateClubBookChanged();
+    <span class="keyword">return</span> voteDetails;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After successful execution, the voteCount of the answer in the poll will increment by 1. If the user is not an <code>Exco</code> member
+the poll will be removed from the poll <code>ListView</code> GUI, otherwise it will remain in the GUI for <code>Exco</code> members to monitor the results.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="viewing-hiding-all-poll-results"><a class="link" href="#viewing-hiding-all-poll-results">Viewing/Hiding All Poll Results</a></h5>
+<hr>
+<div class="paragraph">
+<p>Viewing and Hiding Poll Results is facilitated by the <code>ViewResultsCommand</code> and <code>HideResultsCommand</code>.</p>
+</div>
+<div class="paragraph">
+<p>By default poll results are not shown(Figure 45), but when <code>ViewResultsCommand</code> is executed, results consisting of
+how many people voted in a poll and how many voted for each answer will be shown(Figure 46).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/PollWithoutResults.png" alt="PollWithoutResults" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 45. Poll Without Results</em></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/PollWithResults.png" alt="PollWithResults" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 46. Poll With Results</em></p>
+</div>
+<div class="paragraph">
+<p>Since viewing and hiding results of polls are similar in implementation, only viewing results of polls will be discussed.</p>
+</div>
+<div class="paragraph">
+<p>When an <code>Exco</code> member inputs 'viewresults', the sequence diagram (Figure 47) below shows how the different components interact
+to post a <code>ViewResultsRequestEvent</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/HighLevelSDforViewResultsToEventsCenter.png" alt="HighLevelSDforViewResultsToEventsCenter" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 47. Sequence Diagram to <code>EventsCenter</code> for viewing poll results .</em></p>
+</div>
+<div class="paragraph">
+<p>Then, the <code>PollListPanel</code> which contains the poll <code>ListView</code>, will handle the event (Figure 48) by showing results of results of all polls (Figure 46).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/HighLevelSDforViewResultsFromEventsCenter.png" alt="HighLevelSDforViewResultsFromEventsCenter" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 48. Sequence Diagram from <code>EventsCenter</code> for viewing poll results.</em></p>
+</div>
+<div class="paragraph">
+<p>The following code snippet shows the implementation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Subscribe</span>
+<span class="directive">private</span> <span class="type">void</span> handleViewResultsEvent(ViewResultsRequestEvent event) {
+    logger.info(LogsCenter.getEventHandlingLogMessage(event));
+    showPollResults();
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Hiding results of polls will be done in a similar manner except <code>HideResultsRequestEvent</code> is posted and handled instead
+of <code>ViewResultsRequestEvent</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-keeping-track-of-how-many-members-voted-for-each-answer-of-a-poll-and-who-has-voted-in-a-poll"><a class="link" href="#aspect-keeping-track-of-how-many-members-voted-for-each-answer-of-a-poll-and-who-has-voted-in-a-poll">Aspect: Keeping track of how many members voted for each answer of a poll and who has voted in a poll</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Make each <code>Answer</code> keep track of how many votes it has received and each <code>Poll</code>
+keep track of who has voted in it using a Set&lt;MatricNumber&gt;</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Voters are not tied to any specific answer hence ensuring anonymity</p>
+</li>
+<li>
+<p>Cons: Harder to ensure sum of vote count of all <code>Answer`s in a `Poll</code> must equal to size of Set&lt;MatricNumber&gt; in the poll</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Make each <code>Answer</code> contain a Set&lt;MatricNumber&gt;. It&#8217;s size is the number of voters and to keep track of
+who voted, check user&#8217;s <code>MatricNumber</code> with all <code>MatricNumber</code> in all <code>Answer</code> of a <code>Poll</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement</p>
+</li>
+<li>
+<p>Cons: No anonymity since information of who voted for which Answer is stored inside Set&lt;MatricNumber&gt; of an <code>Answer</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-14 08:40:55 UTC
+Last updated 2018-04-14 09:20:49 UTC
 </div>
 </div>
 </body>

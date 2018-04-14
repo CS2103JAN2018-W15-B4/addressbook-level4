@@ -329,8 +329,10 @@ It allows members to modify their profile photos displayed in the application.
 To facilitate this, it makes use of the <code>ProfilePhoto</code> class. <code>ProfilePhoto</code></p>
 </div>
 <div class="paragraph">
-<p>Currently, the <code>ChangeProfilePhotoCommand</code> extends from the <code>Command</code> class, and not from <code>UndoableCommand</code>.
-Refer to Figure 43 for the UML diagram.
+<p>Currently, the <code>ChangeProfilePhotoCommand</code> extends from the <code>Command</code> class, and not from <code>UndoableCommand</code>.</p>
+</div>
+<div class="paragraph">
+<p>Refer to Figure 52 for the UML diagram.
 The <code>ProfilePhoto</code> class consists of a <code>String</code> attribute to store the file path of the profile photo.</p>
 </div>
 <div class="imageblock">
@@ -339,11 +341,11 @@ The <code>ProfilePhoto</code> class consists of a <code>String</code> attribute 
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 43. ChangeProfilePhotoCommand UML Diagram</em></p>
+<p><em>Figure 52. ChangeProfilePhotoCommand UML Diagram</em></p>
 </div>
 <div class="paragraph">
 <p>The <code>displaypic</code> command involves the use of multiple components of Club Connect.
-Below, Figure 44 shows the interactions betweeen these components.
+Below, Figure 53 shows the interactions betweeen these components.
 As you can see, the <code>ChangeProfilePhotoCommand</code> is driven by the <code>ProfilePhotoChangedEvent</code>.</p>
 </div>
 <div class="imageblock">
@@ -352,12 +354,12 @@ As you can see, the <code>ChangeProfilePhotoCommand</code> is driven by the <cod
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 44. High Level Sequence Diagram for <code>changepic PATH</code> Command</em></p>
+<p><em>Figure 53. High Level Sequence Diagram for <code>changepic PATH</code> Command</em></p>
 </div>
 <div class="paragraph">
 <p>ChangeProfilePhotoCommandParser is responsible for parsing the <code>changepic</code> command.
 It returns a <code>ChangeProfilePhotoCommand</code> object after parsing the photo file path.
-Figure 45 depicts the Sequence Diagram for interactions within the <code>Logic</code> component for the <code>execute("changepic C:/Users/Admin/Desktop/ photo.png")</code> API call.</p>
+Figure 54 depicts the Sequence Diagram for interactions within the <code>Logic</code> component for the <code>execute("changepic C:/Users/Admin/Desktop/ photo.png")</code> API call.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -365,7 +367,7 @@ Figure 45 depicts the Sequence Diagram for interactions within the <code>Logic</
 </div>
 </div>
 <div class="paragraph">
-<p>_Figure 45. Interactions Inside the Logic Component for the <code>changepic C:/Users/Admin/Desktop/ photo.png</code> Command</p>
+<p>_Figure 54. Interactions Inside the Logic Component for the <code>changepic C:/Users/Admin/Desktop/ photo.png</code> Command</p>
 </div>
 <div class="paragraph">
 <p>The <code>ChangeProfilePhotoCommand#execute()</code> method invokes the <code>addProfilePhoto()</code> method from <code>model</code>.
@@ -581,8 +583,10 @@ So, the <code>deletetag</code> command allows any <code>Exco</code> member to re
 It allows any <code>Exco</code> member to delete a tag from all members tagged with it (and consequently, from Club Connect).</p>
 </div>
 <div class="paragraph">
-<p>The <code>DeleteTagCommand</code> extends from <code>UndoableCommand</code> as it is an undoable command.
-Figure 46 (shown below) depicts the UML representation of the <code>DeleteTagCommand</code>.</p>
+<p>The <code>DeleteTagCommand</code> extends from <code>UndoableCommand</code> as it is an undoable command.</p>
+</div>
+<div class="paragraph">
+<p>Figure 55 (shown below) depicts the UML representation of the <code>DeleteTagCommand</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -590,7 +594,7 @@ Figure 46 (shown below) depicts the UML representation of the <code>DeleteTagCom
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 46. UML Diagram of <code>DeleteTagCommand</code>.</em></p>
+<p><em>Figure 55. UML Diagram of <code>DeleteTagCommand</code>.</em></p>
 </div>
 </div>
 <div class="sect3">
@@ -869,7 +873,7 @@ For example, all Windows operating systems have a GUI.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-14 08:40:55 UTC
+Last updated 2018-04-14 09:20:49 UTC
 </div>
 </div>
 </body>

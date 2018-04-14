@@ -48,15 +48,16 @@
 <li><a href="#proposed-data-encryption">4.2. [Proposed] Data Encryption</a></li>
 <li><a href="#email-mechanism">4.3. Email Mechanism</a></li>
 <li><a href="#task-management">4.4. Task-Management</a></li>
-<li><a href="#delete-group-mechanism">4.5. Delete Group Mechanism</a></li>
-<li><a href="#importing-members">4.6. Importing Members</a></li>
-<li><a href="#exporting-members">4.7. Exporting Members</a></li>
-<li><a href="#changing-profile-photo-mechanism">4.8. Changing Profile Photo Mechanism</a></li>
-<li><a href="#delete-tag-mechanism">4.9. Delete Tag Mechanism</a></li>
-<li><a href="#ui-look-and-feel">4.10. UI Look and Feel</a></li>
-<li><a href="#compress-decompress-mechanism">4.11. Compress/Decompress Mechanism</a></li>
-<li><a href="#logging">4.12. Logging</a></li>
-<li><a href="#Implementation-Configuration">4.13. Configuration</a></li>
+<li><a href="#polls-feature">4.5. Polls-feature</a></li>
+<li><a href="#delete-group-mechanism">4.6. Delete Group Mechanism</a></li>
+<li><a href="#importing-members">4.7. Importing Members</a></li>
+<li><a href="#exporting-members">4.8. Exporting Members</a></li>
+<li><a href="#changing-profile-photo-mechanism">4.9. Changing Profile Photo Mechanism</a></li>
+<li><a href="#delete-tag-mechanism">4.10. Delete Tag Mechanism</a></li>
+<li><a href="#ui-look-and-feel">4.11. UI Look and Feel</a></li>
+<li><a href="#compress-decompress-mechanism">4.12. Compress/Decompress Mechanism</a></li>
+<li><a href="#logging">4.13. Logging</a></li>
+<li><a href="#Implementation-Configuration">4.14. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">5. Documentation</a>
@@ -104,6 +105,14 @@
 <li><a href="#changing-a-task-s-status">G.6. Changing a task&#8217;s status</a></li>
 <li><a href="#changing-a-task-s-assignee">G.7. Changing a task&#8217;s assignee</a></li>
 <li><a href="#deleting-a-group">G.8. Deleting a group</a></li>
+<li><a href="#adding-a-poll">G.9. Adding a poll</a></li>
+<li><a href="#deleting-a-poll">G.10. Deleting a poll</a></li>
+<li><a href="#voting-in-a-poll">G.11. Voting in a poll</a></li>
+<li><a href="#viewing-results-of-polls">G.12. Viewing results of polls</a></li>
+<li><a href="#hiding-results-of-polls">G.13. Hiding results of polls</a></li>
+<li><a href="#compressing-member-cards">G.14. Compressing member cards</a></li>
+<li><a href="#decompressing-member-cards">G.15. Decompressing member cards</a></li>
+<li><a href="#finding-members">G.16. Finding members</a></li>
 </ul>
 </li>
 </ul>
@@ -1541,14 +1550,336 @@ Figure 36 below depicts the parsing of the <code>ChangeTaskStatusObject</code>.<
 </div>
 </div>
 <div class="sect2">
-<h3 id="delete-group-mechanism"><a class="link" href="#delete-group-mechanism">4.5. Delete Group Mechanism</a></h3>
+<h3 id="polls-feature"><a class="link" href="#polls-feature">4.5. Polls-feature</a></h3>
+<div class="paragraph">
+<p>A poll contains a question and any number of answers. Any member can vote in a poll but only once. Only 'Exco' members
+are allowed to add/delete polls and view/hide poll results. Polls are displayed in the poll <code>ListView</code> GUI of Club Connect.</p>
+</div>
 <div class="sect3">
 <h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">4.5.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The poll feature is facilitated by the command classes below:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>AddPollCommand</code></p>
+</li>
+<li>
+<p><code>DeletePollCommand</code></p>
+</li>
+<li>
+<p><code>VoteCommand</code></p>
+</li>
+<li>
+<p><code>ViewResultsCommand</code></p>
+</li>
+<li>
+<p><code>HideResultsCommand</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Since all the commands above require the user be logged in, the statements below are present in their <code>execute</code> methods.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">requireToSignUp();
+requireToLogIn();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To restrict the commands that only <code>Exco</code> members can execute, the <code>AddPollCommand</code>, <code>DeletePollCommand</code>,
+<code>ViewResultsCommand</code> and <code>HideResultsCommand</code> will have the statement below in their <code>execute</code> methods.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">requireExcoLogIn();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Figure 40 below shows the UML diagram of the <code>Poll</code> class.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/PollUML.png" alt="PollUML" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 40. Poll UML Diagram</em></p>
+</div>
+<div class="paragraph">
+<p>A <code>Poll</code> consists of the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Question: Represents the question of the poll.</p>
+</li>
+<li>
+<p>ObservableList&lt;Answer&gt;: Represents the answers of the poll.</p>
+</li>
+<li>
+<p>Set&lt;MatricNumber&gt;: Represents all members that have voted in the poll.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Figure 41 below shows the UML diagram of the <code>Answer</code> class.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/AnswerUML.png" alt="AnswerUML" width="100">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 41. Poll UML Diagram</em></p>
+</div>
+<div class="paragraph">
+<p>An <code>Answer</code> consists of the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>String: Represents the sequence of characters making up the answer</p>
+</li>
+<li>
+<p>int: Represents the number of members who voted for this answer</p>
+</li>
+</ul>
+</div>
+<div class="sect4">
+<h5 id="adding-polls"><a class="link" href="#adding-polls">Adding Polls</a></h5>
+<hr>
+<div class="paragraph">
+<p>Adding Polls is facilitated by the <code>AddPollCommand</code> which inherits from <code>UndoableCommand</code> to make adding polls undoable.
+When a poll is created by the <code>AddPollCommand</code>, it&#8217;s Set&lt;MatricNumber&gt;
+is initialized as empty because no member has voted in the poll.</p>
+</div>
+<div class="paragraph">
+<p>Figure 42 shows the flow of adding a poll:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforAddPoll.png" alt="SDforAddPoll" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 42. Sequence Diagram for <code>AddPollCommand</code> parsing.</em></p>
+</div>
+<div class="paragraph">
+<p>The execution of the command invokes <code>Model#addPoll(poll)</code>.<br>
+The following code snippet shows the implementation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Override</span>
+<span class="directive">public</span> <span class="directive">synchronized</span> <span class="type">void</span> addPoll(Poll poll) <span class="directive">throws</span> DuplicatePollException {
+    requireNonNull(poll);
+    clubBook.addPoll(poll);
+    updateFilteredPollList(<span class="keyword">new</span> PollIsRelevantToMemberPredicate(getLoggedInMember()));
+    indicateClubBookChanged();
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After successful execution, the poll will be added to the Club Book and the poll <code>ListView</code> GUI.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="deleting-polls"><a class="link" href="#deleting-polls">Deleting Polls</a></h5>
+<hr>
+<div class="paragraph">
+<p>Deleting Polls is facilitated by the <code>DeletePollCommand</code> which inherits from <code>UndoableCommand</code> to make deleting polls undoable.</p>
+</div>
+<div class="paragraph">
+<p>Figure 43 shows the flow of deleting a poll:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforDeletePoll.png" alt="SDforDeletePoll" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 43. Sequence Diagram for <code>DeletePollCommand</code> parsing.</em></p>
+</div>
+<div class="paragraph">
+<p>The execution of the command invokes <code>Model#deletePoll()</code>.
+The following code snippet shows the implementation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Override</span>
+<span class="directive">public</span> <span class="directive">synchronized</span> <span class="type">void</span> deletePoll(Poll target) <span class="directive">throws</span> PollNotFoundException {
+    requireNonNull(target);
+    clubBook.removePoll(target);
+    indicateClubBookChanged();
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After successful execution, the poll will be deleted from the Club Book and the poll <code>ListView</code> GUI.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="voting-in-polls"><a class="link" href="#voting-in-polls">Voting in Polls</a></h5>
+<hr>
+<div class="paragraph">
+<p>Voting in polls is facilitated by the <code>VoteCommand</code> which inherits from <code>UndoableCommand</code> to make voting undoable.</p>
+</div>
+<div class="paragraph">
+<p>The input of the command is the <code>POLL_INDEX</code> of a poll and <code>ANSWER_INDEX</code> of the answer of the poll</p>
+</div>
+<div class="paragraph">
+<p>Figure 44 shows the flow of voting in a poll:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforVote.png" alt="width]&quot;800&quot;">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 44. Sequence Diagram for voting a poll</em></p>
+</div>
+<div class="paragraph">
+<p>The execution of the command invokes <code>Model#voteInPoll()</code>.
+The following code snippet shows the implementation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Override</span>
+<span class="directive">public</span> <span class="predefined-type">String</span> voteInPoll(Poll poll, Index answerIndex)
+        <span class="directive">throws</span> PollNotFoundException, AnswerNotFoundException, UserAlreadyVotedException {
+    requireAllNonNull(poll, answerIndex);
+    <span class="predefined-type">String</span> voteDetails = clubBook.voteInPoll(poll, answerIndex, getLoggedInMember().getMatricNumber());
+    indicateClubBookChanged();
+    <span class="keyword">return</span> voteDetails;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After successful execution, the voteCount of the answer in the poll will increment by 1. If the user is not an <code>Exco</code> member
+the poll will be removed from the poll <code>ListView</code> GUI, otherwise it will remain in the GUI for <code>Exco</code> members to monitor the results.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="viewing-hiding-all-poll-results"><a class="link" href="#viewing-hiding-all-poll-results">Viewing/Hiding All Poll Results</a></h5>
+<hr>
+<div class="paragraph">
+<p>Viewing and Hiding Poll Results is facilitated by the <code>ViewResultsCommand</code> and <code>HideResultsCommand</code>.</p>
+</div>
+<div class="paragraph">
+<p>By default poll results are not shown(Figure 45), but when <code>ViewResultsCommand</code> is executed, results consisting of
+how many people voted in a poll and how many voted for each answer will be shown(Figure 46).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/PollWithoutResults.png" alt="PollWithoutResults" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 45. Poll Without Results</em></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/PollWithResults.png" alt="PollWithResults" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 46. Poll With Results</em></p>
+</div>
+<div class="paragraph">
+<p>Since viewing and hiding results of polls are similar in implementation, only viewing results of polls will be discussed.</p>
+</div>
+<div class="paragraph">
+<p>When an <code>Exco</code> member inputs 'viewresults', the sequence diagram (Figure 47) below shows how the different components interact
+to post a <code>ViewResultsRequestEvent</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/HighLevelSDforViewResultsToEventsCenter.png" alt="HighLevelSDforViewResultsToEventsCenter" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 47. Sequence Diagram to <code>EventsCenter</code> for viewing poll results .</em></p>
+</div>
+<div class="paragraph">
+<p>Then, the <code>PollListPanel</code> which contains the poll <code>ListView</code>, will handle the event (Figure 48) by showing results of results of all polls (Figure 46).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/HighLevelSDforViewResultsFromEventsCenter.png" alt="HighLevelSDforViewResultsFromEventsCenter" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 48. Sequence Diagram from <code>EventsCenter</code> for viewing poll results.</em></p>
+</div>
+<div class="paragraph">
+<p>The following code snippet shows the implementation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Subscribe</span>
+<span class="directive">private</span> <span class="type">void</span> handleViewResultsEvent(ViewResultsRequestEvent event) {
+    logger.info(LogsCenter.getEventHandlingLogMessage(event));
+    showPollResults();
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Hiding results of polls will be done in a similar manner except <code>HideResultsRequestEvent</code> is posted and handled instead
+of <code>ViewResultsRequestEvent</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.5.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-keeping-track-of-how-many-members-voted-for-each-answer-of-a-poll-and-who-has-voted-in-a-poll"><a class="link" href="#aspect-keeping-track-of-how-many-members-voted-for-each-answer-of-a-poll-and-who-has-voted-in-a-poll">Aspect: Keeping track of how many members voted for each answer of a poll and who has voted in a poll</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Make each <code>Answer</code> keep track of how many votes it has received and each <code>Poll</code>
+keep track of who has voted in it using a Set&lt;MatricNumber&gt;</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Voters are not tied to any specific answer hence ensuring anonymity</p>
+</li>
+<li>
+<p>Cons: Harder to ensure sum of vote count of all <code>Answer`s in a `Poll</code> must equal to size of Set&lt;MatricNumber&gt; in the poll</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Make each <code>Answer</code> contain a Set&lt;MatricNumber&gt;. It&#8217;s size is the number of voters and to keep track of
+who voted, check user&#8217;s <code>MatricNumber</code> with all <code>MatricNumber</code> in all <code>Answer</code> of a <code>Poll</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement</p>
+</li>
+<li>
+<p>Cons: No anonymity since information of who voted for which Answer is stored inside Set&lt;MatricNumber&gt; of an <code>Answer</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="delete-group-mechanism"><a class="link" href="#delete-group-mechanism">4.6. Delete Group Mechanism</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">4.6.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The <code>deletegroup</code> mechanism is facilitated by the <code>DeleteGroupCommand</code> class. It allows <code>Exco</code> members to delete a group from <code>Club Connect</code>. The group of all members part of the group that is to be deleted will be changed to the default group - <code>member</code>.</p>
 </div>
 <div class="paragraph">
-<p>The <code>DeleteGroupCommand</code> extends from <code>UndoableCommand</code> as it is an undoable command. Figure 40 below depicts the UML representation of the <code>Command</code>.</p>
+<p>The <code>DeleteGroupCommand</code> extends from <code>UndoableCommand</code> as it is an undoable command. Figure 49 below depicts the UML representation of the <code>Command</code>.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -1556,10 +1887,10 @@ Figure 36 below depicts the parsing of the <code>ChangeTaskStatusObject</code>.<
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 40. UML Diagram of <code>DeleteGroupCommand</code>.</em></p>
+<p><em>Figure 49. UML Diagram of <code>DeleteGroupCommand</code>.</em></p>
 </div>
 <div class="paragraph">
-<p><code>DeleteGroupCommandParser</code> is responsible for parsing the <code>deletegroup</code> command. It returns a <code>DeleteGroupCommand</code> object after parsing the <code>Group</code>. The parsing of the command is shown below in Figure 41.</p>
+<p><code>DeleteGroupCommandParser</code> is responsible for parsing the <code>deletegroup</code> command. It returns a <code>DeleteGroupCommand</code> object after parsing the <code>Group</code>. The parsing of the command is shown below in Figure 50.</p>
 </div>
 <div class="paragraph">
 <p>The method where the deletion takes place in each member is <code>ClubBook#deleteGroupFromMember</code>.</p>
@@ -1589,10 +1920,10 @@ Figure 36 below depicts the parsing of the <code>ChangeTaskStatusObject</code>.<
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 41. Sequence Diagram for the parsing of <code>DeleteGroupCommand</code>.</em></p>
+<p><em>Figure 50. Sequence Diagram for the parsing of <code>DeleteGroupCommand</code>.</em></p>
 </div>
 <div class="paragraph">
-<p>The high-level sequence of events is depicted in Figure 42 below.</p>
+<p>The high-level sequence of events is depicted in Figure 51 below.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -1600,11 +1931,11 @@ Figure 36 below depicts the parsing of the <code>ChangeTaskStatusObject</code>.<
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 42. Sequence Diagram for delete a group from <code>Club Connect</code>.</em></p>
+<p><em>Figure 51. Sequence Diagram for delete a group from <code>Club Connect</code>.</em></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.5.2. Design Considerations</a></h4>
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.6.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-implementation-of-code-deletegroupcommand-code"><a class="link" href="#aspect-implementation-of-code-deletegroupcommand-code">Aspect: Implementation of <code>DeleteGroupCommand</code></a></h5>
 <div class="ulist">
@@ -1641,16 +1972,7 @@ Figure 36 below depicts the parsing of the <code>ChangeTaskStatusObject</code>.<
 </div>
 </div>
 <div class="sect2">
-<h3 id="importing-members"><a class="link" href="#importing-members">4.6. Importing Members</a></h3>
-<div class="sect3">
-<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">4.6.1. Current Implementation</a></h4>
-<div class="paragraph">
-<p>Lorem ipsum dolor sit amet</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="exporting-members"><a class="link" href="#exporting-members">4.7. Exporting Members</a></h3>
+<h3 id="importing-members"><a class="link" href="#importing-members">4.7. Importing Members</a></h3>
 <div class="sect3">
 <h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">4.7.1. Current Implementation</a></h4>
 <div class="paragraph">
@@ -1659,17 +1981,28 @@ Figure 36 below depicts the parsing of the <code>ChangeTaskStatusObject</code>.<
 </div>
 </div>
 <div class="sect2">
-<h3 id="changing-profile-photo-mechanism"><a class="link" href="#changing-profile-photo-mechanism">4.8. Changing Profile Photo Mechanism</a></h3>
+<h3 id="exporting-members"><a class="link" href="#exporting-members">4.8. Exporting Members</a></h3>
 <div class="sect3">
 <h4 id="current-implementation-7"><a class="link" href="#current-implementation-7">4.8.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>Lorem ipsum dolor sit amet</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="changing-profile-photo-mechanism"><a class="link" href="#changing-profile-photo-mechanism">4.9. Changing Profile Photo Mechanism</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-8"><a class="link" href="#current-implementation-8">4.9.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The <code>changepic</code> mechanism of Club Connect is facilitated by the <code>ChangeProfilePhotoCommand</code> class and is event-driven.
 It allows members to modify their profile photos displayed in the application.
 To facilitate this, it makes use of the <code>ProfilePhoto</code> class. <code>ProfilePhoto</code></p>
 </div>
 <div class="paragraph">
-<p>Currently, the <code>ChangeProfilePhotoCommand</code> extends from the <code>Command</code> class, and not from <code>UndoableCommand</code>.
-Refer to Figure 43 for the UML diagram.
+<p>Currently, the <code>ChangeProfilePhotoCommand</code> extends from the <code>Command</code> class, and not from <code>UndoableCommand</code>.</p>
+</div>
+<div class="paragraph">
+<p>Refer to Figure 52 for the UML diagram.
 The <code>ProfilePhoto</code> class consists of a <code>String</code> attribute to store the file path of the profile photo.</p>
 </div>
 <div class="imageblock">
@@ -1678,11 +2011,11 @@ The <code>ProfilePhoto</code> class consists of a <code>String</code> attribute 
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 43. ChangeProfilePhotoCommand UML Diagram</em></p>
+<p><em>Figure 52. ChangeProfilePhotoCommand UML Diagram</em></p>
 </div>
 <div class="paragraph">
 <p>The <code>displaypic</code> command involves the use of multiple components of Club Connect.
-Below, Figure 44 shows the interactions betweeen these components.
+Below, Figure 53 shows the interactions betweeen these components.
 As you can see, the <code>ChangeProfilePhotoCommand</code> is driven by the <code>ProfilePhotoChangedEvent</code>.</p>
 </div>
 <div class="imageblock">
@@ -1691,12 +2024,12 @@ As you can see, the <code>ChangeProfilePhotoCommand</code> is driven by the <cod
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 44. High Level Sequence Diagram for <code>changepic PATH</code> Command</em></p>
+<p><em>Figure 53. High Level Sequence Diagram for <code>changepic PATH</code> Command</em></p>
 </div>
 <div class="paragraph">
 <p>ChangeProfilePhotoCommandParser is responsible for parsing the <code>changepic</code> command.
 It returns a <code>ChangeProfilePhotoCommand</code> object after parsing the photo file path.
-Figure 45 depicts the Sequence Diagram for interactions within the <code>Logic</code> component for the <code>execute("changepic C:/Users/Admin/Desktop/ photo.png")</code> API call.</p>
+Figure 54 depicts the Sequence Diagram for interactions within the <code>Logic</code> component for the <code>execute("changepic C:/Users/Admin/Desktop/ photo.png")</code> API call.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1704,7 +2037,7 @@ Figure 45 depicts the Sequence Diagram for interactions within the <code>Logic</
 </div>
 </div>
 <div class="paragraph">
-<p>_Figure 45. Interactions Inside the Logic Component for the <code>changepic C:/Users/Admin/Desktop/ photo.png</code> Command</p>
+<p>_Figure 54. Interactions Inside the Logic Component for the <code>changepic C:/Users/Admin/Desktop/ photo.png</code> Command</p>
 </div>
 <div class="paragraph">
 <p>The <code>ChangeProfilePhotoCommand#execute()</code> method invokes the <code>addProfilePhoto()</code> method from <code>model</code>.
@@ -1752,7 +2085,7 @@ It copies the photo as a <a href="#bmp">bitmap image file</a> (.bmp) to the Club
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.8.2. Design Considerations</a></h4>
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">4.9.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-implementation-of-code-changeprofilephotocommand-code"><a class="link" href="#aspect-implementation-of-code-changeprofilephotocommand-code">Aspect: Implementation of <code>ChangeProfilePhotoCommand</code></a></h5>
 <div class="ulist">
@@ -1823,16 +2156,18 @@ Members can delete the original file from the computer, without affecting the Cl
 </div>
 </div>
 <div class="sect2">
-<h3 id="delete-tag-mechanism"><a class="link" href="#delete-tag-mechanism">4.9. Delete Tag Mechanism</a></h3>
+<h3 id="delete-tag-mechanism"><a class="link" href="#delete-tag-mechanism">4.10. Delete Tag Mechanism</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-8"><a class="link" href="#current-implementation-8">4.9.1. Current Implementation</a></h4>
+<h4 id="current-implementation-9"><a class="link" href="#current-implementation-9">4.10.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The <code>deletetag</code> mechanism is facilitated by the <code>DeleteTagCommand</code> class.
 It allows any <code>Exco</code> member to delete a tag from all members tagged with it (and consequently, from Club Connect).</p>
 </div>
 <div class="paragraph">
-<p>The <code>DeleteTagCommand</code> extends from <code>UndoableCommand</code> as it is an undoable command.
-Figure 46 (shown below) depicts the UML representation of the <code>DeleteTagCommand</code>.</p>
+<p>The <code>DeleteTagCommand</code> extends from <code>UndoableCommand</code> as it is an undoable command.</p>
+</div>
+<div class="paragraph">
+<p>Figure 55 (shown below) depicts the UML representation of the <code>DeleteTagCommand</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1840,11 +2175,11 @@ Figure 46 (shown below) depicts the UML representation of the <code>DeleteTagCom
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 46. UML Diagram of <code>DeleteTagCommand</code>.</em></p>
+<p><em>Figure 55. UML Diagram of <code>DeleteTagCommand</code>.</em></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">4.9.2. Design Considerations</a></h4>
+<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">4.10.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-implementation-of-code-deletetagcommand-code"><a class="link" href="#aspect-implementation-of-code-deletetagcommand-code">Aspect: Implementation of <code>DeleteTagCommand</code></a></h5>
 <div class="paragraph">
@@ -1854,20 +2189,20 @@ Figure 46 (shown below) depicts the UML representation of the <code>DeleteTagCom
 </div>
 </div>
 <div class="sect2">
-<h3 id="ui-look-and-feel"><a class="link" href="#ui-look-and-feel">4.10. UI Look and Feel</a></h3>
+<h3 id="ui-look-and-feel"><a class="link" href="#ui-look-and-feel">4.11. UI Look and Feel</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-9"><a class="link" href="#current-implementation-9">4.10.1. Current Implementation</a></h4>
+<h4 id="current-implementation-10"><a class="link" href="#current-implementation-10">4.11.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>Lorem ipsum dolor sit amet</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="compress-decompress-mechanism"><a class="link" href="#compress-decompress-mechanism">4.11. Compress/Decompress Mechanism</a></h3>
+<h3 id="compress-decompress-mechanism"><a class="link" href="#compress-decompress-mechanism">4.12. Compress/Decompress Mechanism</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-10"><a class="link" href="#current-implementation-10">4.11.1. Current Implementation</a></h4>
+<h4 id="current-implementation-11"><a class="link" href="#current-implementation-11">4.12.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>Member details are shown as cards in the GUI. Cards can either be decompressed(Figure 47) or compressed(Figure 48).</p>
+<p>Member details are shown as cards in the GUI. Cards can either be decompressed(Figure 56) or compressed(Figure 57).</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1875,7 +2210,7 @@ Figure 46 (shown below) depicts the UML representation of the <code>DeleteTagCom
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 47. Decompressed Member Cards</em></p>
+<p><em>Figure 56. Decompressed Member Cards</em></p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1883,11 +2218,11 @@ Figure 46 (shown below) depicts the UML representation of the <code>DeleteTagCom
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 48. Compressed Member Cards</em></p>
+<p><em>Figure 57. Compressed Member Cards</em></p>
 </div>
 <div class="paragraph">
 <p>The <code>MemberCard</code> class provides an abstraction for the member card shown in the GUI. By default, it shows a member card that is decompressed.
-To differentiate between compressed and decompressed member card, we introduced a <code>CompressedMemberCard</code> class. This class extends <code>MemberCard</code> (Figure 49) since a <code>CompressedMemberCard</code> is a <code>MemberCard</code>.
+To differentiate between compressed and decompressed member card, we introduced a <code>CompressedMemberCard</code> class. This class extends <code>MemberCard</code> (Figure 58) since a <code>CompressedMemberCard</code> is a <code>MemberCard</code>.
 Each of these classes contain a different static String showing location of the actual <code>FXML</code> file that determines layout of the member card, hence we get different layouts.</p>
 </div>
 <div class="imageblock">
@@ -1896,7 +2231,7 @@ Each of these classes contain a different static String showing location of the 
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 49. <code>MemberCard</code> class diagram</em></p>
+<p><em>Figure 58. <code>MemberCard</code> class diagram</em></p>
 </div>
 <div class="paragraph">
 <p>The <code>compress</code> and <code>decompress</code> commands allows members to select whether they want to see detailed information of members or see a compressed version for easy viewing.
@@ -1906,10 +2241,10 @@ These commands do not extend from <code>UndoableCommand</code> but just from <co
 <p>Due to the similar nature of the <code>compress</code> and <code>decompress</code> commands, only the <code>compress</code> command will be discussed.</p>
 </div>
 <div class="paragraph">
-<p>Suppose that the user has just launched the application. The member cards would be decompressed (Figure 42).</p>
+<p>Suppose that the user has just launched the application. The member cards would be decompressed (Figure 56).</p>
 </div>
 <div class="paragraph">
-<p>The user inputs 'compress' and the sequence diagram (Figure 50) below shows how the different components interact.</p>
+<p>The user inputs 'compress' and the sequence diagram (Figure 59) below shows how the different components interact.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1917,10 +2252,10 @@ These commands do not extend from <code>UndoableCommand</code> but just from <co
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 50. Sequence diagram for compress command to Events Center</em></p>
+<p><em>Figure 59. Sequence diagram for compress command to Events Center</em></p>
 </div>
 <div class="paragraph">
-<p>Then, the <code>MemberListPanel</code>, which contains the <code>MemberCard</code> objects will handle the event (Figure 51). If the cards are already compressed, no changes occur.
+<p>Then, the <code>MemberListPanel</code>, which contains the <code>MemberCard</code> objects will handle the event (Figure 60). If the cards are already compressed, no changes occur.
 However, if the cards are decompressed, the <code>MemberCard</code> objects would be converted to <code>CompressedMemberCard</code> objects.</p>
 </div>
 <div class="imageblock">
@@ -1929,11 +2264,11 @@ However, if the cards are decompressed, the <code>MemberCard</code> objects woul
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 51. Sequence diagram for compress command from Events Center</em></p>
+<p><em>Figure 60. Sequence diagram for compress command from Events Center</em></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">4.11.2. Design Considerations</a></h4>
+<h4 id="design-considerations-8"><a class="link" href="#design-considerations-8">4.12.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-to-interact-from-logic-to-ui"><a class="link" href="#aspect-how-to-interact-from-logic-to-ui">Aspect: How to interact from Logic to Ui</a></h5>
 <div class="ulist">
@@ -1971,7 +2306,7 @@ just for compress/decompress but for other events as well.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">4.12. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">4.13. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging.
 The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
@@ -1979,7 +2314,7 @@ The <code>LogsCenter</code> class is used to manage the logging levels and loggi
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 4.13, &#8220;Configuration&#8221;</a>).</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 4.14, &#8220;Configuration&#8221;</a>).</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level.</p>
@@ -2010,7 +2345,7 @@ The <code>LogsCenter</code> class is used to manage the logging levels and loggi
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">4.13. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">4.14. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -2068,7 +2403,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <p>Within Chrome, click on the <code>Print</code> option in Chrome&#8217;s menu.</p>
 </li>
 <li>
-<p>Set the destination to <code>Save as PDF</code>, then click <code>Save</code> to save a copy of the file in PDF format. For best results, use the settings in Figure 52 below.</p>
+<p>Set the destination to <code>Save as PDF</code>, then click <code>Save</code> to save a copy of the file in PDF format. For best results, use the settings in Figure 61 below.</p>
 </li>
 </ol>
 </div>
@@ -2078,7 +2413,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 52. Screenshot of saving documentation as PDF in Chrome</em></p>
+<p><em>Figure 61. Screenshot of saving documentation as PDF in Chrome</em></p>
 </div>
 </div>
 </div>
@@ -2455,9 +2790,9 @@ Do take a look at <a href="#Design-Ui">Section 3.2, &#8220;UI component&#8221;</
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Use different colors for different tags inside member cards. For example, <code>friends</code> tags can be all in brown, and <code>colleagues</code> tags can be all in yellow as shown in Figure 53.</p>
+<p>Use different colors for different tags inside member cards. For example, <code>friends</code> tags can be all in brown, and <code>colleagues</code> tags can be all in yellow as shown in Figure 62.</p>
 <div class="paragraph">
-<p>Figure 53 below shows the member details before the modification.</p>
+<p>Figure 62 below shows the member details before the modification.</p>
 </div>
 <div class="paragraph">
 <p><strong>Before</strong></p>
@@ -2467,22 +2802,29 @@ Do take a look at <a href="#Design-Ui">Section 3.2, &#8220;UI component&#8221;</
 <img src="images/getting-started-ui-tag-before.png" alt="getting started ui tag before" width="300">
 </div>
 </div>
-<div class="paragraph">
-<p><em>Figure 53. Member details before modification</em></p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
-<p>Figure 54 below shows the member details after the modification.</p>
+<p><em>Figure 62. Member details before modification</em></p>
 </div>
 <div class="paragraph">
-<p><strong>After</strong></p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/getting-started-ui-tag-after.png" alt="getting started ui tag after" width="300">
-</div>
+<p>+
+Figure 63 below shows the member details after the modification.</p>
 </div>
 <div class="paragraph">
-<p><em>Figure 54. Member details after modification</em></p>
+<p>+
+<strong>After</strong></p>
+</div>
+<div class="paragraph">
+<p>+
+image::getting-started-ui-tag-after.png[width="300"]</p>
+</div>
+<div class="paragraph">
+<p><em>Figure 63. Member details after modification</em></p>
+</div>
+<div class="paragraph">
+<p>+</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -2528,11 +2870,12 @@ Do take a look at <a href="#Design-Ui">Section 3.2, &#8220;UI component&#8221;</
 </div>
 </div>
 </div>
-</li>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
 <p>Modify <a href="https://github.com/CS2103JAN2018-W15-B4/main/tree/master/src/main/java/seedu/address/commons/events/ui/NewResultAvailableEvent.java"><code>NewResultAvailableEvent</code></a> such that <a href="https://github.com/CS2103JAN2018-W15-B4/main/tree/master/src/main/java/seedu/address/ui/ResultDisplay.java"><code>ResultDisplay</code></a> can show a different style on error (currently it shows the same regardless of errors).</p>
 <div class="paragraph">
-<p>Figure 55 below shows the <code>ResultDisplay</code> before the modification.<br>
+<p>Figure 64 below shows the <code>ResultDisplay</code> before the modification.<br>
 <strong>Before</strong></p>
 </div>
 <div class="imageblock">
@@ -2541,13 +2884,13 @@ Do take a look at <a href="#Design-Ui">Section 3.2, &#8220;UI component&#8221;</
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 55. ResultDisplay before modification</em></p>
+<p><em>Figure 64. ResultDisplay before modification</em></p>
 </div>
 <div class="paragraph">
 <p><strong>After</strong></p>
 </div>
 <div class="paragraph">
-<p>Figure 56 below shows the <code>ResultDisplay</code> after the modification.</p>
+<p>Figure 65 below shows the <code>ResultDisplay</code> after the modification.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -2555,7 +2898,7 @@ Do take a look at <a href="#Design-Ui">Section 3.2, &#8220;UI component&#8221;</
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 56. ResultDisplay after modification</em></p>
+<p><em>Figure 65. ResultDisplay after modification</em></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -2618,7 +2961,7 @@ Do take a look at <a href="#Design-Ui">Section 3.2, &#8220;UI component&#8221;</
 <li>
 <p>Modify the <a href="https://github.com/CS2103JAN2018-W15-B4/main/tree/master/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> to show the total number of people in the address book.</p>
 <div class="paragraph">
-<p>Figure 57 below shows the <code>StatusBarFooter</code> before the modification.</p>
+<p>Figure 66 below shows the <code>StatusBarFooter</code> before the modification.</p>
 </div>
 <div class="paragraph">
 <p><strong>Before</strong></p>
@@ -2628,22 +2971,29 @@ Do take a look at <a href="#Design-Ui">Section 3.2, &#8220;UI component&#8221;</
 <img src="images/getting-started-ui-status-before.png" alt="getting started ui status before" width="500">
 </div>
 </div>
-<div class="paragraph">
-<p><em>Figure 57. StatusBarFooter before modification</em></p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
-<p>Figure 58 below shows the <code>StatusBarFooter</code> after the modification.</p>
+<p><em>Figure 66. StatusBarFooter before modification</em></p>
 </div>
 <div class="paragraph">
-<p><strong>After</strong></p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/getting-started-ui-status-after.png" alt="getting started ui status after" width="500">
-</div>
+<p>+
+Figure 67 below shows the <code>StatusBarFooter</code> after the modification.</p>
 </div>
 <div class="paragraph">
-<p><em>Figure 58. StatusBarFooter after modification</em></p>
+<p>+
+<strong>After</strong></p>
+</div>
+<div class="paragraph">
+<p>+
+image::getting-started-ui-status-after.png[width="500"]</p>
+</div>
+<div class="paragraph">
+<p><em>Figure 67. StatusBarFooter after modification</em></p>
+</div>
+<div class="paragraph">
+<p>+</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -2687,9 +3037,6 @@ Do take a look at <a href="#Design-Ui">Section 3.2, &#8220;UI component&#8221;</
 </ul>
 </div>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <h4 id="code-storage-code-component" class="discrete"><code>Storage</code> component</h4>
 <div class="paragraph">
@@ -3127,9 +3474,10 @@ Adding a profile photo makes it easier to know what other members look like and 
 </div>
 </li>
 <li>
-<p>Minor Feature: Compress/Decompress feature</p>
+<p>Minor Feature: Improve navigability of member list by adding compress/decompress mechanism and revamping <code>Find</code> command</p>
 <div class="paragraph">
-<p>Users can use compress command to clear clutter from member information in member list. Users can use decompress command to see more information about members in member list.</p>
+<p>Users can use compress command to clear clutter from member information in member list. Users can also use decompress command to see more information about members in member list.
+<code>Find</code> command can now search for members by partial matches, search by specified field (e.g. by email) or just search by all fields.</p>
 </div>
 </li>
 </ul>
@@ -4347,12 +4695,328 @@ Expected: Similar to previous.</p>
 </ol>
 </div>
 </div>
+<div class="sect2">
+<h3 id="adding-a-poll"><a class="link" href="#adding-a-poll">G.9. Adding a poll</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Adding a poll as an <code>Exco</code> member</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Login as <code>Exco member</code>.</p>
+</li>
+<li>
+<p>Test case: <code>addpoll q/Which is the right answer? ans/Left ans/Right</code><br>
+Expected: New poll added in poll list with question "Which is the right answer?" and answers "Left" and "Right".
+Details of the added poll shown in the status message. Timestamp in the status bar is updated.</p>
+</li>
+<li>
+<p>Test case: <code>addpoll q/hello ans/bye ans/bye ans/jane</code><br>
+Expected: New poll added in poll list with question "hello" and answers "bye" and "jane".
+Details of the added poll shown in the status message. Timestamp in the status bar is updated.</p>
+</li>
+<li>
+<p>Test case: Type <code>addpoll q/hi ans/a ans/b ans/c</code> twice<br>
+Expected: For first command, new poll added in poll list with question "hi" and answers "a" and "b".
+Details of the added poll shown in the status message. Timestamp in the status bar is updated. Then for the second,
+no poll is added. Duplicate poll error will be shown in status message. Status bar remains the same.</p>
+</li>
+<li>
+<p>Other incorrect addpoll commands to try: <code>addpoll</code>, <code>addpoll x</code> (where x is larger than the list size or is negative)<br>
+Expected: No poll is added. Error details shown in the status message. Status bar remains the same.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Adding a poll as an a non-<code>Exco</code> member</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Login as a non-<code>Exco</code> member</p>
+</li>
+<li>
+<p>Test case: <code>addpoll q/Which is the right answer? ans/Left ans/Right</code><br>
+Expected: No poll is deleted. Error details shown in the status message. Status bar remains the same.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-a-poll"><a class="link" href="#deleting-a-poll">G.10. Deleting a poll</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Deleting a poll as an <code>Exco</code> member</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Login as <code>Exco member</code> and there are polls listed.</p>
+</li>
+<li>
+<p>Test case: <code>deletepoll 1</code><br>
+Expected: First poll is deleted from the list. Details of the deleted poll shown in the status message. Timestamp in the status bar is updated.</p>
+</li>
+<li>
+<p>Test case: <code>deletepoll 0</code><br>
+Expected: No poll is deleted. Error details shown in the status message. Status bar remains the same.</p>
+</li>
+<li>
+<p>Other incorrect delete commands to try: <code>deletepoll</code>, <code>deletepoll x</code> (where x is larger than the list size or is negative)<br>
+Expected: Similar to previous.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Deleting a poll as an a non-<code>Exco</code> member</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Login as a non-<code>Exco</code> member and there are polls listed.</p>
+</li>
+<li>
+<p>Test case: <code>deletepoll 1</code><br>
+Expected: No poll is deleted. Command requires Exco-member shown in status message. Status bar remains the same.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="voting-in-a-poll"><a class="link" href="#voting-in-a-poll">G.11. Voting in a poll</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Voting in a poll as an <code>Exco</code> member</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Login as <code>Exco member</code> and all polls in poll list are not yet voted by user.</p>
+</li>
+<li>
+<p>Test case: <code>vote 1 1</code><br>
+Expected: Vote success shown the status message. Timestamp in the status bar is updated.</p>
+</li>
+<li>
+<p>Other incorrect vote commands to try: <code>vote</code>, <code>vote x y</code> (where x and/or y is larger than the poll list size or is negative)<br>
+Expected: No poll is voted for. Error details shown in the status message. Status bar remains the same.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Voting in a poll as a non-<code>Exco</code> member</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Login as a non-<code>Exco</code> member and all polls in poll list are not yet voted by user.</p>
+</li>
+<li>
+<p>Test case: <code>vote 1 1</code><br>
+Expected: Vote success shown in the status message. Timestamp in the status bar is updated. Poll is removed from poll list.</p>
+</li>
+<li>
+<p>Other incorrect vote commands to try: <code>vote</code>, <code>vote x y</code> (where x and/or y is larger than the poll list size or is negative)<br>
+Expected: No poll is voted for. Error details shown in the status message. Status bar remains the same.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="viewing-results-of-polls"><a class="link" href="#viewing-results-of-polls">G.12. Viewing results of polls</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Viewing results of polls as an <code>Exco</code> member</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Login as <code>Exco member</code>, there are polls in the poll list and polls don&#8217;t display results.</p>
+</li>
+<li>
+<p>Test case: <code>viewresults</code><br>
+Expected: Results of polls shown in poll list. View results success shown in status message. Timestamp in the status bar is updated.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Viewing results of polls as a non-<code>Exco</code> member</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Login as a non-<code>Exco</code> member and there are polls in the poll list.</p>
+</li>
+<li>
+<p>Test case: <code>viewresults</code><br>
+Expected: No results are shown in poll list. Command requires Exco-member shown in status message. Status bar remains the same.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="hiding-results-of-polls"><a class="link" href="#hiding-results-of-polls">G.13. Hiding results of polls</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Hiding results of polls as an <code>Exco</code> member</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Login as <code>Exco member</code> and there are polls in the poll list and polls display results.</p>
+</li>
+<li>
+<p>Test case: <code>hideresults</code><br>
+Expected: Results of polls hidden in poll list. Hide results success shown in status message. Timestamp in the status bar is updated.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Hiding results of polls as a non-<code>Exco</code> member</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Login as a non-<code>Exco</code> member and there are polls in the poll list.</p>
+</li>
+<li>
+<p>Test case: <code>vote 1 1</code><br>
+Expected: No results are shown in poll list. Command requires Exco-member shown in status message. Status bar remains the same.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="compressing-member-cards"><a class="link" href="#compressing-member-cards">G.14. Compressing member cards</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Compressing members cards when they are decompressed</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Login and membercards are decompressed</p>
+</li>
+<li>
+<p>Test case: <code>compress</code><br>
+Expected: Member cards become compressed. Compress success shown in status message. Timestamp in the status bar is updated.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Compressing members cards when they are already compressed</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Login and membercards are compressed</p>
+</li>
+<li>
+<p>Test case: <code>compress</code><br>
+Expected: Member cards remain compressed. Compress success shown in status message. Timestamp in the status bar is updated.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="decompressing-member-cards"><a class="link" href="#decompressing-member-cards">G.15. Decompressing member cards</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Decompressing members cards when they are compressed</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Login and membercards are decompressed</p>
+</li>
+<li>
+<p>Test case: <code>decompress</code><br>
+Expected: Member cards become decompressed. Decompress success shown in status message. Timestamp in the status bar is updated.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Decompressing members cards when they are already compressed</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Login and membercards are decompressed</p>
+</li>
+<li>
+<p>Test case: <code>compress</code><br>
+Expected: Member cards remain decompressed. Decompress success shown in status message. Timestamp in the status bar is updated.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="finding-members"><a class="link" href="#finding-members">G.16. Finding members</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Find by specified field</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Login and there are more than 5 members in the application</p>
+</li>
+<li>
+<p>Test case: <code>find n/John</code><br>
+Expected: Member list filtered to members with name containing John. Number of members found shown in status message. Timestamp in the status bar is updated.</p>
+</li>
+<li>
+<p>Other find commands to try: <code>find PREFIX</code> (where PREFIX refers to the prefix of the field to narrow down the search. Possible prefixes defined in UserGuide.adoc)<br>
+Expected: Find command will narrow down search by the specified field given by PREFIX</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Find by all fields</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Login and there are more than 5 members in the application</p>
+</li>
+<li>
+<p>Test case: <code>find lala</code><br>
+Expected: Member list filtered to members with fields containing lala. Number of members found shown in status message. Timestamp in the status bar is updated.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-14 08:40:55 UTC
+Last updated 2018-04-14 09:20:49 UTC
 </div>
 </div>
 </body>
