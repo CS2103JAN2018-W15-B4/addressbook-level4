@@ -57,15 +57,16 @@
 <li><a href="#logging-out-of-the-application-code-logout-code-since-v1-4">3.27. Logging out of the application : <code>logout</code> (Since v1.4)</a></li>
 <li><a href="#redoing-the-previously-undone-command-code-redo-code">3.28. Redoing the previously undone command : <code>redo</code></a></li>
 <li><a href="#deleting-a-group-code-deletegroup-code-since-v1-1">3.29. Deleting a group : <code>deletegroup</code> (Since v1.1)</a></li>
-<li><a href="#selecting-a-member-code-select-code-since-v1-5rc">3.30. Selecting a member : <code>select</code> (since v1.5rc)</a></li>
-<li><a href="#viewing-results-of-polls-code-viewresults-code-since-v1-4">3.31. Viewing results of polls : <code>viewresults</code> (Since v1.4)</a></li>
-<li><a href="#signing-up-a-member-code-signup-code-since-v1-4">3.32. Signing up a member: <code>signup</code> (since v1.4)</a></li>
-<li><a href="#undoing-previous-command-code-undo-code">3.33. Undoing previous command : <code>undo</code></a></li>
-<li><a href="#viewing-all-tasks-in-club-connect-code-viewalltasks-code-since-v1-4">3.34. Viewing all tasks in Club Connect : <code>viewalltasks</code> (Since v1.4)</a></li>
-<li><a href="#viewing-tasks-assigned-to-or-assigned-by-you-code-viewmytasks-code-since-v1-4">3.35. Viewing tasks assigned to or assigned by you : <code>viewmytasks</code> (Since v1.4)</a></li>
-<li><a href="#voting-in-a-poll-code-vote-code-since-v1-4">3.36. Voting in a poll : <code>vote</code> (Since v1.4)</a></li>
-<li><a href="#auto-complete-command-since-v1-3">3.37. Auto-Complete Command (Since v1.3)</a></li>
-<li><a href="#saving-the-data">3.38. Saving the data</a></li>
+<li><a href="#removing-your-profile-photo-code-removepic-code-since-v1-5">3.30. Removing your profile photo : <code>removepic</code> (Since v1.5)</a></li>
+<li><a href="#selecting-a-member-code-select-code-since-v1-5rc">3.31. Selecting a member : <code>select</code> (since v1.5rc)</a></li>
+<li><a href="#viewing-results-of-polls-code-viewresults-code-since-v1-4">3.32. Viewing results of polls : <code>viewresults</code> (Since v1.4)</a></li>
+<li><a href="#signing-up-a-member-code-signup-code-since-v1-4">3.33. Signing up a member: <code>signup</code> (since v1.4)</a></li>
+<li><a href="#undoing-previous-command-code-undo-code">3.34. Undoing previous command : <code>undo</code></a></li>
+<li><a href="#viewing-all-tasks-in-club-connect-code-viewalltasks-code-since-v1-4">3.35. Viewing all tasks in Club Connect : <code>viewalltasks</code> (Since v1.4)</a></li>
+<li><a href="#viewing-tasks-assigned-to-or-assigned-by-you-code-viewmytasks-code-since-v1-4">3.36. Viewing tasks assigned to or assigned by you : <code>viewmytasks</code> (Since v1.4)</a></li>
+<li><a href="#voting-in-a-poll-code-vote-code-since-v1-4">3.37. Voting in a poll : <code>vote</code> (Since v1.4)</a></li>
+<li><a href="#auto-complete-command-since-v1-3">3.38. Auto-Complete Command (Since v1.3)</a></li>
+<li><a href="#saving-the-data">3.39. Saving the data</a></li>
 </ul>
 </li>
 <li><a href="#command-summary">4. Command Summary</a></li>
@@ -604,7 +605,7 @@ Aliases: <code>pic</code>, <code>profilepic</code></p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-You will face a longer delay when setting your profile photo to an image whose file size is above 500 KB.
+You may face a longer delay when setting your profile photo to an image whose file size is above 3 MB.
 </td>
 </tr>
 </table>
@@ -616,7 +617,7 @@ You will face a longer delay when setting your profile photo to an image whose f
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-To get the abolute path, right-click on the photo file and select <code>Properties</code>.
+To get the absolute path, right-click on the photo file and select <code>Properties</code>.
 The <code>Location</code> field specifies the absolute location of the photo.
 Finally, add the complete name of the photo file to this location.
 </td>
@@ -1560,7 +1561,15 @@ Deletes the <code>pr</code> group from Club Connect.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="selecting-a-member-code-select-code-since-v1-5rc"><a class="link" href="#selecting-a-member-code-select-code-since-v1-5rc">3.30. Selecting a member : <code>select</code> (since v1.5rc)</a></h3>
+<h3 id="removing-your-profile-photo-code-removepic-code-since-v1-5"><a class="link" href="#removing-your-profile-photo-code-removepic-code-since-v1-5">3.30. Removing your profile photo : <code>removepic</code> (Since v1.5)</a></h3>
+<div class="paragraph">
+<p>Removes your profile photo and sets it back to the default photo.<br>
+Format: <code>removepic</code><br>
+Aliases: <code>rmpic</code>, <code>defaultpic</code>, <code>delpic</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="selecting-a-member-code-select-code-since-v1-5rc"><a class="link" href="#selecting-a-member-code-select-code-since-v1-5rc">3.31. Selecting a member : <code>select</code> (since v1.5rc)</a></h3>
 <div class="paragraph">
 <p>Selects the member identified by the index number used in the most recent member listing.<br>
 Format: <code>select INDEX</code><br>
@@ -1602,7 +1611,7 @@ Selects the 1st member in the results of the <code>find</code> command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="viewing-results-of-polls-code-viewresults-code-since-v1-4"><a class="link" href="#viewing-results-of-polls-code-viewresults-code-since-v1-4">3.31. Viewing results of polls : <code>viewresults</code> (Since v1.4)</a></h3>
+<h3 id="viewing-results-of-polls-code-viewresults-code-since-v1-4"><a class="link" href="#viewing-results-of-polls-code-viewresults-code-since-v1-4">3.32. Viewing results of polls : <code>viewresults</code> (Since v1.4)</a></h3>
 <div class="paragraph">
 <p>Displays the results of polls in Club Connect.</p>
 </div>
@@ -1648,7 +1657,7 @@ This command is for <code>Exco</code> members only.
 </div>
 </div>
 <div class="sect2">
-<h3 id="signing-up-a-member-code-signup-code-since-v1-4"><a class="link" href="#signing-up-a-member-code-signup-code-since-v1-4">3.32. Signing up a member: <code>signup</code> (since v1.4)</a></h3>
+<h3 id="signing-up-a-member-code-signup-code-since-v1-4"><a class="link" href="#signing-up-a-member-code-signup-code-since-v1-4">3.33. Signing up a member: <code>signup</code> (since v1.4)</a></h3>
 <div class="paragraph">
 <p>Signs up a member to Club Connect.<br>
 Format: <code>signup n/NAME p/PHONE_NUMBER e/EMAIL m/MATRIC_NUMBER [t/TAG]&#8230;&#8203;</code><br>
@@ -1703,7 +1712,7 @@ Refer to <code>login</code> command documentation for user credentials.
 </div>
 </div>
 <div class="sect2">
-<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">3.33. Undoing previous command : <code>undo</code></a></h3>
+<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">3.34. Undoing previous command : <code>undo</code></a></h3>
 <div class="paragraph">
 <p>Restores Club Connect to the state before the previous <em>undoable</em> command was executed.<br>
 Format: <code>undo</code><br>
@@ -1749,7 +1758,7 @@ The <code>undo</code> command fails as there are no undoable commands executed p
 </div>
 </div>
 <div class="sect2">
-<h3 id="viewing-all-tasks-in-club-connect-code-viewalltasks-code-since-v1-4"><a class="link" href="#viewing-all-tasks-in-club-connect-code-viewalltasks-code-since-v1-4">3.34. Viewing all tasks in Club Connect : <code>viewalltasks</code> (Since v1.4)</a></h3>
+<h3 id="viewing-all-tasks-in-club-connect-code-viewalltasks-code-since-v1-4"><a class="link" href="#viewing-all-tasks-in-club-connect-code-viewalltasks-code-since-v1-4">3.35. Viewing all tasks in Club Connect : <code>viewalltasks</code> (Since v1.4)</a></h3>
 <div class="paragraph">
 <p>Displays all the tasks created/assigned in Club Connect. This is a command that can be used by <code>Exco</code> members to monitor all the tasks in the club.<br>
 Format: <code>viewalltasks</code><br>
@@ -1769,7 +1778,7 @@ This command is for <code>Exco</code> members only.
 </div>
 </div>
 <div class="sect2">
-<h3 id="viewing-tasks-assigned-to-or-assigned-by-you-code-viewmytasks-code-since-v1-4"><a class="link" href="#viewing-tasks-assigned-to-or-assigned-by-you-code-viewmytasks-code-since-v1-4">3.35. Viewing tasks assigned to or assigned by you : <code>viewmytasks</code> (Since v1.4)</a></h3>
+<h3 id="viewing-tasks-assigned-to-or-assigned-by-you-code-viewmytasks-code-since-v1-4"><a class="link" href="#viewing-tasks-assigned-to-or-assigned-by-you-code-viewmytasks-code-since-v1-4">3.36. Viewing tasks assigned to or assigned by you : <code>viewmytasks</code> (Since v1.4)</a></h3>
 <div class="paragraph">
 <p>Display all tasks created/assigned by the currently member in Club Connect.<br></p>
 </div>
@@ -1791,7 +1800,7 @@ Alias: <code>mytasks</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="voting-in-a-poll-code-vote-code-since-v1-4"><a class="link" href="#voting-in-a-poll-code-vote-code-since-v1-4">3.36. Voting in a poll : <code>vote</code> (Since v1.4)</a></h3>
+<h3 id="voting-in-a-poll-code-vote-code-since-v1-4"><a class="link" href="#voting-in-a-poll-code-vote-code-since-v1-4">3.37. Voting in a poll : <code>vote</code> (Since v1.4)</a></h3>
 <div class="paragraph">
 <p>Votes for the specified answer in the specified poll in Club Connect .<br>
 Format: <code>vote POLL_INDEX ANSWER_INDEX</code><br>
@@ -1834,7 +1843,7 @@ Votes for the 1st answer in the 5th poll of the poll listing</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="auto-complete-command-since-v1-3"><a class="link" href="#auto-complete-command-since-v1-3">3.37. Auto-Complete Command (Since v1.3)</a></h3>
+<h3 id="auto-complete-command-since-v1-3"><a class="link" href="#auto-complete-command-since-v1-3">3.38. Auto-Complete Command (Since v1.3)</a></h3>
 <div class="paragraph">
 <p>Auto-completes the command on pressing the <kbd>TAB</kbd> key. Cycles through all possible commands based on user input.</p>
 </div>
@@ -1852,7 +1861,7 @@ The feature is only meant for command words, and not their aliases.
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.38. Saving the data</a></h3>
+<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.39. Saving the data</a></h3>
 <div class="paragraph">
 <p>Club Connect data is saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
@@ -2065,7 +2074,7 @@ Fret not, Club Connect provides you with a platform to voice your opinions. And 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-13 18:33:35 UTC
+Last updated 2018-04-14 02:25:53 UTC
 </div>
 </div>
 </body>
