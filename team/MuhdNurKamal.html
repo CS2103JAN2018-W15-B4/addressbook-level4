@@ -388,7 +388,7 @@ requireToLogIn();</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Figure 40 below shows the UML diagram of the <code>Poll</code> class.</p>
+<p>Figure 49 below shows the UML diagram of the <code>Poll</code> class.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -396,7 +396,7 @@ requireToLogIn();</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 40. Poll UML Diagram</em></p>
+<p><em>Figure 49. Poll UML Diagram</em></p>
 </div>
 <div class="paragraph">
 <p>A <code>Poll</code> consists of the following:</p>
@@ -415,7 +415,7 @@ requireToLogIn();</code></pre>
 </ul>
 </div>
 <div class="paragraph">
-<p>Figure 41 below shows the UML diagram of the <code>Answer</code> class.</p>
+<p>Figure 50 below shows the UML diagram of the <code>Answer</code> class.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -423,7 +423,7 @@ requireToLogIn();</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 41. Poll UML Diagram</em></p>
+<p><em>Figure 50. Poll UML Diagram</em></p>
 </div>
 <div class="paragraph">
 <p>An <code>Answer</code> consists of the following:</p>
@@ -448,7 +448,7 @@ requireToLogIn();</code></pre>
 <p>The input of the command is the <code>POLL_INDEX</code> of a poll and <code>ANSWER_INDEX</code> of the answer of the poll</p>
 </div>
 <div class="paragraph">
-<p>Figure 44 shows the flow of voting in a poll:</p>
+<p>Figure 53 shows the flow of voting in a poll:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -456,7 +456,7 @@ requireToLogIn();</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 44. Sequence Diagram for voting in a poll</em></p>
+<p><em>Figure 53. Sequence Diagram for voting in a poll</em></p>
 </div>
 <div class="paragraph">
 <p>The execution of the command invokes <code>Model#voteInPoll()</code>.
@@ -486,8 +486,8 @@ the poll will be removed from the poll <code>ListView</code> GUI, otherwise it w
 <p>Viewing and Hiding Poll Results is facilitated by the <code>ViewResultsCommand</code> and <code>HideResultsCommand</code>.</p>
 </div>
 <div class="paragraph">
-<p>By default poll results are not shown(Figure 45), but when <code>ViewResultsCommand</code> is executed, results consisting of
-how many people voted in a poll and how many voted for each answer will be shown(Figure 46).</p>
+<p>By default poll results are not shown(Figure 54), but when <code>ViewResultsCommand</code> is executed, results consisting of
+how many people voted in a poll and how many voted for each answer will be shown(Figure 55).</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -495,7 +495,7 @@ how many people voted in a poll and how many voted for each answer will be shown
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 45. Poll Without Results</em></p>
+<p><em>Figure 54. Poll Without Results</em></p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -503,13 +503,13 @@ how many people voted in a poll and how many voted for each answer will be shown
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 46. Poll With Results</em></p>
+<p><em>Figure 55. Poll With Results</em></p>
 </div>
 <div class="paragraph">
 <p>Since viewing and hiding results of polls are similar in implementation, only viewing results of polls will be discussed.</p>
 </div>
 <div class="paragraph">
-<p>When an <code>Exco</code> member inputs 'viewresults', the sequence diagram (Figure 47) below shows how the different components interact
+<p>When an <code>Exco</code> member inputs 'viewresults', the sequence diagram (Figure 56) below shows how the different components interact
 to post a <code>ViewResultsRequestEvent</code>.</p>
 </div>
 <div class="imageblock">
@@ -518,10 +518,10 @@ to post a <code>ViewResultsRequestEvent</code>.</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 47. Sequence Diagram to <code>EventsCenter</code> for viewing poll results .</em></p>
+<p><em>Figure 56. Sequence Diagram to <code>EventsCenter</code> for viewing poll results .</em></p>
 </div>
 <div class="paragraph">
-<p>Then, the <code>PollListPanel</code> which contains the poll <code>ListView</code>, will handle the event (Figure 48) by showing results of results of all polls (Figure 46).</p>
+<p>Then, the <code>PollListPanel</code> which contains the poll <code>ListView</code>, will handle the event (Figure 57) by showing results of results of all polls (Figure 46).</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -529,7 +529,7 @@ to post a <code>ViewResultsRequestEvent</code>.</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 48. Sequence Diagram from <code>EventsCenter</code> for viewing poll results.</em></p>
+<p><em>Figure 57. Sequence Diagram from <code>EventsCenter</code> for viewing poll results.</em></p>
 </div>
 <div class="paragraph">
 <p>The following code snippet shows the implementation:</p>
@@ -593,7 +593,7 @@ who voted, check user&#8217;s <code>MatricNumber</code> with all <code>MatricNum
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 14:47:43 UTC
+Last updated 2018-04-15 15:08:12 UTC
 </div>
 </div>
 </body>

@@ -400,7 +400,7 @@ Deletes the <code>pr</code> group from Club Connect.</p>
 <p>Task-management commands require a member to be logged in (and thus by extension, an initial sign-up).</p>
 </div>
 <div class="paragraph">
-<p>Figure 22 below shows the UML diagram of the <code>Task</code> class.</p>
+<p>Figure 31 below shows the UML diagram of the <code>Task</code> class.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -408,7 +408,7 @@ Deletes the <code>pr</code> group from Club Connect.</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 22. Task UML Diagram</em></p>
+<p><em>Figure 31. Task UML Diagram</em></p>
 </div>
 <div class="sect4">
 <h5 id="adding-tasks"><a class="link" href="#adding-tasks">Adding Tasks</a></h5>
@@ -417,7 +417,7 @@ Deletes the <code>pr</code> group from Club Connect.</p>
 <p>Adding Tasks is facilitated by the <code>AddTaskCommand</code>. When this command is invoked, it adds a task with the input <code>Description</code>, <code>Date</code>, and <code>Time</code>. The status of every newly created task is by default set to <code>Yet To Begin</code>. The <code>Assignor</code> and <code>Assignee</code> of the task is set to the <code>Matric Number</code> of the member who is currently logged into <code>Club Connect</code>.</p>
 </div>
 <div class="paragraph">
-<p>Figure 23 below shows the UML representation of <code>AddTaskCommand</code>.</p>
+<p>Figure 32 below shows the UML representation of <code>AddTaskCommand</code>.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -425,10 +425,10 @@ Deletes the <code>pr</code> group from Club Connect.</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 23. UML diagram of <code>AddTaskCommand</code>.</em></p>
+<p><em>Figure 32. UML diagram of <code>AddTaskCommand</code>.</em></p>
 </div>
 <div class="paragraph">
-<p>Figure 24 shows the flow of parsing an <code>AddTaskCommand</code> object:</p>
+<p>Figure 33 shows the flow of parsing an <code>AddTaskCommand</code> object:</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -436,10 +436,10 @@ Deletes the <code>pr</code> group from Club Connect.</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 24. Sequence Diagram for <code>AddTaskCommand</code> parsing.</em></p>
+<p><em>Figure 33. Sequence Diagram for <code>AddTaskCommand</code> parsing.</em></p>
 </div>
 <div class="paragraph">
-<p>Figure 25 depicts the high-level sequence of events that take place.</p>
+<p>Figure 34 depicts the high-level sequence of events that take place.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -447,7 +447,7 @@ Deletes the <code>pr</code> group from Club Connect.</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 25. Sequence Diagram for adding a task.</em></p>
+<p><em>Figure 34. Sequence Diagram for adding a task.</em></p>
 </div>
 </div>
 </div>
@@ -493,7 +493,7 @@ Deletes the <code>pr</code> group from Club Connect.</p>
 <p>Changing a task&#8217;s status is made possible by the <code>ChangeTaskStatusCommand</code>.<br></p>
 </div>
 <div class="paragraph">
-<p>Figure 35 below shows the UML representation of <code>ChangeTaskStatusCommand</code>.</p>
+<p>Figure 44 below shows the UML representation of <code>ChangeTaskStatusCommand</code>.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -501,11 +501,11 @@ Deletes the <code>pr</code> group from Club Connect.</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 35. UML Diagram of <code>ChangeTaskStatusCommand</code>.</em></p>
+<p><em>Figure 44. UML Diagram of <code>ChangeTaskStatusCommand</code>.</em></p>
 </div>
 <div class="paragraph">
 <p>Parsing of the command is performed by <code>ChangeTaskStatusCommandParser</code>, which returns a <code>ChangeTaskStatusCommand</code> object.<br>
-Figure 36 below depicts the parsing of the <code>ChangeTaskStatusObject</code>.</p>
+Figure 45 below depicts the parsing of the <code>ChangeTaskStatusObject</code>.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -513,10 +513,10 @@ Figure 36 below depicts the parsing of the <code>ChangeTaskStatusObject</code>.<
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 36. Sequence Diagram for <code>ChangeTaskStatusCommand</code> parsing.</em></p>
+<p><em>Figure 45. Sequence Diagram for <code>ChangeTaskStatusCommand</code> parsing.</em></p>
 </div>
 <div class="paragraph">
-<p>Figure 37 below describes the high-level sequence of events that take place.</p>
+<p>Figure 46 below describes the high-level sequence of events that take place.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -524,7 +524,7 @@ Figure 36 below depicts the parsing of the <code>ChangeTaskStatusObject</code>.<
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 37. Sequence Diagram for changing the status of a task.</em></p>
+<p><em>Figure 46. Sequence Diagram for changing the status of a task.</em></p>
 </div>
 </div>
 </div>
@@ -582,7 +582,7 @@ Figure 36 below depicts the parsing of the <code>ChangeTaskStatusObject</code>.<
 <p>The <code>deletegroup</code> mechanism is facilitated by the <code>DeleteGroupCommand</code> class. It allows <code>Exco</code> members to delete a group from <code>Club Connect</code>. The group of all members part of the group that is to be deleted will be changed to the default group - <code>member</code>.</p>
 </div>
 <div class="paragraph">
-<p>The <code>DeleteGroupCommand</code> extends from <code>UndoableCommand</code> as it is an undoable command. Figure 49 below depicts the UML representation of the <code>Command</code>.</p>
+<p>The <code>DeleteGroupCommand</code> extends from <code>UndoableCommand</code> as it is an undoable command. Figure 58 below depicts the UML representation of the <code>Command</code>.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -590,10 +590,10 @@ Figure 36 below depicts the parsing of the <code>ChangeTaskStatusObject</code>.<
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 49. UML Diagram of <code>DeleteGroupCommand</code>.</em></p>
+<p><em>Figure 58. UML Diagram of <code>DeleteGroupCommand</code>.</em></p>
 </div>
 <div class="paragraph">
-<p><code>DeleteGroupCommandParser</code> is responsible for parsing the <code>deletegroup</code> command. It returns a <code>DeleteGroupCommand</code> object after parsing the <code>Group</code>. The parsing of the command is shown below in Figure 50.</p>
+<p><code>DeleteGroupCommandParser</code> is responsible for parsing the <code>deletegroup</code> command. It returns a <code>DeleteGroupCommand</code> object after parsing the <code>Group</code>. The parsing of the command is shown below in Figure 59.</p>
 </div>
 <div class="paragraph">
 <p>The method where the deletion takes place in each member is <code>ClubBook#deleteGroupFromMember</code>.</p>
@@ -623,10 +623,10 @@ Figure 36 below depicts the parsing of the <code>ChangeTaskStatusObject</code>.<
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 50. Sequence Diagram for the parsing of <code>DeleteGroupCommand</code>.</em></p>
+<p><em>Figure 59. Sequence Diagram for the parsing of <code>DeleteGroupCommand</code>.</em></p>
 </div>
 <div class="paragraph">
-<p>The high-level sequence of events is depicted in Figure 51 below.</p>
+<p>The high-level sequence of events is depicted in Figure 60 below.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -634,7 +634,7 @@ Figure 36 below depicts the parsing of the <code>ChangeTaskStatusObject</code>.<
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 51. Sequence Diagram for delete a group from <code>Club Connect</code>.</em></p>
+<p><em>Figure 60. Sequence Diagram for delete a group from <code>Club Connect</code>.</em></p>
 </div>
 </div>
 <div class="sect3">
@@ -760,7 +760,7 @@ It consists of 2 algorithms <code>E</code> (Encrypting or Encoding) and <code>D<
 <p>Once the key is generated, all data will be encrypted with AES. Anyone who wishes to view the decrypted form of the data must possess the secret key.</p>
 </div>
 <div class="paragraph">
-<p>Figure 61 below describes the encryption procedure used in AES – specifically, the Cipher Block Chaining (CBC) mode.</p>
+<p>Figure 74 below describes the encryption procedure used in AES – specifically, the Cipher Block Chaining (CBC) mode.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -768,10 +768,10 @@ It consists of 2 algorithms <code>E</code> (Encrypting or Encoding) and <code>D<
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 61. AES – CBC mode encryption.</em></p>
+<p><em>Figure 74. AES – CBC mode encryption.</em></p>
 </div>
 <div class="paragraph">
-<p>Figure 62 below shows the decryption process.</p>
+<p>Figure 75 below shows the decryption process.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -779,7 +779,7 @@ It consists of 2 algorithms <code>E</code> (Encrypting or Encoding) and <code>D<
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 62. AES – CBC mode decrption.</em></p>
+<p><em>Figure 75. AES – CBC mode decrption.</em></p>
 </div>
 <div class="paragraph">
 <p><mark>End of Extract (from Developer Guide)</mark></p>
@@ -986,7 +986,7 @@ Assigns a task to <code>A1122334K</code> with description <code>Buy Food</code> 
 <p>Assigning tasks can be accomplished with the <code>AssignTaskCommand</code>. Tasks are assigned to members through the <code>Matric Number</code> attribute.<br></p>
 </div>
 <div class="paragraph">
-<p>Figure 26 below shows the UML representation of <code>AssignTaskCommand</code>.</p>
+<p>Figure 35 below shows the UML representation of <code>AssignTaskCommand</code>.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -994,14 +994,14 @@ Assigns a task to <code>A1122334K</code> with description <code>Buy Food</code> 
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 26. UML diagram of <code>AssignTaskCommand</code>.</em></p>
+<p><em>Figure 35. UML diagram of <code>AssignTaskCommand</code>.</em></p>
 </div>
 <div class="paragraph">
 <p>The implementation of assigning tasks is similar to that of adding tasks. The only difference is that the Assignor is set to the <code>Matric Number</code> of the member who is currently logged in.</p>
 </div>
 <div class="paragraph">
 <p>The parsing of an <code>AssignTaskCommand</code> is performed by the <code>AssignTaskCommandParser</code>.<br>
-Figure 27 shows the flow of parsing an <code>AssignTaskCommand</code> object:</p>
+Figure 36 shows the flow of parsing an <code>AssignTaskCommand</code> object:</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -1009,10 +1009,10 @@ Figure 27 shows the flow of parsing an <code>AssignTaskCommand</code> object:</p
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 27. Sequence Diagram for <code>AssignTaskCommand</code> parsing.</em></p>
+<p><em>Figure 36. Sequence Diagram for <code>AssignTaskCommand</code> parsing.</em></p>
 </div>
 <div class="paragraph">
-<p>Figure 28 depicts the high-level sequence of events that take place.</p>
+<p>Figure 37 depicts the high-level sequence of events that take place.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -1020,7 +1020,7 @@ Figure 27 shows the flow of parsing an <code>AssignTaskCommand</code> object:</p
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 28. Sequence Diagram for assigning a task.</em></p>
+<p><em>Figure 37. Sequence Diagram for assigning a task.</em></p>
 </div>
 </div>
 <div class="sect3">
@@ -1141,7 +1141,7 @@ Deletes the 1st task in the results of the <code>viewalltasks</code> command.</p
 The command object takes in the <code>INDEX</code> of the task to be deleted.</p>
 </div>
 <div class="paragraph">
-<p>Figure 29 below shows the UML representation of <code>DeleteTaskCommand</code>.</p>
+<p>Figure 38 below shows the UML representation of <code>DeleteTaskCommand</code>.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -1149,11 +1149,11 @@ The command object takes in the <code>INDEX</code> of the task to be deleted.</p
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 29. UML diagram of <code>DeleteTaskCommand</code>.</em></p>
+<p><em>Figure 38. UML diagram of <code>DeleteTaskCommand</code>.</em></p>
 </div>
 <div class="paragraph">
 <p><code>DeleteTaskCommandParser</code> is responsible for parsing the user input into a <code>DeleteTaskCommand</code> object.<br>
-Figure 30 illustrates the sequence in which the parsing is done.</p>
+Figure 39 illustrates the sequence in which the parsing is done.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -1161,10 +1161,10 @@ Figure 30 illustrates the sequence in which the parsing is done.</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 30. Sequence Diagram for <code>DeleteTaskCommand</code> parsing.</em></p>
+<p><em>Figure 39. Sequence Diagram for <code>DeleteTaskCommand</code> parsing.</em></p>
 </div>
 <div class="paragraph">
-<p>The high-level sequence of events is shown below in Figure 31.</p>
+<p>The high-level sequence of events is shown below in Figure 40.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -1172,7 +1172,7 @@ Figure 30 illustrates the sequence in which the parsing is done.</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 31. Sequence Diagram for deleting a task.</em></p>
+<p><em>Figure 40. Sequence Diagram for deleting a task.</em></p>
 </div>
 </div>
 </div>
@@ -1294,7 +1294,7 @@ Changes the assignee of the 3rd task to <code>A6656789H</code> in the task listi
 <p>Assigning tasks can be accomplished with the <code>AssignTaskCommand</code>. Tasks are assigned to members through the <code>Matric Number</code> attribute.<br></p>
 </div>
 <div class="paragraph">
-<p>Figure 26 below shows the UML representation of <code>AssignTaskCommand</code>.</p>
+<p>Figure 35 below shows the UML representation of <code>AssignTaskCommand</code>.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -1302,14 +1302,14 @@ Changes the assignee of the 3rd task to <code>A6656789H</code> in the task listi
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 26. UML diagram of <code>AssignTaskCommand</code>.</em></p>
+<p><em>Figure 35. UML diagram of <code>AssignTaskCommand</code>.</em></p>
 </div>
 <div class="paragraph">
 <p>The implementation of assigning tasks is similar to that of adding tasks. The only difference is that the Assignor is set to the <code>Matric Number</code> of the member who is currently logged in.</p>
 </div>
 <div class="paragraph">
 <p>The parsing of an <code>AssignTaskCommand</code> is performed by the <code>AssignTaskCommandParser</code>.<br>
-Figure 27 shows the flow of parsing an <code>AssignTaskCommand</code> object:</p>
+Figure 36 shows the flow of parsing an <code>AssignTaskCommand</code> object:</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -1317,10 +1317,10 @@ Figure 27 shows the flow of parsing an <code>AssignTaskCommand</code> object:</p
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 27. Sequence Diagram for <code>AssignTaskCommand</code> parsing.</em></p>
+<p><em>Figure 36. Sequence Diagram for <code>AssignTaskCommand</code> parsing.</em></p>
 </div>
 <div class="paragraph">
-<p>Figure 28 depicts the high-level sequence of events that take place.</p>
+<p>Figure 37 depicts the high-level sequence of events that take place.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -1328,7 +1328,7 @@ Figure 27 shows the flow of parsing an <code>AssignTaskCommand</code> object:</p
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 28. Sequence Diagram for assigning a task.</em></p>
+<p><em>Figure 37. Sequence Diagram for assigning a task.</em></p>
 </div>
 </div>
 </div>
@@ -1437,7 +1437,7 @@ Alias: <code>mytasks</code></p>
 <p><code>Exco</code> members can view all the tasks in <code>Club Connect</code> using the <code>ViewAllTasksCommand</code>.</p>
 </div>
 <div class="paragraph">
-<p>The high-level sequence of events on executing the <code>ViewAllTasksCommand</code> is described below in Figure 38.</p>
+<p>The high-level sequence of events on executing the <code>ViewAllTasksCommand</code> is described below in Figure 47.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -1445,7 +1445,7 @@ Alias: <code>mytasks</code></p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 38. Sequence Diagram for viewing all tasks.</em></p>
+<p><em>Figure 47. Sequence Diagram for viewing all tasks.</em></p>
 </div>
 </div>
 <div class="sect4">
@@ -1467,7 +1467,7 @@ Alias: <code>mytasks</code></p>
 </div>
 </div>
 <div class="paragraph">
-<p>The sequence diagram of the <code>viewmytasks</code> command is shown below in Figure 39.</p>
+<p>The sequence diagram of the <code>viewmytasks</code> command is shown below in Figure 48.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -1475,7 +1475,7 @@ Alias: <code>mytasks</code></p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 39. Sequence Diagram for viewing tasks of the currently logged-in member.</em></p>
+<p><em>Figure 48. Sequence Diagram for viewing tasks of the currently logged-in member.</em></p>
 </div>
 <div class="paragraph">
 <p><mark>End of Extract (from Developer Guide)</mark></p>
@@ -1488,7 +1488,7 @@ Alias: <code>mytasks</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 14:47:43 UTC
+Last updated 2018-04-15 15:08:12 UTC
 </div>
 </div>
 </body>

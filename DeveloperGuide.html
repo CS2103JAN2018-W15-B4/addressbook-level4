@@ -127,18 +127,29 @@
 <h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Club Connect is a computer application targeted at club members who are students at the National University of Singapore (NUS).
+<p>Club Connect is a computer application targeted at student club members at the National University of Singapore (NUS).
 It aims to make the tedious process of club management easier are more effective.
-It provides features that are essential for a club to function smoothly such as user authentication, assigning tasks, email blasts, conducting polls, and importing and exporting member details.
-This guide provides the necessary information for developers who are interested in contributing to the application - from the steps required to set-up, to detailed descriptions of the current features that the application sports.</p>
+It provides features that are essential for a club to function smoothly such as user authentication, assigning tasks, email blasts, conducting polls, and importing and exporting member details.</p>
+</div>
+<div class="paragraph">
+<p>This guide provides the necessary information for developers who are interested in contributing to the application. If you are a novice developer, it is recommended that you read through this guide sequentially. The guide will thoroughly explain all aspects of this project- from the steps required to set up the project on your computer, to the implementation details of some features of this application.</p>
+</div>
+<div class="paragraph">
+<p>To familiarise yourself with the source code it is recommended that you try out the tasks in  <a href="#GetStartedProgramming">Appendix A, Suggested Programming Tasks to Get Started</a>. If you are an experienced developer, you may wish to jump to  <a href="#Design-Architecture">Section 3.1, “Architecture”</a> to begin understanding the software architecture.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="setting-up"><a class="link" href="#setting-up">2. Setting up</a></h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>The steps that you need to follow to set up the Club Connect project on your computer are listed below.</p>
+</div>
 <div class="sect2">
 <h3 id="prerequisites"><a class="link" href="#prerequisites">2.1. Prerequisites</a></h3>
+<div class="paragraph">
+<p>Install the following on your computer before you begin the project setup:</p>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -178,6 +189,9 @@ Do not disable them. If you have disabled them, go to <code>File</code> &gt; <co
 </div>
 <div class="sect2">
 <h3 id="setting-up-the-project-in-your-computer"><a class="link" href="#setting-up-the-project-in-your-computer">2.2. Setting up the project in your computer</a></h3>
+<div class="paragraph">
+<p>Follow these steps to set up the project on your computer:</p>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -221,6 +235,9 @@ This will generate all resources required by the application and tests.</p>
 </div>
 <div class="sect2">
 <h3 id="verifying-the-setup"><a class="link" href="#verifying-the-setup">2.3. Verifying the setup</a></h3>
+<div class="paragraph">
+<p>Perform the following steps to verify that the project has been set up properly:</p>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -234,6 +251,9 @@ This will generate all resources required by the application and tests.</p>
 </div>
 <div class="sect2">
 <h3 id="configurations-to-do-before-writing-code"><a class="link" href="#configurations-to-do-before-writing-code">2.4. Configurations to do before writing code</a></h3>
+<div class="paragraph">
+<p>Go through these steps before you begin contributing to the project.</p>
+</div>
 <div class="sect3">
 <h4 id="configuring-the-coding-style"><a class="link" href="#configuring-the-coding-style">2.4.1. Configuring the coding style</a></h4>
 <div class="paragraph">
@@ -315,7 +335,7 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 <div class="sect3">
 <h4 id="getting-started-with-coding"><a class="link" href="#getting-started-with-coding">2.4.4. Getting started with coding</a></h4>
 <div class="paragraph">
-<p>When you are ready to start coding,</p>
+<p>When you are ready to start coding:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -334,6 +354,9 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 <div class="sect1">
 <h2 id="design"><a class="link" href="#design">3. Design</a></h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>This section describes the architecture and 6 components that are part of the Club Connect project.</p>
+</div>
 <div class="admonitionblock tip">
 <table>
 <tr>
@@ -362,7 +385,7 @@ Given below is a quick overview of each component.</p>
 <p><em>Figure 1. Architecture Diagram</em></p>
 </div>
 <div class="paragraph">
-<p><code>Main</code> has only one class called <a href="https://github.com/CS2103JAN2018-W15-B4/main/tree/master/src/main/java/seedu/club/MainApp.java"><code>MainApp</code></a>.
+<p><code>Main</code> is a component that has only one class called <a href="https://github.com/CS2103JAN2018-W15-B4/main/tree/master/src/main/java/seedu/club/MainApp.java"><code>MainApp</code></a>.
 It is responsible for the following:</p>
 </div>
 <div class="ulist">
@@ -481,7 +504,7 @@ This is an example of how this Event Driven approach helps us reduce direct coup
 </table>
 </div>
 <div class="paragraph">
-<p>The sections below give more details of each component.</p>
+<p>The sections below describe the four components in greater detail.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1205,7 +1228,7 @@ Club Connect currently doesn&#8217;t support sending emails to members belonging
 </div>
 <div class="paragraph">
 <p>The <code>EmailCommand</code> extends from <code>Command</code> and not from <code>UndoableCommand</code>, as it is not an undoable command.
-Refer to Figure 19 for the UML diagram.</p>
+Refer to Figure 28 for the UML diagram.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1213,11 +1236,11 @@ Refer to Figure 19 for the UML diagram.</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 19. EmailCommand UML Diagram</em></p>
+<p><em>Figure 28. EmailCommand UML Diagram</em></p>
 </div>
 <div class="paragraph">
 <p><code>EmailCommandParser</code> is responsible for parsing the <code>email</code> command. It returns a <code>EmailCommand</code> object after parsing <code>Client</code>, <code>Subject</code>, <code>Body</code>, <code>Group</code>, and <code>Tag</code>.
-Figure 20 depicts the sequence of parsing the command.</p>
+Figure 29 depicts the sequence of parsing the command.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1225,7 +1248,7 @@ Figure 20 depicts the sequence of parsing the command.</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 20. Sequence Diagram for Email Command parsing</em></p>
+<p><em>Figure 29. Sequence Diagram for Email Command parsing</em></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1266,7 +1289,7 @@ As Club Connect only allows emails to be sent to members of EITHER a <code>Group
 </div>
 <div class="paragraph">
 <p><code>EmailCommand#sendEmail()</code> raises an event <code>SendEmailRequestEvent</code>, which triggers the system&#8217;s default browser to open the chosen mail client&#8217;s 'Compose Message' page with all the relevant fields filled-in.
-Figure 21 depicts the high-level sequence of events that take place.</p>
+Figure 30 depicts the high-level sequence of events that take place.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1274,7 +1297,7 @@ Figure 21 depicts the high-level sequence of events that take place.</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 21. Sequence Diagram for Email Command</em></p>
+<p><em>Figure 30. Sequence Diagram for Email Command</em></p>
 </div>
 <div class="paragraph">
 <p>The browser URL for composing the email is generated as follows:</p>
@@ -1342,7 +1365,7 @@ Desktop.getDesktop().browse(<span class="keyword">new</span> <span class="predef
 <p>Task-management commands require a member to be logged in (and thus by extension, an initial sign-up).</p>
 </div>
 <div class="paragraph">
-<p>Figure 22 below shows the UML diagram of the <code>Task</code> class.</p>
+<p>Figure 31 below shows the UML diagram of the <code>Task</code> class.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -1350,7 +1373,7 @@ Desktop.getDesktop().browse(<span class="keyword">new</span> <span class="predef
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 22. Task UML Diagram</em></p>
+<p><em>Figure 31. Task UML Diagram</em></p>
 </div>
 <div class="sect4">
 <h5 id="adding-tasks"><a class="link" href="#adding-tasks">Adding Tasks</a></h5>
@@ -1359,7 +1382,7 @@ Desktop.getDesktop().browse(<span class="keyword">new</span> <span class="predef
 <p>Adding Tasks is facilitated by the <code>AddTaskCommand</code>. When this command is invoked, it adds a task with the input <code>Description</code>, <code>Date</code>, and <code>Time</code>. The status of every newly created task is by default set to <code>Yet To Begin</code>. The <code>Assignor</code> and <code>Assignee</code> of the task is set to the <code>Matric Number</code> of the member who is currently logged into <code>Club Connect</code>.</p>
 </div>
 <div class="paragraph">
-<p>Figure 23 below shows the UML representation of <code>AddTaskCommand</code>.</p>
+<p>Figure 32 below shows the UML representation of <code>AddTaskCommand</code>.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -1367,10 +1390,10 @@ Desktop.getDesktop().browse(<span class="keyword">new</span> <span class="predef
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 23. UML diagram of <code>AddTaskCommand</code>.</em></p>
+<p><em>Figure 32. UML diagram of <code>AddTaskCommand</code>.</em></p>
 </div>
 <div class="paragraph">
-<p>Figure 24 shows the flow of parsing an <code>AddTaskCommand</code> object:</p>
+<p>Figure 33 shows the flow of parsing an <code>AddTaskCommand</code> object:</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -1378,10 +1401,10 @@ Desktop.getDesktop().browse(<span class="keyword">new</span> <span class="predef
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 24. Sequence Diagram for <code>AddTaskCommand</code> parsing.</em></p>
+<p><em>Figure 33. Sequence Diagram for <code>AddTaskCommand</code> parsing.</em></p>
 </div>
 <div class="paragraph">
-<p>Figure 25 depicts the high-level sequence of events that take place.</p>
+<p>Figure 34 depicts the high-level sequence of events that take place.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -1389,7 +1412,7 @@ Desktop.getDesktop().browse(<span class="keyword">new</span> <span class="predef
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 25. Sequence Diagram for adding a task.</em></p>
+<p><em>Figure 34. Sequence Diagram for adding a task.</em></p>
 </div>
 </div>
 </div>
@@ -1435,7 +1458,7 @@ Desktop.getDesktop().browse(<span class="keyword">new</span> <span class="predef
 <p>Assigning tasks can be accomplished with the <code>AssignTaskCommand</code>. Tasks are assigned to members through the <code>Matric Number</code> attribute.<br></p>
 </div>
 <div class="paragraph">
-<p>Figure 26 below shows the UML representation of <code>AssignTaskCommand</code>.</p>
+<p>Figure 35 below shows the UML representation of <code>AssignTaskCommand</code>.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -1443,14 +1466,14 @@ Desktop.getDesktop().browse(<span class="keyword">new</span> <span class="predef
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 26. UML diagram of <code>AssignTaskCommand</code>.</em></p>
+<p><em>Figure 35. UML diagram of <code>AssignTaskCommand</code>.</em></p>
 </div>
 <div class="paragraph">
 <p>The implementation of assigning tasks is similar to that of adding tasks. The only difference is that the Assignor is set to the <code>Matric Number</code> of the member who is currently logged in.</p>
 </div>
 <div class="paragraph">
 <p>The parsing of an <code>AssignTaskCommand</code> is performed by the <code>AssignTaskCommandParser</code>.<br>
-Figure 27 shows the flow of parsing an <code>AssignTaskCommand</code> object:</p>
+Figure 36 shows the flow of parsing an <code>AssignTaskCommand</code> object:</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -1458,10 +1481,10 @@ Figure 27 shows the flow of parsing an <code>AssignTaskCommand</code> object:</p
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 27. Sequence Diagram for <code>AssignTaskCommand</code> parsing.</em></p>
+<p><em>Figure 36. Sequence Diagram for <code>AssignTaskCommand</code> parsing.</em></p>
 </div>
 <div class="paragraph">
-<p>Figure 28 depicts the high-level sequence of events that take place.</p>
+<p>Figure 37 depicts the high-level sequence of events that take place.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -1469,7 +1492,7 @@ Figure 27 shows the flow of parsing an <code>AssignTaskCommand</code> object:</p
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 28. Sequence Diagram for assigning a task.</em></p>
+<p><em>Figure 37. Sequence Diagram for assigning a task.</em></p>
 </div>
 </div>
 </div>
@@ -1516,7 +1539,7 @@ Figure 27 shows the flow of parsing an <code>AssignTaskCommand</code> object:</p
 The command object takes in the <code>INDEX</code> of the task to be deleted.</p>
 </div>
 <div class="paragraph">
-<p>Figure 29 below shows the UML representation of <code>DeleteTaskCommand</code>.</p>
+<p>Figure 38 below shows the UML representation of <code>DeleteTaskCommand</code>.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -1524,11 +1547,11 @@ The command object takes in the <code>INDEX</code> of the task to be deleted.</p
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 29. UML diagram of <code>DeleteTaskCommand</code>.</em></p>
+<p><em>Figure 38. UML diagram of <code>DeleteTaskCommand</code>.</em></p>
 </div>
 <div class="paragraph">
 <p><code>DeleteTaskCommandParser</code> is responsible for parsing the user input into a <code>DeleteTaskCommand</code> object.<br>
-Figure 30 illustrates the sequence in which the parsing is done.</p>
+Figure 39 illustrates the sequence in which the parsing is done.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -1536,10 +1559,10 @@ Figure 30 illustrates the sequence in which the parsing is done.</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 30. Sequence Diagram for <code>DeleteTaskCommand</code> parsing.</em></p>
+<p><em>Figure 39. Sequence Diagram for <code>DeleteTaskCommand</code> parsing.</em></p>
 </div>
 <div class="paragraph">
-<p>The high-level sequence of events is shown below in Figure 31.</p>
+<p>The high-level sequence of events is shown below in Figure 40.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -1547,7 +1570,7 @@ Figure 30 illustrates the sequence in which the parsing is done.</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 31. Sequence Diagram for deleting a task.</em></p>
+<p><em>Figure 40. Sequence Diagram for deleting a task.</em></p>
 </div>
 </div>
 </div>
@@ -1593,7 +1616,7 @@ Figure 30 illustrates the sequence in which the parsing is done.</p>
 <p>The <code>ChangeAssigneeCommand</code> is used to change the <code>Assignee</code> of a task.<br></p>
 </div>
 <div class="paragraph">
-<p>Figure 32 below shows the UML representation of <code>ChangeAssigneeCommand</code>.</p>
+<p>Figure 41 below shows the UML representation of <code>ChangeAssigneeCommand</code>.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -1601,11 +1624,11 @@ Figure 30 illustrates the sequence in which the parsing is done.</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 32. UML Diagram of <code>ChangeAssigneeCommand</code>.</em></p>
+<p><em>Figure 41. UML Diagram of <code>ChangeAssigneeCommand</code>.</em></p>
 </div>
 <div class="paragraph">
 <p><code>ChangeAssigneeCommandParser</code> is responsible for parsing the <code>changeassignee</code> command. It returns a <code>ChangeAssigneeCommand</code> object after parsing the <code>INDEX</code> and the <code>Assignee</code>.
-Figure 33 shows the sequence diagram of the <code>ChangeAssigneeCommandParser</code>.</p>
+Figure 42 shows the sequence diagram of the <code>ChangeAssigneeCommandParser</code>.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -1613,10 +1636,10 @@ Figure 33 shows the sequence diagram of the <code>ChangeAssigneeCommandParser</c
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 33. Sequence Diagram of <code>ChangeAssigneeCommandParser</code>.</em></p>
+<p><em>Figure 42. Sequence Diagram of <code>ChangeAssigneeCommandParser</code>.</em></p>
 </div>
 <div class="paragraph">
-<p>Figure 34 below shows the high-level sequence diagram of the command execution.</p>
+<p>Figure 43 below shows the high-level sequence diagram of the command execution.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -1624,7 +1647,7 @@ Figure 33 shows the sequence diagram of the <code>ChangeAssigneeCommandParser</c
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 34. Sequence Diagram of changing the <code>Assignee</code> of a task.</em></p>
+<p><em>Figure 43. Sequence Diagram of changing the <code>Assignee</code> of a task.</em></p>
 </div>
 </div>
 </div>
@@ -1670,7 +1693,7 @@ Figure 33 shows the sequence diagram of the <code>ChangeAssigneeCommandParser</c
 <p>Changing a task&#8217;s status is made possible by the <code>ChangeTaskStatusCommand</code>.<br></p>
 </div>
 <div class="paragraph">
-<p>Figure 35 below shows the UML representation of <code>ChangeTaskStatusCommand</code>.</p>
+<p>Figure 44 below shows the UML representation of <code>ChangeTaskStatusCommand</code>.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -1678,11 +1701,11 @@ Figure 33 shows the sequence diagram of the <code>ChangeAssigneeCommandParser</c
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 35. UML Diagram of <code>ChangeTaskStatusCommand</code>.</em></p>
+<p><em>Figure 44. UML Diagram of <code>ChangeTaskStatusCommand</code>.</em></p>
 </div>
 <div class="paragraph">
 <p>Parsing of the command is performed by <code>ChangeTaskStatusCommandParser</code>, which returns a <code>ChangeTaskStatusCommand</code> object.<br>
-Figure 36 below depicts the parsing of the <code>ChangeTaskStatusObject</code>.</p>
+Figure 45 below depicts the parsing of the <code>ChangeTaskStatusObject</code>.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -1690,10 +1713,10 @@ Figure 36 below depicts the parsing of the <code>ChangeTaskStatusObject</code>.<
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 36. Sequence Diagram for <code>ChangeTaskStatusCommand</code> parsing.</em></p>
+<p><em>Figure 45. Sequence Diagram for <code>ChangeTaskStatusCommand</code> parsing.</em></p>
 </div>
 <div class="paragraph">
-<p>Figure 37 below describes the high-level sequence of events that take place.</p>
+<p>Figure 46 below describes the high-level sequence of events that take place.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -1701,7 +1724,7 @@ Figure 36 below depicts the parsing of the <code>ChangeTaskStatusObject</code>.<
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 37. Sequence Diagram for changing the status of a task.</em></p>
+<p><em>Figure 46. Sequence Diagram for changing the status of a task.</em></p>
 </div>
 </div>
 </div>
@@ -1747,7 +1770,7 @@ Figure 36 below depicts the parsing of the <code>ChangeTaskStatusObject</code>.<
 <p><code>Exco</code> members can view all the tasks in <code>Club Connect</code> using the <code>ViewAllTasksCommand</code>.</p>
 </div>
 <div class="paragraph">
-<p>The high-level sequence of events on executing the <code>ViewAllTasksCommand</code> is described below in Figure 38.</p>
+<p>The high-level sequence of events on executing the <code>ViewAllTasksCommand</code> is described below in Figure 47.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -1755,7 +1778,7 @@ Figure 36 below depicts the parsing of the <code>ChangeTaskStatusObject</code>.<
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 38. Sequence Diagram for viewing all tasks.</em></p>
+<p><em>Figure 47. Sequence Diagram for viewing all tasks.</em></p>
 </div>
 </div>
 <div class="sect4">
@@ -1777,7 +1800,7 @@ Figure 36 below depicts the parsing of the <code>ChangeTaskStatusObject</code>.<
 </div>
 </div>
 <div class="paragraph">
-<p>The sequence diagram of the <code>viewmytasks</code> command is shown below in Figure 39.</p>
+<p>The sequence diagram of the <code>viewmytasks</code> command is shown below in Figure 48.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -1785,7 +1808,7 @@ Figure 36 below depicts the parsing of the <code>ChangeTaskStatusObject</code>.<
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 39. Sequence Diagram for viewing tasks of the currently logged-in member.</em></p>
+<p><em>Figure 48. Sequence Diagram for viewing tasks of the currently logged-in member.</em></p>
 </div>
 </div>
 </div>
@@ -1839,7 +1862,7 @@ requireToLogIn();</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Figure 40 below shows the UML diagram of the <code>Poll</code> class.</p>
+<p>Figure 49 below shows the UML diagram of the <code>Poll</code> class.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1847,7 +1870,7 @@ requireToLogIn();</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 40. Poll UML Diagram</em></p>
+<p><em>Figure 49. Poll UML Diagram</em></p>
 </div>
 <div class="paragraph">
 <p>A <code>Poll</code> consists of the following:</p>
@@ -1866,7 +1889,7 @@ requireToLogIn();</code></pre>
 </ul>
 </div>
 <div class="paragraph">
-<p>Figure 41 below shows the UML diagram of the <code>Answer</code> class.</p>
+<p>Figure 50 below shows the UML diagram of the <code>Answer</code> class.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1874,7 +1897,7 @@ requireToLogIn();</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 41. Poll UML Diagram</em></p>
+<p><em>Figure 50. Poll UML Diagram</em></p>
 </div>
 <div class="paragraph">
 <p>An <code>Answer</code> consists of the following:</p>
@@ -1898,7 +1921,7 @@ When a poll is created by the <code>AddPollCommand</code>, it&#8217;s Set&lt;Mat
 is initialized as empty because no member has voted in the poll.</p>
 </div>
 <div class="paragraph">
-<p>Figure 42 shows the flow of adding a poll:</p>
+<p>Figure 51 shows the flow of adding a poll:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1906,7 +1929,7 @@ is initialized as empty because no member has voted in the poll.</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 42. Sequence Diagram for adding a poll</em></p>
+<p><em>Figure 51. Sequence Diagram for adding a poll</em></p>
 </div>
 <div class="paragraph">
 <p>The execution of the command invokes <code>Model#addPoll(poll)</code>.<br>
@@ -1934,7 +1957,7 @@ The following code snippet shows the implementation:</p>
 <p>Deleting Polls is facilitated by the <code>DeletePollCommand</code> which inherits from <code>UndoableCommand</code> to make deleting polls undoable.</p>
 </div>
 <div class="paragraph">
-<p>Figure 43 shows the flow of deleting a poll:</p>
+<p>Figure 52 shows the flow of deleting a poll:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1942,7 +1965,7 @@ The following code snippet shows the implementation:</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 43. Sequence Diagram for deleting a poll</em></p>
+<p><em>Figure 52. Sequence Diagram for deleting a poll</em></p>
 </div>
 <div class="paragraph">
 <p>The execution of the command invokes <code>Model#deletePoll()</code>.
@@ -1972,7 +1995,7 @@ The following code snippet shows the implementation:</p>
 <p>The input of the command is the <code>POLL_INDEX</code> of a poll and <code>ANSWER_INDEX</code> of the answer of the poll</p>
 </div>
 <div class="paragraph">
-<p>Figure 44 shows the flow of voting in a poll:</p>
+<p>Figure 53 shows the flow of voting in a poll:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1980,7 +2003,7 @@ The following code snippet shows the implementation:</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 44. Sequence Diagram for voting in a poll</em></p>
+<p><em>Figure 53. Sequence Diagram for voting in a poll</em></p>
 </div>
 <div class="paragraph">
 <p>The execution of the command invokes <code>Model#voteInPoll()</code>.
@@ -2010,8 +2033,8 @@ the poll will be removed from the poll <code>ListView</code> GUI, otherwise it w
 <p>Viewing and Hiding Poll Results is facilitated by the <code>ViewResultsCommand</code> and <code>HideResultsCommand</code>.</p>
 </div>
 <div class="paragraph">
-<p>By default poll results are not shown(Figure 45), but when <code>ViewResultsCommand</code> is executed, results consisting of
-how many people voted in a poll and how many voted for each answer will be shown(Figure 46).</p>
+<p>By default poll results are not shown(Figure 54), but when <code>ViewResultsCommand</code> is executed, results consisting of
+how many people voted in a poll and how many voted for each answer will be shown(Figure 55).</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -2019,7 +2042,7 @@ how many people voted in a poll and how many voted for each answer will be shown
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 45. Poll Without Results</em></p>
+<p><em>Figure 54. Poll Without Results</em></p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -2027,13 +2050,13 @@ how many people voted in a poll and how many voted for each answer will be shown
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 46. Poll With Results</em></p>
+<p><em>Figure 55. Poll With Results</em></p>
 </div>
 <div class="paragraph">
 <p>Since viewing and hiding results of polls are similar in implementation, only viewing results of polls will be discussed.</p>
 </div>
 <div class="paragraph">
-<p>When an <code>Exco</code> member inputs 'viewresults', the sequence diagram (Figure 47) below shows how the different components interact
+<p>When an <code>Exco</code> member inputs 'viewresults', the sequence diagram (Figure 56) below shows how the different components interact
 to post a <code>ViewResultsRequestEvent</code>.</p>
 </div>
 <div class="imageblock">
@@ -2042,10 +2065,10 @@ to post a <code>ViewResultsRequestEvent</code>.</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 47. Sequence Diagram to <code>EventsCenter</code> for viewing poll results .</em></p>
+<p><em>Figure 56. Sequence Diagram to <code>EventsCenter</code> for viewing poll results .</em></p>
 </div>
 <div class="paragraph">
-<p>Then, the <code>PollListPanel</code> which contains the poll <code>ListView</code>, will handle the event (Figure 48) by showing results of results of all polls (Figure 46).</p>
+<p>Then, the <code>PollListPanel</code> which contains the poll <code>ListView</code>, will handle the event (Figure 57) by showing results of results of all polls (Figure 46).</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -2053,7 +2076,7 @@ to post a <code>ViewResultsRequestEvent</code>.</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 48. Sequence Diagram from <code>EventsCenter</code> for viewing poll results.</em></p>
+<p><em>Figure 57. Sequence Diagram from <code>EventsCenter</code> for viewing poll results.</em></p>
 </div>
 <div class="paragraph">
 <p>The following code snippet shows the implementation:</p>
@@ -2120,7 +2143,7 @@ who voted, check user&#8217;s <code>MatricNumber</code> with all <code>MatricNum
 <p>The <code>deletegroup</code> mechanism is facilitated by the <code>DeleteGroupCommand</code> class. It allows <code>Exco</code> members to delete a group from <code>Club Connect</code>. The group of all members part of the group that is to be deleted will be changed to the default group - <code>member</code>.</p>
 </div>
 <div class="paragraph">
-<p>The <code>DeleteGroupCommand</code> extends from <code>UndoableCommand</code> as it is an undoable command. Figure 49 below depicts the UML representation of the <code>Command</code>.</p>
+<p>The <code>DeleteGroupCommand</code> extends from <code>UndoableCommand</code> as it is an undoable command. Figure 58 below depicts the UML representation of the <code>Command</code>.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -2128,10 +2151,10 @@ who voted, check user&#8217;s <code>MatricNumber</code> with all <code>MatricNum
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 49. UML Diagram of <code>DeleteGroupCommand</code>.</em></p>
+<p><em>Figure 58. UML Diagram of <code>DeleteGroupCommand</code>.</em></p>
 </div>
 <div class="paragraph">
-<p><code>DeleteGroupCommandParser</code> is responsible for parsing the <code>deletegroup</code> command. It returns a <code>DeleteGroupCommand</code> object after parsing the <code>Group</code>. The parsing of the command is shown below in Figure 50.</p>
+<p><code>DeleteGroupCommandParser</code> is responsible for parsing the <code>deletegroup</code> command. It returns a <code>DeleteGroupCommand</code> object after parsing the <code>Group</code>. The parsing of the command is shown below in Figure 59.</p>
 </div>
 <div class="paragraph">
 <p>The method where the deletion takes place in each member is <code>ClubBook#deleteGroupFromMember</code>.</p>
@@ -2161,10 +2184,10 @@ who voted, check user&#8217;s <code>MatricNumber</code> with all <code>MatricNum
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 50. Sequence Diagram for the parsing of <code>DeleteGroupCommand</code>.</em></p>
+<p><em>Figure 59. Sequence Diagram for the parsing of <code>DeleteGroupCommand</code>.</em></p>
 </div>
 <div class="paragraph">
-<p>The high-level sequence of events is depicted in Figure 51 below.</p>
+<p>The high-level sequence of events is depicted in Figure 60 below.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -2172,7 +2195,7 @@ who voted, check user&#8217;s <code>MatricNumber</code> with all <code>MatricNum
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 51. Sequence Diagram for delete a group from <code>Club Connect</code>.</em></p>
+<p><em>Figure 60. Sequence Diagram for delete a group from <code>Club Connect</code>.</em></p>
 </div>
 </div>
 <div class="sect3">
@@ -2223,7 +2246,7 @@ To facilitate this, it makes use of the <code>CsvUtil</code> class, which conver
 </div>
 <div class="paragraph">
 <p>The <code>ImportCommand</code> extends from the <code>UndoableCommand</code> class, and only consists of a <code>File</code> attribute.
-This is illustrated in the UML diagram shown in Figure 52.</p>
+This is illustrated in the UML diagram shown in Figure 61.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -2231,11 +2254,11 @@ This is illustrated in the UML diagram shown in Figure 52.</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 52. ImportCommand UML Diagram</em></p>
+<p><em>Figure 61. ImportCommand UML Diagram</em></p>
 </div>
 <div class="paragraph">
 <p>The <code>import</code> command involves the use of multiple components of the Club Connect application.
-Figure 53 (below) shows the high-level <em>Sequence Diagram</em> for the <code>import</code> command.</p>
+Figure 62 (below) shows the high-level <em>Sequence Diagram</em> for the <code>import</code> command.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -2243,7 +2266,7 @@ Figure 53 (below) shows the high-level <em>Sequence Diagram</em> for the <code>i
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 53. High Level Sequence Diagram for the <code>import C:/Users/Admin/club.csv</code> command</em></p>
+<p><em>Figure 62. High Level Sequence Diagram for the <code>import C:/Users/Admin/club.csv</code> command</em></p>
 </div>
 <div class="paragraph">
 <p><code>Logic</code> is responsible for parsing the <code>import</code> command.
@@ -2382,7 +2405,7 @@ It makes use of the <code>CsvUtil</code> class to convert <code>Member</code> ob
 </div>
 <div class="paragraph">
 <p>The <code>ExportCommand</code> extends from the <code>Command</code> class, as it is not an undoable command and only consists of a <code>File</code> attribute.
-Figure 52 depicts the UML diagram for the <code>ExportCommand</code> class.</p>
+Figure 63 depicts the UML diagram for the <code>ExportCommand</code> class.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -2390,11 +2413,11 @@ Figure 52 depicts the UML diagram for the <code>ExportCommand</code> class.</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 52. ExportCommand UML Diagram</em></p>
+<p><em>Figure 63. ExportCommand UML Diagram</em></p>
 </div>
 <div class="paragraph">
 <p>The <code>export</code> command uses multiple components of the Club Connect application.
-The <em>Sequence Diagram</em> below (Figure 53) shows the interactions between some of these components.
+The <em>Sequence Diagram</em> below (Figure 64) shows the interactions between some of these components.
 As you can see, the <code>ExportCommand</code> is driven by the <code>NewExportDataAvailableEvent</code>.</p>
 </div>
 <div class="imageblock">
@@ -2403,10 +2426,10 @@ As you can see, the <code>ExportCommand</code> is driven by the <code>NewExportD
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 53. High Level Sequence Diagram for the <code>export C:/Users/Admin/members.csv</code> command</em></p>
+<p><em>Figure 64. High Level Sequence Diagram for the <code>export C:/Users/Admin/members.csv</code> command</em></p>
 </div>
 <div class="paragraph">
-<p>This event is handled by the <code>Storage</code> component as shown in Figure 54.</p>
+<p>This event is handled by the <code>Storage</code> component as shown in Figure 65.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -2414,7 +2437,7 @@ As you can see, the <code>ExportCommand</code> is driven by the <code>NewExportD
 </div>
 </div>
 <div class="paragraph">
-<p>_Figure 54. High Level Sequence Diagram showing how the <code>Storage</code> component handles the <code>NewExportDataAvailableEvent</code></p>
+<p>_Figure 65. High Level Sequence Diagram showing how the <code>Storage</code> component handles the <code>NewExportDataAvailableEvent</code></p>
 </div>
 <div class="paragraph">
 <p><code>Storage</code> makes use of a <code>CsvClubBookStorage</code> object to write data to the file specified by the export path.
@@ -2503,7 +2526,7 @@ To facilitate this, it makes use of the <code>ProfilePhoto</code> class.</p>
 <p>Currently, the <code>ChangeProfilePhotoCommand</code> extends from the <code>Command</code> class, and not from <code>UndoableCommand</code>.</p>
 </div>
 <div class="paragraph">
-<p>Refer to Figure 52 for the UML diagram.
+<p>Refer to Figure 66 for the UML diagram.
 The <code>ProfilePhoto</code> class consists of a <code>String</code> attribute to store the file path of the profile photo.</p>
 </div>
 <div class="imageblock">
@@ -2512,11 +2535,11 @@ The <code>ProfilePhoto</code> class consists of a <code>String</code> attribute 
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 52. ChangeProfilePhotoCommand UML Diagram</em></p>
+<p><em>Figure 66. ChangeProfilePhotoCommand UML Diagram</em></p>
 </div>
 <div class="paragraph">
 <p>The <code>displaypic</code> command involves the use of multiple components of Club Connect.
-Figure 53 (below) shows the interactions between these components.
+Figure 67 (below) shows the interactions between these components.
 As you can see, the <code>ChangeProfilePhotoCommand</code> is driven by the <code>ProfilePhotoChangedEvent</code>.</p>
 </div>
 <div class="imageblock">
@@ -2525,12 +2548,12 @@ As you can see, the <code>ChangeProfilePhotoCommand</code> is driven by the <cod
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 53. High Level Sequence Diagram for the <code>changepic C:/Users/Admin/Desktop/photo.png</code> command</em></p>
+<p><em>Figure 67. High Level Sequence Diagram for the <code>changepic C:/Users/Admin/Desktop/photo.png</code> command</em></p>
 </div>
 <div class="paragraph">
 <p>ChangeProfilePhotoCommandParser is responsible for parsing the <code>changepic</code> command.
 It returns a <code>ChangeProfilePhotoCommand</code> object after parsing the photo file path.
-Figure 54 depicts the Sequence Diagram for interactions within the <code>Logic</code> component for the <code>execute("changepic C:/Users/Admin/Desktop/ photo.png")</code> API call.</p>
+Figure 68 depicts the Sequence Diagram for interactions within the <code>Logic</code> component for the <code>execute("changepic C:/Users/Admin/Desktop/ photo.png")</code> API call.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -2538,7 +2561,7 @@ Figure 54 depicts the Sequence Diagram for interactions within the <code>Logic</
 </div>
 </div>
 <div class="paragraph">
-<p>_Figure 54. Interactions Inside the Logic Component for the <code>changepic C:/Users/Admin/Desktop/photo.png</code> command</p>
+<p>_Figure 68. Interactions Inside the Logic Component for the <code>changepic C:/Users/Admin/Desktop/photo.png</code> command</p>
 </div>
 <div class="paragraph">
 <p>The <code>ChangeProfilePhotoCommand#execute()</code> method invokes the <code>addProfilePhoto()</code> method from <code>model</code>.
@@ -2690,7 +2713,7 @@ Members can delete the original file from the computer, without affecting the Cl
 <div class="sect3">
 <h4 id="current-implementation-10"><a class="link" href="#current-implementation-10">4.10.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>Member details are shown as cards in the GUI. Cards can either be decompressed(Figure 56) or compressed(Figure 57).</p>
+<p>Member details are shown as cards in the GUI. Cards can either be decompressed(Figure 69) or compressed(Figure 70).</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -2698,7 +2721,7 @@ Members can delete the original file from the computer, without affecting the Cl
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 56. Decompressed Member Cards</em></p>
+<p><em>Figure 69. Decompressed Member Cards</em></p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -2706,11 +2729,11 @@ Members can delete the original file from the computer, without affecting the Cl
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 57. Compressed Member Cards</em></p>
+<p><em>Figure 70. Compressed Member Cards</em></p>
 </div>
 <div class="paragraph">
 <p>The <code>MemberCard</code> class provides an abstraction for the member card shown in the GUI. By default, it shows a member card that is decompressed.
-To differentiate between compressed and decompressed member card, we introduced a <code>CompressedMemberCard</code> class. This class extends <code>MemberCard</code> (Figure 58) since a <code>CompressedMemberCard</code> is a <code>MemberCard</code>.
+To differentiate between compressed and decompressed member card, we introduced a <code>CompressedMemberCard</code> class. This class extends <code>MemberCard</code> (Figure 71) since a <code>CompressedMemberCard</code> is a <code>MemberCard</code>.
 Each of these classes contain a different static String showing location of the actual <code>FXML</code> file that determines layout of the member card, hence we get different layouts.</p>
 </div>
 <div class="imageblock">
@@ -2719,7 +2742,7 @@ Each of these classes contain a different static String showing location of the 
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 58. <code>MemberCard</code> class diagram</em></p>
+<p><em>Figure 71. <code>MemberCard</code> class diagram</em></p>
 </div>
 <div class="paragraph">
 <p>The <code>compress</code> and <code>decompress</code> commands allows members to select whether they want to see detailed information of members or see a compressed version for easy viewing.
@@ -2729,10 +2752,10 @@ These commands do not extend from <code>UndoableCommand</code> but just from <co
 <p>Due to the similar nature of the <code>compress</code> and <code>decompress</code> commands, only the <code>compress</code> command will be discussed.</p>
 </div>
 <div class="paragraph">
-<p>Suppose that the user has just launched the application. The member cards would be decompressed (Figure 56).</p>
+<p>Suppose that the user has just launched the application. The member cards would be decompressed (Figure 69).</p>
 </div>
 <div class="paragraph">
-<p>The user inputs 'compress' and the sequence diagram (Figure 59) below shows how the different components interact.</p>
+<p>The user inputs 'compress' and the sequence diagram (Figure 72) below shows how the different components interact.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -2740,10 +2763,10 @@ These commands do not extend from <code>UndoableCommand</code> but just from <co
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 59. Sequence diagram for compress command to Events Center</em></p>
+<p><em>Figure 72. Sequence diagram for compress command to Events Center</em></p>
 </div>
 <div class="paragraph">
-<p>Then, the <code>MemberListPanel</code>, which contains the <code>MemberCard</code> objects will handle the event (Figure 60). If the cards are already compressed, no changes occur.
+<p>Then, the <code>MemberListPanel</code>, which contains the <code>MemberCard</code> objects will handle the event (Figure 73). If the cards are already compressed, no changes occur.
 However, if the cards are decompressed, the <code>MemberCard</code> objects would be converted to <code>CompressedMemberCard</code> objects.</p>
 </div>
 <div class="imageblock">
@@ -2752,7 +2775,7 @@ However, if the cards are decompressed, the <code>MemberCard</code> objects woul
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 60. Sequence diagram for compress command from Events Center</em></p>
+<p><em>Figure 73. Sequence diagram for compress command from Events Center</em></p>
 </div>
 </div>
 <div class="sect3">
@@ -2944,7 +2967,7 @@ It consists of 2 algorithms <code>E</code> (Encrypting or Encoding) and <code>D<
 <p>Once the key is generated, all data will be encrypted with AES. Anyone who wishes to view the decrypted form of the data must possess the secret key.</p>
 </div>
 <div class="paragraph">
-<p>Figure 61 below describes the encryption procedure used in AES – specifically, the Cipher Block Chaining (CBC) mode.</p>
+<p>Figure 74 below describes the encryption procedure used in AES – specifically, the Cipher Block Chaining (CBC) mode.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -2952,10 +2975,10 @@ It consists of 2 algorithms <code>E</code> (Encrypting or Encoding) and <code>D<
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 61. AES – CBC mode encryption.</em></p>
+<p><em>Figure 74. AES – CBC mode encryption.</em></p>
 </div>
 <div class="paragraph">
-<p>Figure 62 below shows the decryption process.</p>
+<p>Figure 75 below shows the decryption process.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -2963,7 +2986,7 @@ It consists of 2 algorithms <code>E</code> (Encrypting or Encoding) and <code>D<
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 62. AES – CBC mode decrption.</em></p>
+<p><em>Figure 75. AES – CBC mode decrption.</em></p>
 </div>
 </div>
 </div>
@@ -3065,7 +3088,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <p>Within Chrome, click on the <code>Print</code> option in Chrome&#8217;s menu.</p>
 </li>
 <li>
-<p>Set the destination to <code>Save as PDF</code>, then click <code>Save</code> to save a copy of the file in PDF format. For best results, use the settings in Figure 63 below.</p>
+<p>Set the destination to <code>Save as PDF</code>, then click <code>Save</code> to save a copy of the file in PDF format. For best results, use the settings in Figure 76 below.</p>
 </li>
 </ol>
 </div>
@@ -3075,7 +3098,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 63. Screenshot of saving documentation as PDF in Chrome</em></p>
+<p><em>Figure 76. Screenshot of saving documentation as PDF in Chrome</em></p>
 </div>
 </div>
 </div>
@@ -3452,41 +3475,37 @@ Do take a look at <a href="#Design-Ui">Section 3.2, &#8220;UI component&#8221;</
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Use different colors for different tags inside member cards. For example, <code>friends</code> tags can be all in brown, and <code>colleagues</code> tags can be all in yellow as shown in Figure 62.</p>
+<p>Use different colors for different tags inside member cards. For example, <code>friends</code> tags can be all in brown, and <code>colleagues</code> tags can be all in yellow as shown in Figure 78.</p>
 <div class="paragraph">
-<p>Figure 64 below shows the member details before the modification.</p>
+<p>Figure 77 below shows the member details before the modification.</p>
 </div>
 <div class="paragraph">
-<p><strong>Before</strong></p>
+<p><strong>Before</strong><br></p>
+</div>
+</li>
+</ol>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/getting-started-ui-tag-before.png" alt="getting started ui tag before" width="300">
 </div>
 </div>
-</li>
-</ol>
+<div class="paragraph">
+<p><em>Figure 77. Member details before modification</em></p>
 </div>
 <div class="paragraph">
-<p><em>Figure 64. Member details before modification</em></p>
+<p>Figure 78 below shows the member details after the modification.</p>
 </div>
 <div class="paragraph">
-<p>+
-Figure 65 below shows the member details after the modification.</p>
+<p><strong>After</strong><br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/getting-started-ui-tag-after.png" alt="getting started ui tag after" width="300">
+</div>
 </div>
 <div class="paragraph">
-<p>+
-<strong>After</strong></p>
-</div>
-<div class="paragraph">
-<p>+
-image::getting-started-ui-tag-after.png[width="300"]</p>
-</div>
-<div class="paragraph">
-<p><em>Figure 65. Member details after modification</em></p>
-</div>
-<div class="paragraph">
-<p>+</p>
+<p><em>Figure 78. Member details after modification</em></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -3537,7 +3556,7 @@ image::getting-started-ui-tag-after.png[width="300"]</p>
 <li>
 <p>Modify <a href="https://github.com/CS2103JAN2018-W15-B4/main/tree/master/src/main/java/seedu/address/commons/events/ui/NewResultAvailableEvent.java"><code>NewResultAvailableEvent</code></a> such that <a href="https://github.com/CS2103JAN2018-W15-B4/main/tree/master/src/main/java/seedu/address/ui/ResultDisplay.java"><code>ResultDisplay</code></a> can show a different style on error (currently it shows the same regardless of errors).</p>
 <div class="paragraph">
-<p>Figure 66 below shows the <code>ResultDisplay</code> before the modification.<br>
+<p>Figure 79 below shows the <code>ResultDisplay</code> before the modification.<br>
 <strong>Before</strong></p>
 </div>
 <div class="imageblock">
@@ -3546,13 +3565,13 @@ image::getting-started-ui-tag-after.png[width="300"]</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 66. ResultDisplay before modification</em></p>
+<p><em>Figure 79. ResultDisplay before modification</em></p>
 </div>
 <div class="paragraph">
 <p><strong>After</strong></p>
 </div>
 <div class="paragraph">
-<p>Figure 67 below shows the <code>ResultDisplay</code> after the modification.</p>
+<p>Figure 80 below shows the <code>ResultDisplay</code> after the modification.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -3560,7 +3579,7 @@ image::getting-started-ui-tag-after.png[width="300"]</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 67. ResultDisplay after modification</em></p>
+<p><em>Figure 80. ResultDisplay after modification</em></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -3623,7 +3642,7 @@ image::getting-started-ui-tag-after.png[width="300"]</p>
 <li>
 <p>Modify the <a href="https://github.com/CS2103JAN2018-W15-B4/main/tree/master/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> to show the total number of people in the address book.</p>
 <div class="paragraph">
-<p>Figure 68 below shows the <code>StatusBarFooter</code> before the modification.</p>
+<p>Figure 81 below shows the <code>StatusBarFooter</code> before the modification.</p>
 </div>
 <div class="paragraph">
 <p><strong>Before</strong></p>
@@ -3633,29 +3652,23 @@ image::getting-started-ui-tag-after.png[width="300"]</p>
 <img src="images/getting-started-ui-status-before.png" alt="getting started ui status before" width="500">
 </div>
 </div>
+<div class="paragraph">
+<p><em>Figure 81. StatusBarFooter before modification</em>+
+Figure 82 below shows the <code>StatusBarFooter</code> after the modification.</p>
+</div>
+<div class="paragraph">
+<p><strong>After</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/getting-started-ui-status-after.png" alt="getting started ui status after" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 82. StatusBarFooter after modification</em></p>
+</div>
 </li>
 </ol>
-</div>
-<div class="paragraph">
-<p><em>Figure 68. StatusBarFooter before modification</em></p>
-</div>
-<div class="paragraph">
-<p>+
-Figure 69 below shows the <code>StatusBarFooter</code> after the modification.</p>
-</div>
-<div class="paragraph">
-<p>+
-<strong>After</strong></p>
-</div>
-<div class="paragraph">
-<p>+
-image::getting-started-ui-status-after.png[width="500"]</p>
-</div>
-<div class="paragraph">
-<p><em>Figure 69. StatusBarFooter after modification</em></p>
-</div>
-<div class="paragraph">
-<p>+</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -5942,7 +5955,7 @@ Expected: No tag is deleted as the tag name format is invalid. Relevant error de
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 14:47:42 UTC
+Last updated 2018-04-15 15:08:12 UTC
 </div>
 </div>
 </body>
