@@ -32,102 +32,274 @@ It aims to make the tedious process of club management easier and more effective
 <p><strong>Club Connect</strong> is an application that a user who loves to type would fancy - in other words, it uses a Command Line Interface (CLI). All output is displayed on a Graphical User Interface (GUI) - which is just computer jargon for a display that includes panes, menus and message boxes.</p>
 </div>
 <div class="paragraph">
-<p><strong>Code Contributed</strong> : [<a href="https://github.com/CS2103JAN2018-W15-B4/main/blob/master/collated/functional/th14thmusician.md">Functional code</a>] [<a href="https://github.com/CS2103JAN2018-W15-B4/main/blob/master/collated/test/yash-chowdhary.md">Test code</a>]</p>
+<p><strong>Code Contributed</strong> : [<a href="https://github.com/CS2103JAN2018-W15-B4/main/blob/master/collated/functional/th14thmusician.md">Functional code</a>] [<a href="https://github.com/CS2103JAN2018-W15-B4/main/blob/master/collated/test/th14thmusician.md">Test code</a>]</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
+<h2 id="major-enhancement-account-management"><a class="link" href="#major-enhancement-account-management">Major Enhancement: Account Management</a></h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Major enhancement</strong>: added <strong>Account Management</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>What it does: It allows individual to set up a club by signing up and allows members of existing clubs to log into their own personal account. In addition to the sign up and log in features, users are able to change their password to ensure that their own account is secure.</p>
-</li>
-<li>
-<p>Justification: This enhancement consist of 3 features which allows members to have their own personal account. Furthermore, it grants administrator rights to a group of users for them to execute commands that only administrator users can execute. This feature will allow administrator to manage member accounts as well.</p>
-</li>
-<li>
-<p>Highlights: This enhancement affects existing commands and commands to be added in future. As almost every command executed will require the log in or sign up feature. Since we are using local database, this feature can be further improved by linking it to a backend server.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Minor enhancement</strong>: Revamped the User Interface of the select function.</p>
-</li>
-<li>
-<p><strong>Code contributed</strong>: [<a href="https://github.com">Functional code</a>] [<a href="https://github.com">Test code</a>] <em>{give links to collated code files}</em></p>
-</li>
-<li>
-<p><strong>Other contributions</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Enhancements to existing features:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Implemented Sort function where member shown will always be sorted in alphabetical order (Pull requests <a href="https://github.com">#97</a>)</p>
-</li>
-<li>
-<p>Reported some existing bugs to teammates</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Documentation:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Did cosmetic tweaks to existing contents of the Developer Guide.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Community:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Reported bugs and suggestions for other teams in the class.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
 <div class="paragraph">
-<p><em>{you can add/remove categories in the list above}</em></p>
+<p>Account Management are authentication which members can store unique data into, logs into their own account to modify their account details and also start the Club Connect by Signing up the first user.</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
-<div class="sectionbody">
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 100%;">
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users.</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td>
 </tr>
 </tbody>
 </table>
+<div class="sect2">
+<h3 id="sign-up-feature"><a class="link" href="#sign-up-feature">Sign Up Feature</a></h3>
+<div class="paragraph">
+<p>Sign Up feature allows the setting up of Club Connect. It adds the first person into Club Connect.</p>
+</div>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract (from UserGuide)</mark></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="signing-up-a-member-code-signup-code-since-v1-4"><a class="link" href="#signing-up-a-member-code-signup-code-since-v1-4">Signing up a member: <code>signup</code> (since v1.4)</a></h3>
+<div class="paragraph">
+<p>Signs up a member to Club Connect.<br>
+Format: <code>signup n/NAME p/PHONE_NUMBER e/EMAIL m/MATRIC_NUMBER [t/TAG]&#8230;&#8203;</code><br>
+Aliases: <code>register</code>, <code>enroll</code><br></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+A member can have any number of tags (including 0).
+</td>
+</tr>
+</table>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>You must not specify a group while signing up.</p>
+</li>
+<li>
+<p>The member who signed up will be automatically be added to a group named exco.</p>
+</li>
+<li>
+<p>You can only sign-up once.</p>
+</li>
+<li>
+<p>You must use the credentials of the signed-up member to continue using Club Connect.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Refer to <code>login</code> command documentation for user credentials.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Example: <code>signup n/Alan Walker p/97456895 e/alanw@gmail.com m/A0156489C t/President</code></p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract (from UserGuide)</mark></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="log-in-feature"><a class="link" href="#log-in-feature">Log In Feature</a></h3>
+<div class="paragraph">
+<p>Log In feature allows each and every member to have their own unique account which stores their data.</p>
+</div>
+<div class="paragraph">
+<p><mark>Start of Extract (from UserGuide)</mark></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging-in-to-the-application-code-login-code-since-v1-3"><a class="link" href="#logging-in-to-the-application-code-login-code-since-v1-3">Logging in to the application: <code>login</code> (Since v1.3)</a></h3>
+<div class="paragraph">
+<p>Logs in a member to Club Connect.<br>
+Format: <code>login u/USERNAME pw/PASSWORD</code><br>
+Alias: <code>signin</code></p>
+</div>
+<div class="paragraph">
+<p>Example: <code>login u/A0123456H pw/password</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Use your <code>MATRIC NUMBER</code> as your username.</p>
+</li>
+<li>
+<p>The default password is <code>password</code>. We advise you to change your password using the <code>changepass</code> command once you&#8217;ve logged in.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract (from UserGuide)</mark></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="change-password-feature"><a class="link" href="#change-password-feature">Change Password Feature</a></h3>
+<div class="paragraph">
+<p>Change Password Feature allows members to change their password to improve the security of their accounts.</p>
+</div>
+<div class="paragraph">
+<p><mark>Start of Extract (from UserGuide)</mark></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="changing-password-code-changepass-code-since-v1-4"><a class="link" href="#changing-password-code-changepass-code-since-v1-4">Changing password : <code>changepass</code> (Since v1.4)</a></h3>
+<div class="paragraph">
+<p>Changes your password, if you are logged in.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>changepass u/USERNAME pw/OLD_PASSWORD npw/NEW_PASSWORD</code><br>
+Alias: <code>changepw</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Members are only able to change their own password.</p>
+</li>
+<li>
+<p>Exco members can change the password of any member. The member is indicated by their username.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>changepass u/A0123456H pw/password npw/pword</code><br>
+Changes the password of the member with username <code>A0123456H</code> to <code>pword</code>.</p>
+</li>
+<li>
+<p><code>changepass u/A1234567H pw/password npw/brandnewpassword</code><br>
+Changes the password of the member with username <code>A1234567H</code> to <code>brandnewpassword</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract (from UserGuide)</mark></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="log-out-feature"><a class="link" href="#log-out-feature">Log Out Feature</a></h3>
+<div class="paragraph">
+<p>Log out feature allows members to switch accounts between them.</p>
+</div>
+<div class="paragraph">
+<p><mark>Start of Extract (from UserGuide)</mark></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging-out-of-the-application-code-logout-code-since-v1-4"><a class="link" href="#logging-out-of-the-application-code-logout-code-since-v1-4">Logging out of the application : <code>logout</code> (Since v1.4)</a></h3>
+<div class="paragraph">
+<p>Logouts out the user from Club Connect.<br>
+Format: <code>logout</code><br>
+Alias: <code>signout</code></p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract (from UserGuide)</mark></p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<h2 id="minor-enhancement-display-member-details"><a class="link" href="#minor-enhancement-display-member-details">Minor Enhancement: Display Member Details</a></h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Revamped Selected User Interface to display the details of the member selected</p>
+</div>
+<div class="paragraph">
+<p><mark>Start of Extract (from UserGuide)</mark></p>
+</div>
+<div class="sect2">
+<h3 id="selecting-a-member-code-select-code-since-v1-5rc"><a class="link" href="#selecting-a-member-code-select-code-since-v1-5rc">Selecting a member : <code>select</code> (since v1.5rc)</a></h3>
+<div class="paragraph">
+<p>Selects the member identified by the index number used in the most recent member listing.<br>
+Format: <code>select INDEX</code><br>
+Aliases: <code>s</code>, <code>show</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Selects the member and loads the member page the member at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> <code>1, 2, 3, &#8230;&#8203;</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+In order to get the UI to look as intended, check out <a href="#Tips">[Tips]</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>list</code><br>
+<code>select 2</code><br>
+Selects the 2nd member in Club Connect.</p>
+</li>
+<li>
+<p><code>find Betsy</code><br>
+<code>s 1</code><br>
+Selects the 1st member in the results of the <code>find</code> command.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract (from UserGuide)</mark></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="implementation"><a class="link" href="#implementation">Implementation</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Implementation of features from major enhancement.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 100%;">
@@ -138,12 +310,217 @@ It aims to make the tedious process of club management easier and more effective
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p><mark>Start of Extract (from Developer Guide)</mark></p>
+</div>
+<div class="sect2">
+<h3 id="account-management"><a class="link" href="#account-management">Account Management</a></h3>
+<div class="paragraph">
+<p>Account Management are authentication which members can store unique data into, logs into their own account to modify their account details and also start the Club Connect by Signing up the first user.</p>
+</div>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
+<div class="paragraph">
+<p>Account Management mechanism is facilitated by several command classes in Club Connect.</p>
+</div>
+<div class="sect4">
+<h5 id="signing-up"><a class="link" href="#signing-up">Signing up</a></h5>
+<div class="paragraph">
+<p><code>signup</code> mechanism is fascilitated by the <code>SignUpCommand</code> class.
+It allows the setting up of Club Connect.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+SignUpCommand can only be executed once. Only can be executed again after clearing Club Connect.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The <code>SignUpCommand</code> extends for <code>Command</code>. It is not an undoable command.
+Figure 19 (shown below) depicts the UML representation of the <code>SignUpCommand</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SignUpCommandUML.png" alt="SignUpCommandUML" width="200">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 19. UML Diagram of <code>SignUpCommand</code>.</em></p>
+</div>
+<div class="paragraph">
+<p>Parsing of command is performed by <code>SignUpCommandParser</code>, which returns a <code>SignUpCommand</code> object after parsing Name, Phone, Email, Matric Number, [Tags].
+Figure 20 below shows the sequence diagram of the <code>SignUpCommandParser</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SDforSignUpCommand.png" alt="SDforSignUpCommand" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 20. Sequence Diagram for the parsing of `SignUpCommandParser.`</em></p>
+</div>
+<div class="paragraph">
+<p>Figure 21 below shows the high-level sequence diagram of the command execution.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SDSignUp.png" alt="SDSignUp">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 21. High-Level Sequence diagram of signing up a member.</em></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="logging-in"><a class="link" href="#logging-in">Logging in</a></h5>
+<div class="paragraph">
+<p><code>login</code> mechanism is facilitated by the <code>LogInCommand</code> class.
+It allows <code>Exco</code> members to use <code>Exco</code> privileges in the Club Book. It also allows both <code>Members</code> and <code>Exco</code> to have their own account.
+The <code>LogInCommand</code> consists of the following fields:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Username - Username of the member.</p>
+</li>
+<li>
+<p>Password - Password of the member.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The <code>LogInCommand</code> extends for <code>Command</code>. It is not an undoable command.
+Figure 22 (shown below) depicts the UML representation of the <code>LogInCommand</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/LogInCommandUML.png" alt="LogInCommandUML" width="350">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 22. UML Diagram of <code>LogInCommand</code>.</em></p>
+</div>
+<div class="paragraph">
+<p>Parsing of command is performed by <code>LogInCommandParser</code>, which returns a <code>LogInCommand</code> object after parsing Username and Password object.
+Figure 23 below shows the sequence diagram of the <code>LogInCommandParser</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SDforLogInCommand.png" alt="SDforLogInCommand" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 23. Sequence diagram of <code>LogInCommandParser</code>.</em></p>
+</div>
+<div class="paragraph">
+<p>Figure 24 below shows the high-level sequence diagram of the command execution.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SDLogIn.png" alt="SDLogIn" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 24. High-Level Sequence diagram of logging in a member.</em></p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="changing-password"><a class="link" href="#changing-password">Changing Password</a></h4>
+<div class="paragraph">
+<p><code>changepass</code> mechanism is facilitated by the <code>ChangePasswordCommand</code> class.
+It allows <code>Members</code> to change their current password to a new password.
+The <code>ChangePasswordCommand</code> consist fo the following fields:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Username - Username of the member.</p>
+</li>
+<li>
+<p>Password - Current Password of the member.</p>
+</li>
+<li>
+<p>NewPassword - New Password given by the member.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><code>ChangePasswordCommand</code> extends from <code>Command</code> and not from <code>UndoableCommand</code>, as it is not an undoable command.
+Figure 25 (shown below) depicts the UML representation of the <code>ChangePasswordCommand</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ChangePasswordUML.png" alt="ChangePasswordUML" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>_Figure 25. UML Diagram of <code>ChangePasswordCommand</code>.</p>
+</div>
+<div class="paragraph">
+<p>Parsing of command is performed by <code>ChangePasswordCommandParser</code>, which returns a <code>ChangePassword</code> object after parsing Username, Password and Newpassword.
+Figure 26 below shows the sequence diagram of the <code>ChangePasswordCommandParser</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SDforChangePasswordCommand.png" alt="SDforChangePasswordCommand" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>_Figure 26. Sequence diagram of <code>ChangePasswordCommmandParser</code>.</p>
+</div>
+<div class="paragraph">
+<p>Figure 27 below shows the high-level sequence diagram of the command execution.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SDChangePassword.png" alt="SDChangePassword" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>_Figure 27. High-Level Sequence diagam of changing the password of a member</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract (from Developer Guide)</mark></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="other-contributions"><a class="link" href="#other-contributions">Other Contributions</a></h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Implement Sort functions where member shown will always be sorted in alphabetical order.</p>
+</li>
+<li>
+<p>Reported existing bugs to teammates.</p>
+</li>
+<li>
+<p>Reported bugs and suggestions for other teams in the class.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 10:12:14 UTC
+Last updated 2018-04-15 10:40:59 UTC
 </div>
 </div>
 </body>

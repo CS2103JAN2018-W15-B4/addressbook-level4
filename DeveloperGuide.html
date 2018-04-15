@@ -45,18 +45,19 @@
 <li><a href="#implementation">4. Implementation</a>
 <ul class="sectlevel2">
 <li><a href="#undo-redo-feature">4.1. Undo/Redo feature</a></li>
-<li><a href="#email-mechanism">4.2. Email Mechanism</a></li>
-<li><a href="#task-management">4.3. Task-Management</a></li>
-<li><a href="#polls-feature">4.4. Polls-feature</a></li>
-<li><a href="#delete-group-mechanism">4.5. Delete Group Mechanism</a></li>
-<li><a href="#importing-members">4.6. Importing Members</a></li>
-<li><a href="#exporting-members">4.7. Exporting Members</a></li>
-<li><a href="#changing-profile-photo-mechanism">4.8. Changing Profile Photo Mechanism</a></li>
-<li><a href="#compress-decompress-mechanism">4.9. Compress/Decompress Mechanism</a></li>
-<li><a href="#auto-complete-command-mechanism">4.10. Auto-Complete Command Mechanism</a></li>
-<li><a href="#proposed-data-encryption">4.11. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">4.12. Logging</a></li>
-<li><a href="#Implementation-Configuration">4.13. Configuration</a></li>
+<li><a href="#account-management">4.2. Account Management</a></li>
+<li><a href="#email-mechanism">4.3. Email Mechanism</a></li>
+<li><a href="#task-management">4.4. Task-Management</a></li>
+<li><a href="#polls-feature">4.5. Polls-feature</a></li>
+<li><a href="#delete-group-mechanism">4.6. Delete Group Mechanism</a></li>
+<li><a href="#importing-members">4.7. Importing Members</a></li>
+<li><a href="#exporting-members">4.8. Exporting Members</a></li>
+<li><a href="#changing-profile-photo-mechanism">4.9. Changing Profile Photo Mechanism</a></li>
+<li><a href="#compress-decompress-mechanism">4.10. Compress/Decompress Mechanism</a></li>
+<li><a href="#auto-complete-command-mechanism">4.11. Auto-Complete Command Mechanism</a></li>
+<li><a href="#proposed-data-encryption">4.12. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">4.13. Logging</a></li>
+<li><a href="#Implementation-Configuration">4.14. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">5. Documentation</a>
@@ -988,9 +989,184 @@ Furthermore, the "Single Responsibility" and "Separation of Concerns" principles
 </div>
 </div>
 <div class="sect2">
-<h3 id="email-mechanism"><a class="link" href="#email-mechanism">4.2. Email Mechanism</a></h3>
+<h3 id="account-management"><a class="link" href="#account-management">4.2. Account Management</a></h3>
+<div class="paragraph">
+<p>Account Management are authentication which members can store unique data into, logs into their own account to modify their account details and also start the Club Connect by Signing up the first user.</p>
+</div>
 <div class="sect3">
 <h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">4.2.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>Account Management mechanism is facilitated by several command classes in Club Connect.</p>
+</div>
+<div class="sect4">
+<h5 id="signing-up"><a class="link" href="#signing-up">Signing up</a></h5>
+<div class="paragraph">
+<p><code>signup</code> mechanism is fascilitated by the <code>SignUpCommand</code> class.
+It allows the setting up of Club Connect.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+SignUpCommand can only be executed once. Only can be executed again after clearing Club Connect.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The <code>SignUpCommand</code> extends for <code>Command</code>. It is not an undoable command.
+Figure 19 (shown below) depicts the UML representation of the <code>SignUpCommand</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SignUpCommandUML.png" alt="SignUpCommandUML" width="200">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 19. UML Diagram of <code>SignUpCommand</code>.</em></p>
+</div>
+<div class="paragraph">
+<p>Parsing of command is performed by <code>SignUpCommandParser</code>, which returns a <code>SignUpCommand</code> object after parsing Name, Phone, Email, Matric Number, [Tags].
+Figure 20 below shows the sequence diagram of the <code>SignUpCommandParser</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforSignUpCommand.png" alt="SDforSignUpCommand" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 20. Sequence Diagram for the parsing of `SignUpCommandParser.`</em></p>
+</div>
+<div class="paragraph">
+<p>Figure 21 below shows the high-level sequence diagram of the command execution.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDSignUp.png" alt="SDSignUp">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 21. High-Level Sequence diagram of signing up a member.</em></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="logging-in"><a class="link" href="#logging-in">Logging in</a></h5>
+<div class="paragraph">
+<p><code>login</code> mechanism is facilitated by the <code>LogInCommand</code> class.
+It allows <code>Exco</code> members to use <code>Exco</code> privileges in the Club Book. It also allows both <code>Members</code> and <code>Exco</code> to have their own account.
+The <code>LogInCommand</code> consists of the following fields:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Username - Username of the member.</p>
+</li>
+<li>
+<p>Password - Password of the member.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The <code>LogInCommand</code> extends for <code>Command</code>. It is not an undoable command.
+Figure 22 (shown below) depicts the UML representation of the <code>LogInCommand</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/LogInCommandUML.png" alt="LogInCommandUML" width="350">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 22. UML Diagram of <code>LogInCommand</code>.</em></p>
+</div>
+<div class="paragraph">
+<p>Parsing of command is performed by <code>LogInCommandParser</code>, which returns a <code>LogInCommand</code> object after parsing Username and Password object.
+Figure 23 below shows the sequence diagram of the <code>LogInCommandParser</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforLogInCommand.png" alt="SDforLogInCommand" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 23. Sequence diagram of <code>LogInCommandParser</code>.</em></p>
+</div>
+<div class="paragraph">
+<p>Figure 24 below shows the high-level sequence diagram of the command execution.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDLogIn.png" alt="SDLogIn" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 24. High-Level Sequence diagram of logging in a member.</em></p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="changing-password"><a class="link" href="#changing-password">4.2.2. Changing Password</a></h4>
+<div class="paragraph">
+<p><code>changepass</code> mechanism is facilitated by the <code>ChangePasswordCommand</code> class.
+It allows <code>Members</code> to change their current password to a new password.
+The <code>ChangePasswordCommand</code> consist fo the following fields:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Username - Username of the member.</p>
+</li>
+<li>
+<p>Password - Current Password of the member.</p>
+</li>
+<li>
+<p>NewPassword - New Password given by the member.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><code>ChangePasswordCommand</code> extends from <code>Command</code> and not from <code>UndoableCommand</code>, as it is not an undoable command.
+Figure 25 (shown below) depicts the UML representation of the <code>ChangePasswordCommand</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ChangePasswordUML.png" alt="ChangePasswordUML" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>_Figure 25. UML Diagram of <code>ChangePasswordCommand</code>.</p>
+</div>
+<div class="paragraph">
+<p>Parsing of command is performed by <code>ChangePasswordCommandParser</code>, which returns a <code>ChangePassword</code> object after parsing Username, Password and Newpassword.
+Figure 26 below shows the sequence diagram of the <code>ChangePasswordCommandParser</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforChangePasswordCommand.png" alt="SDforChangePasswordCommand" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>_Figure 26. Sequence diagram of <code>ChangePasswordCommmandParser</code>.</p>
+</div>
+<div class="paragraph">
+<p>Figure 27 below shows the high-level sequence diagram of the command execution.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDChangePassword.png" alt="SDChangePassword" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>_Figure 27. High-Level Sequence diagam of changing the password of a member</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="email-mechanism"><a class="link" href="#email-mechanism">4.3. Email Mechanism</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">4.3.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The <code>email</code> mechanism of Club Connect is facilitated by the <code>EmailCommand</code> class and is event-driven.
 The <code>EmailCommand</code> consists of the following fields:</p>
@@ -1116,7 +1292,7 @@ Desktop.getDesktop().browse(<span class="keyword">new</span> <span class="predef
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">4.2.2. Design Considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">4.3.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-location-of-opening-the-mail-client"><a class="link" href="#aspect-location-of-opening-the-mail-client">Aspect: Location of opening the mail client</a></h5>
 <div class="ulist">
@@ -1153,12 +1329,12 @@ Desktop.getDesktop().browse(<span class="keyword">new</span> <span class="predef
 </div>
 </div>
 <div class="sect2">
-<h3 id="task-management"><a class="link" href="#task-management">4.3. Task-Management</a></h3>
+<h3 id="task-management"><a class="link" href="#task-management">4.4. Task-Management</a></h3>
 <div class="paragraph">
 <p>Tasks are pieces of work to be done or undertaken. Members can create tasks for themselves, and can also be assigned to a task by <code>Exco</code> members.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">4.3.1. Current Implementation</a></h4>
+<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">4.4.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The task-management mechanism is facilitated by several command classes in Club Connect, which will be covered in subsequent sub-sections.</p>
 </div>
@@ -1434,7 +1610,7 @@ Figure 36 below depicts the parsing of the <code>ChangeTaskStatusObject</code>.<
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.3.2. Design Considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.4.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-displaying-similar-tasks-for-different-assignees"><a class="link" href="#aspect-displaying-similar-tasks-for-different-assignees">Aspect: Displaying similar tasks for different Assignees</a></h5>
 <div class="ulist">
@@ -1471,13 +1647,13 @@ Figure 36 below depicts the parsing of the <code>ChangeTaskStatusObject</code>.<
 </div>
 </div>
 <div class="sect2">
-<h3 id="polls-feature"><a class="link" href="#polls-feature">4.4. Polls-feature</a></h3>
+<h3 id="polls-feature"><a class="link" href="#polls-feature">4.5. Polls-feature</a></h3>
 <div class="paragraph">
 <p>A poll contains a question and any number of answers. Any member can vote in a poll but only once. Only 'Exco' members
 are allowed to add/delete polls and view/hide poll results. Polls are displayed in the poll <code>ListView</code> GUI of Club Connect.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">4.4.1. Current Implementation</a></h4>
+<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">4.5.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The poll feature is facilitated by the command classes below:</p>
 </div>
@@ -1754,7 +1930,7 @@ of <code>ViewResultsRequestEvent</code>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.4.2. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.5.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-keeping-track-of-how-many-members-voted-for-each-answer-of-a-poll-and-who-has-voted-in-a-poll"><a class="link" href="#aspect-keeping-track-of-how-many-members-voted-for-each-answer-of-a-poll-and-who-has-voted-in-a-poll">Aspect: Keeping track of how many members voted for each answer of a poll and who has voted in a poll</a></h5>
 <div class="ulist">
@@ -1793,9 +1969,9 @@ who voted, check user&#8217;s <code>MatricNumber</code> with all <code>MatricNum
 </div>
 </div>
 <div class="sect2">
-<h3 id="delete-group-mechanism"><a class="link" href="#delete-group-mechanism">4.5. Delete Group Mechanism</a></h3>
+<h3 id="delete-group-mechanism"><a class="link" href="#delete-group-mechanism">4.6. Delete Group Mechanism</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">4.5.1. Current Implementation</a></h4>
+<h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">4.6.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The <code>deletegroup</code> mechanism is facilitated by the <code>DeleteGroupCommand</code> class. It allows <code>Exco</code> members to delete a group from <code>Club Connect</code>. The group of all members part of the group that is to be deleted will be changed to the default group - <code>member</code>.</p>
 </div>
@@ -1856,7 +2032,7 @@ who voted, check user&#8217;s <code>MatricNumber</code> with all <code>MatricNum
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.5.2. Design Considerations</a></h4>
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.6.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-implementation-of-code-deletegroupcommand-code"><a class="link" href="#aspect-implementation-of-code-deletegroupcommand-code">Aspect: Implementation of <code>DeleteGroupCommand</code></a></h5>
 <div class="ulist">
@@ -1893,13 +2069,13 @@ who voted, check user&#8217;s <code>MatricNumber</code> with all <code>MatricNum
 </div>
 </div>
 <div class="sect2">
-<h3 id="importing-members"><a class="link" href="#importing-members">4.6. Importing Members</a></h3>
+<h3 id="importing-members"><a class="link" href="#importing-members">4.7. Importing Members</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">4.6.1. Current Implementation</a></h4>
+<h4 id="current-implementation-7"><a class="link" href="#current-implementation-7">4.7.1. Current Implementation</a></h4>
 
 </div>
 <div class="sect3">
-<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">4.6.2. Design Considerations</a></h4>
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">4.7.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-implementation-of-code-importcommand-code"><a class="link" href="#aspect-implementation-of-code-importcommand-code">Aspect: Implementation of <code>ImportCommand</code></a></h5>
 <div class="ulist">
@@ -1970,13 +2146,13 @@ who voted, check user&#8217;s <code>MatricNumber</code> with all <code>MatricNum
 </div>
 </div>
 <div class="sect2">
-<h3 id="exporting-members"><a class="link" href="#exporting-members">4.7. Exporting Members</a></h3>
+<h3 id="exporting-members"><a class="link" href="#exporting-members">4.8. Exporting Members</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-7"><a class="link" href="#current-implementation-7">4.7.1. Current Implementation</a></h4>
+<h4 id="current-implementation-8"><a class="link" href="#current-implementation-8">4.8.1. Current Implementation</a></h4>
 
 </div>
 <div class="sect3">
-<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">4.7.2. Design Considerations</a></h4>
+<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">4.8.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-output-file-format"><a class="link" href="#aspect-output-file-format">Aspect: Output file format</a></h5>
 <div class="ulist">
@@ -2013,9 +2189,9 @@ who voted, check user&#8217;s <code>MatricNumber</code> with all <code>MatricNum
 </div>
 </div>
 <div class="sect2">
-<h3 id="changing-profile-photo-mechanism"><a class="link" href="#changing-profile-photo-mechanism">4.8. Changing Profile Photo Mechanism</a></h3>
+<h3 id="changing-profile-photo-mechanism"><a class="link" href="#changing-profile-photo-mechanism">4.9. Changing Profile Photo Mechanism</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-8"><a class="link" href="#current-implementation-8">4.8.1. Current Implementation</a></h4>
+<h4 id="current-implementation-9"><a class="link" href="#current-implementation-9">4.9.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The <code>changepic</code> mechanism of Club Connect is facilitated by the <code>ChangeProfilePhotoCommand</code> class and is event-driven.
 It allows members to modify their profile photos displayed in the application.
@@ -2108,7 +2284,7 @@ It copies the photo as a <a href="#bmp">bitmap image file</a> (.bmp) to the Club
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-8"><a class="link" href="#design-considerations-8">4.8.2. Design Considerations</a></h4>
+<h4 id="design-considerations-8"><a class="link" href="#design-considerations-8">4.9.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-implementation-of-code-changeprofilephotocommand-code"><a class="link" href="#aspect-implementation-of-code-changeprofilephotocommand-code">Aspect: Implementation of <code>ChangeProfilePhotoCommand</code></a></h5>
 <div class="ulist">
@@ -2179,9 +2355,9 @@ Members can delete the original file from the computer, without affecting the Cl
 </div>
 </div>
 <div class="sect2">
-<h3 id="compress-decompress-mechanism"><a class="link" href="#compress-decompress-mechanism">4.9. Compress/Decompress Mechanism</a></h3>
+<h3 id="compress-decompress-mechanism"><a class="link" href="#compress-decompress-mechanism">4.10. Compress/Decompress Mechanism</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-9"><a class="link" href="#current-implementation-9">4.9.1. Current Implementation</a></h4>
+<h4 id="current-implementation-10"><a class="link" href="#current-implementation-10">4.10.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>Member details are shown as cards in the GUI. Cards can either be decompressed(Figure 56) or compressed(Figure 57).</p>
 </div>
@@ -2249,7 +2425,7 @@ However, if the cards are decompressed, the <code>MemberCard</code> objects woul
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-9"><a class="link" href="#design-considerations-9">4.9.2. Design Considerations</a></h4>
+<h4 id="design-considerations-9"><a class="link" href="#design-considerations-9">4.10.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-to-interact-from-logic-to-ui"><a class="link" href="#aspect-how-to-interact-from-logic-to-ui">Aspect: How to interact from Logic to Ui</a></h5>
 <div class="ulist">
@@ -2287,9 +2463,9 @@ just for compress/decompress but for other events as well.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="auto-complete-command-mechanism"><a class="link" href="#auto-complete-command-mechanism">4.10. Auto-Complete Command Mechanism</a></h3>
+<h3 id="auto-complete-command-mechanism"><a class="link" href="#auto-complete-command-mechanism">4.11. Auto-Complete Command Mechanism</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-10"><a class="link" href="#current-implementation-10">4.10.1. Current Implementation</a></h4>
+<h4 id="current-implementation-11"><a class="link" href="#current-implementation-11">4.11.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The auto-complete mechanism is an enhancement added to reduce the frequency pf typos and thus by extension, invalid commands.</p>
 </div>
@@ -2345,7 +2521,7 @@ just for compress/decompress but for other events as well.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-10"><a class="link" href="#design-considerations-10">4.10.2. Design Considerations</a></h4>
+<h4 id="design-considerations-10"><a class="link" href="#design-considerations-10">4.11.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="implementation-of-cycling-through-commands"><a class="link" href="#implementation-of-cycling-through-commands">Implementation of cycling through commands</a></h5>
 <div class="ulist">
@@ -2382,9 +2558,9 @@ just for compress/decompress but for other events as well.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">4.11. [Proposed] Data Encryption</a></h3>
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">4.12. [Proposed] Data Encryption</a></h3>
 <div class="sect3">
-<h4 id="rationale"><a class="link" href="#rationale">4.11.1. Rationale</a></h4>
+<h4 id="rationale"><a class="link" href="#rationale">4.12.1. Rationale</a></h4>
 <div class="paragraph">
 <p>Data encryption is key to any App that deals with personal data of individuals.</p>
 </div>
@@ -2393,7 +2569,7 @@ just for compress/decompress but for other events as well.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="how-symmetric-key-encryption-works"><a class="link" href="#how-symmetric-key-encryption-works">4.11.2. How Symmetric Key Encryption works</a></h4>
+<h4 id="how-symmetric-key-encryption-works"><a class="link" href="#how-symmetric-key-encryption-works">4.12.2. How Symmetric Key Encryption works</a></h4>
 <div class="paragraph">
 <p>Symmetric key encryption is an encryption philosophy where the two communicating parties share a pre-established secret key <strong>k</strong>.
 It consists of 2 algorithms <code>E</code> (Encrypting or Encoding) and <code>D</code> (Decryption or Decoding) which take in the same key <strong>k</strong> to perform their respective operations.</p>
@@ -2413,7 +2589,7 @@ It consists of 2 algorithms <code>E</code> (Encrypting or Encoding) and <code>D<
 </div>
 </div>
 <div class="sect3">
-<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">4.11.3. Proposed Implementation</a></h4>
+<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">4.12.3. Proposed Implementation</a></h4>
 <div class="paragraph">
 <p>We plan to make use of classes that are defined in Javax&#8217;s Crypto package.</p>
 </div>
@@ -2461,7 +2637,7 @@ It consists of 2 algorithms <code>E</code> (Encrypting or Encoding) and <code>D<
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">4.12. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">4.13. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging.
 The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
@@ -2469,7 +2645,7 @@ The <code>LogsCenter</code> class is used to manage the logging levels and loggi
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 4.13, &#8220;Configuration&#8221;</a>).</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 4.14, &#8220;Configuration&#8221;</a>).</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level.</p>
@@ -2500,7 +2676,7 @@ The <code>LogsCenter</code> class is used to manage the logging levels and loggi
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">4.13. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">4.14. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -5435,7 +5611,7 @@ Expected: No tag is deleted as the tag name format is invalid. Relevant error de
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 10:12:14 UTC
+Last updated 2018-04-15 10:40:59 UTC
 </div>
 </div>
 </body>
