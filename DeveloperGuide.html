@@ -45,19 +45,20 @@
 <li><a href="#implementation">4. Implementation</a>
 <ul class="sectlevel2">
 <li><a href="#undo-redo-feature">4.1. Undo/Redo feature</a></li>
-<li><a href="#proposed-data-encryption">4.2. [Proposed] Data Encryption</a></li>
-<li><a href="#email-mechanism">4.3. Email Mechanism</a></li>
-<li><a href="#task-management">4.4. Task-Management</a></li>
-<li><a href="#polls-feature">4.5. Polls-feature</a></li>
-<li><a href="#delete-group-mechanism">4.6. Delete Group Mechanism</a></li>
-<li><a href="#importing-members">4.7. Importing Members</a></li>
-<li><a href="#exporting-members">4.8. Exporting Members</a></li>
-<li><a href="#changing-profile-photo-mechanism">4.9. Changing Profile Photo Mechanism</a></li>
-<li><a href="#delete-tag-mechanism">4.10. Delete Tag Mechanism</a></li>
-<li><a href="#ui-look-and-feel">4.11. UI Look and Feel</a></li>
-<li><a href="#compress-decompress-mechanism">4.12. Compress/Decompress Mechanism</a></li>
-<li><a href="#logging">4.13. Logging</a></li>
-<li><a href="#Implementation-Configuration">4.14. Configuration</a></li>
+<li><a href="#email-mechanism">4.2. Email Mechanism</a></li>
+<li><a href="#task-management">4.3. Task-Management</a></li>
+<li><a href="#polls-feature">4.4. Polls-feature</a></li>
+<li><a href="#delete-group-mechanism">4.5. Delete Group Mechanism</a></li>
+<li><a href="#importing-members">4.6. Importing Members</a></li>
+<li><a href="#exporting-members">4.7. Exporting Members</a></li>
+<li><a href="#changing-profile-photo-mechanism">4.8. Changing Profile Photo Mechanism</a></li>
+<li><a href="#delete-tag-mechanism">4.9. Delete Tag Mechanism</a></li>
+<li><a href="#ui-look-and-feel">4.10. UI Look and Feel</a></li>
+<li><a href="#compress-decompress-mechanism">4.11. Compress/Decompress Mechanism</a></li>
+<li><a href="#auto-complete-command-mechanism">4.12. Auto-Complete Command Mechanism</a></li>
+<li><a href="#proposed-data-encryption">4.13. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">4.14. Logging</a></li>
+<li><a href="#Implementation-Configuration">4.15. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">5. Documentation</a>
@@ -984,67 +985,9 @@ Furthermore, the "Single Responsibility" and "Separation of Concerns" principles
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">4.2. [Proposed] Data Encryption</a></h3>
+<h3 id="email-mechanism"><a class="link" href="#email-mechanism">4.2. Email Mechanism</a></h3>
 <div class="sect3">
-<h4 id="rationale"><a class="link" href="#rationale">4.2.1. Rationale</a></h4>
-<div class="paragraph">
-<p>Data encryption is key to any App that deals with personal data of individuals.</p>
-</div>
-<div class="paragraph">
-<p>We plan to use Symmetric Key Encryption to ensure the confidentiality of data.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="how-symmetric-key-encryption-works"><a class="link" href="#how-symmetric-key-encryption-works">4.2.2. How Symmetric Key Encryption works</a></h4>
-<div class="paragraph">
-<p>Symmetric key encryption is an encryption philosophy where the two communicating parties share a pre-established secret key <strong>k</strong>.
-It consists of 2 algorithms <code>E</code> (Encrypting or Encoding) and <code>D</code> (Decryption or Decoding) which take in the same key <strong>k</strong> to perform their respective operations.</p>
-</div>
-<div class="paragraph">
-<p>The 2 algorithms <code>E</code> and <code>D</code> are efficient algorithms, such that:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>D</strong>(<strong>E</strong>(<strong>k</strong>,m)) = m, where 'm' is the message that needs to be kept confidential.</p>
-</li>
-<li>
-<p>For <strong>k</strong> chosen uniformly at random, <strong>E</strong>(<strong>k</strong>,m) gives no additional information about 'm' to an adversary.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">4.2.3. Proposed Implementation</a></h4>
-<div class="paragraph">
-<p>We plan to make use of classes that are defined in Javax&#8217;s Crypto package.</p>
-</div>
-<div class="paragraph">
-<p>The classes that would feature in the implementation are:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>KeyGenerator &#8594; constructs a secret (symmetric) key.</p>
-</li>
-<li>
-<p>Cipher &#8594;  provides the functionality of a cryptographic cipher for encryption and decryption.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>The construction of a symmetric key is done by passing the algorithm the encryption will use.
-We plan to use the Advanced Encryption Scheme (AES) algorithm. For that reason, we will use a 128-bit AES symmetric key.</p>
-</div>
-<div class="paragraph">
-<p>Once the key is generated, all data will be encrypted with AES. Anyone who wishes to view the decrypted form of the data must possess the secret key.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="email-mechanism"><a class="link" href="#email-mechanism">4.3. Email Mechanism</a></h3>
-<div class="sect3">
-<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">4.3.1. Current Implementation</a></h4>
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">4.2.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The <code>email</code> mechanism of Club Connect is facilitated by the <code>EmailCommand</code> class and is event-driven.
 The <code>EmailCommand</code> consists of the following fields:</p>
@@ -1170,7 +1113,7 @@ Desktop.getDesktop().browse(<span class="keyword">new</span> <span class="predef
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">4.3.2. Design Considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">4.2.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-location-of-opening-the-mail-client"><a class="link" href="#aspect-location-of-opening-the-mail-client">Aspect: Location of opening the mail client</a></h5>
 <div class="ulist">
@@ -1207,12 +1150,12 @@ Desktop.getDesktop().browse(<span class="keyword">new</span> <span class="predef
 </div>
 </div>
 <div class="sect2">
-<h3 id="task-management"><a class="link" href="#task-management">4.4. Task-Management</a></h3>
+<h3 id="task-management"><a class="link" href="#task-management">4.3. Task-Management</a></h3>
 <div class="paragraph">
 <p>Tasks are pieces of work to be done or undertaken. Members can create tasks for themselves, and can also be assigned to a task by <code>Exco</code> members.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">4.4.1. Current Implementation</a></h4>
+<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">4.3.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The task-management mechanism is facilitated by several command classes in Club Connect, which will be covered in subsequent sub-sections.</p>
 </div>
@@ -1229,31 +1172,6 @@ Desktop.getDesktop().browse(<span class="keyword">new</span> <span class="predef
 </div>
 <div class="paragraph">
 <p><em>Figure 22. Task UML Diagram</em></p>
-</div>
-<div class="paragraph">
-<p>Tasks consists of the following:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Description: Represents the description of a task.</p>
-</li>
-<li>
-<p>Date: Represents the due date of a task.</p>
-</li>
-<li>
-<p>Time: Represents the time before which a task must be completed.</p>
-</li>
-<li>
-<p>Assignor: Represents the member who has assigned the task.</p>
-</li>
-<li>
-<p>Assignee: Represents the member who has been assigned the task.</p>
-</li>
-<li>
-<p>Status: Represents the status of a task - one of <code>Yet To Begin</code>, <code>In Progress</code>, and <code>Completed</code>.</p>
-</li>
-</ul>
 </div>
 <div class="sect4">
 <h5 id="adding-tasks"><a class="link" href="#adding-tasks">Adding Tasks</a></h5>
@@ -1513,7 +1431,7 @@ Figure 36 below depicts the parsing of the <code>ChangeTaskStatusObject</code>.<
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.4.2. Design Considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.3.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-displaying-similar-tasks-for-different-assignees"><a class="link" href="#aspect-displaying-similar-tasks-for-different-assignees">Aspect: Displaying similar tasks for different Assignees</a></h5>
 <div class="ulist">
@@ -1550,13 +1468,13 @@ Figure 36 below depicts the parsing of the <code>ChangeTaskStatusObject</code>.<
 </div>
 </div>
 <div class="sect2">
-<h3 id="polls-feature"><a class="link" href="#polls-feature">4.5. Polls-feature</a></h3>
+<h3 id="polls-feature"><a class="link" href="#polls-feature">4.4. Polls-feature</a></h3>
 <div class="paragraph">
 <p>A poll contains a question and any number of answers. Any member can vote in a poll but only once. Only 'Exco' members
 are allowed to add/delete polls and view/hide poll results. Polls are displayed in the poll <code>ListView</code> GUI of Club Connect.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">4.5.1. Current Implementation</a></h4>
+<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">4.4.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The poll feature is facilitated by the command classes below:</p>
 </div>
@@ -1833,7 +1751,7 @@ of <code>ViewResultsRequestEvent</code>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.5.2. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.4.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-keeping-track-of-how-many-members-voted-for-each-answer-of-a-poll-and-who-has-voted-in-a-poll"><a class="link" href="#aspect-keeping-track-of-how-many-members-voted-for-each-answer-of-a-poll-and-who-has-voted-in-a-poll">Aspect: Keeping track of how many members voted for each answer of a poll and who has voted in a poll</a></h5>
 <div class="ulist">
@@ -1872,9 +1790,9 @@ who voted, check user&#8217;s <code>MatricNumber</code> with all <code>MatricNum
 </div>
 </div>
 <div class="sect2">
-<h3 id="delete-group-mechanism"><a class="link" href="#delete-group-mechanism">4.6. Delete Group Mechanism</a></h3>
+<h3 id="delete-group-mechanism"><a class="link" href="#delete-group-mechanism">4.5. Delete Group Mechanism</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">4.6.1. Current Implementation</a></h4>
+<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">4.5.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The <code>deletegroup</code> mechanism is facilitated by the <code>DeleteGroupCommand</code> class. It allows <code>Exco</code> members to delete a group from <code>Club Connect</code>. The group of all members part of the group that is to be deleted will be changed to the default group - <code>member</code>.</p>
 </div>
@@ -1935,7 +1853,7 @@ who voted, check user&#8217;s <code>MatricNumber</code> with all <code>MatricNum
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.6.2. Design Considerations</a></h4>
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.5.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-implementation-of-code-deletegroupcommand-code"><a class="link" href="#aspect-implementation-of-code-deletegroupcommand-code">Aspect: Implementation of <code>DeleteGroupCommand</code></a></h5>
 <div class="ulist">
@@ -1972,27 +1890,27 @@ who voted, check user&#8217;s <code>MatricNumber</code> with all <code>MatricNum
 </div>
 </div>
 <div class="sect2">
-<h3 id="importing-members"><a class="link" href="#importing-members">4.7. Importing Members</a></h3>
+<h3 id="importing-members"><a class="link" href="#importing-members">4.6. Importing Members</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">4.7.1. Current Implementation</a></h4>
+<h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">4.6.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>Lorem ipsum dolor sit amet</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exporting-members"><a class="link" href="#exporting-members">4.8. Exporting Members</a></h3>
+<h3 id="exporting-members"><a class="link" href="#exporting-members">4.7. Exporting Members</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-7"><a class="link" href="#current-implementation-7">4.8.1. Current Implementation</a></h4>
+<h4 id="current-implementation-7"><a class="link" href="#current-implementation-7">4.7.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>Lorem ipsum dolor sit amet</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="changing-profile-photo-mechanism"><a class="link" href="#changing-profile-photo-mechanism">4.9. Changing Profile Photo Mechanism</a></h3>
+<h3 id="changing-profile-photo-mechanism"><a class="link" href="#changing-profile-photo-mechanism">4.8. Changing Profile Photo Mechanism</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-8"><a class="link" href="#current-implementation-8">4.9.1. Current Implementation</a></h4>
+<h4 id="current-implementation-8"><a class="link" href="#current-implementation-8">4.8.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The <code>changepic</code> mechanism of Club Connect is facilitated by the <code>ChangeProfilePhotoCommand</code> class and is event-driven.
 It allows members to modify their profile photos displayed in the application.
@@ -2085,7 +2003,7 @@ It copies the photo as a <a href="#bmp">bitmap image file</a> (.bmp) to the Club
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">4.9.2. Design Considerations</a></h4>
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">4.8.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-implementation-of-code-changeprofilephotocommand-code"><a class="link" href="#aspect-implementation-of-code-changeprofilephotocommand-code">Aspect: Implementation of <code>ChangeProfilePhotoCommand</code></a></h5>
 <div class="ulist">
@@ -2156,9 +2074,9 @@ Members can delete the original file from the computer, without affecting the Cl
 </div>
 </div>
 <div class="sect2">
-<h3 id="delete-tag-mechanism"><a class="link" href="#delete-tag-mechanism">4.10. Delete Tag Mechanism</a></h3>
+<h3 id="delete-tag-mechanism"><a class="link" href="#delete-tag-mechanism">4.9. Delete Tag Mechanism</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-9"><a class="link" href="#current-implementation-9">4.10.1. Current Implementation</a></h4>
+<h4 id="current-implementation-9"><a class="link" href="#current-implementation-9">4.9.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The <code>deletetag</code> mechanism is facilitated by the <code>DeleteTagCommand</code> class.
 It allows any <code>Exco</code> member to delete a tag from all members tagged with it (and consequently, from Club Connect).</p>
@@ -2179,7 +2097,7 @@ It allows any <code>Exco</code> member to delete a tag from all members tagged w
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">4.10.2. Design Considerations</a></h4>
+<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">4.9.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-implementation-of-code-deletetagcommand-code"><a class="link" href="#aspect-implementation-of-code-deletetagcommand-code">Aspect: Implementation of <code>DeleteTagCommand</code></a></h5>
 <div class="paragraph">
@@ -2189,18 +2107,18 @@ It allows any <code>Exco</code> member to delete a tag from all members tagged w
 </div>
 </div>
 <div class="sect2">
-<h3 id="ui-look-and-feel"><a class="link" href="#ui-look-and-feel">4.11. UI Look and Feel</a></h3>
+<h3 id="ui-look-and-feel"><a class="link" href="#ui-look-and-feel">4.10. UI Look and Feel</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-10"><a class="link" href="#current-implementation-10">4.11.1. Current Implementation</a></h4>
+<h4 id="current-implementation-10"><a class="link" href="#current-implementation-10">4.10.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>Lorem ipsum dolor sit amet</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="compress-decompress-mechanism"><a class="link" href="#compress-decompress-mechanism">4.12. Compress/Decompress Mechanism</a></h3>
+<h3 id="compress-decompress-mechanism"><a class="link" href="#compress-decompress-mechanism">4.11. Compress/Decompress Mechanism</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-11"><a class="link" href="#current-implementation-11">4.12.1. Current Implementation</a></h4>
+<h4 id="current-implementation-11"><a class="link" href="#current-implementation-11">4.11.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>Member details are shown as cards in the GUI. Cards can either be decompressed(Figure 56) or compressed(Figure 57).</p>
 </div>
@@ -2268,7 +2186,7 @@ However, if the cards are decompressed, the <code>MemberCard</code> objects woul
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-8"><a class="link" href="#design-considerations-8">4.12.2. Design Considerations</a></h4>
+<h4 id="design-considerations-8"><a class="link" href="#design-considerations-8">4.11.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-to-interact-from-logic-to-ui"><a class="link" href="#aspect-how-to-interact-from-logic-to-ui">Aspect: How to interact from Logic to Ui</a></h5>
 <div class="ulist">
@@ -2306,7 +2224,181 @@ just for compress/decompress but for other events as well.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">4.13. Logging</a></h3>
+<h3 id="auto-complete-command-mechanism"><a class="link" href="#auto-complete-command-mechanism">4.12. Auto-Complete Command Mechanism</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-12"><a class="link" href="#current-implementation-12">4.12.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The auto-complete mechanism is an enhancement added to reduce the frequency pf typos and thus by extension, invalid commands.</p>
+</div>
+<div class="paragraph">
+<p>It makes use of the key press event <code>KeyEvent</code>. Pressing <code><code>TAB</code></code> cycles through all possible commands based on user input.</p>
+</div>
+<div class="paragraph">
+<p>The <code>ArrayList&lt;String&gt; commandList</code> in <code>CommandList.java</code> stores all the command formats.</p>
+</div>
+<div class="paragraph">
+<p>Here is the implementation for handling the key-press event:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">private</span> <span class="type">void</span> handleKeyPress(<span class="predefined-type">KeyEvent</span> keyEvent) {
+    <span class="keyword">switch</span> (keyEvent.getCode()) {
+    .
+    .
+    case TAB:
+        keyEvent.consume();
+        completeCommandIndex++;
+        autoComplete(commandTextField.getText());
+        <span class="keyword">break</span>;
+    .
+    .
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Shown below is the implementation of the <code>autoComplete</code> method.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">private</span> <span class="type">void</span> autoComplete(<span class="predefined-type">String</span> input) {
+    <span class="keyword">if</span> (!input.equals(<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>)) {
+        <span class="keyword">if</span> (oldInput == <span class="predefined-constant">null</span>) {
+            oldInput = input;
+        } <span class="keyword">else</span> <span class="keyword">if</span> (!input.startsWith(oldInput)) {
+            oldInput = input;
+            completeCommandIndex = <span class="integer">0</span>;
+        }
+        <span class="predefined-type">List</span>&lt;<span class="predefined-type">String</span>&gt; completedCommands = LogicManager.COMMAND_LIST.stream().filter(s -&gt; s.startsWith(oldInput))
+                .collect(Collectors.toList());
+        <span class="keyword">if</span> (!completedCommands.isEmpty()) {
+            replaceText(completedCommands.get(completeCommandIndex % completedCommands.size()));
+        } <span class="keyword">else</span> {
+            replaceText(<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>);
+        }
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-9"><a class="link" href="#design-considerations-9">4.12.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="implementation-of-cycling-through-commands"><a class="link" href="#implementation-of-cycling-through-commands">Implementation of cycling through commands</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Use string manipulation to store old input and only change it if the new input doesn&#8217;t start with the old input.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: It&#8217;s easy to implement.</p>
+</li>
+<li>
+<p>Cons: It&#8217;s not so good in terms of code quality.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> If there are 'N' commands that start with <code>XXX</code>, create 'N' strings with each concatenated one after the other in increasing length i.e. XXX<sub>1</sub>, XXX<sub>1</sub>XXX<sub>2</sub>, &#8230;&#8203; ,XXX<sub>1</sub>XXX<sub>2</sub>XXX<sub>3</sub>&#8230;&#8203;XXX<sub>N</sub>. Keep truncating the commands not needed from the front.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Possibly cleaner code.</p>
+</li>
+<li>
+<p>Cons: It&#8217;s relatively hard to implement.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">4.13. [Proposed] Data Encryption</a></h3>
+<div class="sect3">
+<h4 id="rationale"><a class="link" href="#rationale">4.13.1. Rationale</a></h4>
+<div class="paragraph">
+<p>Data encryption is key to any App that deals with personal data of individuals.</p>
+</div>
+<div class="paragraph">
+<p>We plan to use Symmetric Key Encryption to ensure the confidentiality of data.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="how-symmetric-key-encryption-works"><a class="link" href="#how-symmetric-key-encryption-works">4.13.2. How Symmetric Key Encryption works</a></h4>
+<div class="paragraph">
+<p>Symmetric key encryption is an encryption philosophy where the two communicating parties share a pre-established secret key <strong>k</strong>.
+It consists of 2 algorithms <code>E</code> (Encrypting or Encoding) and <code>D</code> (Decryption or Decoding) which take in the same key <strong>k</strong> to perform their respective operations.</p>
+</div>
+<div class="paragraph">
+<p>The 2 algorithms <code>E</code> and <code>D</code> are efficient algorithms, such that:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>D</strong>(<strong>E</strong>(<strong>k</strong>,m)) = m, where 'm' is the message that needs to be kept confidential.</p>
+</li>
+<li>
+<p>For <strong>k</strong> chosen uniformly at random, <strong>E</strong>(<strong>k</strong>,m) gives no additional information about 'm' to an adversary.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">4.13.3. Proposed Implementation</a></h4>
+<div class="paragraph">
+<p>We plan to make use of classes that are defined in Javax&#8217;s Crypto package.</p>
+</div>
+<div class="paragraph">
+<p>The classes that would feature in the implementation are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>KeyGenerator &#8594; constructs a secret (symmetric) key.</p>
+</li>
+<li>
+<p>Cipher &#8594;  provides the functionality of a cryptographic cipher for encryption and decryption.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The construction of a symmetric key is done by passing the algorithm the encryption will use. The Advanced Encryption Scheme (AES) algorithm is a secure encryption algorithm that has proven been proven secure. A 128-bit AES symmetric key will be used to encrypt all data files.</p>
+</div>
+<div class="paragraph">
+<p>Once the key is generated, all data will be encrypted with AES. Anyone who wishes to view the decrypted form of the data must possess the secret key.</p>
+</div>
+<div class="paragraph">
+<p>Figure 61 below describes the encryption procedure used in AES – specifically, the Cipher Block Chaining (CBC) mode.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/encryption.png" alt="encryption" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 61. AES – CBC mode encryption.</em></p>
+</div>
+<div class="paragraph">
+<p>Figure 62 below shows the decryption process.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/decryption.png" alt="decryption" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 62. AES – CBC mode decrption.</em></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging"><a class="link" href="#logging">4.14. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging.
 The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
@@ -2314,7 +2406,7 @@ The <code>LogsCenter</code> class is used to manage the logging levels and loggi
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 4.14, &#8220;Configuration&#8221;</a>).</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 4.15, &#8220;Configuration&#8221;</a>).</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level.</p>
@@ -2345,7 +2437,7 @@ The <code>LogsCenter</code> class is used to manage the logging levels and loggi
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">4.14. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">4.15. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -2403,7 +2495,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <p>Within Chrome, click on the <code>Print</code> option in Chrome&#8217;s menu.</p>
 </li>
 <li>
-<p>Set the destination to <code>Save as PDF</code>, then click <code>Save</code> to save a copy of the file in PDF format. For best results, use the settings in Figure 61 below.</p>
+<p>Set the destination to <code>Save as PDF</code>, then click <code>Save</code> to save a copy of the file in PDF format. For best results, use the settings in Figure 63 below.</p>
 </li>
 </ol>
 </div>
@@ -2413,7 +2505,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 61. Screenshot of saving documentation as PDF in Chrome</em></p>
+<p><em>Figure 63. Screenshot of saving documentation as PDF in Chrome</em></p>
 </div>
 </div>
 </div>
@@ -2792,7 +2884,7 @@ Do take a look at <a href="#Design-Ui">Section 3.2, &#8220;UI component&#8221;</
 <li>
 <p>Use different colors for different tags inside member cards. For example, <code>friends</code> tags can be all in brown, and <code>colleagues</code> tags can be all in yellow as shown in Figure 62.</p>
 <div class="paragraph">
-<p>Figure 62 below shows the member details before the modification.</p>
+<p>Figure 64 below shows the member details before the modification.</p>
 </div>
 <div class="paragraph">
 <p><strong>Before</strong></p>
@@ -2806,11 +2898,11 @@ Do take a look at <a href="#Design-Ui">Section 3.2, &#8220;UI component&#8221;</
 </ol>
 </div>
 <div class="paragraph">
-<p><em>Figure 62. Member details before modification</em></p>
+<p><em>Figure 64. Member details before modification</em></p>
 </div>
 <div class="paragraph">
 <p>+
-Figure 63 below shows the member details after the modification.</p>
+Figure 65 below shows the member details after the modification.</p>
 </div>
 <div class="paragraph">
 <p>+
@@ -2821,7 +2913,7 @@ Figure 63 below shows the member details after the modification.</p>
 image::getting-started-ui-tag-after.png[width="300"]</p>
 </div>
 <div class="paragraph">
-<p><em>Figure 63. Member details after modification</em></p>
+<p><em>Figure 65. Member details after modification</em></p>
 </div>
 <div class="paragraph">
 <p>+</p>
@@ -2875,7 +2967,7 @@ image::getting-started-ui-tag-after.png[width="300"]</p>
 <li>
 <p>Modify <a href="https://github.com/CS2103JAN2018-W15-B4/main/tree/master/src/main/java/seedu/address/commons/events/ui/NewResultAvailableEvent.java"><code>NewResultAvailableEvent</code></a> such that <a href="https://github.com/CS2103JAN2018-W15-B4/main/tree/master/src/main/java/seedu/address/ui/ResultDisplay.java"><code>ResultDisplay</code></a> can show a different style on error (currently it shows the same regardless of errors).</p>
 <div class="paragraph">
-<p>Figure 64 below shows the <code>ResultDisplay</code> before the modification.<br>
+<p>Figure 66 below shows the <code>ResultDisplay</code> before the modification.<br>
 <strong>Before</strong></p>
 </div>
 <div class="imageblock">
@@ -2884,13 +2976,13 @@ image::getting-started-ui-tag-after.png[width="300"]</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 64. ResultDisplay before modification</em></p>
+<p><em>Figure 66. ResultDisplay before modification</em></p>
 </div>
 <div class="paragraph">
 <p><strong>After</strong></p>
 </div>
 <div class="paragraph">
-<p>Figure 65 below shows the <code>ResultDisplay</code> after the modification.</p>
+<p>Figure 67 below shows the <code>ResultDisplay</code> after the modification.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -2898,7 +2990,7 @@ image::getting-started-ui-tag-after.png[width="300"]</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 65. ResultDisplay after modification</em></p>
+<p><em>Figure 67. ResultDisplay after modification</em></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -2961,7 +3053,7 @@ image::getting-started-ui-tag-after.png[width="300"]</p>
 <li>
 <p>Modify the <a href="https://github.com/CS2103JAN2018-W15-B4/main/tree/master/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> to show the total number of people in the address book.</p>
 <div class="paragraph">
-<p>Figure 66 below shows the <code>StatusBarFooter</code> before the modification.</p>
+<p>Figure 68 below shows the <code>StatusBarFooter</code> before the modification.</p>
 </div>
 <div class="paragraph">
 <p><strong>Before</strong></p>
@@ -2975,11 +3067,11 @@ image::getting-started-ui-tag-after.png[width="300"]</p>
 </ol>
 </div>
 <div class="paragraph">
-<p><em>Figure 66. StatusBarFooter before modification</em></p>
+<p><em>Figure 68. StatusBarFooter before modification</em></p>
 </div>
 <div class="paragraph">
 <p>+
-Figure 67 below shows the <code>StatusBarFooter</code> after the modification.</p>
+Figure 69 below shows the <code>StatusBarFooter</code> after the modification.</p>
 </div>
 <div class="paragraph">
 <p>+
@@ -2990,7 +3082,7 @@ Figure 67 below shows the <code>StatusBarFooter</code> after the modification.</
 image::getting-started-ui-status-after.png[width="500"]</p>
 </div>
 <div class="paragraph">
-<p><em>Figure 67. StatusBarFooter after modification</em></p>
+<p><em>Figure 69. StatusBarFooter after modification</em></p>
 </div>
 <div class="paragraph">
 <p>+</p>
@@ -5016,7 +5108,7 @@ Expected: Member list filtered to members with fields containing lala. Number of
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 04:49:38 UTC
+Last updated 2018-04-15 05:12:58 UTC
 </div>
 </div>
 </body>

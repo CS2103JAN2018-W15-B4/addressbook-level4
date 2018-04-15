@@ -93,6 +93,7 @@ Interested? Continue on to <a href="#quick-start">Section 2, &#8220;Quick Start&
 <div class="paragraph">
 <p>The symbols and formatting used in this document, along with their corresponding meanings, are:<br>
 ℹ️: Note<br>
+⚠   : Important<br>
   💡  : Tip<br>
 <code>code</code>: Commands that can be entered into <strong>Club Connect</strong> or Technical keywords<br>
 <kbd>key</kbd>: Button on your keyboard<br></p>
@@ -334,12 +335,12 @@ Aliases: <code>addp</code>, <code>poll</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>addpoll p/Which day should be Free Ice-Cream Day? ans/Monday ans/Wednesday ans/Friday</code><br>
+<p><code>addpoll q/Which day should be Free Ice-Cream Day? ans/Monday ans/Wednesday ans/Friday</code><br>
 Creates a poll asking members to vote for which day Free Ice-Cream Day should be held on.
 The options to choose from are <code>Monday</code>, <code>Wednesday</code> and <code>Friday</code>.</p>
 </li>
 <li>
-<p><code>addpoll p/Where should the annual sports meeting be held? ans/I-Cube ans/LT7</code><br>
+<p><code>addpoll q/Where should the annual sports meeting be held? ans/I-Cube ans/LT7</code><br>
 Creates a poll asking members to vote for where the annual sports meeting should be held.
 The answers to choose from are <code>I-Cube</code> and <code>LT7</code>.</p>
 </li>
@@ -406,11 +407,11 @@ Duplicate tasks are not allowed.
 <div class="ulist">
 <ul>
 <li>
-<p><code>addtask desc/Book PGP Function Room 3 d/02/04/2018 ti/19:00</code><br>
+<p><code>addtask desc/Book PGP Function Room 3 d/02/06/2018 ti/19:00</code><br>
 Adds a task with description <code>Book PGP Function Room 3</code> due on <code>02/06/2018</code> at <code>19:00</code>.</p>
 </li>
 <li>
-<p><code>addtask desc/Buy Food d/03.04.2018 ti/15:00</code><br>
+<p><code>addtask desc/Buy Food d/03.06.2018 ti/15:00</code><br>
 Adds a task with description <code>Buy Food</code> due on <code>03/06/2018</code> at <code>15:00</code>.</p>
 </li>
 </ul>
@@ -473,11 +474,11 @@ This command is for <code>Exco</code> members only.
 <div class="ulist">
 <ul>
 <li>
-<p><code>assigntask desc/Book PGP Function Room 3 d/02/04/2018 ti/19:00 m/A1234567H</code><br>
+<p><code>assigntask desc/Book PGP Function Room 3 d/02/06/2018 ti/19:00 m/A1234567H</code><br>
 Assigns a task to <code>A1234567H</code> with description <code>Book PGP Function Room 3</code> due on <code>02/06/2018</code> at <code>19:00</code>.</p>
 </li>
 <li>
-<p><code>assigntask desc/Buy Food d/03.04.2018 ti/15:00 m/A1122334K</code><br>
+<p><code>assigntask desc/Buy Food d/03.06.2018 ti/15:00 m/A1122334K</code><br>
 Assigns a task to <code>A1122334K</code> with description <code>Buy Food</code> due on <code>03/06/2018</code> at <code>15:00</code>.</p>
 </li>
 </ul>
@@ -658,7 +659,7 @@ Aliases: <code>cts</code>, <code>changestatus</code>, <code>status</code></p>
 <p>The <code>STATUS</code> can be one of <code><code>Yet To Begin</code></code>, <code><code>In Progress</code></code>, and <code><code>Completed</code></code>.</p>
 </li>
 <li>
-<p>You can only change the status of a task that you have been assigned.</p>
+<p>You can only change the status of a task that you have been assigned or a task that you have assigned.</p>
 </li>
 <li>
 <p>Club Connect detects if there is no change in the <code>STATUS</code>.</p>
@@ -703,7 +704,7 @@ Changes the status of the 3rd task to <code>Completed</code> in the task listing
 <div class="paragraph">
 <p>Clears all entries from Club Connect.<br>
 Format A: <code>clear</code><br>
-Format B: <code>clear LETTER</code>
+Format B: <code>clear LETTER</code><br>
 Aliases: <code>c</code>, <code>erase</code></p>
 </div>
 <div class="sidebarblock">
@@ -723,10 +724,10 @@ Aliases: <code>c</code>, <code>erase</code></p>
 <p>Format B has to be executed immediately after executing Format A.</p>
 </li>
 <li>
-<p>LETTER must be equals to "Y" to confirm clearing data from Club Connect</p>
+<p><code>LETTER</code> must be equals to "Y" (case-insensitive) to confirm clearing data from Club Connect</p>
 </li>
 <li>
-<p>Any other LETTER will cancell the execution</p>
+<p>Any other <code>LETTER</code> will cancel the execution</p>
 </li>
 </ul>
 </div>
@@ -750,12 +751,14 @@ This command is for <code>Exco</code> members only.
 <div class="ulist">
 <ul>
 <li>
-<p><code>Clear</code> &#8594; <code>Clear Y</code>
-Execute the clear command, and confirming it.</p>
+<p><code>Clear</code><br>
+<code>Clear Y</code><br>
+Executes the clear command, and confirms it.</p>
 </li>
 <li>
-<p><code>Clear</code> &#8594; <code>Clear N</code>
-Execute the clear command, and cancelling it.</p>
+<p><code>Clear</code><br>
+<code>Clear N</code><br>
+Executes the clear command, and aborts it.</p>
 </li>
 </ul>
 </div>
@@ -1004,7 +1007,7 @@ Aliases: <code>deltask</code>, <code>rmtask</code></p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Only Members who are either the <code>Assignor</code> or the <code>Assignee</code> can delete their respective tasks.
+Only Members who are the <code>Assignor</code> can delete their respective tasks.
 </td>
 </tr>
 </table>
@@ -2074,7 +2077,7 @@ Fret not, Club Connect provides you with a platform to voice your opinions. And 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 04:49:38 UTC
+Last updated 2018-04-15 05:12:58 UTC
 </div>
 </div>
 </body>
