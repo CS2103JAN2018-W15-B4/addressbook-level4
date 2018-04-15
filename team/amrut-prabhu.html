@@ -314,9 +314,9 @@ Imports all members in the "clubbook.csv" file on <code>Jane Doe</code> 's Deskt
 </div>
 </div>
 <div class="sect2">
-<h3 id="exporting-club-connect-data-code-export-code-since-v1-3"><a class="link" href="#exporting-club-connect-data-code-export-code-since-v1-3">Exporting Club Connect data: <code>export</code> (Since v1.3)</a></h3>
+<h3 id="exporting-club-connect-members-code-export-code-since-v1-3"><a class="link" href="#exporting-club-connect-members-code-export-code-since-v1-3">Exporting Club Connect members: <code>export</code> (Since v1.3)</a></h3>
 <div class="paragraph">
-<p>Exports the data of all members in Club Connect to a <a href="DeveloperGuide.html#csv">CSV</a> file.
+<p>Exports the data of all members in Club Connect to a <a href="DeveloperGuide.html#csv">CSV</a> file.<br>
 Format: 'export CSV_FILE_PATH`<br>
 Alias: <code>exp</code></p>
 </div>
@@ -328,7 +328,7 @@ Alias: <code>exp</code></p>
 <p>Exports Name, Phone Number, Email, Matriculation Number, Group, and Tags of all members in Club Connect to a CSV file.</p>
 </li>
 <li>
-<p>CSV_FILE_PATH must be an absolute path to the CSV file.</p>
+<p>CSV_FILE_PATH must be the absolute path to a CSV file.</p>
 </li>
 <li>
 <p>In order for this command to work correctly, ensure that none of the members have double quoutes (") in any of their data.</p>
@@ -362,7 +362,7 @@ You can import the generated CSV file from Microsoft Excel to get an even better
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-TO get the absolute path to the CSV file, see <a href="#absolute-path">Absolute path of a file</a>.
+To get the absolute path to the CSV file, see <a href="#absolute-path">Absolute path of a file</a>.
 </td>
 </tr>
 </table>
@@ -374,11 +374,11 @@ TO get the absolute path to the CSV file, see <a href="#absolute-path">Absolute 
 <ul>
 <li>
 <p><code>export C:/Users/John Doe/Desktop/members.csv</code><br>
-Exports all members in Club Connect to the "members.csv" file on <code>John Doe</code> 's Desktop.</p>
+Exports all members in Club Connect to the "members.csv" file on <code>John Doe</code> 's <code>Desktop</code>.</p>
 </li>
 <li>
 <p><code>export C:/Users/Jane Doe/Desktop/clubbook.csv</code><br>
-Exports all members in Club Connect to the "clubbook.csv" file on <code>Jane Doe</code> 's Desktop.</p>
+Exports all members in Club Connect to the "clubbook.csv" file on <code>Jane Doe</code> 's <code>Desktop</code>.</p>
 </li>
 </ul>
 </div>
@@ -398,7 +398,7 @@ Exports all members in Club Connect to the "clubbook.csv" file on <code>Jane Doe
 <div class="sect2">
 <h3 id="changing-your-profile-photo-code-changepic-code-since-v1-2"><a class="link" href="#changing-your-profile-photo-code-changepic-code-since-v1-2">Changing your profile photo : <code>changepic</code> (Since v1.2)</a></h3>
 <div class="paragraph">
-<p>Changes the photo displayed on your profile to the specified photo.<br>
+<p>Changes the photo displayed on your profile to the photo specified by the path.<br>
 Format: <code>changepic PHOTO_PATH</code><br>
 Aliases: <code>pic</code>, <code>profilepic</code></p>
 </div>
@@ -407,7 +407,7 @@ Aliases: <code>pic</code>, <code>profilepic</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>PHOTO_PATH must be an absolute path to the photo.</p>
+<p>PHOTO_PATH must be an absolute path to the photo file.</p>
 </li>
 <li>
 <p>This command is only guaranteed to work for JPG (.jpg), and PNG (.png) files.</p>
@@ -462,11 +462,11 @@ To get the absolute path to the photo, see <a href="#absolute-path">Absolute pat
 <ul>
 <li>
 <p><code>changepic C:/Users/John Doe/Desktop/john_doe.jpg</code><br>
-Changes your profile picture to the "john_doe.jpg" image on <code>John Doe</code> 's Desktop.</p>
+Changes your profile picture to the "john_doe.jpg" image on <code>John Doe</code> 's <code>Desktop</code>.</p>
 </li>
 <li>
 <p><code>changepic C:/Users/Admin/Downloads/CathyRay.png</code><br>
-Changes your profile picture to the "CathyRay.png" image in your Downloads folder.</p>
+Changes your profile picture to the "CathyRay.png" image in your <code>Downloads</code> folder.</p>
 </li>
 </ul>
 </div>
@@ -497,7 +497,7 @@ This command cannot be undone. You will have to set your profile photo by using 
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If you have not set a profile photo, your profile photo will remain as the default photo.
+If you have not set a profile photo, your profile photo will still be the default photo.
 </td>
 </tr>
 </table>
@@ -531,83 +531,89 @@ If you have not set a profile photo, your profile photo will remain as the defau
 </div>
 </div>
 <div class="sect2">
-<h3 id="exporting-members"><a class="link" href="#exporting-members">Exporting Members</a></h3>
+<h3 id="importing-members"><a class="link" href="#importing-members">Importing Members</a></h3>
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
 <div class="paragraph">
-<p>The <code>export</code> mechanism of Club Connect is facilitated by the <code>ExportCommand</code> class and is event-driven.
-It allows members to export the list of members in Club Connect as a CSV file.
-It makes use of the <code>CsvUtil</code> class to convert <code>Member</code> objects to CSV format.</p>
+<p>The <code>import</code> mechanism of Club Connect is facilitated by the <code>ImportCommand</code> class and is event-driven.
+It allows members to add the list of members from a <a href="#csv">CSV</a> file to Club Connect at one go.
+To facilitate this, it makes use of the <code>CsvUtil</code> class, which converts <code>Member</code> objects to CSV format.</p>
 </div>
 <div class="paragraph">
-<p>The <code>ExportCommand</code> extends from the <code>Command</code> class, as it is not an undoable command and only consists of a <code>File</code> attribute.
-Figure 52 depicts the UML diagram for the <code>ExportCommand</code> class.</p>
+<p>The <code>ImportCommand</code> extends from the <code>UndoableCommand</code> class, and only consists of a <code>File</code> attribute.
+This is illustrated in the UML diagram shown in Figure 52.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/ExportCommandUML.png" alt="ExportCommandUML" width="350">
+<img src="../images/ImportCommandUML.png" alt="ImportCommandUML" width="150">
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 52. ExportCommand UML Diagram</em></p>
+<p><em>Figure 52. ImportCommand UML Diagram</em></p>
 </div>
 <div class="paragraph">
-<p>The <code>export</code> command uses multiple components of the Club Connect application.
-The <em>Sequence Diagram</em> below (Figure 53) shows the interactions between some of these components.
-As you can see, the <code>ExportCommand</code> is driven by the <code>NewExportDataAvailableEvent</code>.</p>
+<p>The <code>import</code> command involves the use of multiple components of the Club Connect application.
+Figure 53 (below) shows the high-level <em>Sequence Diagram</em> for the <code>import</code> command.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/SDforExport.png" alt="SDforExport" width="800">
+<img src="../images/SDforImport.png" alt="SDforImport" width="900">
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 53. High Level Sequence Diagram for the <code>export C:/Users/Admin/members.csv</code> command</em></p>
+<p><em>Figure 53. High Level Sequence Diagram for the <code>import C:/Users/Admin/club.csv</code> command</em></p>
 </div>
 <div class="paragraph">
-<p>This event is handled by the <code>Storage</code> component as shown in Figure 54.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/SDforExportEventHandling.png" alt="SDforExportEventHandling" width="650">
-</div>
+<p><code>Logic</code> is responsible for parsing the <code>import</code> command.
+It returns an <code>ImportCommand</code> object after parsing the CSV file path.</p>
 </div>
 <div class="paragraph">
-<p>_Figure 54. High Level Sequence Diagram showing how the <code>Storage</code> component handles the <code>NewExportDataAvailableEvent</code></p>
+<p>The <code>ImportCommand#execute()</code> method invokes the <code>importMembers()</code> method from <code>model</code>.</p>
 </div>
 <div class="paragraph">
-<p><code>Storage</code> makes use of a <code>CsvClubBookStorage</code> object to write data to the file specified by the export path.
-This is shown in the code snippet below:</p>
+<p>The <code>Model</code> component invokes the <code>readClubBook()</code> method of the <code>CsvClubBookStorage</code> object to get the list of <code>Member</code>
+objects that are to be added to Club Connect. The members from the list are then sequentially added to the club book.
+If a <code>DuplicateMatricNumberException</code> is encountered while adding a member, then that member is not added to the club book
+and execution continues. This way, even if there are a few members with invalid data values, the import command will
+still work for those members with valid data. This implementation is shown in the code snipped below:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">void</span> exportDataToFile(<span class="predefined-type">String</span> data, <span class="predefined-type">File</span> exportFile) <span class="directive">throws</span> <span class="exception">IOException</span> {
-    csvClubBookStorage.setClubBookFile(exportFile);
-    <span class="comment">// ... logging ...</span>
-    csvClubBookStorage.saveData(data);
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">int</span> importMembers(<span class="predefined-type">File</span> importFile) <span class="directive">throws</span> <span class="exception">IOException</span> {
+    CsvClubBookStorage csvStorage = <span class="keyword">new</span> CsvClubBookStorage(importFile);
+    UniqueMemberList importedMembers = csvStorage.readClubBook();
+    <span class="type">int</span> numberMembers = <span class="integer">0</span>;
+    <span class="keyword">for</span> (<span class="predefined-type">Member</span> member: importedMembers) {
+        <span class="keyword">try</span> {
+            clubBook.addMember(member);
+            numberMembers++;
+        } <span class="keyword">catch</span> (DuplicateMatricNumberException dmne) {
+            <span class="comment">//...logging...</span>
+        }
+    }
+    indicateClubBookChanged();
+    <span class="keyword">return</span> numberMembers;
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Then, the <code>csvClubBookStorage</code> object gets the column headers for the file from the <code>CsvUtil</code> class:</p>
+<p>The conversion of data from the CSV file to <code>Member</code> objects is facilitated by the <code>CsvUtil</code> class. Part of the implementation is shown here:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">void</span> saveData(<span class="predefined-type">String</span> data, <span class="predefined-type">File</span> file) <span class="directive">throws</span> <span class="exception">IOException</span> {
-    <span class="comment">// ... logging ...</span>
-    <span class="predefined-type">String</span> columnHeaders = CsvUtil.getHeaders();
-    <span class="predefined-type">String</span> dataToExport = columnHeaders + data;
-    CsvFileStorage.saveDataToFile(file, dataToExport);
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Finally, the <code>CsvFileStorage</code> class saves the data to the file by using the <code>writeToFile</code> method from the <code>FileUtil</code> class.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="directive">static</span> <span class="type">void</span> saveDataToFile(<span class="predefined-type">File</span> file, <span class="predefined-type">String</span> data) <span class="directive">throws</span> <span class="exception">IOException</span> {
-    FileUtil.writeToFile(file, data);
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="directive">static</span> UniqueMemberList getDataFromFile(<span class="predefined-type">File</span> file) <span class="directive">throws</span> <span class="exception">IOException</span> {
+    UniqueMemberList importedMembers = <span class="keyword">new</span> UniqueMemberList();
+    <span class="predefined-type">String</span> data = FileUtil.readFromFile(file);
+    <span class="predefined-type">String</span><span class="type">[]</span> membersData = data.split(<span class="string"><span class="delimiter">&quot;</span><span class="char">\n</span><span class="delimiter">&quot;</span></span>);
+    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">1</span>; i &lt; membersData.length; i++) { <span class="comment">//membersData[0] contains column headers</span>
+        <span class="keyword">try</span> {
+            <span class="predefined-type">Member</span> member = getMember(membersData[i]);
+            importedMembers.add(member);
+        } <span class="keyword">catch</span> (<span class="exception">Exception</span> e) {
+            <span class="comment">//...logging...</span>
+        }
+    }
+    <span class="keyword">return</span> importedMembers;
 }</code></pre>
 </div>
 </div>
@@ -615,31 +621,65 @@ This is shown in the code snippet below:</p>
 <div class="sect3">
 <h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-output-file-format"><a class="link" href="#aspect-output-file-format">Aspect: Output file format</a></h5>
+<h5 id="aspect-implementation-of-code-importcommand-code"><a class="link" href="#aspect-implementation-of-code-importcommand-code">Aspect: Implementation of <code>ImportCommand</code></a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice)</strong>: Export to a CSV file</p>
+<p><strong>Alternative 1 (current choice)</strong>: Implement parser for CSV files ourselves</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: More user-friendly in terms of understandability, generated file is compatible with the <code>import</code> command</p>
+<p>Pros: Greater control over what the format in the file to be imported from should be</p>
 </li>
 <li>
-<p>Cons: Harder to implement as support for converting data of <code>Member</code> to CSV format needs to be added</p>
+<p>Cons: Harder to implement, less flexible in terms of how data can be stored in the file as the data values are not binded to tags</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2</strong>: Export to a XML file</p>
+<p><strong>Alternative 2</strong>: Use existing libraries (such as <a href="http://opencsv.sourceforge.net/">OpenCSV</a> and
+<a href="https://github.com/FasterXML/jackson-dataformats-text/tree/master/csv">Jackson</a>)</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Easier to implement and as the code already supports the writing of data in XML format</p>
+<p>Pros: More flexible in terms of how the data can be stored in the import file</p>
 </li>
 <li>
-<p>Cons: Raw file provides a less intuitive view of data, generated file is not compatible with the <code>import</code> command</p>
+<p>Cons: Security issues or bugs in the external library cannot be fixed, licensing issues, difficult to use due to poor documentation</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-input-file-format"><a class="link" href="#aspect-input-file-format">Aspect: Input file format</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Import from a CSV file</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easier for users to create and modify their data in a CSV file</p>
+</li>
+<li>
+<p>Cons: Implementation becomes more complex and may become less robust as support for parsing data from CSV files has to be added.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2</strong>: Import from a XML file</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easier to implement and parse data, as the code already supports the reading of data from XML format</p>
+</li>
+<li>
+<p>Cons: Harder for non-technical users to create and modify their data in a XML file</p>
 </li>
 </ul>
 </div>
@@ -757,8 +797,7 @@ It copies the photo as a <a href="#bmp">bitmap image file</a> (.bmp) to the Club
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@FXML</span>
-<span class="directive">private</span> <span class="predefined-type">ImageView</span> profilePhoto;
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">private</span> <span class="predefined-type">ImageView</span> profilePhoto;
 <span class="directive">private</span> <span class="type">void</span> setProfilePhoto(<span class="predefined-type">Member</span> member) {
     <span class="predefined-type">Image</span> photo;
     <span class="predefined-type">String</span> photoPath = member.getProfilePhoto().getPhotoPath();
@@ -772,17 +811,17 @@ It copies the photo as a <a href="#bmp">bitmap image file</a> (.bmp) to the Club
 </div>
 </div>
 <div class="paragraph">
-<p>The actual displaying of the profile photo is done by using this xml code:</p>
+<p>The actual displaying of the profile photo is done by using this fxml code:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;HBox</span> <span class="attribute-name">alignment</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">CENTER_LEFT</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
-    <span class="tag">&lt;ImageView</span> <span class="attribute-name">fx:id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">profilePhoto</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">fitWidth</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">100</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">fitHeight</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">130</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
-        <span class="tag">&lt;HBox.margin&gt;</span>
-            <span class="tag">&lt;Insets</span> <span class="attribute-name">left</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">7.5</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">bottom</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">7.5</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">right</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">5.0</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">top</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">7.5</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
-        <span class="tag">&lt;/HBox.margin&gt;</span>
-    <span class="tag">&lt;/ImageView&gt;</span>
-<span class="tag">&lt;/HBox&gt;</span></code></pre>
+<pre class="CodeRay highlight"><code data-lang="fxml">&lt;HBox alignment=&quot;CENTER_LEFT&quot;&gt;
+    &lt;ImageView fx:id=&quot;profilePhoto&quot; fitWidth=&quot;100&quot; fitHeight=&quot;130&quot;&gt;
+        &lt;HBox.margin&gt;
+            &lt;Insets left=&quot;7.5&quot; bottom=&quot;7.5&quot; right=&quot;5.0&quot; top=&quot;7.5&quot; /&gt;
+        &lt;/HBox.margin&gt;
+    &lt;/ImageView&gt;
+&lt;/HBox&gt;</code></pre>
 </div>
 </div>
 </div>
@@ -966,134 +1005,11 @@ So, they must begin with a letter, followed by 7 digits and should end with a le
 <p><strong>Groups</strong> should only contain letters and digits. They must not be empty.</p>
 </li>
 <li>
-<p><strong>Tags</strong> should also only contain letters, digits and hyphens. They cannot be empty, and cannot begin with a hyphen ('-').</p>
+<p><strong>Tags</strong> should also only contain letters, digits and hyphens. They cannot be empty, and cannot begin with a hyphen ("-").</p>
 </li>
 </ul>
 </div>
 </div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="signing-up-a-member-code-signup-code-since-v1-4"><a class="link" href="#signing-up-a-member-code-signup-code-since-v1-4">Signing up a member: <code>signup</code> (since v1.4)</a></h3>
-<div class="paragraph">
-<p>Signs up a member to Club Connect.<br>
-Format: <code>signup n/NAME p/PHONE_NUMBER e/EMAIL m/MATRIC_NUMBER [t/TAG]&#8230;&#8203;</code><br>
-Aliases: <code>register</code>, <code>enroll</code><br></p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-A member can have any number of tags (including 0).
-</td>
-</tr>
-</table>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>You must not specify a group while signing up.</p>
-</li>
-<li>
-<p>The member who signed up will be automatically be added to a group named exco.</p>
-</li>
-<li>
-<p>You can only sign-up once.</p>
-</li>
-<li>
-<p>You must use the credentials of the signed-up member to continue using Club Connect.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Refer to <code>login</code> command documentation for user credentials.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Example: <code>signup n/Alan Walker p/97456895 e/alanw@gmail.com m/A0156489C t/President</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="logging-in-to-the-application-code-login-code-since-v1-3"><a class="link" href="#logging-in-to-the-application-code-login-code-since-v1-3">Logging in to the application: <code>login</code> (Since v1.3)</a></h3>
-<div class="paragraph">
-<p>Logs in a member to Club Connect.<br>
-Format: <code>login u/USERNAME pw/PASSWORD</code><br>
-Alias: <code>signin</code></p>
-</div>
-<div class="paragraph">
-<p>Example: <code>login u/A0123456H pw/password</code></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Use your <code>MATRIC NUMBER</code> as your username.</p>
-</li>
-<li>
-<p>The default password is <code>password</code>. We advise you to change your password using the <code>changepass</code> command once you&#8217;ve logged in.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="changing-password-code-changepass-code-since-v1-4"><a class="link" href="#changing-password-code-changepass-code-since-v1-4">Changing password : <code>changepass</code> (Since v1.4)</a></h3>
-<div class="paragraph">
-<p>Changes your password, if you are logged in.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>changepass u/USERNAME pw/OLD_PASSWORD npw/NEW_PASSWORD</code><br>
-Alias: <code>changepw</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Members are only able to change their own password.</p>
-</li>
-<li>
-<p>Exco members can change the password of any member. The member is indicated by their username.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>changepass u/A0123456H pw/password npw/pword</code><br>
-Changes the password of the member with username <code>A0123456H</code> to <code>pword</code>.</p>
-</li>
-<li>
-<p><code>changepass u/A1234567H pw/password npw/brandnewpassword</code><br>
-Changes the password of the member with username <code>A1234567H</code> to <code>brandnewpassword</code>.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="logging-out-of-the-application-code-logout-code-since-v1-4"><a class="link" href="#logging-out-of-the-application-code-logout-code-since-v1-4">Logging out of the application : <code>logout</code> (Since v1.4)</a></h3>
-<div class="paragraph">
-<p>Logouts out the user from Club Connect.<br>
-Format: <code>logout</code><br>
-Alias: <code>signout</code></p>
 </div>
 </div>
 </div>
@@ -1122,7 +1038,7 @@ Here are some tips and tricks:</p>
 </div>
 </li>
 <li>
-<p><strong>Alternative command names</strong>
+<p><strong>Alternative command names</strong><br>
 If you do not like the default command name or feel that it is too long, you can use one of its aliases to execute the command instead.</p>
 <div class="paragraph">
 <p>Example: The <code>changepic</code> command uses <code>pic</code> as an alias.
@@ -1138,7 +1054,7 @@ So, both commands shown below can be used change your profile picture to the "jo
 <div id="absolute-path" class="ulist">
 <ul>
 <li>
-<p><strong>Absolute path of a file</strong>
+<p><strong>Absolute path of a file</strong><br>
 To get the absolute path of a file on Windows, follow these steps:</p>
 <div class="olist arabic">
 <ol class="arabic">
@@ -1152,9 +1068,6 @@ To get the absolute path of a file on Windows, follow these steps:</p>
 <p>Add the complete name of the file (e.g. "/file_name.jpg") to the end of this location to get the absolute path to the file.</p>
 </li>
 </ol>
-</div>
-</li>
-</ul>
 </div>
 <div class="paragraph">
 <p>To get the absolute path of a file on MacOS, follow these steps:</p>
@@ -1172,6 +1085,9 @@ To get the absolute path of a file on Windows, follow these steps:</p>
 </li>
 </ol>
 </div>
+</li>
+</ul>
+</div>
 <div id="csv-data-format" class="ulist">
 <ul>
 <li>
@@ -1186,12 +1102,12 @@ In order to successfully import data of members from the specified file, it has 
 <div class="paragraph">
 <p>The columns in the import file should be in the same order as shown in the figure above.
 All the tags of a member should be in a single cell, separated by commas (",").
-Also, to successfully import the data of a member, you have to make sure that their details conform to the <a href="#constraints">[constraints]</a>.
+Also, to successfully import the data of a member, you have to make sure that their details conform to the <a href="#constraints">constraints</a>.
 Figure 5 shows some examples of invalid entries with the corresponding reasons in red.</p>
 </div>
 <div id="invalid-csv-format" class="imageblock">
 <div class="content">
-<img src="../images/invalid_CSV_format.png" alt="invalid CSV format" height="150">
+<img src="../images/invalid_CSV_format.png" alt="invalid CSV format" height="110">
 </div>
 <div class="title">Figure 2. Invalid format of data in the file (reasons are shown in red)</div>
 </div>
@@ -1261,89 +1177,83 @@ Fret not, Club Connect provides you with a platform to voice your opinions. And 
 <p><mark>Start of Extract (from Developer Guide)</mark></p>
 </div>
 <div class="sect2">
-<h3 id="importing-members"><a class="link" href="#importing-members">Importing Members</a></h3>
+<h3 id="exporting-members"><a class="link" href="#exporting-members">Exporting Members</a></h3>
 <div class="sect3">
 <h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">Current Implementation</a></h4>
 <div class="paragraph">
-<p>The <code>import</code> mechanism of Club Connect is facilitated by the <code>ImportCommand</code> class and is event-driven.
-It allows members to add the list of members from a <a href="#csv">CSV</a> file to Club Connect at one go.
-To facilitate this, it makes use of the <code>CsvUtil</code> class, which converts <code>Member</code> objects to CSV format.</p>
+<p>The <code>export</code> mechanism of Club Connect is facilitated by the <code>ExportCommand</code> class and is event-driven.
+It allows members to export the list of members in Club Connect as a CSV file.
+It makes use of the <code>CsvUtil</code> class to convert <code>Member</code> objects to CSV format.</p>
 </div>
 <div class="paragraph">
-<p>The <code>ImportCommand</code> extends from the <code>UndoableCommand</code> class, and only consists of a <code>File</code> attribute.
-This is illustrated in the UML diagram shown in Figure 52.</p>
+<p>The <code>ExportCommand</code> extends from the <code>Command</code> class, as it is not an undoable command and only consists of a <code>File</code> attribute.
+Figure 52 depicts the UML diagram for the <code>ExportCommand</code> class.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/ImportCommandUML.png" alt="ImportCommandUML" width="150">
+<img src="../images/ExportCommandUML.png" alt="ExportCommandUML" width="350">
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 52. ImportCommand UML Diagram</em></p>
+<p><em>Figure 52. ExportCommand UML Diagram</em></p>
 </div>
 <div class="paragraph">
-<p>The <code>import</code> command involves the use of multiple components of the Club Connect application.
-Figure 53 (below) shows the high-level <em>Sequence Diagram</em> for the <code>import</code> command.</p>
+<p>The <code>export</code> command uses multiple components of the Club Connect application.
+The <em>Sequence Diagram</em> below (Figure 53) shows the interactions between some of these components.
+As you can see, the <code>ExportCommand</code> is driven by the <code>NewExportDataAvailableEvent</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/SDforImport.png" alt="SDforImport" width="900">
+<img src="../images/SDforExport.png" alt="SDforExport" width="800">
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 53. High Level Sequence Diagram for the <code>import C:/Users/Admin/club.csv</code> command</em></p>
+<p><em>Figure 53. High Level Sequence Diagram for the <code>export C:/Users/Admin/members.csv</code> command</em></p>
 </div>
 <div class="paragraph">
-<p><code>Logic</code> is responsible for parsing the <code>import</code> command.
-It returns an <code>ImportCommand</code> object after parsing the CSV file path.</p>
+<p>This event is handled by the <code>Storage</code> component as shown in Figure 54.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SDforExportEventHandling.png" alt="SDforExportEventHandling" width="650">
+</div>
 </div>
 <div class="paragraph">
-<p>The <code>ImportCommand#execute()</code> method invokes the <code>importMembers()</code> method from <code>model</code>.</p>
+<p>_Figure 54. High Level Sequence Diagram showing how the <code>Storage</code> component handles the <code>NewExportDataAvailableEvent</code></p>
 </div>
 <div class="paragraph">
-<p>The <code>Model</code> component invokes the <code>readClubBook()</code> method of the <code>CsvClubBookStorage</code> object to get the list of <code>Member</code>
-objects that are to be added to Club Connect. The members from the list are then sequentially added to the club book.
-If a <code>DuplicateMatricNumberException</code> is encountered while adding a member, then that member is not added to the club book
-and execution continues. This way, even if there are a few members with invalid data values, the import command will
-still work for those members with valid data. This implementation is shown in the code snipped below:</p>
+<p><code>Storage</code> makes use of a <code>CsvClubBookStorage</code> object to write data to the file specified by the export path.
+This is shown in the code snippet below:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">int</span> importMembers(<span class="predefined-type">File</span> importFile) <span class="directive">throws</span> <span class="exception">IOException</span> {
-    CsvClubBookStorage csvStorage = <span class="keyword">new</span> CsvClubBookStorage(importFile);
-    UniqueMemberList importedMembers = csvStorage.readClubBook();
-    <span class="type">int</span> numberMembers = <span class="integer">0</span>;
-    <span class="keyword">for</span> (<span class="predefined-type">Member</span> member: importedMembers) {
-        <span class="keyword">try</span> {
-            clubBook.addMember(member);
-            numberMembers++;
-        } <span class="keyword">catch</span> (DuplicateMatricNumberException dmne) {
-            <span class="comment">//...logging...</span>
-        }
-    }
-    indicateClubBookChanged();
-    <span class="keyword">return</span> numberMembers;
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">void</span> exportDataToFile(<span class="predefined-type">String</span> data, <span class="predefined-type">File</span> exportFile) <span class="directive">throws</span> <span class="exception">IOException</span> {
+    csvClubBookStorage.setClubBookFile(exportFile);
+    <span class="comment">// ... logging ...</span>
+    csvClubBookStorage.saveData(data);
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The conversion of data from the CSV file to <code>Member</code> objects is facilitated by the <code>CsvUtil</code> class. Part of the implementation is shown here:</p>
+<p>Then, the <code>csvClubBookStorage</code> object gets the column headers for the file from the <code>CsvUtil</code> class:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="directive">static</span> UniqueMemberList getDataFromFile(<span class="predefined-type">File</span> file) <span class="directive">throws</span> <span class="exception">IOException</span> {
-    UniqueMemberList importedMembers = <span class="keyword">new</span> UniqueMemberList();
-    <span class="predefined-type">String</span> data = FileUtil.readFromFile(file);
-    <span class="predefined-type">String</span><span class="type">[]</span> membersData = data.split(<span class="string"><span class="delimiter">&quot;</span><span class="char">\n</span><span class="delimiter">&quot;</span></span>);
-    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">1</span>; i &lt; membersData.length; i++) { <span class="comment">//membersData[0] contains column headers</span>
-        <span class="keyword">try</span> {
-            <span class="predefined-type">Member</span> member = getMember(membersData[i]);
-            importedMembers.add(member);
-        } <span class="keyword">catch</span> (<span class="exception">Exception</span> e) {
-            <span class="comment">//...logging...</span>
-        }
-    }
-    <span class="keyword">return</span> importedMembers;
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">void</span> saveData(<span class="predefined-type">String</span> data, <span class="predefined-type">File</span> file) <span class="directive">throws</span> <span class="exception">IOException</span> {
+    <span class="comment">// ... logging ...</span>
+    <span class="predefined-type">String</span> columnHeaders = CsvUtil.getHeaders();
+    <span class="predefined-type">String</span> dataToExport = columnHeaders + data;
+    CsvFileStorage.saveDataToFile(file, dataToExport);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Finally, the <code>CsvFileStorage</code> class saves the data to the file by using the <code>writeToFile</code> method from the <code>FileUtil</code> class.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="directive">static</span> <span class="type">void</span> saveDataToFile(<span class="predefined-type">File</span> file, <span class="predefined-type">String</span> data) <span class="directive">throws</span> <span class="exception">IOException</span> {
+    FileUtil.writeToFile(file, data);
 }</code></pre>
 </div>
 </div>
@@ -1351,65 +1261,31 @@ still work for those members with valid data. This implementation is shown in th
 <div class="sect3">
 <h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-implementation-of-code-importcommand-code"><a class="link" href="#aspect-implementation-of-code-importcommand-code">Aspect: Implementation of <code>ImportCommand</code></a></h5>
+<h5 id="aspect-output-file-format"><a class="link" href="#aspect-output-file-format">Aspect: Output file format</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice)</strong>: Implement parser for CSV files ourselves</p>
+<p><strong>Alternative 1 (current choice)</strong>: Export to a CSV file</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Greater control over what the format in the file to be imported from should be</p>
+<p>Pros: More user-friendly in terms of understandability, generated file is compatible with the <code>import</code> command</p>
 </li>
 <li>
-<p>Cons: Harder to implement, less flexible in terms of how data can be stored in the file as the data values are not binded to tags</p>
+<p>Cons: Harder to implement as support for converting data of <code>Member</code> to CSV format needs to be added</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2</strong>: Use existing libraries (such as <a href="http://opencsv.sourceforge.net/">OpenCSV</a> and
-<a href="https://github.com/FasterXML/jackson-dataformats-text/tree/master/csv">Jackson</a>)</p>
+<p><strong>Alternative 2</strong>: Export to a XML file</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: More flexible in terms of how the data can be stored in the import file</p>
+<p>Pros: Easier to implement and as the code already supports the writing of data in XML format</p>
 </li>
 <li>
-<p>Cons: Security issues or bugs in the external library cannot be fixed, licensing issues, difficult to use due to poor documentation</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect4">
-<h5 id="aspect-input-file-format"><a class="link" href="#aspect-input-file-format">Aspect: Input file format</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice)</strong>: Import from a CSV file</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Easier for users to create and modify their data in a CSV file</p>
-</li>
-<li>
-<p>Cons: Implementation becomes more complex and may become less robust as support for parsing data from CSV files has to be added.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2</strong>: Import from a XML file</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Easier to implement and parse data, as the code already supports the reading of data from XML format</p>
-</li>
-<li>
-<p>Cons: Harder for non-technical users to create and modify their data in a XML file</p>
+<p>Cons: Raw file provides a less intuitive view of data, generated file is not compatible with the <code>import</code> command</p>
 </li>
 </ul>
 </div>
@@ -1522,7 +1398,7 @@ For example, all Windows operating systems have a GUI.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 12:06:53 UTC
+Last updated 2018-04-15 12:51:36 UTC
 </div>
 </div>
 </body>

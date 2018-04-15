@@ -2442,8 +2442,7 @@ It copies the photo as a <a href="#bmp">bitmap image file</a> (.bmp) to the Club
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@FXML</span>
-<span class="directive">private</span> <span class="predefined-type">ImageView</span> profilePhoto;
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">private</span> <span class="predefined-type">ImageView</span> profilePhoto;
 <span class="directive">private</span> <span class="type">void</span> setProfilePhoto(<span class="predefined-type">Member</span> member) {
     <span class="predefined-type">Image</span> photo;
     <span class="predefined-type">String</span> photoPath = member.getProfilePhoto().getPhotoPath();
@@ -2457,17 +2456,17 @@ It copies the photo as a <a href="#bmp">bitmap image file</a> (.bmp) to the Club
 </div>
 </div>
 <div class="paragraph">
-<p>The actual displaying of the profile photo is done by using this xml code:</p>
+<p>The actual displaying of the profile photo is done by using this fxml code:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;HBox</span> <span class="attribute-name">alignment</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">CENTER_LEFT</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
-    <span class="tag">&lt;ImageView</span> <span class="attribute-name">fx:id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">profilePhoto</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">fitWidth</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">100</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">fitHeight</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">130</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
-        <span class="tag">&lt;HBox.margin&gt;</span>
-            <span class="tag">&lt;Insets</span> <span class="attribute-name">left</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">7.5</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">bottom</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">7.5</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">right</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">5.0</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">top</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">7.5</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
-        <span class="tag">&lt;/HBox.margin&gt;</span>
-    <span class="tag">&lt;/ImageView&gt;</span>
-<span class="tag">&lt;/HBox&gt;</span></code></pre>
+<pre class="CodeRay highlight"><code data-lang="fxml">&lt;HBox alignment=&quot;CENTER_LEFT&quot;&gt;
+    &lt;ImageView fx:id=&quot;profilePhoto&quot; fitWidth=&quot;100&quot; fitHeight=&quot;130&quot;&gt;
+        &lt;HBox.margin&gt;
+            &lt;Insets left=&quot;7.5&quot; bottom=&quot;7.5&quot; right=&quot;5.0&quot; top=&quot;7.5&quot; /&gt;
+        &lt;/HBox.margin&gt;
+    &lt;/ImageView&gt;
+&lt;/HBox&gt;</code></pre>
 </div>
 </div>
 </div>
@@ -5799,7 +5798,7 @@ Expected: No tag is deleted as the tag name format is invalid. Relevant error de
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 12:06:53 UTC
+Last updated 2018-04-15 12:51:36 UTC
 </div>
 </div>
 </body>

@@ -208,7 +208,7 @@ Adds a task with description <code>Buy Food</code> due on <code>03/06/2018</code
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-a-task-code-assigntask-code-since-v1-4"><a class="link" href="#adding-a-task-code-assigntask-code-since-v1-4">Adding a task: <code>assigntask</code> (Since v1.4)</a></h3>
+<h3 id="assigning-a-task-code-assigntask-code-since-v1-4"><a class="link" href="#assigning-a-task-code-assigntask-code-since-v1-4">Assigning a task: <code>assigntask</code> (Since v1.4)</a></h3>
 <div class="paragraph">
 <p>Adds a task to Club Connect and assigns it to a member.<br>
 Format: <code>assigntask desc/DESCRIPTION d/DUE_DATE ti/TIME m/MATRIC_NUMBER</code><br>
@@ -277,7 +277,7 @@ Assigns a task to <code>A1122334K</code> with description <code>Buy Food</code> 
 <div class="sect2">
 <h3 id="changing-the-assignee-of-a-task-code-changeassignee-code-since-v1-5rc"><a class="link" href="#changing-the-assignee-of-a-task-code-changeassignee-code-since-v1-5rc">Changing the assignee of a task : <code>changeassignee</code> (Since v1.5rc)</a></h3>
 <div class="paragraph">
-<p>Changes the status of a task in Club Connect.<br>
+<p>Changes the assignee of a task in Club Connect.<br>
 Format: <code>changeassignee INDEX m/MATRIC_NUMBER</code><br>
 Alias: <code>assignee</code></p>
 </div>
@@ -289,7 +289,7 @@ Alias: <code>assignee</code></p>
 <p><code>INDEX</code> <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
 </li>
 <li>
-<p>You cannot change the <code>ASSIGNEE</code> to a member who has already been assigned a task with identical attributes by another <code>Exco</code> member.</p>
+<p>You cannot change the <code>Assignee</code> to a member who has already been assigned a task with identical attributes by another <code>Exco</code> member.</p>
 </li>
 <li>
 <p>Passing the current <code>Assignee</code> of the task in the input throws an error as there is no change.</p>
@@ -414,13 +414,13 @@ Aliases: <code>rmgroup</code>, <code>delgroup</code></p>
 <p>Once the group is deleted, all members who were part of the group will be assigned to the default group <code>member</code>.</p>
 </li>
 <li>
-<p>The group must not be a mandatory group (<code>member</code>) as that is the default group.</p>
+<p>The group must not be a mandatory group (<code>Member</code>) as that is the default group.</p>
 </li>
 <li>
-<p>The group must exist in Club Connect.</p>
+<p>The group <code>Exco</code> cannot be deleted.</p>
 </li>
 <li>
-<p>The group must be in valid format (i.e. no white-spaces and non-empty).</p>
+<p>The group must exist in Club Connect and be in valid format (i.e. no white-spaces and non-empty).</p>
 </li>
 </ul>
 </div>
@@ -1180,7 +1180,7 @@ This command is for <code>Exco</code> members only.
 <div class="sect2">
 <h3 id="viewing-tasks-assigned-to-or-assigned-by-you-code-viewmytasks-code-since-v1-4"><a class="link" href="#viewing-tasks-assigned-to-or-assigned-by-you-code-viewmytasks-code-since-v1-4">Viewing tasks assigned to or assigned by you : <code>viewmytasks</code> (Since v1.4)</a></h3>
 <div class="paragraph">
-<p>Display all tasks created/assigned by the currently member in Club Connect.<br></p>
+<p>Display all tasks created/assigned by the currently logged-in member in Club Connect.<br></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1264,7 +1264,7 @@ Alias: <code>mytasks</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 12:06:53 UTC
+Last updated 2018-04-15 12:51:36 UTC
 </div>
 </div>
 </body>
