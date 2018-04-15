@@ -2072,7 +2072,89 @@ who voted, check user&#8217;s <code>MatricNumber</code> with all <code>MatricNum
 <h3 id="importing-members"><a class="link" href="#importing-members">4.7. Importing Members</a></h3>
 <div class="sect3">
 <h4 id="current-implementation-7"><a class="link" href="#current-implementation-7">4.7.1. Current Implementation</a></h4>
-
+<div class="paragraph">
+<p>The <code>import</code> mechanism of Club Connect is facilitated by the <code>ImportCommand</code> class and is event-driven.
+It allows members to add the list of members from a <a href="#csv">CSV</a> file to Club Connect at one go.
+To facilitate this, it makes use of the <code>CsvUtil</code> class, which converts <code>Member</code> objects to CSV format.</p>
+</div>
+<div class="paragraph">
+<p>The <code>ImportCommand</code> extends from the <code>UndoableCommand</code> class, and only consists of a <code>File</code> attribute.
+This is illustrated in the UML diagram shown in Figure 52.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ImportCommandUML.png" alt="ImportCommandUML" width="150">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 52. ImportCommand UML Diagram</em></p>
+</div>
+<div class="paragraph">
+<p>The <code>import</code> command involves the use of multiple components of the Club Connect application.
+Figure 53 (below) shows the high-level <em>Sequence Diagram</em> for the <code>import</code> command.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforImport.png" alt="SDforImport" width="900">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 53. High Level Sequence Diagram for the <code>import C:/Users/Admin/club.csv</code> command</em></p>
+</div>
+<div class="paragraph">
+<p><code>Logic</code> is responsible for parsing the <code>import</code> command.
+It returns an <code>ImportCommand</code> object after parsing the CSV file path.</p>
+</div>
+<div class="paragraph">
+<p>The <code>ImportCommand#execute()</code> method invokes the <code>importMembers()</code> method from <code>model</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>Model</code> component invokes the <code>readClubBook()</code> method of the <code>CsvClubBookStorage</code> object to get the list of <code>Member</code>
+objects that are to be added to Club Connect. The members from the list are then sequentially added to the club book.
+If a <code>DuplicateMatricNumberException</code> is encountered while adding a member, then that member is not added to the club book
+and execution continues. This way, even if there are a few members with invalid data values, the import command will
+still work for those members with valid data. This implementation is shown in the code snipped below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">int</span> importMembers(<span class="predefined-type">File</span> importFile) <span class="directive">throws</span> <span class="exception">IOException</span> {
+    CsvClubBookStorage csvStorage = <span class="keyword">new</span> CsvClubBookStorage(importFile);
+    UniqueMemberList importedMembers = csvStorage.readClubBook();
+    <span class="type">int</span> numberMembers = <span class="integer">0</span>;
+    <span class="keyword">for</span> (<span class="predefined-type">Member</span> member: importedMembers) {
+        <span class="keyword">try</span> {
+            clubBook.addMember(member);
+            numberMembers++;
+        } <span class="keyword">catch</span> (DuplicateMatricNumberException dmne) {
+            <span class="comment">//...logging...</span>
+        }
+    }
+    indicateClubBookChanged();
+    <span class="keyword">return</span> numberMembers;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The conversion of data from the CSV file to <code>Member</code> objects is facilitated by the <code>CsvUtil</code> class. Part of the implementation is shown here:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="directive">static</span> UniqueMemberList getDataFromFile(<span class="predefined-type">File</span> file) <span class="directive">throws</span> <span class="exception">IOException</span> {
+    UniqueMemberList importedMembers = <span class="keyword">new</span> UniqueMemberList();
+    <span class="predefined-type">String</span> data = FileUtil.readFromFile(file);
+    <span class="predefined-type">String</span><span class="type">[]</span> membersData = data.split(<span class="string"><span class="delimiter">&quot;</span><span class="char">\n</span><span class="delimiter">&quot;</span></span>);
+    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">1</span>; i &lt; membersData.length; i++) { <span class="comment">//membersData[0] contains column headers</span>
+        <span class="keyword">try</span> {
+            <span class="predefined-type">Member</span> member = getMember(membersData[i]);
+            importedMembers.add(member);
+        } <span class="keyword">catch</span> (<span class="exception">Exception</span> e) {
+            <span class="comment">//...logging...</span>
+        }
+    }
+    <span class="keyword">return</span> importedMembers;
+}</code></pre>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">4.7.2. Design Considerations</a></h4>
@@ -2149,7 +2231,83 @@ who voted, check user&#8217;s <code>MatricNumber</code> with all <code>MatricNum
 <h3 id="exporting-members"><a class="link" href="#exporting-members">4.8. Exporting Members</a></h3>
 <div class="sect3">
 <h4 id="current-implementation-8"><a class="link" href="#current-implementation-8">4.8.1. Current Implementation</a></h4>
-
+<div class="paragraph">
+<p>The <code>export</code> mechanism of Club Connect is facilitated by the <code>ExportCommand</code> class and is event-driven.
+It allows members to export the list of members in Club Connect as a CSV file.
+It makes use of the <code>CsvUtil</code> class to convert <code>Member</code> objects to CSV format.</p>
+</div>
+<div class="paragraph">
+<p>The <code>ExportCommand</code> extends from the <code>Command</code> class, as it is not an undoable command and only consists of a <code>File</code> attribute.
+Figure 52 depicts the UML diagram for the <code>ExportCommand</code> class.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ExportCommandUML.png" alt="ExportCommandUML" width="350">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 52. ExportCommand UML Diagram</em></p>
+</div>
+<div class="paragraph">
+<p>The <code>export</code> command uses multiple components of the Club Connect application.
+The <em>Sequence Diagram</em> below (Figure 53) shows the interactions between some of these components.
+As you can see, the <code>ExportCommand</code> is driven by the <code>NewExportDataAvailableEvent</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforExport.png" alt="SDforExport" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 53. High Level Sequence Diagram for the <code>export C:/Users/Admin/members.csv</code> command</em></p>
+</div>
+<div class="paragraph">
+<p>This event is handled by the <code>Storage</code> component as shown in Figure 54.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforExportEventHandling.png" alt="SDforExportEventHandling" width="650">
+</div>
+</div>
+<div class="paragraph">
+<p>_Figure 54. High Level Sequence Diagram showing how the <code>Storage</code> component handles the <code>NewExportDataAvailableEvent</code></p>
+</div>
+<div class="paragraph">
+<p><code>Storage</code> makes use of a <code>CsvClubBookStorage</code> object to write data to the file specified by the export path.
+This is shown in the code snippet below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">void</span> exportDataToFile(<span class="predefined-type">String</span> data, <span class="predefined-type">File</span> exportFile) <span class="directive">throws</span> <span class="exception">IOException</span> {
+    csvClubBookStorage.setClubBookFile(exportFile);
+    <span class="comment">// ... logging ...</span>
+    csvClubBookStorage.saveData(data);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then, the <code>csvClubBookStorage</code> object gets the column headers for the file from the <code>CsvUtil</code> class:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">void</span> saveData(<span class="predefined-type">String</span> data, <span class="predefined-type">File</span> file) <span class="directive">throws</span> <span class="exception">IOException</span> {
+    <span class="comment">// ... logging ...</span>
+    <span class="predefined-type">String</span> columnHeaders = CsvUtil.getHeaders();
+    <span class="predefined-type">String</span> dataToExport = columnHeaders + data;
+    CsvFileStorage.saveDataToFile(file, dataToExport);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Finally, the <code>CsvFileStorage</code> class saves the data to the file by using the <code>writeToFile</code> method from the <code>FileUtil</code> class.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="directive">static</span> <span class="type">void</span> saveDataToFile(<span class="predefined-type">File</span> file, <span class="predefined-type">String</span> data) <span class="directive">throws</span> <span class="exception">IOException</span> {
+    FileUtil.writeToFile(file, data);
+}</code></pre>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">4.8.2. Design Considerations</a></h4>
@@ -2195,7 +2353,7 @@ who voted, check user&#8217;s <code>MatricNumber</code> with all <code>MatricNum
 <div class="paragraph">
 <p>The <code>changepic</code> mechanism of Club Connect is facilitated by the <code>ChangeProfilePhotoCommand</code> class and is event-driven.
 It allows members to modify their profile photos displayed in the application.
-To facilitate this, it makes use of the <code>ProfilePhoto</code> class. <code>ProfilePhoto</code></p>
+To facilitate this, it makes use of the <code>ProfilePhoto</code> class.</p>
 </div>
 <div class="paragraph">
 <p>Currently, the <code>ChangeProfilePhotoCommand</code> extends from the <code>Command</code> class, and not from <code>UndoableCommand</code>.</p>
@@ -2214,7 +2372,7 @@ The <code>ProfilePhoto</code> class consists of a <code>String</code> attribute 
 </div>
 <div class="paragraph">
 <p>The <code>displaypic</code> command involves the use of multiple components of Club Connect.
-Below, Figure 53 shows the interactions betweeen these components.
+Figure 53 (below) shows the interactions between these components.
 As you can see, the <code>ChangeProfilePhotoCommand</code> is driven by the <code>ProfilePhotoChangedEvent</code>.</p>
 </div>
 <div class="imageblock">
@@ -2223,7 +2381,7 @@ As you can see, the <code>ChangeProfilePhotoCommand</code> is driven by the <cod
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 53. High Level Sequence Diagram for <code>changepic PATH</code> Command</em></p>
+<p><em>Figure 53. High Level Sequence Diagram for the <code>changepic C:/Users/Admin/Desktop/photo.png</code> command</em></p>
 </div>
 <div class="paragraph">
 <p>ChangeProfilePhotoCommandParser is responsible for parsing the <code>changepic</code> command.
@@ -2236,7 +2394,7 @@ Figure 54 depicts the Sequence Diagram for interactions within the <code>Logic</
 </div>
 </div>
 <div class="paragraph">
-<p>_Figure 54. Interactions Inside the Logic Component for the <code>changepic C:/Users/Admin/Desktop/ photo.png</code> Command</p>
+<p>_Figure 54. Interactions Inside the Logic Component for the <code>changepic C:/Users/Admin/Desktop/photo.png</code> command</p>
 </div>
 <div class="paragraph">
 <p>The <code>ChangeProfilePhotoCommand#execute()</code> method invokes the <code>addProfilePhoto()</code> method from <code>model</code>.
@@ -2254,14 +2412,11 @@ It copies the photo as a <a href="#bmp">bitmap image file</a> (.bmp) to the Club
 <pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Override</span>
 <span class="directive">public</span> <span class="type">void</span> copyOriginalPhotoFile(<span class="predefined-type">String</span> originalPhotoPath, <span class="predefined-type">String</span> newPhotoName) <span class="directive">throws</span> PhotoException {
     <span class="predefined-type">BufferedImage</span> originalPhoto = <span class="predefined-constant">null</span>;
-
     <span class="keyword">try</span> {
         logger.info(<span class="string"><span class="delimiter">&quot;</span><span class="content">Profile Photo is being read from </span><span class="delimiter">&quot;</span></span> + originalPhotoPath);
-
         <span class="predefined-type">URL</span> photoUrl = <span class="keyword">new</span> <span class="predefined-type">URL</span>(URL_PREFIX + originalPhotoPath);
         newPath = SAVE_PHOTO_DIRECTORY + newPhotoName + PHOTO_FILE_EXTENSION;
         <span class="predefined-type">InputStream</span> photoStream = photoUrl.openStream();
-
         createPhotoFileCopy(photoStream, newPath);
     } <span class="keyword">catch</span> (<span class="exception">IOException</span> ioe) {
         <span class="comment">// ... exception handling ...</span>
@@ -2281,6 +2436,39 @@ It copies the photo as a <a href="#bmp">bitmap image file</a> (.bmp) to the Club
 </div>
 <div class="paragraph">
 <p>The logged in member&#8217;s details are then updated to include this new profile photo.</p>
+</div>
+<div class="paragraph">
+<p>The photo specified by the path is set to the <code>ImageView</code> object by the following code in the <code>Ui</code> component:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@FXML</span>
+<span class="directive">private</span> <span class="predefined-type">ImageView</span> profilePhoto;
+<span class="directive">private</span> <span class="type">void</span> setProfilePhoto(<span class="predefined-type">Member</span> member) {
+    <span class="predefined-type">Image</span> photo;
+    <span class="predefined-type">String</span> photoPath = member.getProfilePhoto().getPhotoPath();
+    <span class="keyword">if</span> (photoPath.equals(EMPTY_STRING) || photoPath.equals(DEFAULT_PHOTO_PATH)) {
+        photo = <span class="keyword">new</span> <span class="predefined-type">Image</span>(MainApp.class.getResourceAsStream(DEFAULT_PHOTO_PATH), photoWidth, photoHeight, <span class="predefined-constant">false</span>, <span class="predefined-constant">true</span>);
+    } <span class="keyword">else</span> {
+        photo = <span class="keyword">new</span> <span class="predefined-type">Image</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">file:</span><span class="delimiter">&quot;</span></span> + photoPath, photoWidth, photoHeight, <span class="predefined-constant">false</span>, <span class="predefined-constant">true</span>);
+    }
+    profilePhoto.setImage(photo);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The actual displaying of the profile photo is done by using this xml code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;HBox</span> <span class="attribute-name">alignment</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">CENTER_LEFT</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;ImageView</span> <span class="attribute-name">fx:id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">profilePhoto</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">fitWidth</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">100</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">fitHeight</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">130</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;HBox.margin&gt;</span>
+            <span class="tag">&lt;Insets</span> <span class="attribute-name">left</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">7.5</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">bottom</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">7.5</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">right</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">5.0</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">top</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">7.5</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+        <span class="tag">&lt;/HBox.margin&gt;</span>
+    <span class="tag">&lt;/ImageView&gt;</span>
+<span class="tag">&lt;/HBox&gt;</span></code></pre>
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -5611,7 +5799,7 @@ Expected: No tag is deleted as the tag name format is invalid. Relevant error de
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 10:57:48 UTC
+Last updated 2018-04-15 11:31:34 UTC
 </div>
 </div>
 </body>
