@@ -43,22 +43,28 @@ It aims to make the tedious process of club management easier and more effective
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: Allows <code>Exco</code> members to create/delete polls and view/hide results of polls. Members can vote in polls.</p>
+<p>What it does: Allows <code>Exco</code> members to add/delete polls and view/hide results of polls. Members can vote in polls.</p>
 </li>
 <li>
 <p>Justification: This feature improves the product significantly because the <code>Exco</code> members can accurately determine the views of other members so that they can take the best path of action for the club.</p>
-</li>
-<li>
-<p>Highlights: This enhancement extensively covers . It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Minor enhancement</strong>: Improved navigability of member list by adding compress/decompress mechanism and revamping <code>Find</code> command</p>
+<p><strong>Minor enhancement</strong>: Improved navigability of member list by adding compress/decompress mechanism and making <code>Find</code> command able to search by field or by all fields instead of just name.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Justification: This feature improves the product significantly since it saves time when looking for information
+of other members. More time can be spent on doing more important actions such as adding polls and assigning tasks.</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103JAN2018-W15-B4/main/blob/master/collated/functional/MuhdNurKamal.md">Functional code</a>] [<a href="https://github.com/CS2103JAN2018-W15-B4/main/blob/master/collated/test/MuhdNurKamal.md">Test code</a>]</p>
+<p><strong>Code contributed</strong>: <a href="https://github.com/CS2103JAN2018-W15-B4/main/blob/master/collated/functional/MuhdNurKamal.md">Functional code</a>
+<a href="https://github.com/CS2103JAN2018-W15-B4/main/blob/master/collated/test/MuhdNurKamal.md">Test code</a></p>
 </li>
 <li>
 <p><strong>Other contributions</strong>:</p>
@@ -118,52 +124,21 @@ It aims to make the tedious process of club management easier and more effective
 </tbody>
 </table>
 <div class="sect2">
-<h3 id="locating-members-code-find-code-since-v1-2"><a class="link" href="#locating-members-code-find-code-since-v1-2">Locating members: <code>find</code> (Since v1.2)</a></h3>
+<h3 id="adding-a-poll-code-addpoll-code-since-v1-3"><a class="link" href="#adding-a-poll-code-addpoll-code-since-v1-3">Adding a poll: <code>addpoll</code> (Since v1.3)</a></h3>
 <div class="paragraph">
-<p>Finds members whose details contain any of the given keywords.<br>
-Format: <code>find [PREFIX] KEYWORD [MORE_KEYWORDS]</code><br>
-Aliases: <code>f</code>, <code>search</code><br>
-Allowed <code>PREFIX</code>:<br>
-n/ = <code>NAME</code><br>
-p/ = <code>PHONE NUMBER</code><br>
-e/ = <code>EMAIL</code><br>
-m/ = <code>MATRIC NUMBER</code><br>
-g/ = <code>GROUP</code><br>
-t/ = <code>TAG</code><br></p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If you wish to find by a <code>PREFIX</code>, enter a space after the <code>PREFIX</code> while typing the command. This enables you to search for multiple keywords without having to enter the <code>PREFIX</code>.
-</td>
-</tr>
-</table>
+<p>Adds a poll to Club Connect.<br>
+Format: <code>addpoll q/QUESTION ans/ANSWER [ans/ANSWER]&#8230;&#8203;</code><br>
+Aliases: <code>addp</code>, <code>poll</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>An additional <code>PREFIX</code> can be stated after <code>find</code> to narrow search to a particular field. e.g e/ for email</p>
+<p>A poll must have 1 question, and at least 1 answer.</p>
 </li>
 <li>
-<p>If no <code>PREFIX</code> is stated, all member fields will be searched.</p>
-</li>
-<li>
-<p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code>.</p>
-</li>
-<li>
-<p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code>.</p>
-</li>
-<li>
-<p>Partial matches will be matched e.g. <code>Han</code> will match <code>Hans</code>.</p>
-</li>
-<li>
-<p>Members matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Hans Bo</code> will return <code>Hans Gruber</code>, <code>Bo Yang</code>.</p>
+<p>Questions and answers must be non-empty.</p>
 </li>
 </ul>
 </div>
@@ -175,134 +150,16 @@ If you wish to find by a <code>PREFIX</code>, enter a space after the <code>PREF
 <div class="ulist">
 <ul>
 <li>
-<p><code>find John</code><br>
-Returns <code>john</code> and <code>John Doe</code>.</p>
+<p><code>addpoll q/Which day should be Free Ice-Cream Day? ans/Monday ans/Wednesday ans/Friday</code><br>
+Creates a poll asking members to vote for which day Free Ice-Cream Day should be held on.
+The options to choose from are <code>Monday</code>, <code>Wednesday</code> and <code>Friday</code>.</p>
 </li>
 <li>
-<p><code>find Betsy Tim John</code><br>
-Returns all members having names containing <code>Betsy</code>, <code>Tim</code>, or <code>John</code>.</p>
-</li>
-<li>
-<p><code>find g/ logistics</code><br>
-Returns all members in the logistics <code>group</code></p>
-</li>
-<li>
-<p><code>find p/ 123</code><br>
-Returns any member having phone number containing 123.</p>
+<p><code>addpoll q/Where should the annual sports meeting be held? ans/I-Cube ans/LT7</code><br>
+Creates a poll asking members to vote for where the annual sports meeting should be held.
+The answers to choose from are <code>I-Cube</code> and <code>LT7</code>.</p>
 </li>
 </ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="compressing-member-details-code-compress-code-since-v1-2"><a class="link" href="#compressing-member-details-code-compress-code-since-v1-2">Compressing member details : <code>compress</code> (Since v1.2)</a></h3>
-<div class="paragraph">
-<p>Compresses the details of members in the member list<br>
-Format: <code>compress</code><br>
-Alias: <code>comp</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>No changes if member details are already compressed</p>
-</li>
-<li>
-<p>Use this to remove clutter in contact list</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="decompressing-member-details-code-decompress-code-since-v1-2"><a class="link" href="#decompressing-member-details-code-decompress-code-since-v1-2">Decompressing member details : <code>decompress</code> (Since v1.2)</a></h3>
-<div class="paragraph">
-<p>Decompresses the details of members in the member list<br>
-Format: <code>decompress</code><br>
-Alias: <code>decomp</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>No changes if member details are already decompressed</p>
-</li>
-<li>
-<p>Use this to see more detailed information of members in contact list</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="viewing-results-of-polls-code-viewresults-code-since-v1-4"><a class="link" href="#viewing-results-of-polls-code-viewresults-code-since-v1-4">Viewing results of polls : <code>viewresults</code> (Since v1.4)</a></h3>
-<div class="paragraph">
-<p>Displays the results of polls in Club Connect.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-This is a command that can be used to monitor polls in Club Connect.<br>
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Results include number of voters for each answer of a poll and total number of voters who took part in the poll. Results are anonymous.<br>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Format: <code>viewresults</code><br>
-Alias: <code>viewres</code></p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-This command is for <code>Exco</code> members only.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="hiding-results-of-polls-code-hideresults-code-since-v1-4"><a class="link" href="#hiding-results-of-polls-code-hideresults-code-since-v1-4">Hiding results of polls : <code>hideresults</code> (Since v1.4)</a></h3>
-<div class="paragraph">
-<p>Hides the results of all polls in Club Connect.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-This is a command that can be used to remove clutter from poll results.<br>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Format: <code>hideresults</code><br>
-Alias: <code>hideres</code></p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -360,6 +217,73 @@ Votes for the 1st answer in the 5th poll of the poll listing</p>
 </ul>
 </div>
 </div>
+<div class="sect2">
+<h3 id="locating-members-code-find-code-since-v1-2"><a class="link" href="#locating-members-code-find-code-since-v1-2">Locating members: <code>find</code> (Since v1.2)</a></h3>
+<div class="paragraph">
+<p>Finds members whose details contain any of the given keywords.<br>
+Format: <code>find [PREFIX] KEYWORD [MORE_KEYWORDS]</code><br>
+Aliases: <code>f</code>, <code>search</code><br>
+Allowed <code>PREFIX</code>:<br>
+n/ = <code>NAME</code><br>
+p/ = <code>PHONE NUMBER</code><br>
+e/ = <code>EMAIL</code><br>
+m/ = <code>MATRIC NUMBER</code><br>
+g/ = <code>GROUP</code><br>
+t/ = <code>TAG</code><br></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>An additional <code>PREFIX</code> can be stated after <code>find</code> to narrow search to a particular field. e.g e/ for email</p>
+</li>
+<li>
+<p>A maximum of 1 <code>PREFIX</code> should be stated. Additional prefixes are considered as keywords</p>
+</li>
+<li>
+<p>If no <code>PREFIX</code> is stated, all member fields will be searched.</p>
+</li>
+<li>
+<p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code>.</p>
+</li>
+<li>
+<p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code>.</p>
+</li>
+<li>
+<p>Partial matches will be matched e.g. <code>Han</code> will match <code>Hans</code>.</p>
+</li>
+<li>
+<p>Members matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Hans Bo</code> will return <code>Hans Gruber</code>, <code>Bo Yang</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>find n/Betsy Tim John</code><br>
+Returns all members having names containing <code>Betsy</code>, <code>Tim</code>, or <code>John</code>.</p>
+</li>
+<li>
+<p><code>find g/logistics</code><br>
+Returns all members in the logistics <code>group</code></p>
+</li>
+<li>
+<p><code>find p/123</code><br>
+Returns any member having phone number containing 123.</p>
+</li>
+<li>
+<p><code>find 9119</code><br>
+Returns all members containing <code>9119</code> in any field (e.g. phone number or email)</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -376,121 +300,13 @@ Votes for the 1st answer in the 5th poll of the poll listing</p>
 </tbody>
 </table>
 <div class="sect2">
-<h3 id="compress-decompress-mechanism"><a class="link" href="#compress-decompress-mechanism">Compress/Decompress Mechanism</a></h3>
-<div class="sect3">
-<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
-<div class="paragraph">
-<p>Member details are shown as cards in the GUI. Cards can either be decompressed(Figure 56) or compressed(Figure 57).</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/DecompressedMemberCards.png" alt="DecompressedMemberCards" width="300">
-</div>
-</div>
-<div class="paragraph">
-<p><em>Figure 56. Decompressed Member Cards</em></p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/CompressedCards.png" alt="CompressedCards" width="300">
-</div>
-</div>
-<div class="paragraph">
-<p><em>Figure 57. Compressed Member Cards</em></p>
-</div>
-<div class="paragraph">
-<p>The <code>MemberCard</code> class provides an abstraction for the member card shown in the GUI. By default, it shows a member card that is decompressed.
-To differentiate between compressed and decompressed member card, we introduced a <code>CompressedMemberCard</code> class. This class extends <code>MemberCard</code> (Figure 58) since a <code>CompressedMemberCard</code> is a <code>MemberCard</code>.
-Each of these classes contain a different static String showing location of the actual <code>FXML</code> file that determines layout of the member card, hence we get different layouts.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/MemberCardClassDiagram.png" alt="MemberCardClassDiagram" width="300">
-</div>
-</div>
-<div class="paragraph">
-<p><em>Figure 58. <code>MemberCard</code> class diagram</em></p>
-</div>
-<div class="paragraph">
-<p>The <code>compress</code> and <code>decompress</code> commands allows members to select whether they want to see detailed information of members or see a compressed version for easy viewing.
-These commands do not extend from <code>UndoableCommand</code> but just from <code>Command</code> since they do not change the state of the club book.</p>
-</div>
-<div class="paragraph">
-<p>Due to the similar nature of the <code>compress</code> and <code>decompress</code> commands, only the <code>compress</code> command will be discussed.</p>
-</div>
-<div class="paragraph">
-<p>Suppose that the user has just launched the application. The member cards would be decompressed (Figure 56).</p>
-</div>
-<div class="paragraph">
-<p>The user inputs 'compress' and the sequence diagram (Figure 59) below shows how the different components interact.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/SDforCompressToEventsCenter.png" alt="SDforCompressToEventsCenter" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p><em>Figure 59. Sequence diagram for compress command to Events Center</em></p>
-</div>
-<div class="paragraph">
-<p>Then, the <code>MemberListPanel</code>, which contains the <code>MemberCard</code> objects will handle the event (Figure 60). If the cards are already compressed, no changes occur.
-However, if the cards are decompressed, the <code>MemberCard</code> objects would be converted to <code>CompressedMemberCard</code> objects.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/SDforCompressFromEventsCenter.png" alt="SDforCompressFromEventsCenter" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p><em>Figure 60. Sequence diagram for compress command from Events Center</em></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
-<div class="sect4">
-<h5 id="aspect-how-to-interact-from-logic-to-ui"><a class="link" href="#aspect-how-to-interact-from-logic-to-ui">Aspect: How to interact from Logic to Ui</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice)</strong>: Use Event-Driven approach to interact from <code>CompressCommand</code>/<code>DecompressCommand</code> to <code>MemberListPanel</code></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Reduces coupling.</p>
-</li>
-<li>
-<p>Cons: Slower than just directly changing the <code>Ui</code> since a seperate class(<code>EventsCenter</code>) has to manage interactions, not
-just for compress/decompress but for other events as well.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Keep a <code>Ui</code> attribute in every command just like <code>Model</code></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Easy to implement.</p>
-</li>
-<li>
-<p>Cons: Increases coupling</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
 <h3 id="polls-feature"><a class="link" href="#polls-feature">Polls-feature</a></h3>
 <div class="paragraph">
 <p>A poll contains a question and any number of answers. Any member can vote in a poll but only once. Only 'Exco' members
 are allowed to add/delete polls and view/hide poll results. Polls are displayed in the poll <code>ListView</code> GUI of Club Connect.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current Implementation</a></h4>
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
 <div class="paragraph">
 <p>The poll feature is facilitated by the command classes below:</p>
 </div>
@@ -536,7 +352,7 @@ requireToLogIn();</code></pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/PollUML.png" alt="PollUML" width="800">
+<img src="../images/PollUML.png" alt="PollUML" width="400">
 </div>
 </div>
 <div class="paragraph">
@@ -583,79 +399,6 @@ requireToLogIn();</code></pre>
 </ul>
 </div>
 <div class="sect4">
-<h5 id="adding-polls"><a class="link" href="#adding-polls">Adding Polls</a></h5>
-<hr>
-<div class="paragraph">
-<p>Adding Polls is facilitated by the <code>AddPollCommand</code> which inherits from <code>UndoableCommand</code> to make adding polls undoable.
-When a poll is created by the <code>AddPollCommand</code>, it&#8217;s Set&lt;MatricNumber&gt;
-is initialized as empty because no member has voted in the poll.</p>
-</div>
-<div class="paragraph">
-<p>Figure 42 shows the flow of adding a poll:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/SDforAddPoll.png" alt="SDforAddPoll" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p><em>Figure 42. Sequence Diagram for <code>AddPollCommand</code> parsing.</em></p>
-</div>
-<div class="paragraph">
-<p>The execution of the command invokes <code>Model#addPoll(poll)</code>.<br>
-The following code snippet shows the implementation:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Override</span>
-<span class="directive">public</span> <span class="directive">synchronized</span> <span class="type">void</span> addPoll(Poll poll) <span class="directive">throws</span> DuplicatePollException {
-    requireNonNull(poll);
-    clubBook.addPoll(poll);
-    updateFilteredPollList(<span class="keyword">new</span> PollIsRelevantToMemberPredicate(getLoggedInMember()));
-    indicateClubBookChanged();
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>After successful execution, the poll will be added to the Club Book and the poll <code>ListView</code> GUI.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="deleting-polls"><a class="link" href="#deleting-polls">Deleting Polls</a></h5>
-<hr>
-<div class="paragraph">
-<p>Deleting Polls is facilitated by the <code>DeletePollCommand</code> which inherits from <code>UndoableCommand</code> to make deleting polls undoable.</p>
-</div>
-<div class="paragraph">
-<p>Figure 43 shows the flow of deleting a poll:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/SDforDeletePoll.png" alt="SDforDeletePoll" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p><em>Figure 43. Sequence Diagram for <code>DeletePollCommand</code> parsing.</em></p>
-</div>
-<div class="paragraph">
-<p>The execution of the command invokes <code>Model#deletePoll()</code>.
-The following code snippet shows the implementation:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Override</span>
-<span class="directive">public</span> <span class="directive">synchronized</span> <span class="type">void</span> deletePoll(Poll target) <span class="directive">throws</span> PollNotFoundException {
-    requireNonNull(target);
-    clubBook.removePoll(target);
-    indicateClubBookChanged();
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>After successful execution, the poll will be deleted from the Club Book and the poll <code>ListView</code> GUI.</p>
-</div>
-</div>
-<div class="sect4">
 <h5 id="voting-in-polls"><a class="link" href="#voting-in-polls">Voting in Polls</a></h5>
 <hr>
 <div class="paragraph">
@@ -669,11 +412,11 @@ The following code snippet shows the implementation:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/SDforVote.png" alt="width]&quot;800&quot;">
+<img src="../images/SDforVote.png" alt="width]&quot;550&quot;">
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 44. Sequence Diagram for voting a poll</em></p>
+<p><em>Figure 44. Sequence Diagram for voting in a poll</em></p>
 </div>
 <div class="paragraph">
 <p>The execution of the command invokes <code>Model#voteInPoll()</code>.
@@ -708,7 +451,7 @@ how many people voted in a poll and how many voted for each answer will be shown
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/PollWithoutResults.png" alt="PollWithoutResults" width="400">
+<img src="../images/PollWithoutResults.png" alt="PollWithoutResults" width="300">
 </div>
 </div>
 <div class="paragraph">
@@ -716,7 +459,7 @@ how many people voted in a poll and how many voted for each answer will be shown
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/PollWithResults.png" alt="PollWithResults" width="400">
+<img src="../images/PollWithResults.png" alt="PollWithResults" width="300">
 </div>
 </div>
 <div class="paragraph">
@@ -767,7 +510,7 @@ of <code>ViewResultsRequestEvent</code>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-keeping-track-of-how-many-members-voted-for-each-answer-of-a-poll-and-who-has-voted-in-a-poll"><a class="link" href="#aspect-keeping-track-of-how-many-members-voted-for-each-answer-of-a-poll-and-who-has-voted-in-a-poll">Aspect: Keeping track of how many members voted for each answer of a poll and who has voted in a poll</a></h5>
 <div class="ulist">
@@ -810,7 +553,7 @@ who voted, check user&#8217;s <code>MatricNumber</code> with all <code>MatricNum
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 06:32:08 UTC
+Last updated 2018-04-15 07:46:55 UTC
 </div>
 </div>
 </body>
