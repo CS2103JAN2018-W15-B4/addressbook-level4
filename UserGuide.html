@@ -1962,27 +1962,53 @@ To further increase your efficiency while using Club Connect, check out <a href=
 e.g. <code>add n/James Jerome p/22224444 e/jamesjerome@example.com m/A1234567H g/publicity</code></p>
 </li>
 <li>
+<p><strong>Add Poll</strong> <code>addpoll q/QUESTION ans/ANSWER [ans/ANSWER]&#8230;&#8203;</code><br>
+e.g. <code>addpoll q/Where should the annual meeting be held? ans/I-Cube ans/LT7</code></p>
+</li>
+<li>
 <p><strong>Add Task</strong> : <code>addtask desc/DESCRIPTION d/DUE_DATE ti/TIME</code><br>
 e.g. <code>addtask desc/Buy Confetti d/03.04.2018 ti/19:00</code></p>
 </li>
 <li>
-<p><strong>Assign Task</strong> : <code>assigntask desc/DESCRIPTION d/DUE_DATE ti/TIME n/NAME</code><br>
-e.g. <code>assigntask desc/Buy Confetti d/03.04.2018 ti/19:00 n/Bernice Yu</code></p>
+<p><strong>Assign Task</strong> : <code>assigntask desc/DESCRIPTION d/DUE_DATE ti/TIME m/MATRIC_NUMBER</code><br>
+e.g. <code>assigntask desc/Buy Confetti d/03.04.2018 ti/19:00 m/A0123457H</code></p>
+</li>
+<li>
+<p><strong>Change Password</strong> : <code>changepass u/USERNAME pw/OLD_PASSWORD npw/NEW_PASSWORD</code><br>
+e.g. `changepass u/A0123456H pw/password npw/newpassword `</p>
+</li>
+<li>
+<p><strong>Change Task Assignee</strong> : <code>changeassignee INDEX m/MATRIC_NUMBER</code><br>
+e.g. <code>changeassignee 1 m/A1234567H</code></p>
+</li>
+<li>
+<p><strong>Change Display Picture</strong> : <code>changepic PHOTO_PATH</code><br>
+e.g. <code>changepic C:/Users/John Doe/Desktop/john_doe.jpg</code><br></p>
+</li>
+<li>
+<p><strong>Change Task Status</strong> : <code>changetaskstatus INDEX st/STATUS</code><br>
+e.g. <code>changetaskstatus 1 st/Completed</code></p>
 </li>
 <li>
 <p><strong>Clear</strong> : <code>clear</code></p>
+</li>
+<li>
+<p><strong>Compress Member Details</strong> : <code>compress</code></p>
+</li>
+<li>
+<p><strong>Decompress Member Details</strong> : <code>decompress</code></p>
 </li>
 <li>
 <p><strong>Delete</strong> : <code>delete INDEX</code><br>
 e.g. <code>delete 3</code></p>
 </li>
 <li>
-<p><strong>Edit</strong> : <code>edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [m/MATRIC_NUMBER] [g/GROUP] [t/TAG]&#8230;&#8203;</code><br>
-e.g. <code>edit 2 n/James Lee e/jameslee@example.com</code></p>
-</li>
-<li>
 <p><strong>Delete Group</strong> : <code>deletegroup g/GROUP</code><br>
 e.g. <code>deletegroup g/Publicity</code></p>
+</li>
+<li>
+<p><strong>Delete Poll</strong> <code>deletepoll INDEX</code><br>
+e.g. <code>deletepoll 2</code></p>
 </li>
 <li>
 <p><strong>Delete Tag</strong> : <code>deletetag t/TAG</code><br>
@@ -1993,8 +2019,15 @@ e.g. <code>deletetag t/EventHelper</code></p>
 e.g. <code>deletetask 2</code></p>
 </li>
 <li>
-<p><strong>Import members into Club Connect</strong> : <code>import</code><br>
-e.g. <code>import C:/Users/Admin/Desktop/members.csv</code></p>
+<p><strong>Edit</strong> : <code>edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [m/MATRIC_NUMBER] [g/GROUP] [t/TAG]&#8230;&#8203;</code><br>
+e.g. <code>edit 2 n/James Lee e/jameslee@example.com</code></p>
+</li>
+<li>
+<p><strong>Email</strong> : <code>email g/GROUP OR t/TAG c/CLIENT [s/SUBJECT] [b/BODY]</code><br>
+e.g. <code>email g/marketing c/outlook s/Test Subject b/Test Body</code></p>
+</li>
+<li>
+<p><strong>Exit</strong> : <code>exit</code></p>
 </li>
 <li>
 <p><strong>Export Club Connect data</strong> : <code>export</code><br>
@@ -2005,11 +2038,44 @@ e.g. <code>export C:/Users/John Doe/Downloads/ClubConnectMembers.csv</code></p>
 e.g. <code>find James Jacob</code></p>
 </li>
 <li>
-<p><strong>Email</strong> : <code>email g/GROUP OR t/TAG c/CLIENT [s/SUBJECT] [b/BODY]</code><br>
-e.g. <code>email g/marketing c/outlook s/Test Subject b/Test Body</code></p>
+<p><strong>Help</strong> : <code>help</code></p>
+</li>
+<li>
+<p><strong>Hide results of polls</strong> : <code>hideresults</code></p>
+</li>
+<li>
+<p><strong>History</strong> : <code>history</code></p>
+</li>
+<li>
+<p><strong>Import members into Club Connect</strong> : <code>import</code><br>
+e.g. <code>import C:/Users/Admin/Desktop/members.csv</code></p>
 </li>
 <li>
 <p><strong>List</strong> : <code>list</code></p>
+</li>
+<li>
+<p><strong>Login</strong> : <code>login u/USERNAME pw/PASSWORD</code><br>
+e.g. <code>login u/A0123456H pw/password</code></p>
+</li>
+<li>
+<p><strong>Logout</strong> : <code>logout</code></p>
+</li>
+<li>
+<p><strong>Redo</strong> : <code>redo</code></p>
+</li>
+<li>
+<p><strong>Remove Profile Picture</strong> : <code>removepic</code><br></p>
+</li>
+<li>
+<p><strong>Select</strong> : <code>select INDEX</code><br>
+e.g.<code>select 2</code></p>
+</li>
+<li>
+<p><strong>Sign Up</strong> : <code>signup n/NAME p/PHONE_NUMBER e/EMAIL m/MATRIC_NUMBER [t/TAG]&#8230;&#8203;</code><br>
+e.g.<code>signup n/John Doe p/89876765 e/johnd@gmail.com m/A0987654L t/President</code></p>
+</li>
+<li>
+<p><strong>Undo</strong> : <code>undo</code></p>
 </li>
 <li>
 <p><strong>View All Tasks</strong> : <code>viewalltasks</code></p>
@@ -2018,48 +2084,11 @@ e.g. <code>email g/marketing c/outlook s/Test Subject b/Test Body</code></p>
 <p><strong>View My Tasks</strong> : <code>viewmytasks</code></p>
 </li>
 <li>
-<p><strong>Help</strong> : <code>help</code></p>
-</li>
-<li>
-<p><strong>Select</strong> : <code>select INDEX</code><br>
-e.g.<code>select 2</code></p>
-</li>
-<li>
-<p><strong>Add Poll</strong> <code>addpoll q/QUESTION ans/ANSWER [ans/ANSWER]&#8230;&#8203;</code><br>
-e.g. <code>addpoll q/Where should the annual meeting be held? ans/I-Cube ans/LT7</code></p>
-</li>
-<li>
-<p><strong>Delete Poll</strong> <code>deletepoll INDEX</code><br>
-e.g. <code>deletepoll 2</code></p>
+<p><strong>View results of polls</strong> : <code>viewresults</code></p>
 </li>
 <li>
 <p><strong>Vote in a Poll</strong> <code>vote POLL_INDEX ANSWER_INDEX</code><br>
 e.g. <code>vote 10 2</code></p>
-</li>
-<li>
-<p><strong>View results of polls</strong> : <code>viewresults</code></p>
-</li>
-<li>
-<p><strong>Hide results of polls</strong> : <code>hideresults</code></p>
-</li>
-<li>
-<p><strong>Change Display Picture</strong> : <code>changepic PHOTO_PATH</code><br>
-e.g. <code>changepic C:/Users/John Doe/Desktop/john_doe.jpg</code><br></p>
-</li>
-<li>
-<p><strong>Compress Member Details</strong> : <code>compress</code></p>
-</li>
-<li>
-<p><strong>Decompress Member Details</strong> : <code>decompress</code></p>
-</li>
-<li>
-<p><strong>History</strong> : <code>history</code></p>
-</li>
-<li>
-<p><strong>Undo</strong> : <code>undo</code></p>
-</li>
-<li>
-<p><strong>Redo</strong> : <code>redo</code></p>
 </li>
 </ul>
 </div>
@@ -2197,7 +2226,7 @@ Fret not, Club Connect provides you with a platform to voice your opinions. And 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 08:26:32 UTC
+Last updated 2018-04-15 10:12:14 UTC
 </div>
 </div>
 </body>
