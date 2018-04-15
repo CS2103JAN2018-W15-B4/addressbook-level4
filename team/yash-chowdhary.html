@@ -208,128 +208,6 @@ Adds a task with description <code>Buy Food</code> due on <code>03/06/2018</code
 </div>
 </div>
 <div class="sect2">
-<h3 id="assigning-a-task-code-assigntask-code-since-v1-4"><a class="link" href="#assigning-a-task-code-assigntask-code-since-v1-4">Assigning a task: <code>assigntask</code> (Since v1.4)</a></h3>
-<div class="paragraph">
-<p>Adds a task to Club Connect and assigns it to a member.<br>
-Format: <code>assigntask desc/DESCRIPTION d/DUE_DATE ti/TIME m/MATRIC_NUMBER</code><br>
-Alias: <code>assignt</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>The <code>date</code> and <code>time</code> attributes must be valid dates and time (in 24-hour format).</p>
-</li>
-<li>
-<p>The member who the task is meant to be assigned to must exist in the club book.</p>
-</li>
-<li>
-<p>The default <code>Status</code> given to a newly created task is <code>Yet to Begin</code>. This can be updated using the <code>changetaskstatus</code> command.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Duplicate tasks are not allowed.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-This command is for <code>Exco</code> members only.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>This command assigns the task to the member based on the entered <code>MATRIC_NUMBER</code>.</p>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>assigntask desc/Book PGP Function Room 3 d/02/06/2018 ti/19:00 m/A1234567H</code><br>
-Assigns a task to <code>A1234567H</code> with description <code>Book PGP Function Room 3</code> due on <code>02/06/2018</code> at <code>19:00</code>.</p>
-</li>
-<li>
-<p><code>assigntask desc/Buy Food d/03.06.2018 ti/15:00 m/A1122334K</code><br>
-Assigns a task to <code>A1122334K</code> with description <code>Buy Food</code> due on <code>03/06/2018</code> at <code>15:00</code>.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="changing-the-assignee-of-a-task-code-changeassignee-code-since-v1-5rc"><a class="link" href="#changing-the-assignee-of-a-task-code-changeassignee-code-since-v1-5rc">Changing the assignee of a task : <code>changeassignee</code> (Since v1.5rc)</a></h3>
-<div class="paragraph">
-<p>Changes the assignee of a task in Club Connect.<br>
-Format: <code>changeassignee INDEX m/MATRIC_NUMBER</code><br>
-Alias: <code>assignee</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p><code>INDEX</code> <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
-<li>
-<p>You cannot change the <code>Assignee</code> to a member who has already been assigned a task with identical attributes by another <code>Exco</code> member.</p>
-</li>
-<li>
-<p>Passing the current <code>Assignee</code> of the task in the input throws an error as there is no change.</p>
-</li>
-<li>
-<p>No duplicate tasks are allowed.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-This command is only for <code>Exco</code> members.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>changeassignee 1 m/A0123456H</code><br>
-Changes the assignee of the 1st task to <code>A0123456H</code> in the task listing.</p>
-</li>
-<li>
-<p><code>assignee 3 m/A6656789H</code><br>
-Changes the assignee of the 3rd task to <code>A6656789H</code> in the task listing.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
 <h3 id="changing-the-status-of-your-task-code-changetaskstatus-code-since-v1-5rc"><a class="link" href="#changing-the-status-of-your-task-code-changetaskstatus-code-since-v1-5rc">Changing the status of your task : <code>changetaskstatus</code> (Since v1.5rc)</a></h3>
 <div class="paragraph">
 <p>Changes the status of a task in Club Connect.<br>
@@ -572,89 +450,40 @@ Deletes the <code>pr</code> group from Club Connect.</p>
 <p><em>Figure 25. Sequence Diagram for adding a task.</em></p>
 </div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="assigning-tasks"><a class="link" href="#assigning-tasks">Assigning Tasks</a></h5>
-<hr>
-<div class="paragraph">
-<p>Assigning tasks can be accomplished with the <code>AssignTaskCommand</code>. Tasks are assigned to members through the <code>Matric Number</code> attribute.<br></p>
+<h5 id="aspect-displaying-assignor-and-assignee"><a class="link" href="#aspect-displaying-assignor-and-assignee">Aspect: Displaying Assignor and Assignee</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Displays currently logged-in member as Assignor and Assignee.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: It is required for <code>assigntask</code>.</p>
+</li>
+<li>
+<p>Cons: Displaying the same matriculation number twice is redundant.</p>
+</li>
+</ul>
 </div>
-<div class="paragraph">
-<p>Figure 26 below shows the UML representation of <code>AssignTaskCommand</code>.</p>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Don&#8217;t display Assignor and Assignee as it is a personal to-do list.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Takes care of redundancies in Alternative 1 above.</p>
+</li>
+<li>
+<p>Cons: The implementation of <code>assigntask</code> becomes more complex.</p>
+</li>
+</ul>
 </div>
-<div class="imageblock" style="text-align: center">
-<div class="content">
-<img src="../images/AssignTaskCommandUML.png" alt="AssignTaskCommandUML" width="150">
-</div>
-</div>
-<div class="paragraph">
-<p><em>Figure 26. UML diagram of <code>AssignTaskCommand</code>.</em></p>
-</div>
-<div class="paragraph">
-<p>The implementation of assigning tasks is similar to that of adding tasks. The only difference is that the Assignor is set to the <code>Matric Number</code> of the member who is currently logged in.</p>
-</div>
-<div class="paragraph">
-<p>The parsing of an <code>AssignTaskCommand</code> is performed by the <code>AssignTaskCommandParser</code>.<br>
-Figure 27 shows the flow of parsing an <code>AssignTaskCommand</code> object:</p>
-</div>
-<div class="imageblock" style="text-align: center">
-<div class="content">
-<img src="../images/SDforAssignTaskCommandParser.png" alt="SDforAssignTaskCommandParser" width="400">
-</div>
-</div>
-<div class="paragraph">
-<p><em>Figure 27. Sequence Diagram for <code>AssignTaskCommand</code> parsing.</em></p>
-</div>
-<div class="paragraph">
-<p>Figure 28 depicts the high-level sequence of events that take place.</p>
-</div>
-<div class="imageblock" style="text-align: center">
-<div class="content">
-<img src="../images/SDforAssignTask.png" alt="SDforAssignTask" width="400">
-</div>
-</div>
-<div class="paragraph">
-<p><em>Figure 28. Sequence Diagram for assigning a task.</em></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="changing-task-assignee"><a class="link" href="#changing-task-assignee">Changing Task Assignee</a></h5>
-<hr>
-<div class="paragraph">
-<p>The <code>ChangeAssigneeCommand</code> is used to change the <code>Assignee</code> of a task.<br></p>
-</div>
-<div class="paragraph">
-<p>Figure 32 below shows the UML representation of <code>ChangeAssigneeCommand</code>.</p>
-</div>
-<div class="imageblock" style="text-align: center">
-<div class="content">
-<img src="../images/ChangeAssigneeCommandUML.png" alt="ChangeAssigneeCommandUML" width="150">
-</div>
-</div>
-<div class="paragraph">
-<p><em>Figure 32. UML Diagram of <code>ChangeAssigneeCommand</code>.</em></p>
-</div>
-<div class="paragraph">
-<p><code>ChangeAssigneeCommandParser</code> is responsible for parsing the <code>changeassignee</code> command. It returns a <code>ChangeAssigneeCommand</code> object after parsing the <code>INDEX</code> and the <code>Assignee</code>.
-Figure 33 shows the sequence diagram of the <code>ChangeAssigneeCommandParser</code>.</p>
-</div>
-<div class="imageblock" style="text-align: center">
-<div class="content">
-<img src="../images/SDforChangeAssigneeCommandParser.png" alt="SDforChangeAssigneeCommandParser" width="400">
-</div>
-</div>
-<div class="paragraph">
-<p><em>Figure 33. Sequence Diagram of <code>ChangeAssigneeCommandParser</code>.</em></p>
-</div>
-<div class="paragraph">
-<p>Figure 34 below shows the high-level sequence diagram of the command execution.</p>
-</div>
-<div class="imageblock" style="text-align: center">
-<div class="content">
-<img src="../images/SDforChangeAssignee.png" alt="SDforChangeAssignee" width="400">
-</div>
-</div>
-<div class="paragraph">
-<p><em>Figure 34. Sequence Diagram of changing the <code>Assignee</code> of a task.</em></p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect4">
@@ -700,33 +529,33 @@ Figure 36 below depicts the parsing of the <code>ChangeTaskStatusObject</code>.<
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-displaying-similar-tasks-for-different-assignees"><a class="link" href="#aspect-displaying-similar-tasks-for-different-assignees">Aspect: Displaying similar tasks for different Assignees</a></h5>
+<h5 id="aspect-who-can-change-task-status"><a class="link" href="#aspect-who-can-change-task-status">Aspect: Who can change task status?</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice)</strong>: Make a copy of the task for every new <code>Assignee</code> if all other parameters are same.</p>
+<p><strong>Alternative 1 (current choice)</strong>: Assignor or Assignee can change the task status.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Easy to implement</p>
+<p>Pros: They are directly associated with the task.</p>
 </li>
 <li>
-<p>Cons: Clutters the <code>TaskListPanel</code> because of redundancies.</p>
+<p>Cons: Exco should also have a say.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Maintain a list of <code>Assignee</code> s in a task .</p>
+<p><strong>Alternative 2:</strong> Exco, Assignee or Assignor can change status.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Reduces clutter in the <code>TaskListPanel</code> and is easy on the eye.</p>
+<p>Pros: Exco&#8217;s powers kept in check.</p>
 </li>
 <li>
-<p>Cons: Relatively difficult to implement.</p>
+<p>Cons: Exco may misinterpret status of the task.</p>
 </li>
 </ul>
 </div>
@@ -809,7 +638,7 @@ Figure 36 below depicts the parsing of the <code>ChangeTaskStatusObject</code>.<
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-implementation-of-code-deletegroupcommand-code"><a class="link" href="#aspect-implementation-of-code-deletegroupcommand-code">Aspect: Implementation of <code>DeleteGroupCommand</code></a></h5>
 <div class="ulist">
@@ -964,7 +793,9 @@ It consists of 2 algorithms <code>E</code> (Encrypting or Encoding) and <code>D<
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="1-auto-complete-command-mechanism"><a class="link" href="#1-auto-complete-command-mechanism">1. Auto-Complete Command Mechanism</a></h3>
-
+<div class="paragraph">
+<p><mark>Start of Extract (from Developer Guide)</mark></p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="auto-complete-command-mechanism"><a class="link" href="#auto-complete-command-mechanism">Auto-Complete Command Mechanism</a></h3>
@@ -1025,7 +856,7 @@ It consists of 2 algorithms <code>E</code> (Encrypting or Encoding) and <code>D<
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="implementation-of-cycling-through-commands"><a class="link" href="#implementation-of-cycling-through-commands">Implementation of cycling through commands</a></h5>
 <div class="ulist">
@@ -1058,13 +889,184 @@ It consists of 2 algorithms <code>E</code> (Encrypting or Encoding) and <code>D<
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p><mark>End of Extract (from Developer Guide)</mark></p>
+</div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="2-delete-tasks"><a class="link" href="#2-delete-tasks">2. Delete Tasks</a></h3>
+<h3 id="2-assign-tasks"><a class="link" href="#2-assign-tasks">2. Assign Tasks</a></h3>
 <div class="sect3">
 <h4 id="2-1-contribution-to-user-guide"><a class="link" href="#2-1-contribution-to-user-guide">2.1 Contribution to User Guide</a></h4>
+<div class="paragraph">
+<p><mark>Start of Extract (from User Guide)</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="assigning-a-task-code-assigntask-code-since-v1-4"><a class="link" href="#assigning-a-task-code-assigntask-code-since-v1-4">Assigning a task: <code>assigntask</code> (Since v1.4)</a></h3>
+<div class="paragraph">
+<p>Adds a task to Club Connect and assigns it to a member.<br>
+Format: <code>assigntask desc/DESCRIPTION d/DUE_DATE ti/TIME m/MATRIC_NUMBER</code><br>
+Alias: <code>assignt</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>date</code> and <code>time</code> attributes must be valid dates and time (in 24-hour format).</p>
+</li>
+<li>
+<p>The member who the task is meant to be assigned to must exist in the club book.</p>
+</li>
+<li>
+<p>The default <code>Status</code> given to a newly created task is <code>Yet to Begin</code>. This can be updated using the <code>changetaskstatus</code> command.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Duplicate tasks are not allowed.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+This command is for <code>Exco</code> members only.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>This command assigns the task to the member based on the entered <code>MATRIC_NUMBER</code>.</p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>assigntask desc/Book PGP Function Room 3 d/02/06/2018 ti/19:00 m/A1234567H</code><br>
+Assigns a task to <code>A1234567H</code> with description <code>Book PGP Function Room 3</code> due on <code>02/06/2018</code> at <code>19:00</code>.</p>
+</li>
+<li>
+<p><code>assigntask desc/Buy Food d/03.06.2018 ti/15:00 m/A1122334K</code><br>
+Assigns a task to <code>A1122334K</code> with description <code>Buy Food</code> due on <code>03/06/2018</code> at <code>15:00</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract (from User Guide)</mark></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="2-2-contribution-to-developer-guide"><a class="link" href="#2-2-contribution-to-developer-guide">2.2 Contribution to Developer Guide</a></h3>
+<div class="paragraph">
+<p><mark>Start of Extract (from User Guide)</mark></p>
+</div>
+<div class="sect4">
+<h5 id="assigning-tasks"><a class="link" href="#assigning-tasks">Assigning Tasks</a></h5>
+<hr>
+<div class="paragraph">
+<p>Assigning tasks can be accomplished with the <code>AssignTaskCommand</code>. Tasks are assigned to members through the <code>Matric Number</code> attribute.<br></p>
+</div>
+<div class="paragraph">
+<p>Figure 26 below shows the UML representation of <code>AssignTaskCommand</code>.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="../images/AssignTaskCommandUML.png" alt="AssignTaskCommandUML" width="150">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 26. UML diagram of <code>AssignTaskCommand</code>.</em></p>
+</div>
+<div class="paragraph">
+<p>The implementation of assigning tasks is similar to that of adding tasks. The only difference is that the Assignor is set to the <code>Matric Number</code> of the member who is currently logged in.</p>
+</div>
+<div class="paragraph">
+<p>The parsing of an <code>AssignTaskCommand</code> is performed by the <code>AssignTaskCommandParser</code>.<br>
+Figure 27 shows the flow of parsing an <code>AssignTaskCommand</code> object:</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="../images/SDforAssignTaskCommandParser.png" alt="SDforAssignTaskCommandParser" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 27. Sequence Diagram for <code>AssignTaskCommand</code> parsing.</em></p>
+</div>
+<div class="paragraph">
+<p>Figure 28 depicts the high-level sequence of events that take place.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="../images/SDforAssignTask.png" alt="SDforAssignTask" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 28. Sequence Diagram for assigning a task.</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-displaying-similar-tasks-for-different-assignees"><a class="link" href="#aspect-displaying-similar-tasks-for-different-assignees">Aspect: Displaying similar tasks for different Assignees</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Make a copy of the task for every new <code>Assignee</code> if all other parameters are same.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement</p>
+</li>
+<li>
+<p>Cons: Clutters the <code>TaskListPanel</code> because of redundancies.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Maintain a list of <code>Assignee</code> s in a task .</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Reduces clutter in the <code>TaskListPanel</code> and is easy on the eye.</p>
+</li>
+<li>
+<p>Cons: Relatively difficult to implement.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract (from User Guide)</mark></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="3-delete-tasks"><a class="link" href="#3-delete-tasks">3. Delete Tasks</a></h3>
+<div class="sect3">
+<h4 id="3-1-contribution-to-user-guide"><a class="link" href="#3-1-contribution-to-user-guide">3.1 Contribution to User Guide</a></h4>
 <div class="paragraph">
 <p><mark>Start of Extract (from User Guide)</mark></p>
 </div>
@@ -1127,7 +1129,7 @@ Deletes the 1st task in the results of the <code>viewalltasks</code> command.</p
 <p><mark>End of Extract (from User Guide)</mark></p>
 </div>
 <div class="sect3">
-<h4 id="2-2-contribution-to-developer-guide"><a class="link" href="#2-2-contribution-to-developer-guide">2.2 Contribution to Developer Guide</a></h4>
+<h4 id="3-2-contribution-to-developer-guide"><a class="link" href="#3-2-contribution-to-developer-guide">3.2 Contribution to Developer Guide</a></h4>
 <div class="paragraph">
 <p><mark>Start of Extract (from Developer Guide)</mark></p>
 </div>
@@ -1172,6 +1174,42 @@ Figure 30 illustrates the sequence in which the parsing is done.</p>
 <div class="paragraph">
 <p><em>Figure 31. Sequence Diagram for deleting a task.</em></p>
 </div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-who-can-delete-tasks"><a class="link" href="#aspect-who-can-delete-tasks">Aspect: Who can delete tasks?</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Only Assignors can delete tasks.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: It improves accountability of the club.</p>
+</li>
+<li>
+<p>Cons: All the workload falls on the Assignor.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Assignor or Assignee can delete task.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: The workload is evenly distributed.</p>
+</li>
+<li>
+<p>Cons: Reduces transparency of club and accountability of club members.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 <div class="paragraph">
 <p><mark>End of Extract (from Developer Guide)</mark></p>
 </div>
@@ -1179,9 +1217,165 @@ Figure 30 illustrates the sequence in which the parsing is done.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="3-viewing-tasks"><a class="link" href="#3-viewing-tasks">3. Viewing Tasks</a></h3>
+<h3 id="4-changing-task-assignee"><a class="link" href="#4-changing-task-assignee">4. Changing task assignee</a></h3>
 <div class="sect3">
-<h4 id="3-1-contribution-to-user-guide"><a class="link" href="#3-1-contribution-to-user-guide">3.1 Contribution to User Guide</a></h4>
+<h4 id="4-1-contribution-to-user-guide"><a class="link" href="#4-1-contribution-to-user-guide">4.1 Contribution to User Guide</a></h4>
+<div class="paragraph">
+<p><mark>Start of Extract (from User Guide)</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="changing-the-assignee-of-a-task-code-changeassignee-code-since-v1-5rc"><a class="link" href="#changing-the-assignee-of-a-task-code-changeassignee-code-since-v1-5rc">Changing the assignee of a task : <code>changeassignee</code> (Since v1.5rc)</a></h3>
+<div class="paragraph">
+<p>Changes the assignee of a task in Club Connect.<br>
+Format: <code>changeassignee INDEX m/MATRIC_NUMBER</code><br>
+Alias: <code>assignee</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>INDEX</code> <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>You cannot change the <code>Assignee</code> to a member who has already been assigned a task with identical attributes by another <code>Exco</code> member.</p>
+</li>
+<li>
+<p>Passing the current <code>Assignee</code> of the task in the input throws an error as there is no change.</p>
+</li>
+<li>
+<p>No duplicate tasks are allowed.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+This command is only for <code>Exco</code> members.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>changeassignee 1 m/A0123456H</code><br>
+Changes the assignee of the 1st task to <code>A0123456H</code> in the task listing.</p>
+</li>
+<li>
+<p><code>assignee 3 m/A6656789H</code><br>
+Changes the assignee of the 3rd task to <code>A6656789H</code> in the task listing.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract (from User Guide)</mark></p>
+</div>
+<div class="sect3">
+<h4 id="4-2-contribution-to-develop-guide"><a class="link" href="#4-2-contribution-to-develop-guide">4.2 Contribution to Develop Guide</a></h4>
+<div class="paragraph">
+<p><mark>Start of Extract (from User Guide)</mark></p>
+</div>
+<div class="sect4">
+<h5 id="assigning-tasks-2"><a class="link" href="#assigning-tasks-2">Assigning Tasks</a></h5>
+<hr>
+<div class="paragraph">
+<p>Assigning tasks can be accomplished with the <code>AssignTaskCommand</code>. Tasks are assigned to members through the <code>Matric Number</code> attribute.<br></p>
+</div>
+<div class="paragraph">
+<p>Figure 26 below shows the UML representation of <code>AssignTaskCommand</code>.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="../images/AssignTaskCommandUML.png" alt="AssignTaskCommandUML" width="150">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 26. UML diagram of <code>AssignTaskCommand</code>.</em></p>
+</div>
+<div class="paragraph">
+<p>The implementation of assigning tasks is similar to that of adding tasks. The only difference is that the Assignor is set to the <code>Matric Number</code> of the member who is currently logged in.</p>
+</div>
+<div class="paragraph">
+<p>The parsing of an <code>AssignTaskCommand</code> is performed by the <code>AssignTaskCommandParser</code>.<br>
+Figure 27 shows the flow of parsing an <code>AssignTaskCommand</code> object:</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="../images/SDforAssignTaskCommandParser.png" alt="SDforAssignTaskCommandParser" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 27. Sequence Diagram for <code>AssignTaskCommand</code> parsing.</em></p>
+</div>
+<div class="paragraph">
+<p>Figure 28 depicts the high-level sequence of events that take place.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="../images/SDforAssignTask.png" alt="SDforAssignTask" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 28. Sequence Diagram for assigning a task.</em></p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-displaying-similar-tasks-for-different-assignees-2"><a class="link" href="#aspect-displaying-similar-tasks-for-different-assignees-2">Aspect: Displaying similar tasks for different Assignees</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Make a copy of the task for every new <code>Assignee</code> if all other parameters are same.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement</p>
+</li>
+<li>
+<p>Cons: Clutters the <code>TaskListPanel</code> because of redundancies.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Maintain a list of <code>Assignee</code> s in a task .</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Reduces clutter in the <code>TaskListPanel</code> and is easy on the eye.</p>
+</li>
+<li>
+<p>Cons: Relatively difficult to implement.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract (from User Guide)</mark></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="5-viewing-tasks"><a class="link" href="#5-viewing-tasks">5. Viewing Tasks</a></h3>
+<div class="sect3">
+<h4 id="5-1-contribution-to-user-guide"><a class="link" href="#5-1-contribution-to-user-guide">5.1 Contribution to User Guide</a></h4>
 <div class="paragraph">
 <p><mark>Start of Extract (from User Guide)</mark></p>
 </div>
@@ -1232,7 +1426,7 @@ Alias: <code>mytasks</code></p>
 <p><mark>End of Extract (from User Guide)</mark></p>
 </div>
 <div class="sect3">
-<h4 id="3-2-contribution-to-developer-guide"><a class="link" href="#3-2-contribution-to-developer-guide">3.2 Contribution to Developer Guide</a></h4>
+<h4 id="5-2-contribution-to-developer-guide"><a class="link" href="#5-2-contribution-to-developer-guide">5.2 Contribution to Developer Guide</a></h4>
 <div class="paragraph">
 <p><mark>Start of Extract (from Developer Guide)</mark></p>
 </div>
@@ -1294,7 +1488,7 @@ Alias: <code>mytasks</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 14:16:27 UTC
+Last updated 2018-04-15 14:24:29 UTC
 </div>
 </div>
 </body>

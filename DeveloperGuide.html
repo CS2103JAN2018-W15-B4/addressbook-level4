@@ -1392,6 +1392,42 @@ Desktop.getDesktop().browse(<span class="keyword">new</span> <span class="predef
 <p><em>Figure 25. Sequence Diagram for adding a task.</em></p>
 </div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.4.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-displaying-assignor-and-assignee"><a class="link" href="#aspect-displaying-assignor-and-assignee">Aspect: Displaying Assignor and Assignee</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Displays currently logged-in member as Assignor and Assignee.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: It is required for <code>assigntask</code>.</p>
+</li>
+<li>
+<p>Cons: Displaying the same matriculation number twice is redundant.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Don&#8217;t display Assignor and Assignee as it is a personal to-do list.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Takes care of redundancies in Alternative 1 above.</p>
+</li>
+<li>
+<p>Cons: The implementation of <code>assigntask</code> becomes more complex.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
 <div class="sect4">
 <h5 id="assigning-tasks"><a class="link" href="#assigning-tasks">Assigning Tasks</a></h5>
 <hr>
@@ -1436,6 +1472,42 @@ Figure 27 shows the flow of parsing an <code>AssignTaskCommand</code> object:</p
 <p><em>Figure 28. Sequence Diagram for assigning a task.</em></p>
 </div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.4.3. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-displaying-similar-tasks-for-different-assignees"><a class="link" href="#aspect-displaying-similar-tasks-for-different-assignees">Aspect: Displaying similar tasks for different Assignees</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Make a copy of the task for every new <code>Assignee</code> if all other parameters are same.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement</p>
+</li>
+<li>
+<p>Cons: Clutters the <code>TaskListPanel</code> because of redundancies.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Maintain a list of <code>Assignee</code> s in a task .</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Reduces clutter in the <code>TaskListPanel</code> and is easy on the eye.</p>
+</li>
+<li>
+<p>Cons: Relatively difficult to implement.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
 <div class="sect4">
 <h5 id="deleting-tasks"><a class="link" href="#deleting-tasks">Deleting Tasks</a></h5>
 <hr>
@@ -1476,6 +1548,42 @@ Figure 30 illustrates the sequence in which the parsing is done.</p>
 </div>
 <div class="paragraph">
 <p><em>Figure 31. Sequence Diagram for deleting a task.</em></p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.4.4. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-who-can-delete-tasks"><a class="link" href="#aspect-who-can-delete-tasks">Aspect: Who can delete tasks?</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Only Assignors can delete tasks.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: It improves accountability of the club.</p>
+</li>
+<li>
+<p>Cons: All the workload falls on the Assignor.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Assignor or Assignee can delete task.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: The workload is evenly distributed.</p>
+</li>
+<li>
+<p>Cons: Reduces transparency of club and accountability of club members.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect4">
@@ -1519,6 +1627,42 @@ Figure 33 shows the sequence diagram of the <code>ChangeAssigneeCommandParser</c
 <p><em>Figure 34. Sequence Diagram of changing the <code>Assignee</code> of a task.</em></p>
 </div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">4.4.5. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-who-can-change-assignees"><a class="link" href="#aspect-who-can-change-assignees">Aspect: Who can change assignees?</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Only Exco members can change assignees of tasks.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: It improves accountability of the club.</p>
+</li>
+<li>
+<p>Cons: All the workload falls on the Exco members.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Assignor or Assignee can change the assignee task.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: People who are directly related to the task take up resonsibility. This boosts accountability of members.</p>
+</li>
+<li>
+<p>Cons: Similar to deleting a task, it reduces transparency of club and accountability of club members.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
 <div class="sect4">
 <h5 id="changing-task-status"><a class="link" href="#changing-task-status">Changing Task Status</a></h5>
 <hr>
@@ -1558,6 +1702,42 @@ Figure 36 below depicts the parsing of the <code>ChangeTaskStatusObject</code>.<
 </div>
 <div class="paragraph">
 <p><em>Figure 37. Sequence Diagram for changing the status of a task.</em></p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">4.4.6. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-who-can-change-task-status"><a class="link" href="#aspect-who-can-change-task-status">Aspect: Who can change task status?</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Assignor or Assignee can change the task status.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: They are directly associated with the task.</p>
+</li>
+<li>
+<p>Cons: Exco should also have a say.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Exco, Assignee or Assignor can change status.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Exco&#8217;s powers kept in check.</p>
+</li>
+<li>
+<p>Cons: Exco may misinterpret status of the task.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect4">
@@ -1606,42 +1786,6 @@ Figure 36 below depicts the parsing of the <code>ChangeTaskStatusObject</code>.<
 </div>
 <div class="paragraph">
 <p><em>Figure 39. Sequence Diagram for viewing tasks of the currently logged-in member.</em></p>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.4.2. Design Considerations</a></h4>
-<div class="sect4">
-<h5 id="aspect-displaying-similar-tasks-for-different-assignees"><a class="link" href="#aspect-displaying-similar-tasks-for-different-assignees">Aspect: Displaying similar tasks for different Assignees</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice)</strong>: Make a copy of the task for every new <code>Assignee</code> if all other parameters are same.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Easy to implement</p>
-</li>
-<li>
-<p>Cons: Clutters the <code>TaskListPanel</code> because of redundancies.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Maintain a list of <code>Assignee</code> s in a task .</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Reduces clutter in the <code>TaskListPanel</code> and is easy on the eye.</p>
-</li>
-<li>
-<p>Cons: Relatively difficult to implement.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
 </div>
 </div>
 </div>
@@ -1930,7 +2074,7 @@ of <code>ViewResultsRequestEvent</code>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.5.2. Design Considerations</a></h4>
+<h4 id="design-considerations-8"><a class="link" href="#design-considerations-8">4.5.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-keeping-track-of-how-many-members-voted-for-each-answer-of-a-poll-and-who-has-voted-in-a-poll"><a class="link" href="#aspect-keeping-track-of-how-many-members-voted-for-each-answer-of-a-poll-and-who-has-voted-in-a-poll">Aspect: Keeping track of how many members voted for each answer of a poll and who has voted in a poll</a></h5>
 <div class="ulist">
@@ -2032,7 +2176,7 @@ who voted, check user&#8217;s <code>MatricNumber</code> with all <code>MatricNum
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.6.2. Design Considerations</a></h4>
+<h4 id="design-considerations-9"><a class="link" href="#design-considerations-9">4.6.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-implementation-of-code-deletegroupcommand-code"><a class="link" href="#aspect-implementation-of-code-deletegroupcommand-code">Aspect: Implementation of <code>DeleteGroupCommand</code></a></h5>
 <div class="ulist">
@@ -2157,7 +2301,7 @@ still work for those members with valid data. This implementation is shown in th
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">4.7.2. Design Considerations</a></h4>
+<h4 id="design-considerations-10"><a class="link" href="#design-considerations-10">4.7.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-implementation-of-code-importcommand-code"><a class="link" href="#aspect-implementation-of-code-importcommand-code">Aspect: Implementation of <code>ImportCommand</code></a></h5>
 <div class="ulist">
@@ -2310,7 +2454,7 @@ This is shown in the code snippet below:</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">4.8.2. Design Considerations</a></h4>
+<h4 id="design-considerations-11"><a class="link" href="#design-considerations-11">4.8.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-output-file-format"><a class="link" href="#aspect-output-file-format">Aspect: Output file format</a></h5>
 <div class="ulist">
@@ -2471,7 +2615,7 @@ It copies the photo as a <a href="#bmp">bitmap image file</a> (.bmp) to the Club
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-8"><a class="link" href="#design-considerations-8">4.9.2. Design Considerations</a></h4>
+<h4 id="design-considerations-12"><a class="link" href="#design-considerations-12">4.9.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-implementation-of-code-changeprofilephotocommand-code"><a class="link" href="#aspect-implementation-of-code-changeprofilephotocommand-code">Aspect: Implementation of <code>ChangeProfilePhotoCommand</code></a></h5>
 <div class="ulist">
@@ -2612,7 +2756,7 @@ However, if the cards are decompressed, the <code>MemberCard</code> objects woul
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-9"><a class="link" href="#design-considerations-9">4.10.2. Design Considerations</a></h4>
+<h4 id="design-considerations-13"><a class="link" href="#design-considerations-13">4.10.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-to-interact-from-logic-to-ui"><a class="link" href="#aspect-how-to-interact-from-logic-to-ui">Aspect: How to interact from Logic to Ui</a></h5>
 <div class="ulist">
@@ -2708,7 +2852,7 @@ just for compress/decompress but for other events as well.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-10"><a class="link" href="#design-considerations-10">4.11.2. Design Considerations</a></h4>
+<h4 id="design-considerations-14"><a class="link" href="#design-considerations-14">4.11.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="implementation-of-cycling-through-commands"><a class="link" href="#implementation-of-cycling-through-commands">Implementation of cycling through commands</a></h5>
 <div class="ulist">
@@ -5798,7 +5942,7 @@ Expected: No tag is deleted as the tag name format is invalid. Relevant error de
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 14:16:26 UTC
+Last updated 2018-04-15 14:24:29 UTC
 </div>
 </div>
 </body>
