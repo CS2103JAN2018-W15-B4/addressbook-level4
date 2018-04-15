@@ -496,7 +496,7 @@ Deletes the <code>pr</code> group from Club Connect.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="../images/TaskUML.png" alt="TaskUML" width="300">
+<img src="../images/TaskUML.png" alt="TaskUML" width="500">
 </div>
 </div>
 <div class="paragraph">
@@ -667,6 +667,42 @@ Figure 36 below depicts the parsing of the <code>ChangeTaskStatusObject</code>.<
 <div class="paragraph">
 <p><em>Figure 37. Sequence Diagram for changing the status of a task.</em></p>
 </div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-displaying-similar-tasks-for-different-assignees"><a class="link" href="#aspect-displaying-similar-tasks-for-different-assignees">Aspect: Displaying similar tasks for different Assignees</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Make a copy of the task for every new <code>Assignee</code> if all other parameters are same.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement</p>
+</li>
+<li>
+<p>Cons: Clutters the <code>TaskListPanel</code> because of redundancies.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Maintain a list of <code>Assignee</code> s in a task .</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Reduces clutter in the <code>TaskListPanel</code> and is easy on the eye.</p>
+</li>
+<li>
+<p>Cons: Relatively difficult to implement.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 <div class="paragraph">
 <p><mark>End of Extract (from Developer Guide)</mark></p>
 </div>
@@ -743,7 +779,7 @@ Figure 36 below depicts the parsing of the <code>ChangeTaskStatusObject</code>.<
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-implementation-of-code-deletegroupcommand-code"><a class="link" href="#aspect-implementation-of-code-deletegroupcommand-code">Aspect: Implementation of <code>DeleteGroupCommand</code></a></h5>
 <div class="ulist">
@@ -959,7 +995,7 @@ It consists of 2 algorithms <code>E</code> (Encrypting or Encoding) and <code>D<
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="implementation-of-cycling-through-commands"><a class="link" href="#implementation-of-cycling-through-commands">Implementation of cycling through commands</a></h5>
 <div class="ulist">
@@ -1228,7 +1264,7 @@ Alias: <code>mytasks</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 07:46:55 UTC
+Last updated 2018-04-15 08:26:32 UTC
 </div>
 </div>
 </body>
